@@ -10,9 +10,7 @@ import { user } from './stores/user.js';
 import { get } from 'svelte/store';
 
 socket.on("setStation", function (newStation) {
-    debugger;
     station.set(newStation);
-
     if (!newStation.error) {
         if (get(location) == '/') {
             push(`/${newStation.id}`);

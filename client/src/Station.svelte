@@ -26,7 +26,7 @@
 
   function connect() {
     if (!$fp) return;
-    let targetId = params.stationId;
+    let targetId = $location.replace("/", "");
     if (targetId) {
       if (!$station || $station.error || $station.id != targetId) {
         status = STATUS.SEARCHING;
@@ -66,5 +66,11 @@
   });
 </script>
 
-<h1>{$station}</h1>
-<h1>{status.msg}</h1>
+{#if !$station}
+  <h1>Loading</h1>
+{:else if $station.error}
+  <h1>Error: {$station.error}</h1>
+{:else}
+  <h1>Listening to: {$station.id}</h1>
+  <h1>{status.msg}</h1>
+{/if}
