@@ -73,4 +73,5 @@
 {:else}
   <h1>Listening to: {$station.id}</h1>
   <h1>{status.msg}</h1>
+  <div id="player" class="player" />
 {/if}

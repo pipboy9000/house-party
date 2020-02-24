@@ -1,13 +1,24 @@
 <script>
   import { fp } from "./stores/fingerprint.js";
+  import { push } from "svelte-spa-router";
   import * as socket from "./socket.js";
+
+  let joinId;
 
   function newStation() {
     socket.newStation();
   }
 
   function joinStation() {
-    socket.joinStation("ABCD");
+    push(`/${joinId.toUpperCase()}`);
+  }
+
+  function catchClick(e) {
+    e.stopPropagation();
+  }
+
+  function catchEnter(e) {
+    if (e.code === "Enter") joinStation();
   }
 </script>
 
@@ -46,6 +57,10 @@
     align-items: center;
     justify-content: space-evenly;
   }
+
+  input {
+    text-transform: uppercase;
+  }
 </style>
 
 <main>
@@ -57,7 +72,10 @@
       <div class="btn" on:click={newStation}>New Station</div>
       <div class="btn" on:click={joinStation}>
         Join Station
-        <input />
+        <input
+          bind:value={joinId}
+          on:click={catchClick}
+          on:keydown={catchEnter} />
       </div>
     </div>
   {/if}
