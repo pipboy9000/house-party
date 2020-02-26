@@ -4,8 +4,11 @@
   import { location } from "svelte-spa-router";
   import { fp } from "./stores/fingerprint.js";
   import * as socket from "./socket.js";
+  import Player from "./Player.svelte";
 
   export let params = {}; //URL params
+
+  let player;
 
   const STATUS = {
     SEARCHING: {
@@ -73,5 +76,6 @@
 {:else}
   <h1>Listening to: {$station.id}</h1>
   <h1>{status.msg}</h1>
-  <div id="player" class="player" />
+  <Player bind:this={player} />
+  <div class="playBtn" on:click={player.playVideo}>></div>
 {/if}

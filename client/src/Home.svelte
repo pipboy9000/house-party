@@ -2,8 +2,22 @@
   import { fp } from "./stores/fingerprint.js";
   import { push } from "svelte-spa-router";
   import * as socket from "./socket.js";
+  import { getRandomColor } from "./utils.js";
+  import { onMount, onDestroy } from "svelte";
 
   let joinId;
+  let colorChange;
+  let bgColor;
+
+  onMount(() => {
+    colorChange = setInterval(() => {
+      bgColor = getRandomColor();
+    }, 1500);
+  });
+
+  onDestroy(() => {
+    clearInterval(colorChange);
+  });
 
   function newStation() {
     socket.newStation();
@@ -25,9 +39,25 @@
 <style>
   main {
     text-align: center;
-    padding: 1em;
-    max-width: 240px;
     margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bottom {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   h1 {
@@ -49,33 +79,53 @@
   .btn {
     width: 360px;
     height: 80px;
-    align-items: center;
-    justify-content: space-around;
-    background: gray;
+    background: linear-gradient(0deg, #ededed, white);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    border-radius: 85px;
+    color: white;
+    font-size: 18px;
+    box-shadow: 0px 2px 1px #979797;
   }
 
   input {
     text-transform: uppercase;
+    margin: 0;
+    border-radius: 4px;
+    border: 1px solid #e9e9e9;
+  }
+
+  .logo {
+    background-image: url(/images/logo.png);
+    width: 300px;
+    height: 300px;
+    background-size: 280px;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 </style>
 
-<main>
+<main style="background: {bgColor}">
   {#if !$fp}
     <h1>Loading</h1>
   {:else}
-    <h1>House Party</h1>
-    <div class="buttons">
-      <div class="btn" on:click={newStation}>New Station</div>
-      <div class="btn" on:click={joinStation}>
-        Join Station
-        <input
-          bind:value={joinId}
-          on:click={catchClick}
-          on:keydown={catchEnter} />
+    <div class="top">
+      <div class="logo" />
+    </div>
+    <div class="bottom">
+      <div class="buttons">
+        <div class="btn" on:click={newStation}>
+          <span>Station</span>
+        </div>
+        <div class="btn" on:click={joinStation}>
+          <span>Join Station</span>
+          <input
+            bind:value={joinId}
+            on:click={catchClick}
+            on:keydown={catchEnter} />
+        </div>
       </div>
     </div>
   {/if}
