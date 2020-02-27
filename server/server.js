@@ -14,8 +14,6 @@ var settings = {
 
 var port = process.env.PORT || 3000;
 
-app.use(express.static('public'))
-
 app.get('/stations', (req, res) => res.send(stations))
 
 function isIdTaken(id) {

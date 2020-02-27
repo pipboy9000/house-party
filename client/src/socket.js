@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-const socket = io('http://localhost:3000');
+const socket = io('http://house-party-app.herokuapp.com/');
 
 import { push, pop, replace } from "svelte-spa-router";
 import { location } from "svelte-spa-router";
