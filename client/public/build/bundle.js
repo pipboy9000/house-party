@@ -1,3 +1,11379 @@
-var app=function(){"use strict";function e(){}function t(e){return e()}function n(){return Object.create(null)}function r(e){e.forEach(t)}function o(e){return"function"==typeof e}function i(e,t){return e!=e?t==t:e!==t||e&&"object"==typeof e||"function"==typeof e}function a(t,...n){if(null==t)return e;const r=t.subscribe(...n);return r.unsubscribe?()=>r.unsubscribe():r}function s(e){let t;return a(e,e=>t=e)(),t}function c(e,t,n){e.$$.on_destroy.push(a(t,n))}function u(e,t){e.appendChild(t)}function l(e,t,n){e.insertBefore(t,n||null)}function h(e){e.parentNode.removeChild(e)}function p(e){return document.createElement(e)}function f(e){return document.createTextNode(e)}function d(){return f(" ")}function g(){return f("")}function m(e,t,n,r){return e.addEventListener(t,n,r),()=>e.removeEventListener(t,n,r)}function y(e,t,n){null==n?e.removeAttribute(t):e.getAttribute(t)!==n&&e.setAttribute(t,n)}function v(e,t){t=""+t,e.data!==t&&(e.data=t)}function C(e,t){(null!=t||e.value)&&(e.value=t)}function b(e,t,n,r){e.style.setProperty(t,n,r?"important":"")}let w;function A(e){w=e}function k(){if(!w)throw new Error("Function called outside component initialization");return w}function T(e){k().$$.on_mount.push(e)}function B(e){k().$$.on_destroy.push(e)}function E(){const e=k();return(t,n)=>{const r=e.$$.callbacks[t];if(r){const o=function(e,t){const n=document.createEvent("CustomEvent");return n.initCustomEvent(e,!1,!1,t),n}(t,n);r.slice().forEach(t=>{t.call(e,o)})}}}const S=[],x=[],F=[],O=[],R=Promise.resolve();let _=!1;function P(e){F.push(e)}let M=!1;const N=new Set;function I(){if(!M){M=!0;do{for(let e=0;e<S.length;e+=1){const t=S[e];A(t),L(t.$$)}for(S.length=0;x.length;)x.pop()();for(let e=0;e<F.length;e+=1){const t=F[e];N.has(t)||(N.add(t),t())}F.length=0}while(S.length);for(;O.length;)O.pop()();_=!1,M=!1,N.clear()}}function L(e){if(null!==e.fragment){e.update(),r(e.before_update);const t=e.dirty;e.dirty=[-1],e.fragment&&e.fragment.p(e.ctx,t),e.after_update.forEach(P)}}const D=new Set;let U;function j(){U={r:0,c:[],p:U}}function $(){U.r||r(U.c),U=U.p}function H(e,t){e&&e.i&&(D.delete(e),e.i(t))}function G(e,t,n,r){if(e&&e.o){if(D.has(e))return;D.add(e),U.c.push(()=>{D.delete(e),r&&(n&&e.d(1),r())}),e.o(t)}}function q(e){e&&e.c()}function V(e,n,i){const{fragment:a,on_mount:s,on_destroy:c,after_update:u}=e.$$;a&&a.m(n,i),P(()=>{const n=s.map(t).filter(o);c?c.push(...n):r(n),e.$$.on_mount=[]}),u.forEach(P)}function X(e,t){const n=e.$$;null!==n.fragment&&(r(n.on_destroy),n.fragment&&n.fragment.d(t),n.on_destroy=n.fragment=null,n.ctx=[])}function z(e,t){-1===e.$$.dirty[0]&&(S.push(e),_||(_=!0,R.then(I)),e.$$.dirty.fill(0)),e.$$.dirty[t/31|0]|=1<<t%31}function W(t,o,i,a,s,c,u=[-1]){const l=w;A(t);const h=o.props||{},p=t.$$={fragment:null,ctx:null,props:c,update:e,not_equal:s,bound:n(),on_mount:[],on_destroy:[],before_update:[],after_update:[],context:new Map(l?l.$$.context:[]),callbacks:n(),dirty:u};let f=!1;p.ctx=i?i(t,h,(e,n,...r)=>{const o=r.length?r[0]:n;return p.ctx&&s(p.ctx[e],p.ctx[e]=o)&&(p.bound[e]&&p.bound[e](o),f&&z(t,e)),n}):[],p.update(),f=!0,r(p.before_update),p.fragment=!!a&&a(p.ctx),o.target&&(o.hydrate?p.fragment&&p.fragment.l(function(e){return Array.from(e.childNodes)}(o.target)):p.fragment&&p.fragment.c(),o.intro&&H(t.$$.fragment),V(t,o.target,o.anchor),I()),A(l)}class K{$destroy(){X(this,1),this.$destroy=e}$on(e,t){const n=this.$$.callbacks[e]||(this.$$.callbacks[e]=[]);return n.push(t),()=>{const e=n.indexOf(t);-1!==e&&n.splice(e,1)}}$set(){}}const J=[];function Y(e,t){return{subscribe:Z(e,t).subscribe}}function Z(t,n=e){let r;const o=[];function a(e){if(i(t,e)&&(t=e,r)){const e=!J.length;for(let e=0;e<o.length;e+=1){const n=o[e];n[1](),J.push(n,t)}if(e){for(let e=0;e<J.length;e+=2)J[e][0](J[e+1]);J.length=0}}}return{set:a,update:function(e){a(e(t))},subscribe:function(i,s=e){const c=[i,s];return o.push(c),1===o.length&&(r=n(a)||e),i(t),()=>{const e=o.indexOf(c);-1!==e&&o.splice(e,1),0===o.length&&(r(),r=null)}}}}function Q(t,n,i){const s=!Array.isArray(t),c=s?[t]:t,u=n.length<2;return Y(i,t=>{let i=!1;const l=[];let h=0,p=e;const f=()=>{if(h)return;p();const r=n(s?l[0]:l,t);u?t(r):p=o(r)?r:e},d=c.map((e,t)=>a(e,e=>{l[t]=e,h&=~(1<<t),i&&f()},()=>{h|=1<<t}));return i=!0,f(),function(){r(d),p()}})}function ee(e){let t,n;var r=e[0];function o(e){return{props:{params:e[1]}}}if(r)var i=new r(o(e));return{c(){i&&q(i.$$.fragment),t=g()},m(e,r){i&&V(i,e,r),l(e,t,r),n=!0},p(e,[n]){const a={};if(2&n&&(a.params=e[1]),r!==(r=e[0])){if(i){j();const e=i;G(e.$$.fragment,1,0,()=>{X(e,1)}),$()}r?(q((i=new r(o(e))).$$.fragment),H(i.$$.fragment,1),V(i,t.parentNode,t)):i=null}else r&&i.$set(a)},i(e){n||(i&&H(i.$$.fragment,e),n=!0)},o(e){i&&G(i.$$.fragment,e),n=!1},d(e){e&&h(t),i&&X(i,e)}}}function te(){const e=window.location.href.indexOf("#/");let t=e>-1?window.location.href.substr(e+1):"/";const n=t.indexOf("?");let r="";return n>-1&&(r=t.substr(n+1),t=t.substr(0,n)),{location:t,querystring:r}}const ne=Y(te(),(function(e){const t=()=>{e(te())};return window.addEventListener("hashchange",t,!1),function(){window.removeEventListener("hashchange",t,!1)}})),re=Q(ne,e=>e.location);Q(ne,e=>e.querystring);function oe(e){if(!e||e.length<1||"/"!=e.charAt(0)&&0!==e.indexOf("#/"))throw Error("Invalid parameter location");setTimeout(()=>{window.location.hash=("#"==e.charAt(0)?"":"#")+e},0)}function ie(t,n,r){let o,i=e;c(t,ne,e=>r(4,o=e)),t.$$.on_destroy.push(()=>i());let{routes:a={}}=n,{prefix:s=""}=n;class u{constructor(e,t){if(!t||"function"!=typeof t&&("object"!=typeof t||!0!==t._sveltesparouter))throw Error("Invalid component object");if(!e||"string"==typeof e&&(e.length<1||"/"!=e.charAt(0)&&"*"!=e.charAt(0))||"object"==typeof e&&!(e instanceof RegExp))throw Error('Invalid value for "path" argument');const{pattern:n,keys:r}=function(e,t){if(e instanceof RegExp)return{keys:!1,pattern:e};var n,r,o,i,a=[],s="",c=e.split("/");for(c[0]||c.shift();o=c.shift();)"*"===(n=o[0])?(a.push("wild"),s+="/(.*)"):":"===n?(r=o.indexOf("?",1),i=o.indexOf(".",1),a.push(o.substring(1,~r?r:~i?i:o.length)),s+=~r&&!~i?"(?:/([^/]+?))?":"/([^/]+?)",~i&&(s+=(~r?"?":"")+"\\"+o.substring(i))):s+="/"+o;return{keys:a,pattern:new RegExp("^"+s+(t?"(?=$|/)":"/?$"),"i")}}(e);this.path=e,"object"==typeof t&&!0===t._sveltesparouter?(this.component=t.route,this.conditions=t.conditions||[],this.userData=t.userData):(this.component=t,this.conditions=[],this.userData=void 0),this._pattern=n,this._keys=r}match(e){s&&e.startsWith(s)&&(e=e.substr(s.length)||"/");const t=this._pattern.exec(e);if(null===t)return null;if(!1===this._keys)return t;const n={};let r=0;for(;r<this._keys.length;)n[this._keys[r]]=t[++r]||null;return n}checkConditions(e){for(let t=0;t<this.conditions.length;t++)if(!this.conditions[t](e))return!1;return!0}}const l=a instanceof Map?a:Object.entries(a),h=[];for(const[e,t]of l)h.push(new u(e,t));let p=null,f={};const d=E(),g=(e,t)=>{setTimeout(()=>{d(e,t)},0)};return t.$set=e=>{"routes"in e&&r(2,a=e.routes),"prefix"in e&&r(3,s=e.prefix)},t.$$.update=()=>{if(17&t.$$.dirty){r(0,p=null);let e=0;for(;!p&&e<h.length;){const t=h[e].match(o.location);if(t){const n={component:h[e].component,name:h[e].component.name,location:o.location,querystring:o.querystring,userData:h[e].userData};if(!h[e].checkConditions(n)){g("conditionsFailed",n);break}r(0,p=h[e].component),r(1,f=t),g("routeLoaded",n)}e++}}},[p,f,a,s]}class ae extends K{constructor(e){super(),W(this,e,ie,ee,i,{routes:2,prefix:3})}}var se="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function ce(e,t){return e(t={exports:{}},t.exports),t.exports}var ue=ce((function(e){var t,n;t=se,n=function(){var e=function(e,t){e=[e[0]>>>16,65535&e[0],e[1]>>>16,65535&e[1]],t=[t[0]>>>16,65535&t[0],t[1]>>>16,65535&t[1]];var n=[0,0,0,0];return n[3]+=e[3]+t[3],n[2]+=n[3]>>>16,n[3]&=65535,n[2]+=e[2]+t[2],n[1]+=n[2]>>>16,n[2]&=65535,n[1]+=e[1]+t[1],n[0]+=n[1]>>>16,n[1]&=65535,n[0]+=e[0]+t[0],n[0]&=65535,[n[0]<<16|n[1],n[2]<<16|n[3]]},t=function(e,t){e=[e[0]>>>16,65535&e[0],e[1]>>>16,65535&e[1]],t=[t[0]>>>16,65535&t[0],t[1]>>>16,65535&t[1]];var n=[0,0,0,0];return n[3]+=e[3]*t[3],n[2]+=n[3]>>>16,n[3]&=65535,n[2]+=e[2]*t[3],n[1]+=n[2]>>>16,n[2]&=65535,n[2]+=e[3]*t[2],n[1]+=n[2]>>>16,n[2]&=65535,n[1]+=e[1]*t[3],n[0]+=n[1]>>>16,n[1]&=65535,n[1]+=e[2]*t[2],n[0]+=n[1]>>>16,n[1]&=65535,n[1]+=e[3]*t[1],n[0]+=n[1]>>>16,n[1]&=65535,n[0]+=e[0]*t[3]+e[1]*t[2]+e[2]*t[1]+e[3]*t[0],n[0]&=65535,[n[0]<<16|n[1],n[2]<<16|n[3]]},n=function(e,t){return 32==(t%=64)?[e[1],e[0]]:t<32?[e[0]<<t|e[1]>>>32-t,e[1]<<t|e[0]>>>32-t]:(t-=32,[e[1]<<t|e[0]>>>32-t,e[0]<<t|e[1]>>>32-t])},r=function(e,t){return 0==(t%=64)?e:t<32?[e[0]<<t|e[1]>>>32-t,e[1]<<t]:[e[1]<<t-32,0]},o=function(e,t){return[e[0]^t[0],e[1]^t[1]]},i=function(e){return e=o(e,[0,e[0]>>>1]),e=t(e,[4283543511,3981806797]),e=o(e,[0,e[0]>>>1]),e=t(e,[3301882366,444984403]),e=o(e,[0,e[0]>>>1])},a=function(a,s){s=s||0;for(var c=(a=a||"").length%16,u=a.length-c,l=[0,s],h=[0,s],p=[0,0],f=[0,0],d=[2277735313,289559509],g=[1291169091,658871167],m=0;m<u;m+=16)p=[255&a.charCodeAt(m+4)|(255&a.charCodeAt(m+5))<<8|(255&a.charCodeAt(m+6))<<16|(255&a.charCodeAt(m+7))<<24,255&a.charCodeAt(m)|(255&a.charCodeAt(m+1))<<8|(255&a.charCodeAt(m+2))<<16|(255&a.charCodeAt(m+3))<<24],f=[255&a.charCodeAt(m+12)|(255&a.charCodeAt(m+13))<<8|(255&a.charCodeAt(m+14))<<16|(255&a.charCodeAt(m+15))<<24,255&a.charCodeAt(m+8)|(255&a.charCodeAt(m+9))<<8|(255&a.charCodeAt(m+10))<<16|(255&a.charCodeAt(m+11))<<24],p=t(p,d),p=n(p,31),p=t(p,g),l=o(l,p),l=n(l,27),l=e(l,h),l=e(t(l,[0,5]),[0,1390208809]),f=t(f,g),f=n(f,33),f=t(f,d),h=o(h,f),h=n(h,31),h=e(h,l),h=e(t(h,[0,5]),[0,944331445]);switch(p=[0,0],f=[0,0],c){case 15:f=o(f,r([0,a.charCodeAt(m+14)],48));case 14:f=o(f,r([0,a.charCodeAt(m+13)],40));case 13:f=o(f,r([0,a.charCodeAt(m+12)],32));case 12:f=o(f,r([0,a.charCodeAt(m+11)],24));case 11:f=o(f,r([0,a.charCodeAt(m+10)],16));case 10:f=o(f,r([0,a.charCodeAt(m+9)],8));case 9:f=o(f,[0,a.charCodeAt(m+8)]),f=t(f,g),f=n(f,33),f=t(f,d),h=o(h,f);case 8:p=o(p,r([0,a.charCodeAt(m+7)],56));case 7:p=o(p,r([0,a.charCodeAt(m+6)],48));case 6:p=o(p,r([0,a.charCodeAt(m+5)],40));case 5:p=o(p,r([0,a.charCodeAt(m+4)],32));case 4:p=o(p,r([0,a.charCodeAt(m+3)],24));case 3:p=o(p,r([0,a.charCodeAt(m+2)],16));case 2:p=o(p,r([0,a.charCodeAt(m+1)],8));case 1:p=o(p,[0,a.charCodeAt(m)]),p=t(p,d),p=n(p,31),p=t(p,g),l=o(l,p)}return l=o(l,[0,a.length]),h=o(h,[0,a.length]),l=e(l,h),h=e(h,l),l=i(l),h=i(h),l=e(l,h),h=e(h,l),("00000000"+(l[0]>>>0).toString(16)).slice(-8)+("00000000"+(l[1]>>>0).toString(16)).slice(-8)+("00000000"+(h[0]>>>0).toString(16)).slice(-8)+("00000000"+(h[1]>>>0).toString(16)).slice(-8)},s={preprocessor:null,audio:{timeout:1e3,excludeIOS11:!0},fonts:{swfContainerId:"fingerprintjs2",swfPath:"flash/compiled/FontList.swf",userDefinedFonts:[],extendedJsFonts:!1},screen:{detectScreenOrientation:!0},plugins:{sortPluginsFor:[/palemoon/i],excludeIE:!1},extraComponents:[],excludes:{enumerateDevices:!0,pixelRatio:!0,doNotTrack:!0,fontsFlash:!0},NOT_AVAILABLE:"not available",ERROR:"error",EXCLUDED:"excluded"},c=function(e,t){if(Array.prototype.forEach&&e.forEach===Array.prototype.forEach)e.forEach(t);else if(e.length===+e.length)for(var n=0,r=e.length;n<r;n++)t(e[n],n,e);else for(var o in e)e.hasOwnProperty(o)&&t(e[o],o,e)},u=function(e,t){var n=[];return null==e?n:Array.prototype.map&&e.map===Array.prototype.map?e.map(t):(c(e,(function(e,r,o){n.push(t(e,r,o))})),n)},l=function(){return navigator.mediaDevices&&navigator.mediaDevices.enumerateDevices},h=function(e){var t=[window.screen.width,window.screen.height];return e.screen.detectScreenOrientation&&t.sort().reverse(),t},p=function(e){if(window.screen.availWidth&&window.screen.availHeight){var t=[window.screen.availHeight,window.screen.availWidth];return e.screen.detectScreenOrientation&&t.sort().reverse(),t}return e.NOT_AVAILABLE},f=function(e){if(null==navigator.plugins)return e.NOT_AVAILABLE;for(var t=[],n=0,r=navigator.plugins.length;n<r;n++)navigator.plugins[n]&&t.push(navigator.plugins[n]);return g(e)&&(t=t.sort((function(e,t){return e.name>t.name?1:e.name<t.name?-1:0}))),u(t,(function(e){var t=u(e,(function(e){return[e.type,e.suffixes]}));return[e.name,e.description,t]}))},d=function(e){var t=[];return Object.getOwnPropertyDescriptor&&Object.getOwnPropertyDescriptor(window,"ActiveXObject")||"ActiveXObject"in window?t=u(["AcroPDF.PDF","Adodb.Stream","AgControl.AgControl","DevalVRXCtrl.DevalVRXCtrl.1","MacromediaFlashPaper.MacromediaFlashPaper","Msxml2.DOMDocument","Msxml2.XMLHTTP","PDF.PdfCtrl","QuickTime.QuickTime","QuickTimeCheckObject.QuickTimeCheck.1","RealPlayer","RealPlayer.RealPlayer(tm) ActiveX Control (32-bit)","RealVideo.RealVideo(tm) ActiveX Control (32-bit)","Scripting.Dictionary","SWCtl.SWCtl","Shell.UIHelper","ShockwaveFlash.ShockwaveFlash","Skype.Detection","TDCCtl.TDCCtl","WMPlayer.OCX","rmocx.RealPlayer G2 Control","rmocx.RealPlayer G2 Control.1"],(function(t){try{return new window.ActiveXObject(t),t}catch(t){return e.ERROR}})):t.push(e.NOT_AVAILABLE),navigator.plugins&&(t=t.concat(f(e))),t},g=function(e){for(var t=!1,n=0,r=e.plugins.sortPluginsFor.length;n<r;n++){var o=e.plugins.sortPluginsFor[n];if(navigator.userAgent.match(o)){t=!0;break}}return t},m=function(e){try{return!!window.sessionStorage}catch(t){return e.ERROR}},y=function(e){try{return!!window.localStorage}catch(t){return e.ERROR}},v=function(e){try{return!!window.indexedDB}catch(t){return e.ERROR}},C=function(e){return navigator.hardwareConcurrency?navigator.hardwareConcurrency:e.NOT_AVAILABLE},b=function(e){return navigator.cpuClass||e.NOT_AVAILABLE},w=function(e){return navigator.platform?navigator.platform:e.NOT_AVAILABLE},A=function(e){return navigator.doNotTrack?navigator.doNotTrack:navigator.msDoNotTrack?navigator.msDoNotTrack:window.doNotTrack?window.doNotTrack:e.NOT_AVAILABLE},k=function(){var e,t=0;void 0!==navigator.maxTouchPoints?t=navigator.maxTouchPoints:void 0!==navigator.msMaxTouchPoints&&(t=navigator.msMaxTouchPoints);try{document.createEvent("TouchEvent"),e=!0}catch(t){e=!1}return[t,e,"ontouchstart"in window]},T=function(e){var t=[],n=document.createElement("canvas");n.width=2e3,n.height=200,n.style.display="inline";var r=n.getContext("2d");return r.rect(0,0,10,10),r.rect(2,2,6,6),t.push("canvas winding:"+(!1===r.isPointInPath(5,5,"evenodd")?"yes":"no")),r.textBaseline="alphabetic",r.fillStyle="#f60",r.fillRect(125,1,62,20),r.fillStyle="#069",e.dontUseFakeFontInCanvas?r.font="11pt Arial":r.font="11pt no-real-font-123",r.fillText("Cwm fjordbank glyphs vext quiz, 😃",2,15),r.fillStyle="rgba(102, 204, 0, 0.2)",r.font="18pt Arial",r.fillText("Cwm fjordbank glyphs vext quiz, 😃",4,45),r.globalCompositeOperation="multiply",r.fillStyle="rgb(255,0,255)",r.beginPath(),r.arc(50,50,50,0,2*Math.PI,!0),r.closePath(),r.fill(),r.fillStyle="rgb(0,255,255)",r.beginPath(),r.arc(100,50,50,0,2*Math.PI,!0),r.closePath(),r.fill(),r.fillStyle="rgb(255,255,0)",r.beginPath(),r.arc(75,100,50,0,2*Math.PI,!0),r.closePath(),r.fill(),r.fillStyle="rgb(255,0,255)",r.arc(75,75,75,0,2*Math.PI,!0),r.arc(75,75,25,0,2*Math.PI,!0),r.fill("evenodd"),n.toDataURL&&t.push("canvas fp:"+n.toDataURL()),t},B=function(){var e,t=function(t){return e.clearColor(0,0,0,1),e.enable(e.DEPTH_TEST),e.depthFunc(e.LEQUAL),e.clear(e.COLOR_BUFFER_BIT|e.DEPTH_BUFFER_BIT),"["+t[0]+", "+t[1]+"]"};if(!(e=D()))return null;var n=[],r=e.createBuffer();e.bindBuffer(e.ARRAY_BUFFER,r);var o=new Float32Array([-.2,-.9,0,.4,-.26,0,0,.732134444,0]);e.bufferData(e.ARRAY_BUFFER,o,e.STATIC_DRAW),r.itemSize=3,r.numItems=3;var i=e.createProgram(),a=e.createShader(e.VERTEX_SHADER);e.shaderSource(a,"attribute vec2 attrVertex;varying vec2 varyinTexCoordinate;uniform vec2 uniformOffset;void main(){varyinTexCoordinate=attrVertex+uniformOffset;gl_Position=vec4(attrVertex,0,1);}"),e.compileShader(a);var s=e.createShader(e.FRAGMENT_SHADER);e.shaderSource(s,"precision mediump float;varying vec2 varyinTexCoordinate;void main() {gl_FragColor=vec4(varyinTexCoordinate,0,1);}"),e.compileShader(s),e.attachShader(i,a),e.attachShader(i,s),e.linkProgram(i),e.useProgram(i),i.vertexPosAttrib=e.getAttribLocation(i,"attrVertex"),i.offsetUniform=e.getUniformLocation(i,"uniformOffset"),e.enableVertexAttribArray(i.vertexPosArray),e.vertexAttribPointer(i.vertexPosAttrib,r.itemSize,e.FLOAT,!1,0,0),e.uniform2f(i.offsetUniform,1,1),e.drawArrays(e.TRIANGLE_STRIP,0,r.numItems);try{n.push(e.canvas.toDataURL())}catch(e){}n.push("extensions:"+(e.getSupportedExtensions()||[]).join(";")),n.push("webgl aliased line width range:"+t(e.getParameter(e.ALIASED_LINE_WIDTH_RANGE))),n.push("webgl aliased point size range:"+t(e.getParameter(e.ALIASED_POINT_SIZE_RANGE))),n.push("webgl alpha bits:"+e.getParameter(e.ALPHA_BITS)),n.push("webgl antialiasing:"+(e.getContextAttributes().antialias?"yes":"no")),n.push("webgl blue bits:"+e.getParameter(e.BLUE_BITS)),n.push("webgl depth bits:"+e.getParameter(e.DEPTH_BITS)),n.push("webgl green bits:"+e.getParameter(e.GREEN_BITS)),n.push("webgl max anisotropy:"+function(e){var t=e.getExtension("EXT_texture_filter_anisotropic")||e.getExtension("WEBKIT_EXT_texture_filter_anisotropic")||e.getExtension("MOZ_EXT_texture_filter_anisotropic");if(t){var n=e.getParameter(t.MAX_TEXTURE_MAX_ANISOTROPY_EXT);return 0===n&&(n=2),n}return null}(e)),n.push("webgl max combined texture image units:"+e.getParameter(e.MAX_COMBINED_TEXTURE_IMAGE_UNITS)),n.push("webgl max cube map texture size:"+e.getParameter(e.MAX_CUBE_MAP_TEXTURE_SIZE)),n.push("webgl max fragment uniform vectors:"+e.getParameter(e.MAX_FRAGMENT_UNIFORM_VECTORS)),n.push("webgl max render buffer size:"+e.getParameter(e.MAX_RENDERBUFFER_SIZE)),n.push("webgl max texture image units:"+e.getParameter(e.MAX_TEXTURE_IMAGE_UNITS)),n.push("webgl max texture size:"+e.getParameter(e.MAX_TEXTURE_SIZE)),n.push("webgl max varying vectors:"+e.getParameter(e.MAX_VARYING_VECTORS)),n.push("webgl max vertex attribs:"+e.getParameter(e.MAX_VERTEX_ATTRIBS)),n.push("webgl max vertex texture image units:"+e.getParameter(e.MAX_VERTEX_TEXTURE_IMAGE_UNITS)),n.push("webgl max vertex uniform vectors:"+e.getParameter(e.MAX_VERTEX_UNIFORM_VECTORS)),n.push("webgl max viewport dims:"+t(e.getParameter(e.MAX_VIEWPORT_DIMS))),n.push("webgl red bits:"+e.getParameter(e.RED_BITS)),n.push("webgl renderer:"+e.getParameter(e.RENDERER)),n.push("webgl shading language version:"+e.getParameter(e.SHADING_LANGUAGE_VERSION)),n.push("webgl stencil bits:"+e.getParameter(e.STENCIL_BITS)),n.push("webgl vendor:"+e.getParameter(e.VENDOR)),n.push("webgl version:"+e.getParameter(e.VERSION));try{var u=e.getExtension("WEBGL_debug_renderer_info");u&&(n.push("webgl unmasked vendor:"+e.getParameter(u.UNMASKED_VENDOR_WEBGL)),n.push("webgl unmasked renderer:"+e.getParameter(u.UNMASKED_RENDERER_WEBGL)))}catch(e){}return e.getShaderPrecisionFormat?(c(["FLOAT","INT"],(function(t){c(["VERTEX","FRAGMENT"],(function(r){c(["HIGH","MEDIUM","LOW"],(function(o){c(["precision","rangeMin","rangeMax"],(function(i){var a=e.getShaderPrecisionFormat(e[r+"_SHADER"],e[o+"_"+t])[i];"precision"!==i&&(i="precision "+i);var s=["webgl ",r.toLowerCase()," shader ",o.toLowerCase()," ",t.toLowerCase()," ",i,":",a].join("");n.push(s)}))}))}))})),n):n},E=function(){try{var e=D(),t=e.getExtension("WEBGL_debug_renderer_info");return e.getParameter(t.UNMASKED_VENDOR_WEBGL)+"~"+e.getParameter(t.UNMASKED_RENDERER_WEBGL)}catch(e){return null}},S=function(){var e=document.createElement("div");e.innerHTML="&nbsp;",e.className="adsbox";var t=!1;try{document.body.appendChild(e),t=0===document.getElementsByClassName("adsbox")[0].offsetHeight,document.body.removeChild(e)}catch(e){t=!1}return t},x=function(){if(void 0!==navigator.languages)try{if(navigator.languages[0].substr(0,2)!==navigator.language.substr(0,2))return!0}catch(e){return!0}return!1},F=function(){return window.screen.width<window.screen.availWidth||window.screen.height<window.screen.availHeight},O=function(){var e,t=navigator.userAgent.toLowerCase(),n=navigator.oscpu,r=navigator.platform.toLowerCase();if(e=t.indexOf("windows phone")>=0?"Windows Phone":t.indexOf("win")>=0?"Windows":t.indexOf("android")>=0?"Android":t.indexOf("linux")>=0||t.indexOf("cros")>=0?"Linux":t.indexOf("iphone")>=0||t.indexOf("ipad")>=0?"iOS":t.indexOf("mac")>=0?"Mac":"Other",("ontouchstart"in window||navigator.maxTouchPoints>0||navigator.msMaxTouchPoints>0)&&"Windows Phone"!==e&&"Android"!==e&&"iOS"!==e&&"Other"!==e)return!0;if(void 0!==n){if((n=n.toLowerCase()).indexOf("win")>=0&&"Windows"!==e&&"Windows Phone"!==e)return!0;if(n.indexOf("linux")>=0&&"Linux"!==e&&"Android"!==e)return!0;if(n.indexOf("mac")>=0&&"Mac"!==e&&"iOS"!==e)return!0;if((-1===n.indexOf("win")&&-1===n.indexOf("linux")&&-1===n.indexOf("mac"))!=("Other"===e))return!0}return r.indexOf("win")>=0&&"Windows"!==e&&"Windows Phone"!==e||(r.indexOf("linux")>=0||r.indexOf("android")>=0||r.indexOf("pike")>=0)&&"Linux"!==e&&"Android"!==e||(r.indexOf("mac")>=0||r.indexOf("ipad")>=0||r.indexOf("ipod")>=0||r.indexOf("iphone")>=0)&&"Mac"!==e&&"iOS"!==e||(r.indexOf("win")<0&&r.indexOf("linux")<0&&r.indexOf("mac")<0&&r.indexOf("iphone")<0&&r.indexOf("ipad")<0)!=("Other"===e)||void 0===navigator.plugins&&"Windows"!==e&&"Windows Phone"!==e},R=function(){var e,t=navigator.userAgent.toLowerCase(),n=navigator.productSub;if(("Chrome"==(e=t.indexOf("firefox")>=0?"Firefox":t.indexOf("opera")>=0||t.indexOf("opr")>=0?"Opera":t.indexOf("chrome")>=0?"Chrome":t.indexOf("safari")>=0?"Safari":t.indexOf("trident")>=0?"Internet Explorer":"Other")||"Safari"===e||"Opera"===e)&&"20030107"!==n)return!0;var r,o=eval.toString().length;if(37===o&&"Safari"!==e&&"Firefox"!==e&&"Other"!==e)return!0;if(39===o&&"Internet Explorer"!==e&&"Other"!==e)return!0;if(33===o&&"Chrome"!==e&&"Opera"!==e&&"Other"!==e)return!0;try{throw"a"}catch(e){try{e.toSource(),r=!0}catch(e){r=!1}}return r&&"Firefox"!==e&&"Other"!==e},_=function(){var e=document.createElement("canvas");return!(!e.getContext||!e.getContext("2d"))},P=function(){if(!_())return!1;var e=D();return!!window.WebGLRenderingContext&&!!e},M=function(){return"Microsoft Internet Explorer"===navigator.appName||!("Netscape"!==navigator.appName||!/Trident/.test(navigator.userAgent))},N=function(){return void 0!==window.swfobject},I=function(){return window.swfobject.hasFlashPlayerVersion("9.0.0")},L=function(e,t){window.___fp_swf_loaded=function(t){e(t)};var n=t.fonts.swfContainerId;!function(e){var t=document.createElement("div");t.setAttribute("id",e.fonts.swfContainerId),document.body.appendChild(t)}();var r={onReady:"___fp_swf_loaded"};window.swfobject.embedSWF(t.fonts.swfPath,n,"1","1","9.0.0",!1,r,{allowScriptAccess:"always",menu:"false"},{})},D=function(){var e=document.createElement("canvas"),t=null;try{t=e.getContext("webgl")||e.getContext("experimental-webgl")}catch(e){}return t||(t=null),t},U=[{key:"userAgent",getData:function(e){e(navigator.userAgent)}},{key:"webdriver",getData:function(e,t){e(null==navigator.webdriver?t.NOT_AVAILABLE:navigator.webdriver)}},{key:"language",getData:function(e,t){e(navigator.language||navigator.userLanguage||navigator.browserLanguage||navigator.systemLanguage||t.NOT_AVAILABLE)}},{key:"colorDepth",getData:function(e,t){e(window.screen.colorDepth||t.NOT_AVAILABLE)}},{key:"deviceMemory",getData:function(e,t){e(navigator.deviceMemory||t.NOT_AVAILABLE)}},{key:"pixelRatio",getData:function(e,t){e(window.devicePixelRatio||t.NOT_AVAILABLE)}},{key:"hardwareConcurrency",getData:function(e,t){e(C(t))}},{key:"screenResolution",getData:function(e,t){e(h(t))}},{key:"availableScreenResolution",getData:function(e,t){e(p(t))}},{key:"timezoneOffset",getData:function(e){e((new Date).getTimezoneOffset())}},{key:"timezone",getData:function(e,t){window.Intl&&window.Intl.DateTimeFormat?e((new window.Intl.DateTimeFormat).resolvedOptions().timeZone):e(t.NOT_AVAILABLE)}},{key:"sessionStorage",getData:function(e,t){e(m(t))}},{key:"localStorage",getData:function(e,t){e(y(t))}},{key:"indexedDb",getData:function(e,t){e(v(t))}},{key:"addBehavior",getData:function(e){e(!(!document.body||!document.body.addBehavior))}},{key:"openDatabase",getData:function(e){e(!!window.openDatabase)}},{key:"cpuClass",getData:function(e,t){e(b(t))}},{key:"platform",getData:function(e,t){e(w(t))}},{key:"doNotTrack",getData:function(e,t){e(A(t))}},{key:"plugins",getData:function(e,t){M()?t.plugins.excludeIE?e(t.EXCLUDED):e(d(t)):e(f(t))}},{key:"canvas",getData:function(e,t){_()?e(T(t)):e(t.NOT_AVAILABLE)}},{key:"webgl",getData:function(e,t){P()?e(B()):e(t.NOT_AVAILABLE)}},{key:"webglVendorAndRenderer",getData:function(e){P()?e(E()):e()}},{key:"adBlock",getData:function(e){e(S())}},{key:"hasLiedLanguages",getData:function(e){e(x())}},{key:"hasLiedResolution",getData:function(e){e(F())}},{key:"hasLiedOs",getData:function(e){e(O())}},{key:"hasLiedBrowser",getData:function(e){e(R())}},{key:"touchSupport",getData:function(e){e(k())}},{key:"fonts",getData:function(e,t){var n=["monospace","sans-serif","serif"],r=["Andale Mono","Arial","Arial Black","Arial Hebrew","Arial MT","Arial Narrow","Arial Rounded MT Bold","Arial Unicode MS","Bitstream Vera Sans Mono","Book Antiqua","Bookman Old Style","Calibri","Cambria","Cambria Math","Century","Century Gothic","Century Schoolbook","Comic Sans","Comic Sans MS","Consolas","Courier","Courier New","Geneva","Georgia","Helvetica","Helvetica Neue","Impact","Lucida Bright","Lucida Calligraphy","Lucida Console","Lucida Fax","LUCIDA GRANDE","Lucida Handwriting","Lucida Sans","Lucida Sans Typewriter","Lucida Sans Unicode","Microsoft Sans Serif","Monaco","Monotype Corsiva","MS Gothic","MS Outlook","MS PGothic","MS Reference Sans Serif","MS Sans Serif","MS Serif","MYRIAD","MYRIAD PRO","Palatino","Palatino Linotype","Segoe Print","Segoe Script","Segoe UI","Segoe UI Light","Segoe UI Semibold","Segoe UI Symbol","Tahoma","Times","Times New Roman","Times New Roman PS","Trebuchet MS","Verdana","Wingdings","Wingdings 2","Wingdings 3"];t.fonts.extendedJsFonts&&(r=r.concat(["Abadi MT Condensed Light","Academy Engraved LET","ADOBE CASLON PRO","Adobe Garamond","ADOBE GARAMOND PRO","Agency FB","Aharoni","Albertus Extra Bold","Albertus Medium","Algerian","Amazone BT","American Typewriter","American Typewriter Condensed","AmerType Md BT","Andalus","Angsana New","AngsanaUPC","Antique Olive","Aparajita","Apple Chancery","Apple Color Emoji","Apple SD Gothic Neo","Arabic Typesetting","ARCHER","ARNO PRO","Arrus BT","Aurora Cn BT","AvantGarde Bk BT","AvantGarde Md BT","AVENIR","Ayuthaya","Bandy","Bangla Sangam MN","Bank Gothic","BankGothic Md BT","Baskerville","Baskerville Old Face","Batang","BatangChe","Bauer Bodoni","Bauhaus 93","Bazooka","Bell MT","Bembo","Benguiat Bk BT","Berlin Sans FB","Berlin Sans FB Demi","Bernard MT Condensed","BernhardFashion BT","BernhardMod BT","Big Caslon","BinnerD","Blackadder ITC","BlairMdITC TT","Bodoni 72","Bodoni 72 Oldstyle","Bodoni 72 Smallcaps","Bodoni MT","Bodoni MT Black","Bodoni MT Condensed","Bodoni MT Poster Compressed","Bookshelf Symbol 7","Boulder","Bradley Hand","Bradley Hand ITC","Bremen Bd BT","Britannic Bold","Broadway","Browallia New","BrowalliaUPC","Brush Script MT","Californian FB","Calisto MT","Calligrapher","Candara","CaslonOpnface BT","Castellar","Centaur","Cezanne","CG Omega","CG Times","Chalkboard","Chalkboard SE","Chalkduster","Charlesworth","Charter Bd BT","Charter BT","Chaucer","ChelthmITC Bk BT","Chiller","Clarendon","Clarendon Condensed","CloisterBlack BT","Cochin","Colonna MT","Constantia","Cooper Black","Copperplate","Copperplate Gothic","Copperplate Gothic Bold","Copperplate Gothic Light","CopperplGoth Bd BT","Corbel","Cordia New","CordiaUPC","Cornerstone","Coronet","Cuckoo","Curlz MT","DaunPenh","Dauphin","David","DB LCD Temp","DELICIOUS","Denmark","DFKai-SB","Didot","DilleniaUPC","DIN","DokChampa","Dotum","DotumChe","Ebrima","Edwardian Script ITC","Elephant","English 111 Vivace BT","Engravers MT","EngraversGothic BT","Eras Bold ITC","Eras Demi ITC","Eras Light ITC","Eras Medium ITC","EucrosiaUPC","Euphemia","Euphemia UCAS","EUROSTILE","Exotc350 Bd BT","FangSong","Felix Titling","Fixedsys","FONTIN","Footlight MT Light","Forte","FrankRuehl","Fransiscan","Freefrm721 Blk BT","FreesiaUPC","Freestyle Script","French Script MT","FrnkGothITC Bk BT","Fruitger","FRUTIGER","Futura","Futura Bk BT","Futura Lt BT","Futura Md BT","Futura ZBlk BT","FuturaBlack BT","Gabriola","Galliard BT","Gautami","Geeza Pro","Geometr231 BT","Geometr231 Hv BT","Geometr231 Lt BT","GeoSlab 703 Lt BT","GeoSlab 703 XBd BT","Gigi","Gill Sans","Gill Sans MT","Gill Sans MT Condensed","Gill Sans MT Ext Condensed Bold","Gill Sans Ultra Bold","Gill Sans Ultra Bold Condensed","Gisha","Gloucester MT Extra Condensed","GOTHAM","GOTHAM BOLD","Goudy Old Style","Goudy Stout","GoudyHandtooled BT","GoudyOLSt BT","Gujarati Sangam MN","Gulim","GulimChe","Gungsuh","GungsuhChe","Gurmukhi MN","Haettenschweiler","Harlow Solid Italic","Harrington","Heather","Heiti SC","Heiti TC","HELV","Herald","High Tower Text","Hiragino Kaku Gothic ProN","Hiragino Mincho ProN","Hoefler Text","Humanst 521 Cn BT","Humanst521 BT","Humanst521 Lt BT","Imprint MT Shadow","Incised901 Bd BT","Incised901 BT","Incised901 Lt BT","INCONSOLATA","Informal Roman","Informal011 BT","INTERSTATE","IrisUPC","Iskoola Pota","JasmineUPC","Jazz LET","Jenson","Jester","Jokerman","Juice ITC","Kabel Bk BT","Kabel Ult BT","Kailasa","KaiTi","Kalinga","Kannada Sangam MN","Kartika","Kaufmann Bd BT","Kaufmann BT","Khmer UI","KodchiangUPC","Kokila","Korinna BT","Kristen ITC","Krungthep","Kunstler Script","Lao UI","Latha","Leelawadee","Letter Gothic","Levenim MT","LilyUPC","Lithograph","Lithograph Light","Long Island","Lydian BT","Magneto","Maiandra GD","Malayalam Sangam MN","Malgun Gothic","Mangal","Marigold","Marion","Marker Felt","Market","Marlett","Matisse ITC","Matura MT Script Capitals","Meiryo","Meiryo UI","Microsoft Himalaya","Microsoft JhengHei","Microsoft New Tai Lue","Microsoft PhagsPa","Microsoft Tai Le","Microsoft Uighur","Microsoft YaHei","Microsoft Yi Baiti","MingLiU","MingLiU_HKSCS","MingLiU_HKSCS-ExtB","MingLiU-ExtB","Minion","Minion Pro","Miriam","Miriam Fixed","Mistral","Modern","Modern No. 20","Mona Lisa Solid ITC TT","Mongolian Baiti","MONO","MoolBoran","Mrs Eaves","MS LineDraw","MS Mincho","MS PMincho","MS Reference Specialty","MS UI Gothic","MT Extra","MUSEO","MV Boli","Nadeem","Narkisim","NEVIS","News Gothic","News GothicMT","NewsGoth BT","Niagara Engraved","Niagara Solid","Noteworthy","NSimSun","Nyala","OCR A Extended","Old Century","Old English Text MT","Onyx","Onyx BT","OPTIMA","Oriya Sangam MN","OSAKA","OzHandicraft BT","Palace Script MT","Papyrus","Parchment","Party LET","Pegasus","Perpetua","Perpetua Titling MT","PetitaBold","Pickwick","Plantagenet Cherokee","Playbill","PMingLiU","PMingLiU-ExtB","Poor Richard","Poster","PosterBodoni BT","PRINCETOWN LET","Pristina","PTBarnum BT","Pythagoras","Raavi","Rage Italic","Ravie","Ribbon131 Bd BT","Rockwell","Rockwell Condensed","Rockwell Extra Bold","Rod","Roman","Sakkal Majalla","Santa Fe LET","Savoye LET","Sceptre","Script","Script MT Bold","SCRIPTINA","Serifa","Serifa BT","Serifa Th BT","ShelleyVolante BT","Sherwood","Shonar Bangla","Showcard Gothic","Shruti","Signboard","SILKSCREEN","SimHei","Simplified Arabic","Simplified Arabic Fixed","SimSun","SimSun-ExtB","Sinhala Sangam MN","Sketch Rockwell","Skia","Small Fonts","Snap ITC","Snell Roundhand","Socket","Souvenir Lt BT","Staccato222 BT","Steamer","Stencil","Storybook","Styllo","Subway","Swis721 BlkEx BT","Swiss911 XCm BT","Sylfaen","Synchro LET","System","Tamil Sangam MN","Technical","Teletype","Telugu Sangam MN","Tempus Sans ITC","Terminal","Thonburi","Traditional Arabic","Trajan","TRAJAN PRO","Tristan","Tubular","Tunga","Tw Cen MT","Tw Cen MT Condensed","Tw Cen MT Condensed Extra Bold","TypoUpright BT","Unicorn","Univers","Univers CE 55 Medium","Univers Condensed","Utsaah","Vagabond","Vani","Vijaya","Viner Hand ITC","VisualUI","Vivaldi","Vladimir Script","Vrinda","Westminster","WHITNEY","Wide Latin","ZapfEllipt BT","ZapfHumnst BT","ZapfHumnst Dm BT","Zapfino","Zurich BlkEx BT","Zurich Ex BT","ZWAdobeF"])),r=(r=r.concat(t.fonts.userDefinedFonts)).filter((function(e,t){return r.indexOf(e)===t}));var o=document.getElementsByTagName("body")[0],i=document.createElement("div"),a=document.createElement("div"),s={},c={},u=function(){var e=document.createElement("span");return e.style.position="absolute",e.style.left="-9999px",e.style.fontSize="72px",e.style.fontStyle="normal",e.style.fontWeight="normal",e.style.letterSpacing="normal",e.style.lineBreak="auto",e.style.lineHeight="normal",e.style.textTransform="none",e.style.textAlign="left",e.style.textDecoration="none",e.style.textShadow="none",e.style.whiteSpace="normal",e.style.wordBreak="normal",e.style.wordSpacing="normal",e.innerHTML="mmmmmmmmmmlli",e},l=function(e,t){var n=u();return n.style.fontFamily="'"+e+"',"+t,n},h=function(e){for(var t=!1,r=0;r<n.length;r++)if(t=e[r].offsetWidth!==s[n[r]]||e[r].offsetHeight!==c[n[r]])return t;return t},p=function(){for(var e=[],t=0,r=n.length;t<r;t++){var o=u();o.style.fontFamily=n[t],i.appendChild(o),e.push(o)}return e}();o.appendChild(i);for(var f=0,d=n.length;f<d;f++)s[n[f]]=p[f].offsetWidth,c[n[f]]=p[f].offsetHeight;var g=function(){for(var e={},t=0,o=r.length;t<o;t++){for(var i=[],s=0,c=n.length;s<c;s++){var u=l(r[t],n[s]);a.appendChild(u),i.push(u)}e[r[t]]=i}return e}();o.appendChild(a);for(var m=[],y=0,v=r.length;y<v;y++)h(g[r[y]])&&m.push(r[y]);o.removeChild(a),o.removeChild(i),e(m)},pauseBefore:!0},{key:"fontsFlash",getData:function(e,t){return N()?I()?t.fonts.swfPath?void L((function(t){e(t)}),t):e("missing options.fonts.swfPath"):e("flash not installed"):e("swf object not loaded")},pauseBefore:!0},{key:"audio",getData:function(e,t){var n=t.audio;if(n.excludeIOS11&&navigator.userAgent.match(/OS 11.+Version\/11.+Safari/))return e(t.EXCLUDED);var r=window.OfflineAudioContext||window.webkitOfflineAudioContext;if(null==r)return e(t.NOT_AVAILABLE);var o=new r(1,44100,44100),i=o.createOscillator();i.type="triangle",i.frequency.setValueAtTime(1e4,o.currentTime);var a=o.createDynamicsCompressor();c([["threshold",-50],["knee",40],["ratio",12],["reduction",-20],["attack",0],["release",.25]],(function(e){void 0!==a[e[0]]&&"function"==typeof a[e[0]].setValueAtTime&&a[e[0]].setValueAtTime(e[1],o.currentTime)})),i.connect(a),a.connect(o.destination),i.start(0),o.startRendering();var s=setTimeout((function(){return console.warn('Audio fingerprint timed out. Please report bug at https://github.com/Valve/fingerprintjs2 with your user agent: "'+navigator.userAgent+'".'),o.oncomplete=function(){},o=null,e("audioTimeout")}),n.timeout);o.oncomplete=function(t){var n;try{clearTimeout(s),n=t.renderedBuffer.getChannelData(0).slice(4500,5e3).reduce((function(e,t){return e+Math.abs(t)}),0).toString(),i.disconnect(),a.disconnect()}catch(t){return void e(t)}e(n)}}},{key:"enumerateDevices",getData:function(e,t){if(!l())return e(t.NOT_AVAILABLE);navigator.mediaDevices.enumerateDevices().then((function(t){e(t.map((function(e){return"id="+e.deviceId+";gid="+e.groupId+";"+e.kind+";"+e.label})))})).catch((function(t){e(t)}))}}],j=function(e){throw new Error("'new Fingerprint()' is deprecated, see https://github.com/Valve/fingerprintjs2#upgrade-guide-from-182-to-200")};return j.get=function(e,t){t?e||(e={}):(t=e,e={}),function(e,t){if(null==t)return e;var n,r;for(r in t)null==(n=t[r])||Object.prototype.hasOwnProperty.call(e,r)||(e[r]=n)}(e,s),e.components=e.extraComponents.concat(U);var n={data:[],addPreprocessedComponent:function(t,r){"function"==typeof e.preprocessor&&(r=e.preprocessor(t,r)),n.data.push({key:t,value:r})}},r=-1,o=function(i){if((r+=1)>=e.components.length)t(n.data);else{var a=e.components[r];if(e.excludes[a.key])o(!1);else{if(!i&&a.pauseBefore)return r-=1,void setTimeout((function(){o(!0)}),1);try{a.getData((function(e){n.addPreprocessedComponent(a.key,e),o(!1)}),e)}catch(e){n.addPreprocessedComponent(a.key,String(e)),o(!1)}}}};o(!1)},j.getPromise=function(e){return new Promise((function(t,n){j.get(e,t)}))},j.getV18=function(e,t){return null==t&&(t=e,e={}),j.get(e,(function(n){for(var r=[],o=0;o<n.length;o++){var i=n[o];if(i.value===(e.NOT_AVAILABLE||"not available"))r.push({key:i.key,value:"unknown"});else if("plugins"===i.key)r.push({key:"plugins",value:u(i.value,(function(e){var t=u(e[2],(function(e){return e.join?e.join("~"):e})).join(",");return[e[0],e[1],t].join("::")}))});else if(-1!==["canvas","webgl"].indexOf(i.key))r.push({key:i.key,value:i.value.join("~")});else if(-1!==["sessionStorage","localStorage","indexedDb","addBehavior","openDatabase"].indexOf(i.key)){if(!i.value)continue;r.push({key:i.key,value:1})}else i.value?r.push(i.value.join?{key:i.key,value:i.value.join(";")}:i):r.push({key:i.key,value:i.value})}var s=a(u(r,(function(e){return e.value})).join("~~~"),31);t(s,r)}))},j.x64hash128=a,j.VERSION="2.1.0",j},e.exports?e.exports=n():t.exports?t.exports=n():t.Fingerprint2=n()}));const le=Z(!1);window.requestIdleCallback?requestIdleCallback((function(){ue.get((function(e){var t=e.map((function(e){return e.value})),n=ue.x64hash128(t.join(""),31);le.set(n)}))})):setTimeout((function(){ue.get((function(e){var t=e.map((function(e){return e.value})),n=ue.x64hash128(t.join(""),31);le.set(n)}))}),500);var he=/^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,pe=["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],fe=function(e){var t=e,n=e.indexOf("["),r=e.indexOf("]");-1!=n&&-1!=r&&(e=e.substring(0,n)+e.substring(n,r).replace(/:/g,";")+e.substring(r,e.length));for(var o=he.exec(e||""),i={},a=14;a--;)i[pe[a]]=o[a]||"";return-1!=n&&-1!=r&&(i.source=t,i.host=i.host.substring(1,i.host.length-1).replace(/;/g,":"),i.authority=i.authority.replace("[","").replace("]","").replace(/;/g,":"),i.ipv6uri=!0),i},de=1e3,ge=6e4,me=36e5,ye=24*me,ve=function(e,t){t=t||{};var n=typeof e;if("string"===n&&e.length>0)return function(e){if((e=String(e)).length>100)return;var t=/^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(e);if(!t)return;var n=parseFloat(t[1]);switch((t[2]||"ms").toLowerCase()){case"years":case"year":case"yrs":case"yr":case"y":return 315576e5*n;case"weeks":case"week":case"w":return 6048e5*n;case"days":case"day":case"d":return n*ye;case"hours":case"hour":case"hrs":case"hr":case"h":return n*me;case"minutes":case"minute":case"mins":case"min":case"m":return n*ge;case"seconds":case"second":case"secs":case"sec":case"s":return n*de;case"milliseconds":case"millisecond":case"msecs":case"msec":case"ms":return n;default:return}}(e);if("number"===n&&isFinite(e))return t.long?function(e){var t=Math.abs(e);if(t>=ye)return Ce(e,t,ye,"day");if(t>=me)return Ce(e,t,me,"hour");if(t>=ge)return Ce(e,t,ge,"minute");if(t>=de)return Ce(e,t,de,"second");return e+" ms"}(e):function(e){var t=Math.abs(e);if(t>=ye)return Math.round(e/ye)+"d";if(t>=me)return Math.round(e/me)+"h";if(t>=ge)return Math.round(e/ge)+"m";if(t>=de)return Math.round(e/de)+"s";return e+"ms"}(e);throw new Error("val is not a non-empty string or a valid number. val="+JSON.stringify(e))};function Ce(e,t,n,r){var o=t>=1.5*n;return Math.round(e/n)+" "+r+(o?"s":"")}var be=function(e){function t(e){let t=0;for(let n=0;n<e.length;n++)t=(t<<5)-t+e.charCodeAt(n),t|=0;return n.colors[Math.abs(t)%n.colors.length]}function n(e){let i;function a(...e){if(!a.enabled)return;const t=a,r=Number(new Date),o=r-(i||r);t.diff=o,t.prev=i,t.curr=r,i=r,e[0]=n.coerce(e[0]),"string"!=typeof e[0]&&e.unshift("%O");let s=0;e[0]=e[0].replace(/%([a-zA-Z%])/g,(r,o)=>{if("%%"===r)return r;s++;const i=n.formatters[o];if("function"==typeof i){const n=e[s];r=i.call(t,n),e.splice(s,1),s--}return r}),n.formatArgs.call(t,e),(t.log||n.log).apply(t,e)}return a.namespace=e,a.enabled=n.enabled(e),a.useColors=n.useColors(),a.color=t(e),a.destroy=r,a.extend=o,"function"==typeof n.init&&n.init(a),n.instances.push(a),a}function r(){const e=n.instances.indexOf(this);return-1!==e&&(n.instances.splice(e,1),!0)}function o(e,t){const r=n(this.namespace+(void 0===t?":":t)+e);return r.log=this.log,r}function i(e){return e.toString().substring(2,e.toString().length-2).replace(/\.\*\?$/,"*")}return n.debug=n,n.default=n,n.coerce=function(e){if(e instanceof Error)return e.stack||e.message;return e},n.disable=function(){const e=[...n.names.map(i),...n.skips.map(i).map(e=>"-"+e)].join(",");return n.enable(""),e},n.enable=function(e){let t;n.save(e),n.names=[],n.skips=[];const r=("string"==typeof e?e:"").split(/[\s,]+/),o=r.length;for(t=0;t<o;t++)r[t]&&("-"===(e=r[t].replace(/\*/g,".*?"))[0]?n.skips.push(new RegExp("^"+e.substr(1)+"$")):n.names.push(new RegExp("^"+e+"$")));for(t=0;t<n.instances.length;t++){const e=n.instances[t];e.enabled=n.enabled(e.namespace)}},n.enabled=function(e){if("*"===e[e.length-1])return!0;let t,r;for(t=0,r=n.skips.length;t<r;t++)if(n.skips[t].test(e))return!1;for(t=0,r=n.names.length;t<r;t++)if(n.names[t].test(e))return!0;return!1},n.humanize=ve,Object.keys(e).forEach(t=>{n[t]=e[t]}),n.instances=[],n.names=[],n.skips=[],n.formatters={},n.selectColor=t,n.enable(n.load()),n},we=ce((function(e,t){t.log=function(...e){return"object"==typeof console&&console.log&&console.log(...e)},t.formatArgs=function(t){if(t[0]=(this.useColors?"%c":"")+this.namespace+(this.useColors?" %c":" ")+t[0]+(this.useColors?"%c ":" ")+"+"+e.exports.humanize(this.diff),!this.useColors)return;const n="color: "+this.color;t.splice(1,0,n,"color: inherit");let r=0,o=0;t[0].replace(/%[a-zA-Z%]/g,e=>{"%%"!==e&&(r++,"%c"===e&&(o=r))}),t.splice(o,0,n)},t.save=function(e){try{e?t.storage.setItem("debug",e):t.storage.removeItem("debug")}catch(e){}},t.load=function(){let e;try{e=t.storage.getItem("debug")}catch(e){}!e&&"undefined"!=typeof process&&"env"in process&&(e=process.env.DEBUG);return e},t.useColors=function(){if("undefined"!=typeof window&&window.process&&("renderer"===window.process.type||window.process.__nwjs))return!0;if("undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/))return!1;return"undefined"!=typeof document&&document.documentElement&&document.documentElement.style&&document.documentElement.style.WebkitAppearance||"undefined"!=typeof window&&window.console&&(window.console.firebug||window.console.exception&&window.console.table)||"undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)&&parseInt(RegExp.$1,10)>=31||"undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/)},t.storage=function(){try{return localStorage}catch(e){}}(),t.colors=["#0000CC","#0000FF","#0033CC","#0033FF","#0066CC","#0066FF","#0099CC","#0099FF","#00CC00","#00CC33","#00CC66","#00CC99","#00CCCC","#00CCFF","#3300CC","#3300FF","#3333CC","#3333FF","#3366CC","#3366FF","#3399CC","#3399FF","#33CC00","#33CC33","#33CC66","#33CC99","#33CCCC","#33CCFF","#6600CC","#6600FF","#6633CC","#6633FF","#66CC00","#66CC33","#9900CC","#9900FF","#9933CC","#9933FF","#99CC00","#99CC33","#CC0000","#CC0033","#CC0066","#CC0099","#CC00CC","#CC00FF","#CC3300","#CC3333","#CC3366","#CC3399","#CC33CC","#CC33FF","#CC6600","#CC6633","#CC9900","#CC9933","#CCCC00","#CCCC33","#FF0000","#FF0033","#FF0066","#FF0099","#FF00CC","#FF00FF","#FF3300","#FF3333","#FF3366","#FF3399","#FF33CC","#FF33FF","#FF6600","#FF6633","#FF9900","#FF9933","#FFCC00","#FFCC33"],e.exports=be(t);const{formatters:n}=e.exports;n.j=function(e){try{return JSON.stringify(e)}catch(e){return"[UnexpectedJSONParseError]: "+e.message}}})),Ae=(we.log,we.formatArgs,we.save,we.load,we.useColors,we.storage,we.colors,we("socket.io-client:url")),ke=function(e,t){var n=e;t=t||"undefined"!=typeof location&&location,null==e&&(e=t.protocol+"//"+t.host);"string"==typeof e&&("/"===e.charAt(0)&&(e="/"===e.charAt(1)?t.protocol+e:t.host+e),/^(https?|wss?):\/\//.test(e)||(Ae("protocol-less url %s",e),e=void 0!==t?t.protocol+"//"+e:"https://"+e),Ae("parse %s",e),n=fe(e));n.port||(/^(http|ws)$/.test(n.protocol)?n.port="80":/^(http|ws)s$/.test(n.protocol)&&(n.port="443"));n.path=n.path||"/";var r=-1!==n.host.indexOf(":")?"["+n.host+"]":n.host;return n.id=n.protocol+"://"+r+":"+n.port,n.href=n.protocol+"://"+r+(t&&t.port===n.port?"":":"+n.port),n};var Te=function(e,t){t=t||{};var n=typeof e;if("string"===n&&e.length>0)return function(e){if((e=String(e)).length>100)return;var t=/^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(e);if(!t)return;var n=parseFloat(t[1]);switch((t[2]||"ms").toLowerCase()){case"years":case"year":case"yrs":case"yr":case"y":return 315576e5*n;case"days":case"day":case"d":return 864e5*n;case"hours":case"hour":case"hrs":case"hr":case"h":return 36e5*n;case"minutes":case"minute":case"mins":case"min":case"m":return 6e4*n;case"seconds":case"second":case"secs":case"sec":case"s":return 1e3*n;case"milliseconds":case"millisecond":case"msecs":case"msec":case"ms":return n;default:return}}(e);if("number"===n&&!1===isNaN(e))return t.long?function(e){return Be(e,864e5,"day")||Be(e,36e5,"hour")||Be(e,6e4,"minute")||Be(e,1e3,"second")||e+" ms"}(e):function(e){if(e>=864e5)return Math.round(e/864e5)+"d";if(e>=36e5)return Math.round(e/36e5)+"h";if(e>=6e4)return Math.round(e/6e4)+"m";if(e>=1e3)return Math.round(e/1e3)+"s";return e+"ms"}(e);throw new Error("val is not a non-empty string or a valid number. val="+JSON.stringify(e))};function Be(e,t,n){if(!(e<t))return e<1.5*t?Math.floor(e/t)+" "+n:Math.ceil(e/t)+" "+n+"s"}var Ee=ce((function(e,t){function n(e){var n;function o(){if(o.enabled){var e=o,r=+new Date,i=r-(n||r);e.diff=i,e.prev=n,e.curr=r,n=r;for(var a=new Array(arguments.length),s=0;s<a.length;s++)a[s]=arguments[s];a[0]=t.coerce(a[0]),"string"!=typeof a[0]&&a.unshift("%O");var c=0;a[0]=a[0].replace(/%([a-zA-Z%])/g,(function(n,r){if("%%"===n)return n;c++;var o=t.formatters[r];if("function"==typeof o){var i=a[c];n=o.call(e,i),a.splice(c,1),c--}return n})),t.formatArgs.call(e,a);var u=o.log||t.log||console.log.bind(console);u.apply(e,a)}}return o.namespace=e,o.enabled=t.enabled(e),o.useColors=t.useColors(),o.color=function(e){var n,r=0;for(n in e)r=(r<<5)-r+e.charCodeAt(n),r|=0;return t.colors[Math.abs(r)%t.colors.length]}(e),o.destroy=r,"function"==typeof t.init&&t.init(o),t.instances.push(o),o}function r(){var e=t.instances.indexOf(this);return-1!==e&&(t.instances.splice(e,1),!0)}(t=e.exports=n.debug=n.default=n).coerce=function(e){return e instanceof Error?e.stack||e.message:e},t.disable=function(){t.enable("")},t.enable=function(e){var n;t.save(e),t.names=[],t.skips=[];var r=("string"==typeof e?e:"").split(/[\s,]+/),o=r.length;for(n=0;n<o;n++)r[n]&&("-"===(e=r[n].replace(/\*/g,".*?"))[0]?t.skips.push(new RegExp("^"+e.substr(1)+"$")):t.names.push(new RegExp("^"+e+"$")));for(n=0;n<t.instances.length;n++){var i=t.instances[n];i.enabled=t.enabled(i.namespace)}},t.enabled=function(e){if("*"===e[e.length-1])return!0;var n,r;for(n=0,r=t.skips.length;n<r;n++)if(t.skips[n].test(e))return!1;for(n=0,r=t.names.length;n<r;n++)if(t.names[n].test(e))return!0;return!1},t.humanize=Te,t.instances=[],t.names=[],t.skips=[],t.formatters={}})),Se=(Ee.coerce,Ee.disable,Ee.enable,Ee.enabled,Ee.humanize,Ee.instances,Ee.names,Ee.skips,Ee.formatters,ce((function(e,t){function n(){var e;try{e=t.storage.debug}catch(e){}return!e&&"undefined"!=typeof process&&"env"in process&&(e=process.env.DEBUG),e}(t=e.exports=Ee).log=function(){return"object"==typeof console&&console.log&&Function.prototype.apply.call(console.log,console,arguments)},t.formatArgs=function(e){var n=this.useColors;if(e[0]=(n?"%c":"")+this.namespace+(n?" %c":" ")+e[0]+(n?"%c ":" ")+"+"+t.humanize(this.diff),!n)return;var r="color: "+this.color;e.splice(1,0,r,"color: inherit");var o=0,i=0;e[0].replace(/%[a-zA-Z%]/g,(function(e){"%%"!==e&&(o++,"%c"===e&&(i=o))})),e.splice(i,0,r)},t.save=function(e){try{null==e?t.storage.removeItem("debug"):t.storage.debug=e}catch(e){}},t.load=n,t.useColors=function(){if("undefined"!=typeof window&&window.process&&"renderer"===window.process.type)return!0;if("undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/))return!1;return"undefined"!=typeof document&&document.documentElement&&document.documentElement.style&&document.documentElement.style.WebkitAppearance||"undefined"!=typeof window&&window.console&&(window.console.firebug||window.console.exception&&window.console.table)||"undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)&&parseInt(RegExp.$1,10)>=31||"undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/)},t.storage="undefined"!=typeof chrome&&void 0!==chrome.storage?chrome.storage.local:function(){try{return window.localStorage}catch(e){}}(),t.colors=["#0000CC","#0000FF","#0033CC","#0033FF","#0066CC","#0066FF","#0099CC","#0099FF","#00CC00","#00CC33","#00CC66","#00CC99","#00CCCC","#00CCFF","#3300CC","#3300FF","#3333CC","#3333FF","#3366CC","#3366FF","#3399CC","#3399FF","#33CC00","#33CC33","#33CC66","#33CC99","#33CCCC","#33CCFF","#6600CC","#6600FF","#6633CC","#6633FF","#66CC00","#66CC33","#9900CC","#9900FF","#9933CC","#9933FF","#99CC00","#99CC33","#CC0000","#CC0033","#CC0066","#CC0099","#CC00CC","#CC00FF","#CC3300","#CC3333","#CC3366","#CC3399","#CC33CC","#CC33FF","#CC6600","#CC6633","#CC9900","#CC9933","#CCCC00","#CCCC33","#FF0000","#FF0033","#FF0066","#FF0099","#FF00CC","#FF00FF","#FF3300","#FF3333","#FF3366","#FF3399","#FF33CC","#FF33FF","#FF6600","#FF6633","#FF9900","#FF9933","#FFCC00","#FFCC33"],t.formatters.j=function(e){try{return JSON.stringify(e)}catch(e){return"[UnexpectedJSONParseError]: "+e.message}},t.enable(n())}))),xe=(Se.log,Se.formatArgs,Se.save,Se.load,Se.useColors,Se.storage,Se.colors,ce((function(e){function t(e){if(e)return function(e){for(var n in t.prototype)e[n]=t.prototype[n];return e}(e)}e.exports=t,t.prototype.on=t.prototype.addEventListener=function(e,t){return this._callbacks=this._callbacks||{},(this._callbacks["$"+e]=this._callbacks["$"+e]||[]).push(t),this},t.prototype.once=function(e,t){function n(){this.off(e,n),t.apply(this,arguments)}return n.fn=t,this.on(e,n),this},t.prototype.off=t.prototype.removeListener=t.prototype.removeAllListeners=t.prototype.removeEventListener=function(e,t){if(this._callbacks=this._callbacks||{},0==arguments.length)return this._callbacks={},this;var n,r=this._callbacks["$"+e];if(!r)return this;if(1==arguments.length)return delete this._callbacks["$"+e],this;for(var o=0;o<r.length;o++)if((n=r[o])===t||n.fn===t){r.splice(o,1);break}return this},t.prototype.emit=function(e){this._callbacks=this._callbacks||{};var t=[].slice.call(arguments,1),n=this._callbacks["$"+e];if(n)for(var r=0,o=(n=n.slice(0)).length;r<o;++r)n[r].apply(this,t);return this},t.prototype.listeners=function(e){return this._callbacks=this._callbacks||{},this._callbacks["$"+e]||[]},t.prototype.hasListeners=function(e){return!!this.listeners(e).length}}))),Fe={}.toString,Oe=Array.isArray||function(e){return"[object Array]"==Fe.call(e)},Re=function(e){return _e&&Buffer.isBuffer(e)||Pe&&(e instanceof ArrayBuffer||function(e){return"function"==typeof ArrayBuffer.isView?ArrayBuffer.isView(e):e.buffer instanceof ArrayBuffer}(e))},_e="function"==typeof Buffer&&"function"==typeof Buffer.isBuffer,Pe="function"==typeof ArrayBuffer;var Me=Object.prototype.toString,Ne="function"==typeof Blob||"undefined"!=typeof Blob&&"[object BlobConstructor]"===Me.call(Blob),Ie="function"==typeof File||"undefined"!=typeof File&&"[object FileConstructor]"===Me.call(File);var Le=function(e){var t=[],n=e.data,r=e;return r.data=function e(t,n){if(!t)return t;if(Re(t)){var r={_placeholder:!0,num:n.length};return n.push(t),r}if(Oe(t)){for(var o=new Array(t.length),i=0;i<t.length;i++)o[i]=e(t[i],n);return o}if("object"==typeof t&&!(t instanceof Date)){o={};for(var a in t)o[a]=e(t[a],n);return o}return t}(n,t),r.attachments=t.length,{packet:r,buffers:t}},De=function(e,t){return e.data=function e(t,n){if(!t)return t;if(t&&t._placeholder)return n[t.num];if(Oe(t))for(var r=0;r<t.length;r++)t[r]=e(t[r],n);else if("object"==typeof t)for(var o in t)t[o]=e(t[o],n);return t}(e.data,t),e.attachments=void 0,e},Ue=function(e,t){var n=0,r=e;!function e(o,i,a){if(!o)return o;if(Ne&&o instanceof Blob||Ie&&o instanceof File){n++;var s=new FileReader;s.onload=function(){a?a[i]=this.result:r=this.result,--n||t(r)},s.readAsArrayBuffer(o)}else if(Oe(o))for(var c=0;c<o.length;c++)e(o[c],c,o);else if("object"==typeof o&&!Re(o))for(var u in o)e(o[u],u,o)}(r),n||t(r)},je=ce((function(e,t){var n=Se("socket.io-parser");function r(){}t.protocol=4,t.types=["CONNECT","DISCONNECT","EVENT","ACK","ERROR","BINARY_EVENT","BINARY_ACK"],t.CONNECT=0,t.DISCONNECT=1,t.EVENT=2,t.ACK=3,t.ERROR=4,t.BINARY_EVENT=5,t.BINARY_ACK=6,t.Encoder=r,t.Decoder=a;var o=t.ERROR+'"encode error"';function i(e){var r=""+e.type;if(t.BINARY_EVENT!==e.type&&t.BINARY_ACK!==e.type||(r+=e.attachments+"-"),e.nsp&&"/"!==e.nsp&&(r+=e.nsp+","),null!=e.id&&(r+=e.id),null!=e.data){var i=function(e){try{return JSON.stringify(e)}catch(e){return!1}}(e.data);if(!1===i)return o;r+=i}return n("encoded %j as %s",e,r),r}function a(){this.reconstructor=null}function s(e){this.reconPack=e,this.buffers=[]}function c(e){return{type:t.ERROR,data:"parser error: "+e}}r.prototype.encode=function(e,r){(n("encoding packet %j",e),t.BINARY_EVENT===e.type||t.BINARY_ACK===e.type)?function(e,t){Ue(e,(function(e){var n=Le(e),r=i(n.packet),o=n.buffers;o.unshift(r),t(o)}))}(e,r):r([i(e)])},xe(a.prototype),a.prototype.add=function(e){var r;if("string"==typeof e)r=function(e){var r=0,o={type:Number(e.charAt(0))};if(null==t.types[o.type])return c("unknown packet type "+o.type);if(t.BINARY_EVENT===o.type||t.BINARY_ACK===o.type){for(var i="";"-"!==e.charAt(++r)&&(i+=e.charAt(r),r!=e.length););if(i!=Number(i)||"-"!==e.charAt(r))throw new Error("Illegal attachments");o.attachments=Number(i)}if("/"===e.charAt(r+1))for(o.nsp="";++r;){if(","===(s=e.charAt(r)))break;if(o.nsp+=s,r===e.length)break}else o.nsp="/";var a=e.charAt(r+1);if(""!==a&&Number(a)==a){for(o.id="";++r;){var s;if(null==(s=e.charAt(r))||Number(s)!=s){--r;break}if(o.id+=e.charAt(r),r===e.length)break}o.id=Number(o.id)}if(e.charAt(++r)){var u=function(e){try{return JSON.parse(e)}catch(e){return!1}}(e.substr(r));if(!(!1!==u&&(o.type===t.ERROR||Oe(u))))return c("invalid payload");o.data=u}return n("decoded %s as %j",e,o),o}(e),t.BINARY_EVENT===r.type||t.BINARY_ACK===r.type?(this.reconstructor=new s(r),0===this.reconstructor.reconPack.attachments&&this.emit("decoded",r)):this.emit("decoded",r);else{if(!Re(e)&&!e.base64)throw new Error("Unknown type: "+e);if(!this.reconstructor)throw new Error("got binary data when not reconstructing a packet");(r=this.reconstructor.takeBinaryData(e))&&(this.reconstructor=null,this.emit("decoded",r))}},a.prototype.destroy=function(){this.reconstructor&&this.reconstructor.finishedReconstruction()},s.prototype.takeBinaryData=function(e){if(this.buffers.push(e),this.buffers.length===this.reconPack.attachments){var t=De(this.reconPack,this.buffers);return this.finishedReconstruction(),t}return null},s.prototype.finishedReconstruction=function(){this.reconPack=null,this.buffers=[]}})),$e=(je.protocol,je.types,je.CONNECT,je.DISCONNECT,je.EVENT,je.ACK,je.ERROR,je.BINARY_EVENT,je.BINARY_ACK,je.Encoder,je.Decoder,ce((function(e){try{e.exports="undefined"!=typeof XMLHttpRequest&&"withCredentials"in new XMLHttpRequest}catch(t){e.exports=!1}}))),He=function(e){var t=e.xdomain,n=e.xscheme,r=e.enablesXDR;try{if("undefined"!=typeof XMLHttpRequest&&(!t||$e))return new XMLHttpRequest}catch(e){}try{if("undefined"!=typeof XDomainRequest&&!n&&r)return new XDomainRequest}catch(e){}if(!t)try{return new(self[["Active"].concat("Object").join("X")])("Microsoft.XMLHTTP")}catch(e){}},Ge=Object.keys||function(e){var t=[],n=Object.prototype.hasOwnProperty;for(var r in e)n.call(e,r)&&t.push(r);return t},qe={}.toString,Ve=Array.isArray||function(e){return"[object Array]"==qe.call(e)},Xe=Object.prototype.toString,ze="function"==typeof Blob||"undefined"!=typeof Blob&&"[object BlobConstructor]"===Xe.call(Blob),We="function"==typeof File||"undefined"!=typeof File&&"[object FileConstructor]"===Xe.call(File),Ke=function e(t){if(!t||"object"!=typeof t)return!1;if(Ve(t)){for(var n=0,r=t.length;n<r;n++)if(e(t[n]))return!0;return!1}if("function"==typeof Buffer&&Buffer.isBuffer&&Buffer.isBuffer(t)||"function"==typeof ArrayBuffer&&t instanceof ArrayBuffer||ze&&t instanceof Blob||We&&t instanceof File)return!0;if(t.toJSON&&"function"==typeof t.toJSON&&1===arguments.length)return e(t.toJSON(),!0);for(var o in t)if(Object.prototype.hasOwnProperty.call(t,o)&&e(t[o]))return!0;return!1};var Je=function(e,t,n){var r=e.byteLength;if(t=t||0,n=n||r,e.slice)return e.slice(t,n);if(t<0&&(t+=r),n<0&&(n+=r),n>r&&(n=r),t>=r||t>=n||0===r)return new ArrayBuffer(0);for(var o=new Uint8Array(e),i=new Uint8Array(n-t),a=t,s=0;a<n;a++,s++)i[s]=o[a];return i.buffer},Ye=function(e,t,n){var r=!1;return n=n||Ze,o.count=e,0===e?t():o;function o(e,i){if(o.count<=0)throw new Error("after called too many times");--o.count,e?(r=!0,t(e),t=n):0!==o.count||r||t(null,i)}};function Ze(){}
-/*! https://mths.be/utf8js v2.1.2 by @mathias */var Qe,et,tt,nt=String.fromCharCode;function rt(e){for(var t,n,r=[],o=0,i=e.length;o<i;)(t=e.charCodeAt(o++))>=55296&&t<=56319&&o<i?56320==(64512&(n=e.charCodeAt(o++)))?r.push(((1023&t)<<10)+(1023&n)+65536):(r.push(t),o--):r.push(t);return r}function ot(e,t){if(e>=55296&&e<=57343){if(t)throw Error("Lone surrogate U+"+e.toString(16).toUpperCase()+" is not a scalar value");return!1}return!0}function it(e,t){return nt(e>>t&63|128)}function at(e,t){if(0==(4294967168&e))return nt(e);var n="";return 0==(4294965248&e)?n=nt(e>>6&31|192):0==(4294901760&e)?(ot(e,t)||(e=65533),n=nt(e>>12&15|224),n+=it(e,6)):0==(4292870144&e)&&(n=nt(e>>18&7|240),n+=it(e,12),n+=it(e,6)),n+=nt(63&e|128)}function st(){if(tt>=et)throw Error("Invalid byte index");var e=255&Qe[tt];if(tt++,128==(192&e))return 63&e;throw Error("Invalid continuation byte")}function ct(e){var t,n;if(tt>et)throw Error("Invalid byte index");if(tt==et)return!1;if(t=255&Qe[tt],tt++,0==(128&t))return t;if(192==(224&t)){if((n=(31&t)<<6|st())>=128)return n;throw Error("Invalid continuation byte")}if(224==(240&t)){if((n=(15&t)<<12|st()<<6|st())>=2048)return ot(n,e)?n:65533;throw Error("Invalid continuation byte")}if(240==(248&t)&&(n=(7&t)<<18|st()<<12|st()<<6|st())>=65536&&n<=1114111)return n;throw Error("Invalid UTF-8 detected")}var ut={version:"2.1.2",encode:function(e,t){for(var n=!1!==(t=t||{}).strict,r=rt(e),o=r.length,i=-1,a="";++i<o;)a+=at(r[i],n);return a},decode:function(e,t){var n=!1!==(t=t||{}).strict;Qe=rt(e),et=Qe.length,tt=0;for(var r,o=[];!1!==(r=ct(n));)o.push(r);return function(e){for(var t,n=e.length,r=-1,o="";++r<n;)(t=e[r])>65535&&(o+=nt((t-=65536)>>>10&1023|55296),t=56320|1023&t),o+=nt(t);return o}(o)}},lt=ce((function(e,t){!function(){for(var e="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",n=new Uint8Array(256),r=0;r<e.length;r++)n[e.charCodeAt(r)]=r;t.encode=function(t){var n,r=new Uint8Array(t),o=r.length,i="";for(n=0;n<o;n+=3)i+=e[r[n]>>2],i+=e[(3&r[n])<<4|r[n+1]>>4],i+=e[(15&r[n+1])<<2|r[n+2]>>6],i+=e[63&r[n+2]];return o%3==2?i=i.substring(0,i.length-1)+"=":o%3==1&&(i=i.substring(0,i.length-2)+"=="),i},t.decode=function(e){var t,r,o,i,a,s=.75*e.length,c=e.length,u=0;"="===e[e.length-1]&&(s--,"="===e[e.length-2]&&s--);var l=new ArrayBuffer(s),h=new Uint8Array(l);for(t=0;t<c;t+=4)r=n[e.charCodeAt(t)],o=n[e.charCodeAt(t+1)],i=n[e.charCodeAt(t+2)],a=n[e.charCodeAt(t+3)],h[u++]=r<<2|o>>4,h[u++]=(15&o)<<4|i>>2,h[u++]=(3&i)<<6|63&a;return l}}()})),ht=(lt.encode,lt.decode,void 0!==ht?ht:"undefined"!=typeof WebKitBlobBuilder?WebKitBlobBuilder:"undefined"!=typeof MSBlobBuilder?MSBlobBuilder:"undefined"!=typeof MozBlobBuilder&&MozBlobBuilder),pt=function(){try{return 2===new Blob(["hi"]).size}catch(e){return!1}}(),ft=pt&&function(){try{return 2===new Blob([new Uint8Array([1,2])]).size}catch(e){return!1}}(),dt=ht&&ht.prototype.append&&ht.prototype.getBlob;function gt(e){return e.map((function(e){if(e.buffer instanceof ArrayBuffer){var t=e.buffer;if(e.byteLength!==t.byteLength){var n=new Uint8Array(e.byteLength);n.set(new Uint8Array(t,e.byteOffset,e.byteLength)),t=n.buffer}return t}return e}))}function mt(e,t){t=t||{};var n=new ht;return gt(e).forEach((function(e){n.append(e)})),t.type?n.getBlob(t.type):n.getBlob()}function yt(e,t){return new Blob(gt(e),t||{})}"undefined"!=typeof Blob&&(mt.prototype=Blob.prototype,yt.prototype=Blob.prototype);var vt=pt?ft?Blob:yt:dt?mt:void 0,Ct=ce((function(e,t){var n;"undefined"!=typeof ArrayBuffer&&(n=lt);var r="undefined"!=typeof navigator&&/Android/i.test(navigator.userAgent),o="undefined"!=typeof navigator&&/PhantomJS/i.test(navigator.userAgent),i=r||o;t.protocol=3;var a=t.packets={open:0,close:1,ping:2,pong:3,message:4,upgrade:5,noop:6},s=Ge(a),c={type:"error",data:"parser error"};function u(e,t,n){for(var r=new Array(e.length),o=Ye(e.length,n),i=function(e,n,o){t(n,(function(t,n){r[e]=n,o(t,r)}))},a=0;a<e.length;a++)i(a,e[a],o)}t.encodePacket=function(e,n,r,o){"function"==typeof n&&(o=n,n=!1),"function"==typeof r&&(o=r,r=null);var s=void 0===e.data?void 0:e.data.buffer||e.data;if("undefined"!=typeof ArrayBuffer&&s instanceof ArrayBuffer)return function(e,n,r){if(!n)return t.encodeBase64Packet(e,r);var o=e.data,i=new Uint8Array(o),s=new Uint8Array(1+o.byteLength);s[0]=a[e.type];for(var c=0;c<i.length;c++)s[c+1]=i[c];return r(s.buffer)}(e,n,o);if(void 0!==vt&&s instanceof vt)return function(e,n,r){if(!n)return t.encodeBase64Packet(e,r);if(i)return function(e,n,r){if(!n)return t.encodeBase64Packet(e,r);var o=new FileReader;return o.onload=function(){t.encodePacket({type:e.type,data:o.result},n,!0,r)},o.readAsArrayBuffer(e.data)}(e,n,r);var o=new Uint8Array(1);o[0]=a[e.type];var s=new vt([o.buffer,e.data]);return r(s)}(e,n,o);if(s&&s.base64)return function(e,n){var r="b"+t.packets[e.type]+e.data.data;return n(r)}(e,o);var c=a[e.type];return void 0!==e.data&&(c+=r?ut.encode(String(e.data),{strict:!1}):String(e.data)),o(""+c)},t.encodeBase64Packet=function(e,n){var r,o="b"+t.packets[e.type];if(void 0!==vt&&e.data instanceof vt){var i=new FileReader;return i.onload=function(){var e=i.result.split(",")[1];n(o+e)},i.readAsDataURL(e.data)}try{r=String.fromCharCode.apply(null,new Uint8Array(e.data))}catch(t){for(var a=new Uint8Array(e.data),s=new Array(a.length),c=0;c<a.length;c++)s[c]=a[c];r=String.fromCharCode.apply(null,s)}return o+=btoa(r),n(o)},t.decodePacket=function(e,n,r){if(void 0===e)return c;if("string"==typeof e){if("b"===e.charAt(0))return t.decodeBase64Packet(e.substr(1),n);if(r&&!1===(e=function(e){try{e=ut.decode(e,{strict:!1})}catch(e){return!1}return e}(e)))return c;var o=e.charAt(0);return Number(o)==o&&s[o]?e.length>1?{type:s[o],data:e.substring(1)}:{type:s[o]}:c}o=new Uint8Array(e)[0];var i=Je(e,1);return vt&&"blob"===n&&(i=new vt([i])),{type:s[o],data:i}},t.decodeBase64Packet=function(e,t){var r=s[e.charAt(0)];if(!n)return{type:r,data:{base64:!0,data:e.substr(1)}};var o=n.decode(e.substr(1));return"blob"===t&&vt&&(o=new vt([o])),{type:r,data:o}},t.encodePayload=function(e,n,r){"function"==typeof n&&(r=n,n=null);var o=Ke(e);if(n&&o)return vt&&!i?t.encodePayloadAsBlob(e,r):t.encodePayloadAsArrayBuffer(e,r);if(!e.length)return r("0:");u(e,(function(e,r){t.encodePacket(e,!!o&&n,!1,(function(e){r(null,function(e){return e.length+":"+e}(e))}))}),(function(e,t){return r(t.join(""))}))},t.decodePayload=function(e,n,r){if("string"!=typeof e)return t.decodePayloadAsBinary(e,n,r);var o;if("function"==typeof n&&(r=n,n=null),""===e)return r(c,0,1);for(var i,a,s="",u=0,l=e.length;u<l;u++){var h=e.charAt(u);if(":"===h){if(""===s||s!=(i=Number(s)))return r(c,0,1);if(s!=(a=e.substr(u+1,i)).length)return r(c,0,1);if(a.length){if(o=t.decodePacket(a,n,!1),c.type===o.type&&c.data===o.data)return r(c,0,1);if(!1===r(o,u+i,l))return}u+=i,s=""}else s+=h}return""!==s?r(c,0,1):void 0},t.encodePayloadAsArrayBuffer=function(e,n){if(!e.length)return n(new ArrayBuffer(0));u(e,(function(e,n){t.encodePacket(e,!0,!0,(function(e){return n(null,e)}))}),(function(e,t){var r=t.reduce((function(e,t){var n;return e+(n="string"==typeof t?t.length:t.byteLength).toString().length+n+2}),0),o=new Uint8Array(r),i=0;return t.forEach((function(e){var t="string"==typeof e,n=e;if(t){for(var r=new Uint8Array(e.length),a=0;a<e.length;a++)r[a]=e.charCodeAt(a);n=r.buffer}o[i++]=t?0:1;var s=n.byteLength.toString();for(a=0;a<s.length;a++)o[i++]=parseInt(s[a]);o[i++]=255;for(r=new Uint8Array(n),a=0;a<r.length;a++)o[i++]=r[a]})),n(o.buffer)}))},t.encodePayloadAsBlob=function(e,n){u(e,(function(e,n){t.encodePacket(e,!0,!0,(function(e){var t=new Uint8Array(1);if(t[0]=1,"string"==typeof e){for(var r=new Uint8Array(e.length),o=0;o<e.length;o++)r[o]=e.charCodeAt(o);e=r.buffer,t[0]=0}var i=(e instanceof ArrayBuffer?e.byteLength:e.size).toString(),a=new Uint8Array(i.length+1);for(o=0;o<i.length;o++)a[o]=parseInt(i[o]);if(a[i.length]=255,vt){var s=new vt([t.buffer,a.buffer,e]);n(null,s)}}))}),(function(e,t){return n(new vt(t))}))},t.decodePayloadAsBinary=function(e,n,r){"function"==typeof n&&(r=n,n=null);for(var o=e,i=[];o.byteLength>0;){for(var a=new Uint8Array(o),s=0===a[0],u="",l=1;255!==a[l];l++){if(u.length>310)return r(c,0,1);u+=a[l]}o=Je(o,2+u.length),u=parseInt(u);var h=Je(o,0,u);if(s)try{h=String.fromCharCode.apply(null,new Uint8Array(h))}catch(e){var p=new Uint8Array(h);h="";for(l=0;l<p.length;l++)h+=String.fromCharCode(p[l])}i.push(h),o=Je(o,u)}var f=i.length;i.forEach((function(e,o){r(t.decodePacket(e,n,!0),o,f)}))}})),bt=(Ct.protocol,Ct.packets,Ct.encodePacket,Ct.encodeBase64Packet,Ct.decodePacket,Ct.decodeBase64Packet,Ct.encodePayload,Ct.decodePayload,Ct.encodePayloadAsArrayBuffer,Ct.encodePayloadAsBlob,Ct.decodePayloadAsBinary,ce((function(e){function t(e){if(e)return function(e){for(var n in t.prototype)e[n]=t.prototype[n];return e}(e)}e.exports=t,t.prototype.on=t.prototype.addEventListener=function(e,t){return this._callbacks=this._callbacks||{},(this._callbacks["$"+e]=this._callbacks["$"+e]||[]).push(t),this},t.prototype.once=function(e,t){function n(){this.off(e,n),t.apply(this,arguments)}return n.fn=t,this.on(e,n),this},t.prototype.off=t.prototype.removeListener=t.prototype.removeAllListeners=t.prototype.removeEventListener=function(e,t){if(this._callbacks=this._callbacks||{},0==arguments.length)return this._callbacks={},this;var n,r=this._callbacks["$"+e];if(!r)return this;if(1==arguments.length)return delete this._callbacks["$"+e],this;for(var o=0;o<r.length;o++)if((n=r[o])===t||n.fn===t){r.splice(o,1);break}return this},t.prototype.emit=function(e){this._callbacks=this._callbacks||{};var t=[].slice.call(arguments,1),n=this._callbacks["$"+e];if(n)for(var r=0,o=(n=n.slice(0)).length;r<o;++r)n[r].apply(this,t);return this},t.prototype.listeners=function(e){return this._callbacks=this._callbacks||{},this._callbacks["$"+e]||[]},t.prototype.hasListeners=function(e){return!!this.listeners(e).length}}))),wt=At;function At(e){this.path=e.path,this.hostname=e.hostname,this.port=e.port,this.secure=e.secure,this.query=e.query,this.timestampParam=e.timestampParam,this.timestampRequests=e.timestampRequests,this.readyState="",this.agent=e.agent||!1,this.socket=e.socket,this.enablesXDR=e.enablesXDR,this.withCredentials=e.withCredentials,this.pfx=e.pfx,this.key=e.key,this.passphrase=e.passphrase,this.cert=e.cert,this.ca=e.ca,this.ciphers=e.ciphers,this.rejectUnauthorized=e.rejectUnauthorized,this.forceNode=e.forceNode,this.isReactNative=e.isReactNative,this.extraHeaders=e.extraHeaders,this.localAddress=e.localAddress}bt(At.prototype),At.prototype.onError=function(e,t){var n=new Error(e);return n.type="TransportError",n.description=t,this.emit("error",n),this},At.prototype.open=function(){return"closed"!==this.readyState&&""!==this.readyState||(this.readyState="opening",this.doOpen()),this},At.prototype.close=function(){return"opening"!==this.readyState&&"open"!==this.readyState||(this.doClose(),this.onClose()),this},At.prototype.send=function(e){if("open"!==this.readyState)throw new Error("Transport not open");this.write(e)},At.prototype.onOpen=function(){this.readyState="open",this.writable=!0,this.emit("open")},At.prototype.onData=function(e){var t=Ct.decodePacket(e,this.socket.binaryType);this.onPacket(t)},At.prototype.onPacket=function(e){this.emit("packet",e)},At.prototype.onClose=function(){this.readyState="closed",this.emit("close")};var kt,Tt=function(e){var t="";for(var n in e)e.hasOwnProperty(n)&&(t.length&&(t+="&"),t+=encodeURIComponent(n)+"="+encodeURIComponent(e[n]));return t},Bt=function(e){for(var t={},n=e.split("&"),r=0,o=n.length;r<o;r++){var i=n[r].split("=");t[decodeURIComponent(i[0])]=decodeURIComponent(i[1])}return t},Et=function(e,t){var n=function(){};n.prototype=t.prototype,e.prototype=new n,e.prototype.constructor=e},St="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".split(""),xt={},Ft=0,Ot=0;function Rt(e){var t="";do{t=St[e%64]+t,e=Math.floor(e/64)}while(e>0);return t}function _t(){var e=Rt(+new Date);return e!==kt?(Ft=0,kt=e):e+"."+Rt(Ft++)}for(;Ot<64;Ot++)xt[St[Ot]]=Ot;_t.encode=Rt,_t.decode=function(e){var t=0;for(Ot=0;Ot<e.length;Ot++)t=64*t+xt[e.charAt(Ot)];return t};var Pt=_t,Mt=864e5,Nt=function(e,t){t=t||{};var n=typeof e;if("string"===n&&e.length>0)return function(e){if((e=String(e)).length>100)return;var t=/^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(e);if(!t)return;var n=parseFloat(t[1]);switch((t[2]||"ms").toLowerCase()){case"years":case"year":case"yrs":case"yr":case"y":return 315576e5*n;case"weeks":case"week":case"w":return 6048e5*n;case"days":case"day":case"d":return n*Mt;case"hours":case"hour":case"hrs":case"hr":case"h":return 36e5*n;case"minutes":case"minute":case"mins":case"min":case"m":return 6e4*n;case"seconds":case"second":case"secs":case"sec":case"s":return 1e3*n;case"milliseconds":case"millisecond":case"msecs":case"msec":case"ms":return n;default:return}}(e);if("number"===n&&isFinite(e))return t.long?function(e){var t=Math.abs(e);if(t>=Mt)return It(e,t,Mt,"day");if(t>=36e5)return It(e,t,36e5,"hour");if(t>=6e4)return It(e,t,6e4,"minute");if(t>=1e3)return It(e,t,1e3,"second");return e+" ms"}(e):function(e){var t=Math.abs(e);if(t>=Mt)return Math.round(e/Mt)+"d";if(t>=36e5)return Math.round(e/36e5)+"h";if(t>=6e4)return Math.round(e/6e4)+"m";if(t>=1e3)return Math.round(e/1e3)+"s";return e+"ms"}(e);throw new Error("val is not a non-empty string or a valid number. val="+JSON.stringify(e))};function It(e,t,n,r){var o=t>=1.5*n;return Math.round(e/n)+" "+r+(o?"s":"")}var Lt=function(e){function t(e){let t=0;for(let n=0;n<e.length;n++)t=(t<<5)-t+e.charCodeAt(n),t|=0;return n.colors[Math.abs(t)%n.colors.length]}function n(e){let i;function a(...e){if(!a.enabled)return;const t=a,r=Number(new Date),o=r-(i||r);t.diff=o,t.prev=i,t.curr=r,i=r,e[0]=n.coerce(e[0]),"string"!=typeof e[0]&&e.unshift("%O");let s=0;e[0]=e[0].replace(/%([a-zA-Z%])/g,(r,o)=>{if("%%"===r)return r;s++;const i=n.formatters[o];if("function"==typeof i){const n=e[s];r=i.call(t,n),e.splice(s,1),s--}return r}),n.formatArgs.call(t,e),(t.log||n.log).apply(t,e)}return a.namespace=e,a.enabled=n.enabled(e),a.useColors=n.useColors(),a.color=t(e),a.destroy=r,a.extend=o,"function"==typeof n.init&&n.init(a),n.instances.push(a),a}function r(){const e=n.instances.indexOf(this);return-1!==e&&(n.instances.splice(e,1),!0)}function o(e,t){const r=n(this.namespace+(void 0===t?":":t)+e);return r.log=this.log,r}function i(e){return e.toString().substring(2,e.toString().length-2).replace(/\.\*\?$/,"*")}return n.debug=n,n.default=n,n.coerce=function(e){if(e instanceof Error)return e.stack||e.message;return e},n.disable=function(){const e=[...n.names.map(i),...n.skips.map(i).map(e=>"-"+e)].join(",");return n.enable(""),e},n.enable=function(e){let t;n.save(e),n.names=[],n.skips=[];const r=("string"==typeof e?e:"").split(/[\s,]+/),o=r.length;for(t=0;t<o;t++)r[t]&&("-"===(e=r[t].replace(/\*/g,".*?"))[0]?n.skips.push(new RegExp("^"+e.substr(1)+"$")):n.names.push(new RegExp("^"+e+"$")));for(t=0;t<n.instances.length;t++){const e=n.instances[t];e.enabled=n.enabled(e.namespace)}},n.enabled=function(e){if("*"===e[e.length-1])return!0;let t,r;for(t=0,r=n.skips.length;t<r;t++)if(n.skips[t].test(e))return!1;for(t=0,r=n.names.length;t<r;t++)if(n.names[t].test(e))return!0;return!1},n.humanize=Nt,Object.keys(e).forEach(t=>{n[t]=e[t]}),n.instances=[],n.names=[],n.skips=[],n.formatters={},n.selectColor=t,n.enable(n.load()),n},Dt=ce((function(e,t){t.log=function(...e){return"object"==typeof console&&console.log&&console.log(...e)},t.formatArgs=function(t){if(t[0]=(this.useColors?"%c":"")+this.namespace+(this.useColors?" %c":" ")+t[0]+(this.useColors?"%c ":" ")+"+"+e.exports.humanize(this.diff),!this.useColors)return;const n="color: "+this.color;t.splice(1,0,n,"color: inherit");let r=0,o=0;t[0].replace(/%[a-zA-Z%]/g,e=>{"%%"!==e&&(r++,"%c"===e&&(o=r))}),t.splice(o,0,n)},t.save=function(e){try{e?t.storage.setItem("debug",e):t.storage.removeItem("debug")}catch(e){}},t.load=function(){let e;try{e=t.storage.getItem("debug")}catch(e){}!e&&"undefined"!=typeof process&&"env"in process&&(e=process.env.DEBUG);return e},t.useColors=function(){if("undefined"!=typeof window&&window.process&&("renderer"===window.process.type||window.process.__nwjs))return!0;if("undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/))return!1;return"undefined"!=typeof document&&document.documentElement&&document.documentElement.style&&document.documentElement.style.WebkitAppearance||"undefined"!=typeof window&&window.console&&(window.console.firebug||window.console.exception&&window.console.table)||"undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)&&parseInt(RegExp.$1,10)>=31||"undefined"!=typeof navigator&&navigator.userAgent&&navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/)},t.storage=function(){try{return localStorage}catch(e){}}(),t.colors=["#0000CC","#0000FF","#0033CC","#0033FF","#0066CC","#0066FF","#0099CC","#0099FF","#00CC00","#00CC33","#00CC66","#00CC99","#00CCCC","#00CCFF","#3300CC","#3300FF","#3333CC","#3333FF","#3366CC","#3366FF","#3399CC","#3399FF","#33CC00","#33CC33","#33CC66","#33CC99","#33CCCC","#33CCFF","#6600CC","#6600FF","#6633CC","#6633FF","#66CC00","#66CC33","#9900CC","#9900FF","#9933CC","#9933FF","#99CC00","#99CC33","#CC0000","#CC0033","#CC0066","#CC0099","#CC00CC","#CC00FF","#CC3300","#CC3333","#CC3366","#CC3399","#CC33CC","#CC33FF","#CC6600","#CC6633","#CC9900","#CC9933","#CCCC00","#CCCC33","#FF0000","#FF0033","#FF0066","#FF0099","#FF00CC","#FF00FF","#FF3300","#FF3333","#FF3366","#FF3399","#FF33CC","#FF33FF","#FF6600","#FF6633","#FF9900","#FF9933","#FFCC00","#FFCC33"],e.exports=Lt(t);const{formatters:n}=e.exports;n.j=function(e){try{return JSON.stringify(e)}catch(e){return"[UnexpectedJSONParseError]: "+e.message}}})),Ut=(Dt.log,Dt.formatArgs,Dt.save,Dt.load,Dt.useColors,Dt.storage,Dt.colors,Dt("engine.io-client:polling")),jt=Ht,$t=null!=new He({xdomain:!1}).responseType;function Ht(e){var t=e&&e.forceBase64;$t&&!t||(this.supportsBinary=!1),wt.call(this,e)}Et(Ht,wt),Ht.prototype.name="polling",Ht.prototype.doOpen=function(){this.poll()},Ht.prototype.pause=function(e){var t=this;function n(){Ut("paused"),t.readyState="paused",e()}if(this.readyState="pausing",this.polling||!this.writable){var r=0;this.polling&&(Ut("we are currently polling - waiting to pause"),r++,this.once("pollComplete",(function(){Ut("pre-pause polling complete"),--r||n()}))),this.writable||(Ut("we are currently writing - waiting to pause"),r++,this.once("drain",(function(){Ut("pre-pause writing complete"),--r||n()})))}else n()},Ht.prototype.poll=function(){Ut("polling"),this.polling=!0,this.doPoll(),this.emit("poll")},Ht.prototype.onData=function(e){var t=this;Ut("polling got data %s",e);Ct.decodePayload(e,this.socket.binaryType,(function(e,n,r){if("opening"===t.readyState&&t.onOpen(),"close"===e.type)return t.onClose(),!1;t.onPacket(e)})),"closed"!==this.readyState&&(this.polling=!1,this.emit("pollComplete"),"open"===this.readyState?this.poll():Ut('ignoring poll - transport state "%s"',this.readyState))},Ht.prototype.doClose=function(){var e=this;function t(){Ut("writing close packet"),e.write([{type:"close"}])}"open"===this.readyState?(Ut("transport open - closing"),t()):(Ut("transport not open - deferring close"),this.once("open",t))},Ht.prototype.write=function(e){var t=this;this.writable=!1;var n=function(){t.writable=!0,t.emit("drain")};Ct.encodePayload(e,this.supportsBinary,(function(e){t.doWrite(e,n)}))},Ht.prototype.uri=function(){var e=this.query||{},t=this.secure?"https":"http",n="";return!1!==this.timestampRequests&&(e[this.timestampParam]=Pt()),this.supportsBinary||e.sid||(e.b64=1),e=Tt(e),this.port&&("https"===t&&443!==Number(this.port)||"http"===t&&80!==Number(this.port))&&(n=":"+this.port),e.length&&(e="?"+e),t+"://"+(-1!==this.hostname.indexOf(":")?"["+this.hostname+"]":this.hostname)+n+this.path+e};var Gt=Dt("engine.io-client:polling-xhr"),qt=zt,Vt=Wt;function Xt(){}function zt(e){if(jt.call(this,e),this.requestTimeout=e.requestTimeout,this.extraHeaders=e.extraHeaders,"undefined"!=typeof location){var t="https:"===location.protocol,n=location.port;n||(n=t?443:80),this.xd="undefined"!=typeof location&&e.hostname!==location.hostname||n!==e.port,this.xs=e.secure!==t}}function Wt(e){this.method=e.method||"GET",this.uri=e.uri,this.xd=!!e.xd,this.xs=!!e.xs,this.async=!1!==e.async,this.data=void 0!==e.data?e.data:null,this.agent=e.agent,this.isBinary=e.isBinary,this.supportsBinary=e.supportsBinary,this.enablesXDR=e.enablesXDR,this.withCredentials=e.withCredentials,this.requestTimeout=e.requestTimeout,this.pfx=e.pfx,this.key=e.key,this.passphrase=e.passphrase,this.cert=e.cert,this.ca=e.ca,this.ciphers=e.ciphers,this.rejectUnauthorized=e.rejectUnauthorized,this.extraHeaders=e.extraHeaders,this.create()}if(Et(zt,jt),zt.prototype.supportsBinary=!0,zt.prototype.request=function(e){return(e=e||{}).uri=this.uri(),e.xd=this.xd,e.xs=this.xs,e.agent=this.agent||!1,e.supportsBinary=this.supportsBinary,e.enablesXDR=this.enablesXDR,e.withCredentials=this.withCredentials,e.pfx=this.pfx,e.key=this.key,e.passphrase=this.passphrase,e.cert=this.cert,e.ca=this.ca,e.ciphers=this.ciphers,e.rejectUnauthorized=this.rejectUnauthorized,e.requestTimeout=this.requestTimeout,e.extraHeaders=this.extraHeaders,new Wt(e)},zt.prototype.doWrite=function(e,t){var n="string"!=typeof e&&void 0!==e,r=this.request({method:"POST",data:e,isBinary:n}),o=this;r.on("success",t),r.on("error",(function(e){o.onError("xhr post error",e)})),this.sendXhr=r},zt.prototype.doPoll=function(){Gt("xhr poll");var e=this.request(),t=this;e.on("data",(function(e){t.onData(e)})),e.on("error",(function(e){t.onError("xhr poll error",e)})),this.pollXhr=e},bt(Wt.prototype),Wt.prototype.create=function(){var e={agent:this.agent,xdomain:this.xd,xscheme:this.xs,enablesXDR:this.enablesXDR};e.pfx=this.pfx,e.key=this.key,e.passphrase=this.passphrase,e.cert=this.cert,e.ca=this.ca,e.ciphers=this.ciphers,e.rejectUnauthorized=this.rejectUnauthorized;var t=this.xhr=new He(e),n=this;try{Gt("xhr open %s: %s",this.method,this.uri),t.open(this.method,this.uri,this.async);try{if(this.extraHeaders)for(var r in t.setDisableHeaderCheck&&t.setDisableHeaderCheck(!0),this.extraHeaders)this.extraHeaders.hasOwnProperty(r)&&t.setRequestHeader(r,this.extraHeaders[r])}catch(e){}if("POST"===this.method)try{this.isBinary?t.setRequestHeader("Content-type","application/octet-stream"):t.setRequestHeader("Content-type","text/plain;charset=UTF-8")}catch(e){}try{t.setRequestHeader("Accept","*/*")}catch(e){}"withCredentials"in t&&(t.withCredentials=this.withCredentials),this.requestTimeout&&(t.timeout=this.requestTimeout),this.hasXDR()?(t.onload=function(){n.onLoad()},t.onerror=function(){n.onError(t.responseText)}):t.onreadystatechange=function(){if(2===t.readyState)try{var e=t.getResponseHeader("Content-Type");(n.supportsBinary&&"application/octet-stream"===e||"application/octet-stream; charset=UTF-8"===e)&&(t.responseType="arraybuffer")}catch(e){}4===t.readyState&&(200===t.status||1223===t.status?n.onLoad():setTimeout((function(){n.onError("number"==typeof t.status?t.status:0)}),0))},Gt("xhr data %s",this.data),t.send(this.data)}catch(e){return void setTimeout((function(){n.onError(e)}),0)}"undefined"!=typeof document&&(this.index=Wt.requestsCount++,Wt.requests[this.index]=this)},Wt.prototype.onSuccess=function(){this.emit("success"),this.cleanup()},Wt.prototype.onData=function(e){this.emit("data",e),this.onSuccess()},Wt.prototype.onError=function(e){this.emit("error",e),this.cleanup(!0)},Wt.prototype.cleanup=function(e){if(void 0!==this.xhr&&null!==this.xhr){if(this.hasXDR()?this.xhr.onload=this.xhr.onerror=Xt:this.xhr.onreadystatechange=Xt,e)try{this.xhr.abort()}catch(e){}"undefined"!=typeof document&&delete Wt.requests[this.index],this.xhr=null}},Wt.prototype.onLoad=function(){var e;try{var t;try{t=this.xhr.getResponseHeader("Content-Type")}catch(e){}e=("application/octet-stream"===t||"application/octet-stream; charset=UTF-8"===t)&&this.xhr.response||this.xhr.responseText}catch(e){this.onError(e)}null!=e&&this.onData(e)},Wt.prototype.hasXDR=function(){return"undefined"!=typeof XDomainRequest&&!this.xs&&this.enablesXDR},Wt.prototype.abort=function(){this.cleanup()},Wt.requestsCount=0,Wt.requests={},"undefined"!=typeof document)if("function"==typeof attachEvent)attachEvent("onunload",Jt);else if("function"==typeof addEventListener){var Kt="onpagehide"in self?"pagehide":"unload";addEventListener(Kt,Jt,!1)}function Jt(){for(var e in Wt.requests)Wt.requests.hasOwnProperty(e)&&Wt.requests[e].abort()}qt.Request=Vt;var Yt,Zt=rn,Qt=/\n/g,en=/\\n/g;function tn(){}function nn(){return"undefined"!=typeof self?self:"undefined"!=typeof window?window:void 0!==se?se:{}}function rn(e){if(jt.call(this,e),this.query=this.query||{},!Yt){var t=nn();Yt=t.___eio=t.___eio||[]}this.index=Yt.length;var n=this;Yt.push((function(e){n.onData(e)})),this.query.j=this.index,"function"==typeof addEventListener&&addEventListener("beforeunload",(function(){n.script&&(n.script.onerror=tn)}),!1)}Et(rn,jt),rn.prototype.supportsBinary=!1,rn.prototype.doClose=function(){this.script&&(this.script.parentNode.removeChild(this.script),this.script=null),this.form&&(this.form.parentNode.removeChild(this.form),this.form=null,this.iframe=null),jt.prototype.doClose.call(this)},rn.prototype.doPoll=function(){var e=this,t=document.createElement("script");this.script&&(this.script.parentNode.removeChild(this.script),this.script=null),t.async=!0,t.src=this.uri(),t.onerror=function(t){e.onError("jsonp poll error",t)};var n=document.getElementsByTagName("script")[0];n?n.parentNode.insertBefore(t,n):(document.head||document.body).appendChild(t),this.script=t,"undefined"!=typeof navigator&&/gecko/i.test(navigator.userAgent)&&setTimeout((function(){var e=document.createElement("iframe");document.body.appendChild(e),document.body.removeChild(e)}),100)},rn.prototype.doWrite=function(e,t){var n=this;if(!this.form){var r,o=document.createElement("form"),i=document.createElement("textarea"),a=this.iframeId="eio_iframe_"+this.index;o.className="socketio",o.style.position="absolute",o.style.top="-1000px",o.style.left="-1000px",o.target=a,o.method="POST",o.setAttribute("accept-charset","utf-8"),i.name="d",o.appendChild(i),document.body.appendChild(o),this.form=o,this.area=i}function s(){c(),t()}function c(){if(n.iframe)try{n.form.removeChild(n.iframe)}catch(e){n.onError("jsonp polling iframe removal error",e)}try{var e='<iframe src="javascript:0" name="'+n.iframeId+'">';r=document.createElement(e)}catch(e){(r=document.createElement("iframe")).name=n.iframeId,r.src="javascript:0"}r.id=n.iframeId,n.form.appendChild(r),n.iframe=r}this.form.action=this.uri(),c(),e=e.replace(en,"\\\n"),this.area.value=e.replace(Qt,"\\n");try{this.form.submit()}catch(e){}this.iframe.attachEvent?this.iframe.onreadystatechange=function(){"complete"===n.iframe.readyState&&s()}:this.iframe.onload=s};var on,an,sn,cn=(on=Object.freeze({__proto__:null,default:{}}))&&on.default||on,un=Dt("engine.io-client:websocket");if("undefined"!=typeof WebSocket?an=WebSocket:"undefined"!=typeof self&&(an=self.WebSocket||self.MozWebSocket),"undefined"==typeof window)try{sn=cn}catch(e){}var ln=an||sn,hn=pn;function pn(e){e&&e.forceBase64&&(this.supportsBinary=!1),this.perMessageDeflate=e.perMessageDeflate,this.usingBrowserWebSocket=an&&!e.forceNode,this.protocols=e.protocols,this.usingBrowserWebSocket||(ln=sn),wt.call(this,e)}Et(pn,wt),pn.prototype.name="websocket",pn.prototype.supportsBinary=!0,pn.prototype.doOpen=function(){if(this.check()){var e=this.uri(),t=this.protocols,n={agent:this.agent,perMessageDeflate:this.perMessageDeflate};n.pfx=this.pfx,n.key=this.key,n.passphrase=this.passphrase,n.cert=this.cert,n.ca=this.ca,n.ciphers=this.ciphers,n.rejectUnauthorized=this.rejectUnauthorized,this.extraHeaders&&(n.headers=this.extraHeaders),this.localAddress&&(n.localAddress=this.localAddress);try{this.ws=this.usingBrowserWebSocket&&!this.isReactNative?t?new ln(e,t):new ln(e):new ln(e,t,n)}catch(e){return this.emit("error",e)}void 0===this.ws.binaryType&&(this.supportsBinary=!1),this.ws.supports&&this.ws.supports.binary?(this.supportsBinary=!0,this.ws.binaryType="nodebuffer"):this.ws.binaryType="arraybuffer",this.addEventListeners()}},pn.prototype.addEventListeners=function(){var e=this;this.ws.onopen=function(){e.onOpen()},this.ws.onclose=function(){e.onClose()},this.ws.onmessage=function(t){e.onData(t.data)},this.ws.onerror=function(t){e.onError("websocket error",t)}},pn.prototype.write=function(e){var t=this;this.writable=!1;for(var n=e.length,r=0,o=n;r<o;r++)!function(e){Ct.encodePacket(e,t.supportsBinary,(function(r){if(!t.usingBrowserWebSocket){var o={};if(e.options&&(o.compress=e.options.compress),t.perMessageDeflate)("string"==typeof r?Buffer.byteLength(r):r.length)<t.perMessageDeflate.threshold&&(o.compress=!1)}try{t.usingBrowserWebSocket?t.ws.send(r):t.ws.send(r,o)}catch(e){un("websocket closed before onclose event")}--n||i()}))}(e[r]);function i(){t.emit("flush"),setTimeout((function(){t.writable=!0,t.emit("drain")}),0)}},pn.prototype.onClose=function(){wt.prototype.onClose.call(this)},pn.prototype.doClose=function(){void 0!==this.ws&&this.ws.close()},pn.prototype.uri=function(){var e=this.query||{},t=this.secure?"wss":"ws",n="";return this.port&&("wss"===t&&443!==Number(this.port)||"ws"===t&&80!==Number(this.port))&&(n=":"+this.port),this.timestampRequests&&(e[this.timestampParam]=Pt()),this.supportsBinary||(e.b64=1),(e=Tt(e)).length&&(e="?"+e),t+"://"+(-1!==this.hostname.indexOf(":")?"["+this.hostname+"]":this.hostname)+n+this.path+e},pn.prototype.check=function(){return!(!ln||"__initialize"in ln&&this.name===pn.prototype.name)};var fn={polling:function(e){var t=!1,n=!1,r=!1!==e.jsonp;if("undefined"!=typeof location){var o="https:"===location.protocol,i=location.port;i||(i=o?443:80),t=e.hostname!==location.hostname||i!==e.port,n=e.secure!==o}if(e.xdomain=t,e.xscheme=n,"open"in new He(e)&&!e.forceJSONP)return new qt(e);if(!r)throw new Error("JSONP disabled");return new Zt(e)},websocket:hn},dn=[].indexOf,gn=function(e,t){if(dn)return e.indexOf(t);for(var n=0;n<e.length;++n)if(e[n]===t)return n;return-1},mn=Dt("engine.io-client:socket"),yn=vn;function vn(e,t){if(!(this instanceof vn))return new vn(e,t);t=t||{},e&&"object"==typeof e&&(t=e,e=null),e?(e=fe(e),t.hostname=e.host,t.secure="https"===e.protocol||"wss"===e.protocol,t.port=e.port,e.query&&(t.query=e.query)):t.host&&(t.hostname=fe(t.host).host),this.secure=null!=t.secure?t.secure:"undefined"!=typeof location&&"https:"===location.protocol,t.hostname&&!t.port&&(t.port=this.secure?"443":"80"),this.agent=t.agent||!1,this.hostname=t.hostname||("undefined"!=typeof location?location.hostname:"localhost"),this.port=t.port||("undefined"!=typeof location&&location.port?location.port:this.secure?443:80),this.query=t.query||{},"string"==typeof this.query&&(this.query=Bt(this.query)),this.upgrade=!1!==t.upgrade,this.path=(t.path||"/engine.io").replace(/\/$/,"")+"/",this.forceJSONP=!!t.forceJSONP,this.jsonp=!1!==t.jsonp,this.forceBase64=!!t.forceBase64,this.enablesXDR=!!t.enablesXDR,this.withCredentials=!1!==t.withCredentials,this.timestampParam=t.timestampParam||"t",this.timestampRequests=t.timestampRequests,this.transports=t.transports||["polling","websocket"],this.transportOptions=t.transportOptions||{},this.readyState="",this.writeBuffer=[],this.prevBufferLen=0,this.policyPort=t.policyPort||843,this.rememberUpgrade=t.rememberUpgrade||!1,this.binaryType=null,this.onlyBinaryUpgrades=t.onlyBinaryUpgrades,this.perMessageDeflate=!1!==t.perMessageDeflate&&(t.perMessageDeflate||{}),!0===this.perMessageDeflate&&(this.perMessageDeflate={}),this.perMessageDeflate&&null==this.perMessageDeflate.threshold&&(this.perMessageDeflate.threshold=1024),this.pfx=t.pfx||null,this.key=t.key||null,this.passphrase=t.passphrase||null,this.cert=t.cert||null,this.ca=t.ca||null,this.ciphers=t.ciphers||null,this.rejectUnauthorized=void 0===t.rejectUnauthorized||t.rejectUnauthorized,this.forceNode=!!t.forceNode,this.isReactNative="undefined"!=typeof navigator&&"string"==typeof navigator.product&&"reactnative"===navigator.product.toLowerCase(),("undefined"==typeof self||this.isReactNative)&&(t.extraHeaders&&Object.keys(t.extraHeaders).length>0&&(this.extraHeaders=t.extraHeaders),t.localAddress&&(this.localAddress=t.localAddress)),this.id=null,this.upgrades=null,this.pingInterval=null,this.pingTimeout=null,this.pingIntervalTimer=null,this.pingTimeoutTimer=null,this.open()}vn.priorWebsocketSuccess=!1,bt(vn.prototype),vn.protocol=Ct.protocol,vn.Socket=vn,vn.Transport=wt,vn.transports=fn,vn.parser=Ct,vn.prototype.createTransport=function(e){mn('creating transport "%s"',e);var t=function(e){var t={};for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n]);return t}(this.query);t.EIO=Ct.protocol,t.transport=e;var n=this.transportOptions[e]||{};return this.id&&(t.sid=this.id),new fn[e]({query:t,socket:this,agent:n.agent||this.agent,hostname:n.hostname||this.hostname,port:n.port||this.port,secure:n.secure||this.secure,path:n.path||this.path,forceJSONP:n.forceJSONP||this.forceJSONP,jsonp:n.jsonp||this.jsonp,forceBase64:n.forceBase64||this.forceBase64,enablesXDR:n.enablesXDR||this.enablesXDR,withCredentials:n.withCredentials||this.withCredentials,timestampRequests:n.timestampRequests||this.timestampRequests,timestampParam:n.timestampParam||this.timestampParam,policyPort:n.policyPort||this.policyPort,pfx:n.pfx||this.pfx,key:n.key||this.key,passphrase:n.passphrase||this.passphrase,cert:n.cert||this.cert,ca:n.ca||this.ca,ciphers:n.ciphers||this.ciphers,rejectUnauthorized:n.rejectUnauthorized||this.rejectUnauthorized,perMessageDeflate:n.perMessageDeflate||this.perMessageDeflate,extraHeaders:n.extraHeaders||this.extraHeaders,forceNode:n.forceNode||this.forceNode,localAddress:n.localAddress||this.localAddress,requestTimeout:n.requestTimeout||this.requestTimeout,protocols:n.protocols||void 0,isReactNative:this.isReactNative})},vn.prototype.open=function(){var e;if(this.rememberUpgrade&&vn.priorWebsocketSuccess&&-1!==this.transports.indexOf("websocket"))e="websocket";else{if(0===this.transports.length){var t=this;return void setTimeout((function(){t.emit("error","No transports available")}),0)}e=this.transports[0]}this.readyState="opening";try{e=this.createTransport(e)}catch(e){return this.transports.shift(),void this.open()}e.open(),this.setTransport(e)},vn.prototype.setTransport=function(e){mn("setting transport %s",e.name);var t=this;this.transport&&(mn("clearing existing transport %s",this.transport.name),this.transport.removeAllListeners()),this.transport=e,e.on("drain",(function(){t.onDrain()})).on("packet",(function(e){t.onPacket(e)})).on("error",(function(e){t.onError(e)})).on("close",(function(){t.onClose("transport close")}))},vn.prototype.probe=function(e){mn('probing transport "%s"',e);var t=this.createTransport(e,{probe:1}),n=!1,r=this;function o(){if(r.onlyBinaryUpgrades){var o=!this.supportsBinary&&r.transport.supportsBinary;n=n||o}n||(mn('probe transport "%s" opened',e),t.send([{type:"ping",data:"probe"}]),t.once("packet",(function(o){if(!n)if("pong"===o.type&&"probe"===o.data){if(mn('probe transport "%s" pong',e),r.upgrading=!0,r.emit("upgrading",t),!t)return;vn.priorWebsocketSuccess="websocket"===t.name,mn('pausing current transport "%s"',r.transport.name),r.transport.pause((function(){n||"closed"!==r.readyState&&(mn("changing transport and sending upgrade packet"),l(),r.setTransport(t),t.send([{type:"upgrade"}]),r.emit("upgrade",t),t=null,r.upgrading=!1,r.flush())}))}else{mn('probe transport "%s" failed',e);var i=new Error("probe error");i.transport=t.name,r.emit("upgradeError",i)}})))}function i(){n||(n=!0,l(),t.close(),t=null)}function a(n){var o=new Error("probe error: "+n);o.transport=t.name,i(),mn('probe transport "%s" failed because of error: %s',e,n),r.emit("upgradeError",o)}function s(){a("transport closed")}function c(){a("socket closed")}function u(e){t&&e.name!==t.name&&(mn('"%s" works - aborting "%s"',e.name,t.name),i())}function l(){t.removeListener("open",o),t.removeListener("error",a),t.removeListener("close",s),r.removeListener("close",c),r.removeListener("upgrading",u)}vn.priorWebsocketSuccess=!1,t.once("open",o),t.once("error",a),t.once("close",s),this.once("close",c),this.once("upgrading",u),t.open()},vn.prototype.onOpen=function(){if(mn("socket open"),this.readyState="open",vn.priorWebsocketSuccess="websocket"===this.transport.name,this.emit("open"),this.flush(),"open"===this.readyState&&this.upgrade&&this.transport.pause){mn("starting upgrade probes");for(var e=0,t=this.upgrades.length;e<t;e++)this.probe(this.upgrades[e])}},vn.prototype.onPacket=function(e){if("opening"===this.readyState||"open"===this.readyState||"closing"===this.readyState)switch(mn('socket receive: type "%s", data "%s"',e.type,e.data),this.emit("packet",e),this.emit("heartbeat"),e.type){case"open":this.onHandshake(JSON.parse(e.data));break;case"pong":this.setPing(),this.emit("pong");break;case"error":var t=new Error("server error");t.code=e.data,this.onError(t);break;case"message":this.emit("data",e.data),this.emit("message",e.data)}else mn('packet received with socket readyState "%s"',this.readyState)},vn.prototype.onHandshake=function(e){this.emit("handshake",e),this.id=e.sid,this.transport.query.sid=e.sid,this.upgrades=this.filterUpgrades(e.upgrades),this.pingInterval=e.pingInterval,this.pingTimeout=e.pingTimeout,this.onOpen(),"closed"!==this.readyState&&(this.setPing(),this.removeListener("heartbeat",this.onHeartbeat),this.on("heartbeat",this.onHeartbeat))},vn.prototype.onHeartbeat=function(e){clearTimeout(this.pingTimeoutTimer);var t=this;t.pingTimeoutTimer=setTimeout((function(){"closed"!==t.readyState&&t.onClose("ping timeout")}),e||t.pingInterval+t.pingTimeout)},vn.prototype.setPing=function(){var e=this;clearTimeout(e.pingIntervalTimer),e.pingIntervalTimer=setTimeout((function(){mn("writing ping packet - expecting pong within %sms",e.pingTimeout),e.ping(),e.onHeartbeat(e.pingTimeout)}),e.pingInterval)},vn.prototype.ping=function(){var e=this;this.sendPacket("ping",(function(){e.emit("ping")}))},vn.prototype.onDrain=function(){this.writeBuffer.splice(0,this.prevBufferLen),this.prevBufferLen=0,0===this.writeBuffer.length?this.emit("drain"):this.flush()},vn.prototype.flush=function(){"closed"!==this.readyState&&this.transport.writable&&!this.upgrading&&this.writeBuffer.length&&(mn("flushing %d packets in socket",this.writeBuffer.length),this.transport.send(this.writeBuffer),this.prevBufferLen=this.writeBuffer.length,this.emit("flush"))},vn.prototype.write=vn.prototype.send=function(e,t,n){return this.sendPacket("message",e,t,n),this},vn.prototype.sendPacket=function(e,t,n,r){if("function"==typeof t&&(r=t,t=void 0),"function"==typeof n&&(r=n,n=null),"closing"!==this.readyState&&"closed"!==this.readyState){(n=n||{}).compress=!1!==n.compress;var o={type:e,data:t,options:n};this.emit("packetCreate",o),this.writeBuffer.push(o),r&&this.once("flush",r),this.flush()}},vn.prototype.close=function(){if("opening"===this.readyState||"open"===this.readyState){this.readyState="closing";var e=this;this.writeBuffer.length?this.once("drain",(function(){this.upgrading?r():t()})):this.upgrading?r():t()}function t(){e.onClose("forced close"),mn("socket closing - telling transport to close"),e.transport.close()}function n(){e.removeListener("upgrade",n),e.removeListener("upgradeError",n),t()}function r(){e.once("upgrade",n),e.once("upgradeError",n)}return this},vn.prototype.onError=function(e){mn("socket error %j",e),vn.priorWebsocketSuccess=!1,this.emit("error",e),this.onClose("transport error",e)},vn.prototype.onClose=function(e,t){if("opening"===this.readyState||"open"===this.readyState||"closing"===this.readyState){mn('socket close with reason: "%s"',e);clearTimeout(this.pingIntervalTimer),clearTimeout(this.pingTimeoutTimer),this.transport.removeAllListeners("close"),this.transport.close(),this.transport.removeAllListeners(),this.readyState="closed",this.id=null,this.emit("close",e,t),this.writeBuffer=[],this.prevBufferLen=0}},vn.prototype.filterUpgrades=function(e){for(var t=[],n=0,r=e.length;n<r;n++)~gn(this.transports,e[n])&&t.push(e[n]);return t};var Cn=yn,bn=Ct;Cn.parser=bn;var wn=ce((function(e){function t(e){if(e)return function(e){for(var n in t.prototype)e[n]=t.prototype[n];return e}(e)}e.exports=t,t.prototype.on=t.prototype.addEventListener=function(e,t){return this._callbacks=this._callbacks||{},(this._callbacks["$"+e]=this._callbacks["$"+e]||[]).push(t),this},t.prototype.once=function(e,t){function n(){this.off(e,n),t.apply(this,arguments)}return n.fn=t,this.on(e,n),this},t.prototype.off=t.prototype.removeListener=t.prototype.removeAllListeners=t.prototype.removeEventListener=function(e,t){if(this._callbacks=this._callbacks||{},0==arguments.length)return this._callbacks={},this;var n,r=this._callbacks["$"+e];if(!r)return this;if(1==arguments.length)return delete this._callbacks["$"+e],this;for(var o=0;o<r.length;o++)if((n=r[o])===t||n.fn===t){r.splice(o,1);break}return this},t.prototype.emit=function(e){this._callbacks=this._callbacks||{};var t=[].slice.call(arguments,1),n=this._callbacks["$"+e];if(n)for(var r=0,o=(n=n.slice(0)).length;r<o;++r)n[r].apply(this,t);return this},t.prototype.listeners=function(e){return this._callbacks=this._callbacks||{},this._callbacks["$"+e]||[]},t.prototype.hasListeners=function(e){return!!this.listeners(e).length}})),An=function(e,t){for(var n=[],r=(t=t||0)||0;r<e.length;r++)n[r-t]=e[r];return n};var kn=function(e,t,n){return e.on(t,n),{destroy:function(){e.removeListener(t,n)}}};var Tn=[].slice,Bn=function(e,t){if("string"==typeof t&&(t=e[t]),"function"!=typeof t)throw new Error("bind() requires a function");var n=Tn.call(arguments,2);return function(){return t.apply(e,n.concat(Tn.call(arguments)))}},En=ce((function(e,t){var n=we("socket.io-client:socket");e.exports=i;var r={connect:1,connect_error:1,connect_timeout:1,connecting:1,disconnect:1,error:1,reconnect:1,reconnect_attempt:1,reconnect_failed:1,reconnect_error:1,reconnecting:1,ping:1,pong:1},o=wn.prototype.emit;function i(e,t,n){this.io=e,this.nsp=t,this.json=this,this.ids=0,this.acks={},this.receiveBuffer=[],this.sendBuffer=[],this.connected=!1,this.disconnected=!0,this.flags={},n&&n.query&&(this.query=n.query),this.io.autoConnect&&this.open()}wn(i.prototype),i.prototype.subEvents=function(){if(!this.subs){var e=this.io;this.subs=[kn(e,"open",Bn(this,"onopen")),kn(e,"packet",Bn(this,"onpacket")),kn(e,"close",Bn(this,"onclose"))]}},i.prototype.open=i.prototype.connect=function(){return this.connected?this:(this.subEvents(),this.io.open(),"open"===this.io.readyState&&this.onopen(),this.emit("connecting"),this)},i.prototype.send=function(){var e=An(arguments);return e.unshift("message"),this.emit.apply(this,e),this},i.prototype.emit=function(e){if(r.hasOwnProperty(e))return o.apply(this,arguments),this;var t=An(arguments),i={type:(void 0!==this.flags.binary?this.flags.binary:Ke(t))?je.BINARY_EVENT:je.EVENT,data:t,options:{}};return i.options.compress=!this.flags||!1!==this.flags.compress,"function"==typeof t[t.length-1]&&(n("emitting packet with ack id %d",this.ids),this.acks[this.ids]=t.pop(),i.id=this.ids++),this.connected?this.packet(i):this.sendBuffer.push(i),this.flags={},this},i.prototype.packet=function(e){e.nsp=this.nsp,this.io.packet(e)},i.prototype.onopen=function(){if(n("transport is open - connecting"),"/"!==this.nsp)if(this.query){var e="object"==typeof this.query?Tt(this.query):this.query;n("sending connect packet with query %s",e),this.packet({type:je.CONNECT,query:e})}else this.packet({type:je.CONNECT})},i.prototype.onclose=function(e){n("close (%s)",e),this.connected=!1,this.disconnected=!0,delete this.id,this.emit("disconnect",e)},i.prototype.onpacket=function(e){var t=e.nsp===this.nsp,n=e.type===je.ERROR&&"/"===e.nsp;if(t||n)switch(e.type){case je.CONNECT:this.onconnect();break;case je.EVENT:case je.BINARY_EVENT:this.onevent(e);break;case je.ACK:case je.BINARY_ACK:this.onack(e);break;case je.DISCONNECT:this.ondisconnect();break;case je.ERROR:this.emit("error",e.data)}},i.prototype.onevent=function(e){var t=e.data||[];n("emitting event %j",t),null!=e.id&&(n("attaching ack callback to event"),t.push(this.ack(e.id))),this.connected?o.apply(this,t):this.receiveBuffer.push(t)},i.prototype.ack=function(e){var t=this,r=!1;return function(){if(!r){r=!0;var o=An(arguments);n("sending ack %j",o),t.packet({type:Ke(o)?je.BINARY_ACK:je.ACK,id:e,data:o})}}},i.prototype.onack=function(e){var t=this.acks[e.id];"function"==typeof t?(n("calling ack %s with %j",e.id,e.data),t.apply(this,e.data),delete this.acks[e.id]):n("bad ack %s",e.id)},i.prototype.onconnect=function(){this.connected=!0,this.disconnected=!1,this.emit("connect"),this.emitBuffered()},i.prototype.emitBuffered=function(){var e;for(e=0;e<this.receiveBuffer.length;e++)o.apply(this,this.receiveBuffer[e]);for(this.receiveBuffer=[],e=0;e<this.sendBuffer.length;e++)this.packet(this.sendBuffer[e]);this.sendBuffer=[]},i.prototype.ondisconnect=function(){n("server disconnect (%s)",this.nsp),this.destroy(),this.onclose("io server disconnect")},i.prototype.destroy=function(){if(this.subs){for(var e=0;e<this.subs.length;e++)this.subs[e].destroy();this.subs=null}this.io.destroy(this)},i.prototype.close=i.prototype.disconnect=function(){return this.connected&&(n("performing disconnect (%s)",this.nsp),this.packet({type:je.DISCONNECT})),this.destroy(),this.connected&&this.onclose("io client disconnect"),this},i.prototype.compress=function(e){return this.flags.compress=e,this},i.prototype.binary=function(e){return this.flags.binary=e,this}})),Sn=xn;function xn(e){e=e||{},this.ms=e.min||100,this.max=e.max||1e4,this.factor=e.factor||2,this.jitter=e.jitter>0&&e.jitter<=1?e.jitter:0,this.attempts=0}xn.prototype.duration=function(){var e=this.ms*Math.pow(this.factor,this.attempts++);if(this.jitter){var t=Math.random(),n=Math.floor(t*this.jitter*e);e=0==(1&Math.floor(10*t))?e-n:e+n}return 0|Math.min(e,this.max)},xn.prototype.reset=function(){this.attempts=0},xn.prototype.setMin=function(e){this.ms=e},xn.prototype.setMax=function(e){this.max=e},xn.prototype.setJitter=function(e){this.jitter=e};var Fn=we("socket.io-client:manager"),On=Object.prototype.hasOwnProperty,Rn=_n;function _n(e,t){if(!(this instanceof _n))return new _n(e,t);e&&"object"==typeof e&&(t=e,e=void 0),(t=t||{}).path=t.path||"/socket.io",this.nsps={},this.subs=[],this.opts=t,this.reconnection(!1!==t.reconnection),this.reconnectionAttempts(t.reconnectionAttempts||1/0),this.reconnectionDelay(t.reconnectionDelay||1e3),this.reconnectionDelayMax(t.reconnectionDelayMax||5e3),this.randomizationFactor(t.randomizationFactor||.5),this.backoff=new Sn({min:this.reconnectionDelay(),max:this.reconnectionDelayMax(),jitter:this.randomizationFactor()}),this.timeout(null==t.timeout?2e4:t.timeout),this.readyState="closed",this.uri=e,this.connecting=[],this.lastPing=null,this.encoding=!1,this.packetBuffer=[];var n=t.parser||je;this.encoder=new n.Encoder,this.decoder=new n.Decoder,this.autoConnect=!1!==t.autoConnect,this.autoConnect&&this.open()}_n.prototype.emitAll=function(){for(var e in this.emit.apply(this,arguments),this.nsps)On.call(this.nsps,e)&&this.nsps[e].emit.apply(this.nsps[e],arguments)},_n.prototype.updateSocketIds=function(){for(var e in this.nsps)On.call(this.nsps,e)&&(this.nsps[e].id=this.generateId(e))},_n.prototype.generateId=function(e){return("/"===e?"":e+"#")+this.engine.id},wn(_n.prototype),_n.prototype.reconnection=function(e){return arguments.length?(this._reconnection=!!e,this):this._reconnection},_n.prototype.reconnectionAttempts=function(e){return arguments.length?(this._reconnectionAttempts=e,this):this._reconnectionAttempts},_n.prototype.reconnectionDelay=function(e){return arguments.length?(this._reconnectionDelay=e,this.backoff&&this.backoff.setMin(e),this):this._reconnectionDelay},_n.prototype.randomizationFactor=function(e){return arguments.length?(this._randomizationFactor=e,this.backoff&&this.backoff.setJitter(e),this):this._randomizationFactor},_n.prototype.reconnectionDelayMax=function(e){return arguments.length?(this._reconnectionDelayMax=e,this.backoff&&this.backoff.setMax(e),this):this._reconnectionDelayMax},_n.prototype.timeout=function(e){return arguments.length?(this._timeout=e,this):this._timeout},_n.prototype.maybeReconnectOnOpen=function(){!this.reconnecting&&this._reconnection&&0===this.backoff.attempts&&this.reconnect()},_n.prototype.open=_n.prototype.connect=function(e,t){if(Fn("readyState %s",this.readyState),~this.readyState.indexOf("open"))return this;Fn("opening %s",this.uri),this.engine=Cn(this.uri,this.opts);var n=this.engine,r=this;this.readyState="opening",this.skipReconnect=!1;var o=kn(n,"open",(function(){r.onopen(),e&&e()})),i=kn(n,"error",(function(t){if(Fn("connect_error"),r.cleanup(),r.readyState="closed",r.emitAll("connect_error",t),e){var n=new Error("Connection error");n.data=t,e(n)}else r.maybeReconnectOnOpen()}));if(!1!==this._timeout){var a=this._timeout;Fn("connect attempt will timeout after %d",a);var s=setTimeout((function(){Fn("connect attempt timed out after %d",a),o.destroy(),n.close(),n.emit("error","timeout"),r.emitAll("connect_timeout",a)}),a);this.subs.push({destroy:function(){clearTimeout(s)}})}return this.subs.push(o),this.subs.push(i),this},_n.prototype.onopen=function(){Fn("open"),this.cleanup(),this.readyState="open",this.emit("open");var e=this.engine;this.subs.push(kn(e,"data",Bn(this,"ondata"))),this.subs.push(kn(e,"ping",Bn(this,"onping"))),this.subs.push(kn(e,"pong",Bn(this,"onpong"))),this.subs.push(kn(e,"error",Bn(this,"onerror"))),this.subs.push(kn(e,"close",Bn(this,"onclose"))),this.subs.push(kn(this.decoder,"decoded",Bn(this,"ondecoded")))},_n.prototype.onping=function(){this.lastPing=new Date,this.emitAll("ping")},_n.prototype.onpong=function(){this.emitAll("pong",new Date-this.lastPing)},_n.prototype.ondata=function(e){this.decoder.add(e)},_n.prototype.ondecoded=function(e){this.emit("packet",e)},_n.prototype.onerror=function(e){Fn("error",e),this.emitAll("error",e)},_n.prototype.socket=function(e,t){var n=this.nsps[e];if(!n){n=new En(this,e,t),this.nsps[e]=n;var r=this;n.on("connecting",o),n.on("connect",(function(){n.id=r.generateId(e)})),this.autoConnect&&o()}function o(){~gn(r.connecting,n)||r.connecting.push(n)}return n},_n.prototype.destroy=function(e){var t=gn(this.connecting,e);~t&&this.connecting.splice(t,1),this.connecting.length||this.close()},_n.prototype.packet=function(e){Fn("writing packet %j",e);var t=this;e.query&&0===e.type&&(e.nsp+="?"+e.query),t.encoding?t.packetBuffer.push(e):(t.encoding=!0,this.encoder.encode(e,(function(n){for(var r=0;r<n.length;r++)t.engine.write(n[r],e.options);t.encoding=!1,t.processPacketQueue()})))},_n.prototype.processPacketQueue=function(){if(this.packetBuffer.length>0&&!this.encoding){var e=this.packetBuffer.shift();this.packet(e)}},_n.prototype.cleanup=function(){Fn("cleanup");for(var e=this.subs.length,t=0;t<e;t++){this.subs.shift().destroy()}this.packetBuffer=[],this.encoding=!1,this.lastPing=null,this.decoder.destroy()},_n.prototype.close=_n.prototype.disconnect=function(){Fn("disconnect"),this.skipReconnect=!0,this.reconnecting=!1,"opening"===this.readyState&&this.cleanup(),this.backoff.reset(),this.readyState="closed",this.engine&&this.engine.close()},_n.prototype.onclose=function(e){Fn("onclose"),this.cleanup(),this.backoff.reset(),this.readyState="closed",this.emit("close",e),this._reconnection&&!this.skipReconnect&&this.reconnect()},_n.prototype.reconnect=function(){if(this.reconnecting||this.skipReconnect)return this;var e=this;if(this.backoff.attempts>=this._reconnectionAttempts)Fn("reconnect failed"),this.backoff.reset(),this.emitAll("reconnect_failed"),this.reconnecting=!1;else{var t=this.backoff.duration();Fn("will wait %dms before reconnect attempt",t),this.reconnecting=!0;var n=setTimeout((function(){e.skipReconnect||(Fn("attempting reconnect"),e.emitAll("reconnect_attempt",e.backoff.attempts),e.emitAll("reconnecting",e.backoff.attempts),e.skipReconnect||e.open((function(t){t?(Fn("reconnect attempt error"),e.reconnecting=!1,e.reconnect(),e.emitAll("reconnect_error",t.data)):(Fn("reconnect success"),e.onreconnect())})))}),t);this.subs.push({destroy:function(){clearTimeout(n)}})}},_n.prototype.onreconnect=function(){var e=this.backoff.attempts;this.reconnecting=!1,this.backoff.reset(),this.updateSocketIds(),this.emitAll("reconnect",e)};var Pn=ce((function(e,t){var n=we("socket.io-client");e.exports=t=o;var r=t.managers={};function o(e,t){"object"==typeof e&&(t=e,e=void 0),t=t||{};var o,i=ke(e),a=i.source,s=i.id,c=i.path,u=r[s]&&c in r[s].nsps;return t.forceNew||t["force new connection"]||!1===t.multiplex||u?(n("ignoring socket cache for %s",a),o=Rn(a,t)):(r[s]||(n("new io instance for %s",a),r[s]=Rn(a,t)),o=r[s]),i.query&&!t.query&&(t.query=i.query),o.socket(i.path,t)}t.protocol=je.protocol,t.connect=o,t.Manager=Rn,t.Socket=En}));Pn.managers,Pn.protocol,Pn.connect,Pn.Manager,Pn.Socket;const Mn=Z(null),Nn=Z(null),In=Pn("http://house-party-app.herokuapp.com/");function Ln(e,t){return e+Math.random()*(t-e)}function Dn(e){let t,n,o,i,a,s,c,f,g,v,b;return{c(){t=p("div"),t.innerHTML='<div class="logo svelte-1gh0jw"></div>',n=d(),o=p("div"),i=p("div"),a=p("div"),a.innerHTML="<span>Station</span>",s=d(),c=p("div"),f=p("span"),f.textContent="Join Station",g=d(),v=p("input"),y(t,"class","top svelte-1gh0jw"),y(a,"class","btn svelte-1gh0jw"),y(v,"class","svelte-1gh0jw"),y(c,"class","btn svelte-1gh0jw"),y(i,"class","buttons svelte-1gh0jw"),y(o,"class","bottom svelte-1gh0jw")},m(r,h){l(r,t,h),l(r,n,h),l(r,o,h),u(o,i),u(i,a),u(i,s),u(i,c),u(c,f),u(c,g),u(c,v),C(v,e[0]),b=[m(a,"click",$n),m(v,"input",e[6]),m(v,"click",Hn),m(v,"keydown",e[4]),m(c,"click",e[3])]},p(e,t){1&t&&v.value!==e[0]&&C(v,e[0])},d(e){e&&h(t),e&&h(n),e&&h(o),r(b)}}}function Un(t){let n;return{c(){n=p("h1"),n.textContent="Loading",y(n,"class","svelte-1gh0jw")},m(e,t){l(e,n,t)},p:e,d(e){e&&h(n)}}}function jn(t){let n;function r(e,t){return e[2]?Dn:Un}let o=r(t),i=o(t);return{c(){n=p("main"),i.c(),b(n,"background",t[1]),y(n,"class","svelte-1gh0jw")},m(e,t){l(e,n,t),i.m(n,null)},p(e,[t]){o===(o=r(e))&&i?i.p(e,t):(i.d(1),i=o(e),i&&(i.c(),i.m(n,null))),2&t&&b(n,"background",e[1])},i:e,o:e,d(e){e&&h(n),i.d()}}}function $n(){In.emit("newStation",s(le))}function Hn(e){e.stopPropagation()}function Gn(e,t,n){let r,o,i,a;function s(){oe(`/${o.toUpperCase()}`)}return c(e,le,e=>n(2,r=e)),T(()=>{i=setInterval(()=>{n(1,a="hsl("+Ln(1,360)+","+Ln(60,80)+"%,"+Ln(60,80)+"%)")},1500)}),B(()=>{clearInterval(i)}),[o,a,r,s,function(e){"Enter"===e.code&&s()},i,function(){o=this.value,n(0,o)}]}In.on("setStation",(function(e){Mn.set(e),e.error||("/"==s(re)?oe(`/${e.id}`):function(e){if(!e||e.length<1||"/"!=e.charAt(0)&&0!==e.indexOf("#/"))throw Error("Invalid parameter location");setTimeout(()=>{const t=("#"==e.charAt(0)?"":"#")+e;history.replaceState(void 0,void 0,t),window.dispatchEvent(new Event("hashchange"))},0)}(`/${e.id}`))})),In.on("setUser",(function(e){Nn.set(e)}));function qn(t){let n,r;return{c(){n=p("div"),r=p("div"),y(r,"id",t[0]),y(n,"class","yt-component")},m(e,t){l(e,n,t),u(n,r)},p:e,i:e,o:e,d(e){e&&h(n)}}}let Vn=!1;function Xn(e,t,n){let r;const o=E();let i="player_"+parseInt(1e5*Math.random()).toString(),{videoId:a="9xD-KJSjIxw"}=t,{height:s="390"}=t,{width:c="640"}=t;function u({data:e}){o("StateChange",e)}return T(()=>{let e="https://www.youtube.com/iframe_api";if(!function(e=""){for(var t=document.getElementsByTagName("script"),n=t.length;n--;)if(t[n].src==e)return!0;return!1}(e)){var t=document.createElement("script");t.src=e;var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)}function o(){r=new YT.Player(i,{height:s,width:c,videoId:a,enablejsapi:!0,events:{onStateChange:u}})}window.onYouTubeIframeAPIReady=function(){window.dispatchEvent(new Event("YouTubeIframeAPIReady"))},window.addEventListener("YouTubeIframeAPIReady",(function(){0==Vn&&(Vn=!0,o())})),Vn&&o()}),e.$set=e=>{"videoId"in e&&n(1,a=e.videoId),"height"in e&&n(2,s=e.height),"width"in e&&n(3,c=e.width)},[i,a,s,c,function(){r.playVideo()}]}class zn extends K{constructor(e){super(),W(this,e,Xn,qn,i,{videoId:1,height:2,width:3,playVideo:4})}get playVideo(){return this.$$.ctx[4]}}function Wn(e){let t,n,r,i,a,s,c,g,C,b,w,A=e[2].id+"",k=e[1].msg+"";const T=new zn({props:{}});return e[11](T),{c(){t=p("h1"),n=f("Listening to: "),r=f(A),i=d(),a=p("h1"),s=f(k),c=d(),q(T.$$.fragment),g=d(),C=p("div"),C.textContent=">",y(C,"class","playBtn")},m(h,p){l(h,t,p),u(t,n),u(t,r),l(h,i,p),l(h,a,p),u(a,s),l(h,c,p),V(T,h,p),l(h,g,p),l(h,C,p),b=!0,w=m(C,"click",(function(){o(e[0].playVideo)&&e[0].playVideo.apply(this,arguments)}))},p(t,n){e=t,(!b||4&n)&&A!==(A=e[2].id+"")&&v(r,A),(!b||2&n)&&k!==(k=e[1].msg+"")&&v(s,k);T.$set({})},i(e){b||(H(T.$$.fragment,e),b=!0)},o(e){G(T.$$.fragment,e),b=!1},d(n){n&&h(t),n&&h(i),n&&h(a),n&&h(c),e[11](null),X(T,n),n&&h(g),n&&h(C),w()}}}function Kn(t){let n,r,o,i=t[2].error+"";return{c(){n=p("h1"),r=f("Error: "),o=f(i)},m(e,t){l(e,n,t),u(n,r),u(n,o)},p(e,t){4&t&&i!==(i=e[2].error+"")&&v(o,i)},i:e,o:e,d(e){e&&h(n)}}}function Jn(t){let n;return{c(){n=p("h1"),n.textContent="Loading"},m(e,t){l(e,n,t)},p:e,i:e,o:e,d(e){e&&h(n)}}}function Yn(e){let t,n,r,o;const i=[Jn,Kn,Wn],a=[];function s(e,t){return e[2]?e[2].error?1:2:0}return t=s(e),n=a[t]=i[t](e),{c(){n.c(),r=g()},m(e,n){a[t].m(e,n),l(e,r,n),o=!0},p(e,[o]){let c=t;t=s(e),t===c?a[t].p(e,o):(j(),G(a[c],1,1,()=>{a[c]=null}),$(),n=a[t],n||(n=a[t]=i[t](e),n.c()),H(n,1),n.m(r.parentNode,r))},i(e){o||(H(n),o=!0)},o(e){G(n),o=!1},d(e){a[t].d(e),e&&h(r)}}}function Zn(e,t,n){let r,o,i;c(e,le,e=>n(4,r=e)),c(e,re,e=>n(5,o=e)),c(e,Mn,e=>n(2,i=e));let a,{params:u={}}=t;const l={SEARCHING:{msg:"Finding Station..."},CREATING_NEW:{msg:"Starting a new station..."},NOT_FOUND:{msg:"Station not found :("},OK:{msg:"Tuned in"}};let h=l.SEARCHING;function p(){if(!r)return;let e=o.replace("/","");var t;e&&(i&&!i.error&&i.id==e||(n(1,h=l.SEARCHING),t=e,In.emit("join",t,s(le))))}T(()=>{p()});const f=re.subscribe(e=>{p()}),d=le.subscribe(e=>{p()}),g=Mn.subscribe(e=>{if(!e)return;let t=u.stationId;e.error?n(1,h=l.NOT_FOUND):e&&e.id==t&&n(1,h=l.OK)});return B(()=>{f(),d(),g()}),e.$set=e=>{"params"in e&&n(3,u=e.params)},[a,h,i,u,r,o,l,p,f,d,g,function(e){x[e?"unshift":"push"](()=>{n(0,a=e)})}]}const Qn={"/":class extends K{constructor(e){super(),W(this,e,Gn,jn,i,{})}},"/:stationId":class extends K{constructor(e){super(),W(this,e,Zn,Yn,i,{params:3})}}};function er(t){let n,r;const o=new ae({}),i=new ae({props:{routes:Qn}});return{c(){q(o.$$.fragment),n=d(),q(i.$$.fragment)},m(e,t){V(o,e,t),l(e,n,t),V(i,e,t),r=!0},p:e,i(e){r||(H(o.$$.fragment,e),H(i.$$.fragment,e),r=!0)},o(e){G(o.$$.fragment,e),G(i.$$.fragment,e),r=!1},d(e){X(o,e),e&&h(n),X(i,e)}}}return new class extends K{constructor(e){super(),W(this,e,null,er,i,{})}}({target:document.body})}();
+
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.head.appendChild(r) })(window.document);
+var app = (function () {
+    'use strict';
+
+    function noop() { }
+    function add_location(element, file, line, column, char) {
+        element.__svelte_meta = {
+            loc: { file, line, column, char }
+        };
+    }
+    function run(fn) {
+        return fn();
+    }
+    function blank_object() {
+        return Object.create(null);
+    }
+    function run_all(fns) {
+        fns.forEach(run);
+    }
+    function is_function(thing) {
+        return typeof thing === 'function';
+    }
+    function safe_not_equal(a, b) {
+        return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+    }
+    function validate_store(store, name) {
+        if (store != null && typeof store.subscribe !== 'function') {
+            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
+        }
+    }
+    function subscribe(store, ...callbacks) {
+        if (store == null) {
+            return noop;
+        }
+        const unsub = store.subscribe(...callbacks);
+        return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+    }
+    function get_store_value(store) {
+        let value;
+        subscribe(store, _ => value = _)();
+        return value;
+    }
+    function component_subscribe(component, store, callback) {
+        component.$$.on_destroy.push(subscribe(store, callback));
+    }
+
+    function append(target, node) {
+        target.appendChild(node);
+    }
+    function insert(target, node, anchor) {
+        target.insertBefore(node, anchor || null);
+    }
+    function detach(node) {
+        node.parentNode.removeChild(node);
+    }
+    function element(name) {
+        return document.createElement(name);
+    }
+    function text(data) {
+        return document.createTextNode(data);
+    }
+    function space() {
+        return text(' ');
+    }
+    function empty() {
+        return text('');
+    }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
+    function attr(node, attribute, value) {
+        if (value == null)
+            node.removeAttribute(attribute);
+        else if (node.getAttribute(attribute) !== value)
+            node.setAttribute(attribute, value);
+    }
+    function children(element) {
+        return Array.from(element.childNodes);
+    }
+    function set_input_value(input, value) {
+        if (value != null || input.value) {
+            input.value = value;
+        }
+    }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
+    function custom_event(type, detail) {
+        const e = document.createEvent('CustomEvent');
+        e.initCustomEvent(type, false, false, detail);
+        return e;
+    }
+
+    let current_component;
+    function set_current_component(component) {
+        current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error(`Function called outside component initialization`);
+        return current_component;
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
+    }
+    function onDestroy(fn) {
+        get_current_component().$$.on_destroy.push(fn);
+    }
+    function createEventDispatcher() {
+        const component = get_current_component();
+        return (type, detail) => {
+            const callbacks = component.$$.callbacks[type];
+            if (callbacks) {
+                // TODO are there situations where events could be dispatched
+                // in a server (non-DOM) environment?
+                const event = custom_event(type, detail);
+                callbacks.slice().forEach(fn => {
+                    fn.call(component, event);
+                });
+            }
+        };
+    }
+
+    const dirty_components = [];
+    const binding_callbacks = [];
+    const render_callbacks = [];
+    const flush_callbacks = [];
+    const resolved_promise = Promise.resolve();
+    let update_scheduled = false;
+    function schedule_update() {
+        if (!update_scheduled) {
+            update_scheduled = true;
+            resolved_promise.then(flush);
+        }
+    }
+    function add_render_callback(fn) {
+        render_callbacks.push(fn);
+    }
+    let flushing = false;
+    const seen_callbacks = new Set();
+    function flush() {
+        if (flushing)
+            return;
+        flushing = true;
+        do {
+            // first, call beforeUpdate functions
+            // and update components
+            for (let i = 0; i < dirty_components.length; i += 1) {
+                const component = dirty_components[i];
+                set_current_component(component);
+                update(component.$$);
+            }
+            dirty_components.length = 0;
+            while (binding_callbacks.length)
+                binding_callbacks.pop()();
+            // then, once components are updated, call
+            // afterUpdate functions. This may cause
+            // subsequent updates...
+            for (let i = 0; i < render_callbacks.length; i += 1) {
+                const callback = render_callbacks[i];
+                if (!seen_callbacks.has(callback)) {
+                    // ...so guard against infinite loops
+                    seen_callbacks.add(callback);
+                    callback();
+                }
+            }
+            render_callbacks.length = 0;
+        } while (dirty_components.length);
+        while (flush_callbacks.length) {
+            flush_callbacks.pop()();
+        }
+        update_scheduled = false;
+        flushing = false;
+        seen_callbacks.clear();
+    }
+    function update($$) {
+        if ($$.fragment !== null) {
+            $$.update();
+            run_all($$.before_update);
+            const dirty = $$.dirty;
+            $$.dirty = [-1];
+            $$.fragment && $$.fragment.p($$.ctx, dirty);
+            $$.after_update.forEach(add_render_callback);
+        }
+    }
+    const outroing = new Set();
+    let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
+    function transition_in(block, local) {
+        if (block && block.i) {
+            outroing.delete(block);
+            block.i(local);
+        }
+    }
+    function transition_out(block, local, detach, callback) {
+        if (block && block.o) {
+            if (outroing.has(block))
+                return;
+            outroing.add(block);
+            outros.c.push(() => {
+                outroing.delete(block);
+                if (callback) {
+                    if (detach)
+                        block.d(1);
+                    callback();
+                }
+            });
+            block.o(local);
+        }
+    }
+
+    const globals = (typeof window !== 'undefined' ? window : global);
+    function create_component(block) {
+        block && block.c();
+    }
+    function mount_component(component, target, anchor) {
+        const { fragment, on_mount, on_destroy, after_update } = component.$$;
+        fragment && fragment.m(target, anchor);
+        // onMount happens before the initial afterUpdate
+        add_render_callback(() => {
+            const new_on_destroy = on_mount.map(run).filter(is_function);
+            if (on_destroy) {
+                on_destroy.push(...new_on_destroy);
+            }
+            else {
+                // Edge case - component was destroyed immediately,
+                // most likely as a result of a binding initialising
+                run_all(new_on_destroy);
+            }
+            component.$$.on_mount = [];
+        });
+        after_update.forEach(add_render_callback);
+    }
+    function destroy_component(component, detaching) {
+        const $$ = component.$$;
+        if ($$.fragment !== null) {
+            run_all($$.on_destroy);
+            $$.fragment && $$.fragment.d(detaching);
+            // TODO null out other refs, including component.$$ (but need to
+            // preserve final state?)
+            $$.on_destroy = $$.fragment = null;
+            $$.ctx = [];
+        }
+    }
+    function make_dirty(component, i) {
+        if (component.$$.dirty[0] === -1) {
+            dirty_components.push(component);
+            schedule_update();
+            component.$$.dirty.fill(0);
+        }
+        component.$$.dirty[(i / 31) | 0] |= (1 << (i % 31));
+    }
+    function init(component, options, instance, create_fragment, not_equal, props, dirty = [-1]) {
+        const parent_component = current_component;
+        set_current_component(component);
+        const prop_values = options.props || {};
+        const $$ = component.$$ = {
+            fragment: null,
+            ctx: null,
+            // state
+            props,
+            update: noop,
+            not_equal,
+            bound: blank_object(),
+            // lifecycle
+            on_mount: [],
+            on_destroy: [],
+            before_update: [],
+            after_update: [],
+            context: new Map(parent_component ? parent_component.$$.context : []),
+            // everything else
+            callbacks: blank_object(),
+            dirty
+        };
+        let ready = false;
+        $$.ctx = instance
+            ? instance(component, prop_values, (i, ret, ...rest) => {
+                const value = rest.length ? rest[0] : ret;
+                if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
+                    if ($$.bound[i])
+                        $$.bound[i](value);
+                    if (ready)
+                        make_dirty(component, i);
+                }
+                return ret;
+            })
+            : [];
+        $$.update();
+        ready = true;
+        run_all($$.before_update);
+        // `false` as a special case of no DOM component
+        $$.fragment = create_fragment ? create_fragment($$.ctx) : false;
+        if (options.target) {
+            if (options.hydrate) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.l(children(options.target));
+            }
+            else {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                $$.fragment && $$.fragment.c();
+            }
+            if (options.intro)
+                transition_in(component.$$.fragment);
+            mount_component(component, options.target, options.anchor);
+            flush();
+        }
+        set_current_component(parent_component);
+    }
+    class SvelteComponent {
+        $destroy() {
+            destroy_component(this, 1);
+            this.$destroy = noop;
+        }
+        $on(type, callback) {
+            const callbacks = (this.$$.callbacks[type] || (this.$$.callbacks[type] = []));
+            callbacks.push(callback);
+            return () => {
+                const index = callbacks.indexOf(callback);
+                if (index !== -1)
+                    callbacks.splice(index, 1);
+            };
+        }
+        $set() {
+            // overridden by instance, if it has props
+        }
+    }
+
+    function dispatch_dev(type, detail) {
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.18.2' }, detail)));
+    }
+    function append_dev(target, node) {
+        dispatch_dev("SvelteDOMInsert", { target, node });
+        append(target, node);
+    }
+    function insert_dev(target, node, anchor) {
+        dispatch_dev("SvelteDOMInsert", { target, node, anchor });
+        insert(target, node, anchor);
+    }
+    function detach_dev(node) {
+        dispatch_dev("SvelteDOMRemove", { node });
+        detach(node);
+    }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev("SvelteDOMAddEventListener", { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev("SvelteDOMRemoveEventListener", { node, event, handler, modifiers });
+            dispose();
+        };
+    }
+    function attr_dev(node, attribute, value) {
+        attr(node, attribute, value);
+        if (value == null)
+            dispatch_dev("SvelteDOMRemoveAttribute", { node, attribute });
+        else
+            dispatch_dev("SvelteDOMSetAttribute", { node, attribute, value });
+    }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.data === data)
+            return;
+        dispatch_dev("SvelteDOMSetData", { node: text, data });
+        text.data = data;
+    }
+    class SvelteComponentDev extends SvelteComponent {
+        constructor(options) {
+            if (!options || (!options.target && !options.$$inline)) {
+                throw new Error(`'target' is a required option`);
+            }
+            super();
+        }
+        $destroy() {
+            super.$destroy();
+            this.$destroy = () => {
+                console.warn(`Component was already destroyed`); // eslint-disable-line no-console
+            };
+        }
+    }
+
+    const subscriber_queue = [];
+    /**
+     * Creates a `Readable` store that allows reading by subscription.
+     * @param value initial value
+     * @param {StartStopNotifier}start start and stop notifications for subscriptions
+     */
+    function readable(value, start) {
+        return {
+            subscribe: writable(value, start).subscribe,
+        };
+    }
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable(value, start = noop) {
+        let stop;
+        const subscribers = [];
+        function set(new_value) {
+            if (safe_not_equal(value, new_value)) {
+                value = new_value;
+                if (stop) { // store is ready
+                    const run_queue = !subscriber_queue.length;
+                    for (let i = 0; i < subscribers.length; i += 1) {
+                        const s = subscribers[i];
+                        s[1]();
+                        subscriber_queue.push(s, value);
+                    }
+                    if (run_queue) {
+                        for (let i = 0; i < subscriber_queue.length; i += 2) {
+                            subscriber_queue[i][0](subscriber_queue[i + 1]);
+                        }
+                        subscriber_queue.length = 0;
+                    }
+                }
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop) {
+            const subscriber = [run, invalidate];
+            subscribers.push(subscriber);
+            if (subscribers.length === 1) {
+                stop = start(set) || noop;
+            }
+            run(value);
+            return () => {
+                const index = subscribers.indexOf(subscriber);
+                if (index !== -1) {
+                    subscribers.splice(index, 1);
+                }
+                if (subscribers.length === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+    function derived(stores, fn, initial_value) {
+        const single = !Array.isArray(stores);
+        const stores_array = single
+            ? [stores]
+            : stores;
+        const auto = fn.length < 2;
+        return readable(initial_value, (set) => {
+            let inited = false;
+            const values = [];
+            let pending = 0;
+            let cleanup = noop;
+            const sync = () => {
+                if (pending) {
+                    return;
+                }
+                cleanup();
+                const result = fn(single ? values[0] : values, set);
+                if (auto) {
+                    set(result);
+                }
+                else {
+                    cleanup = is_function(result) ? result : noop;
+                }
+            };
+            const unsubscribers = stores_array.map((store, i) => subscribe(store, (value) => {
+                values[i] = value;
+                pending &= ~(1 << i);
+                if (inited) {
+                    sync();
+                }
+            }, () => {
+                pending |= (1 << i);
+            }));
+            inited = true;
+            sync();
+            return function stop() {
+                run_all(unsubscribers);
+                cleanup();
+            };
+        });
+    }
+
+    function regexparam (str, loose) {
+    	if (str instanceof RegExp) return { keys:false, pattern:str };
+    	var c, o, tmp, ext, keys=[], pattern='', arr = str.split('/');
+    	arr[0] || arr.shift();
+
+    	while (tmp = arr.shift()) {
+    		c = tmp[0];
+    		if (c === '*') {
+    			keys.push('wild');
+    			pattern += '/(.*)';
+    		} else if (c === ':') {
+    			o = tmp.indexOf('?', 1);
+    			ext = tmp.indexOf('.', 1);
+    			keys.push( tmp.substring(1, !!~o ? o : !!~ext ? ext : tmp.length) );
+    			pattern += !!~o && !~ext ? '(?:/([^/]+?))?' : '/([^/]+?)';
+    			if (!!~ext) pattern += (!!~o ? '?' : '') + '\\' + tmp.substring(ext);
+    		} else {
+    			pattern += '/' + tmp;
+    		}
+    	}
+
+    	return {
+    		keys: keys,
+    		pattern: new RegExp('^' + pattern + (loose ? '(?=$|\/)' : '\/?$'), 'i')
+    	};
+    }
+
+    /* node_modules\svelte-spa-router\Router.svelte generated by Svelte v3.18.2 */
+
+    const { Error: Error_1, Object: Object_1 } = globals;
+
+    function create_fragment(ctx) {
+    	let switch_instance_anchor;
+    	let current;
+    	var switch_value = /*component*/ ctx[0];
+
+    	function switch_props(ctx) {
+    		return {
+    			props: { params: /*componentParams*/ ctx[1] },
+    			$$inline: true
+    		};
+    	}
+
+    	if (switch_value) {
+    		var switch_instance = new switch_value(switch_props(ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			if (switch_instance) create_component(switch_instance.$$.fragment);
+    			switch_instance_anchor = empty();
+    		},
+    		l: function claim(nodes) {
+    			throw new Error_1("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			if (switch_instance) {
+    				mount_component(switch_instance, target, anchor);
+    			}
+
+    			insert_dev(target, switch_instance_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const switch_instance_changes = {};
+    			if (dirty & /*componentParams*/ 2) switch_instance_changes.params = /*componentParams*/ ctx[1];
+
+    			if (switch_value !== (switch_value = /*component*/ ctx[0])) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+
+    					transition_out(old_component.$$.fragment, 1, 0, () => {
+    						destroy_component(old_component, 1);
+    					});
+
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props(ctx));
+    					create_component(switch_instance.$$.fragment);
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
+    				} else {
+    					switch_instance = null;
+    				}
+    			} else if (switch_value) {
+    				switch_instance.$set(switch_instance_changes);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			if (switch_instance) transition_in(switch_instance.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(switch_instance_anchor);
+    			if (switch_instance) destroy_component(switch_instance, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    /**
+     * @typedef {Object} Location
+     * @property {string} location - Location (page/view), for example `/book`
+     * @property {string} [querystring] - Querystring from the hash, as a string not parsed
+     */
+    /**
+     * Returns the current location from the hash.
+     *
+     * @returns {Location} Location object
+     * @private
+     */
+    function getLocation() {
+    	const hashPosition = window.location.href.indexOf("#/");
+
+    	let location = hashPosition > -1
+    	? window.location.href.substr(hashPosition + 1)
+    	: "/";
+
+    	// Check if there's a querystring
+    	const qsPosition = location.indexOf("?");
+
+    	let querystring = "";
+
+    	if (qsPosition > -1) {
+    		querystring = location.substr(qsPosition + 1);
+    		location = location.substr(0, qsPosition);
+    	}
+
+    	return { location, querystring };
+    }
+
+    const loc = readable(getLocation(), // eslint-disable-next-line prefer-arrow-callback
+    function start(set) {
+    	const update = () => {
+    		set(getLocation());
+    	};
+
+    	window.addEventListener("hashchange", update, false);
+
+    	return function stop() {
+    		window.removeEventListener("hashchange", update, false);
+    	};
+    });
+
+    const location$1 = derived(loc, $loc => $loc.location);
+    const querystring = derived(loc, $loc => $loc.querystring);
+
+    function push(location) {
+    	if (!location || location.length < 1 || location.charAt(0) != "/" && location.indexOf("#/") !== 0) {
+    		throw Error("Invalid parameter location");
+    	}
+
+    	// Execute this code when the current call stack is complete
+    	setTimeout(
+    		() => {
+    			window.location.hash = (location.charAt(0) == "#" ? "" : "#") + location;
+    		},
+    		0
+    	);
+    }
+
+    function replace(location) {
+    	if (!location || location.length < 1 || location.charAt(0) != "/" && location.indexOf("#/") !== 0) {
+    		throw Error("Invalid parameter location");
+    	}
+
+    	// Execute this code when the current call stack is complete
+    	setTimeout(
+    		() => {
+    			const dest = (location.charAt(0) == "#" ? "" : "#") + location;
+    			history.replaceState(undefined, undefined, dest);
+
+    			// The method above doesn't trigger the hashchange event, so let's do that manually
+    			window.dispatchEvent(new Event("hashchange"));
+    		},
+    		0
+    	);
+    }
+
+    function instance($$self, $$props, $$invalidate) {
+    	let $loc,
+    		$$unsubscribe_loc = noop;
+
+    	validate_store(loc, "loc");
+    	component_subscribe($$self, loc, $$value => $$invalidate(4, $loc = $$value));
+    	$$self.$$.on_destroy.push(() => $$unsubscribe_loc());
+    	let { routes = {} } = $$props;
+    	let { prefix = "" } = $$props;
+
+    	/**
+     * Container for a route: path, component
+     */
+    	class RouteItem {
+    		/**
+     * Initializes the object and creates a regular expression from the path, using regexparam.
+     *
+     * @param {string} path - Path to the route (must start with '/' or '*')
+     * @param {SvelteComponent} component - Svelte component for the route
+     */
+    		constructor(path, component) {
+    			if (!component || typeof component != "function" && (typeof component != "object" || component._sveltesparouter !== true)) {
+    				throw Error("Invalid component object");
+    			}
+
+    			// Path must be a regular or expression, or a string starting with '/' or '*'
+    			if (!path || typeof path == "string" && (path.length < 1 || path.charAt(0) != "/" && path.charAt(0) != "*") || typeof path == "object" && !(path instanceof RegExp)) {
+    				throw Error("Invalid value for \"path\" argument");
+    			}
+
+    			const { pattern, keys } = regexparam(path);
+    			this.path = path;
+
+    			// Check if the component is wrapped and we have conditions
+    			if (typeof component == "object" && component._sveltesparouter === true) {
+    				this.component = component.route;
+    				this.conditions = component.conditions || [];
+    				this.userData = component.userData;
+    			} else {
+    				this.component = component;
+    				this.conditions = [];
+    				this.userData = undefined;
+    			}
+
+    			this._pattern = pattern;
+    			this._keys = keys;
+    		}
+
+    		/**
+     * Checks if `path` matches the current route.
+     * If there's a match, will return the list of parameters from the URL (if any).
+     * In case of no match, the method will return `null`.
+     *
+     * @param {string} path - Path to test
+     * @returns {null|Object.<string, string>} List of paramters from the URL if there's a match, or `null` otherwise.
+     */
+    		match(path) {
+    			// If there's a prefix, remove it before we run the matching
+    			if (prefix && path.startsWith(prefix)) {
+    				path = path.substr(prefix.length) || "/";
+    			}
+
+    			// Check if the pattern matches
+    			const matches = this._pattern.exec(path);
+
+    			if (matches === null) {
+    				return null;
+    			}
+
+    			// If the input was a regular expression, this._keys would be false, so return matches as is
+    			if (this._keys === false) {
+    				return matches;
+    			}
+
+    			const out = {};
+    			let i = 0;
+
+    			while (i < this._keys.length) {
+    				out[this._keys[i]] = matches[++i] || null;
+    			}
+
+    			return out;
+    		}
+
+    		/**
+     * Dictionary with route details passed to the pre-conditions functions, as well as the `routeLoaded` and `conditionsFailed` events
+     * @typedef {Object} RouteDetail
+     * @property {SvelteComponent} component - Svelte component
+     * @property {string} name - Name of the Svelte component
+     * @property {string} location - Location path
+     * @property {string} querystring - Querystring from the hash
+     * @property {Object} [userData] - Custom data passed by the user
+     */
+    		/**
+     * Executes all conditions (if any) to control whether the route can be shown. Conditions are executed in the order they are defined, and if a condition fails, the following ones aren't executed.
+     * 
+     * @param {RouteDetail} detail - Route detail
+     * @returns {bool} Returns true if all the conditions succeeded
+     */
+    		checkConditions(detail) {
+    			for (let i = 0; i < this.conditions.length; i++) {
+    				if (!this.conditions[i](detail)) {
+    					return false;
+    				}
+    			}
+
+    			return true;
+    		}
+    	}
+
+    	// We need an iterable: if it's not a Map, use Object.entries
+    	const routesIterable = routes instanceof Map ? routes : Object.entries(routes);
+
+    	// Set up all routes
+    	const routesList = [];
+
+    	for (const [path, route] of routesIterable) {
+    		routesList.push(new RouteItem(path, route));
+    	}
+
+    	// Props for the component to render
+    	let component = null;
+
+    	let componentParams = {};
+
+    	// Event dispatcher from Svelte
+    	const dispatch = createEventDispatcher();
+
+    	// Just like dispatch, but executes on the next iteration of the event loop
+    	const dispatchNextTick = (name, detail) => {
+    		// Execute this code when the current call stack is complete
+    		setTimeout(
+    			() => {
+    				dispatch(name, detail);
+    			},
+    			0
+    		);
+    	};
+
+    	const writable_props = ["routes", "prefix"];
+
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Router> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$set = $$props => {
+    		if ("routes" in $$props) $$invalidate(2, routes = $$props.routes);
+    		if ("prefix" in $$props) $$invalidate(3, prefix = $$props.prefix);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return {
+    			routes,
+    			prefix,
+    			component,
+    			componentParams,
+    			$loc
+    		};
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ("routes" in $$props) $$invalidate(2, routes = $$props.routes);
+    		if ("prefix" in $$props) $$invalidate(3, prefix = $$props.prefix);
+    		if ("component" in $$props) $$invalidate(0, component = $$props.component);
+    		if ("componentParams" in $$props) $$invalidate(1, componentParams = $$props.componentParams);
+    		if ("$loc" in $$props) loc.set($loc = $$props.$loc);
+    	};
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*component, $loc*/ 17) {
+    			// Handle hash change events
+    			// Listen to changes in the $loc store and update the page
+    			 {
+    				// Find a route matching the location
+    				$$invalidate(0, component = null);
+
+    				let i = 0;
+
+    				while (!component && i < routesList.length) {
+    					const match = routesList[i].match($loc.location);
+
+    					if (match) {
+    						const detail = {
+    							component: routesList[i].component,
+    							name: routesList[i].component.name,
+    							location: $loc.location,
+    							querystring: $loc.querystring,
+    							userData: routesList[i].userData
+    						};
+
+    						// Check if the route can be loaded - if all conditions succeed
+    						if (!routesList[i].checkConditions(detail)) {
+    							// Trigger an event to notify the user
+    							dispatchNextTick("conditionsFailed", detail);
+
+    							break;
+    						}
+
+    						$$invalidate(0, component = routesList[i].component);
+    						$$invalidate(1, componentParams = match);
+    						dispatchNextTick("routeLoaded", detail);
+    					}
+
+    					i++;
+    				}
+    			}
+    		}
+    	};
+
+    	return [component, componentParams, routes, prefix];
+    }
+
+    class Router extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance, create_fragment, safe_not_equal, { routes: 2, prefix: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Router",
+    			options,
+    			id: create_fragment.name
+    		});
+    	}
+
+    	get routes() {
+    		throw new Error_1("<Router>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set routes(value) {
+    		throw new Error_1("<Router>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get prefix() {
+    		throw new Error_1("<Router>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set prefix(value) {
+    		throw new Error_1("<Router>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+    function createCommonjsModule(fn, module) {
+    	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    }
+
+    function getCjsExportFromNamespace (n) {
+    	return n && n['default'] || n;
+    }
+
+    var fingerprint2 = createCommonjsModule(function (module) {
+    /*
+    * Fingerprintjs2 2.1.0 - Modern & flexible browser fingerprint library v2
+    * https://github.com/Valve/fingerprintjs2
+    * Copyright (c) 2015 Valentin Vasilyev (valentin.vasilyev@outlook.com)
+    * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
+    *
+    * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    * ARE DISCLAIMED. IN NO EVENT SHALL VALENTIN VASILYEV BE LIABLE FOR ANY
+    * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+    * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+    * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+    * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    */
+    /* global define */
+    (function (name, context, definition) {
+      if (typeof window !== 'undefined' && typeof undefined === 'function' && undefined.amd) { undefined(definition); } else if ( module.exports) { module.exports = definition(); } else if (context.exports) { context.exports = definition(); } else { context[name] = definition(); }
+    })('Fingerprint2', commonjsGlobal, function () {
+
+      /// MurmurHash3 related functions
+
+      //
+      // Given two 64bit ints (as an array of two 32bit ints) returns the two
+      // added together as a 64bit int (as an array of two 32bit ints).
+      //
+      var x64Add = function (m, n) {
+        m = [m[0] >>> 16, m[0] & 0xffff, m[1] >>> 16, m[1] & 0xffff];
+        n = [n[0] >>> 16, n[0] & 0xffff, n[1] >>> 16, n[1] & 0xffff];
+        var o = [0, 0, 0, 0];
+        o[3] += m[3] + n[3];
+        o[2] += o[3] >>> 16;
+        o[3] &= 0xffff;
+        o[2] += m[2] + n[2];
+        o[1] += o[2] >>> 16;
+        o[2] &= 0xffff;
+        o[1] += m[1] + n[1];
+        o[0] += o[1] >>> 16;
+        o[1] &= 0xffff;
+        o[0] += m[0] + n[0];
+        o[0] &= 0xffff;
+        return [(o[0] << 16) | o[1], (o[2] << 16) | o[3]]
+      };
+
+      //
+      // Given two 64bit ints (as an array of two 32bit ints) returns the two
+      // multiplied together as a 64bit int (as an array of two 32bit ints).
+      //
+      var x64Multiply = function (m, n) {
+        m = [m[0] >>> 16, m[0] & 0xffff, m[1] >>> 16, m[1] & 0xffff];
+        n = [n[0] >>> 16, n[0] & 0xffff, n[1] >>> 16, n[1] & 0xffff];
+        var o = [0, 0, 0, 0];
+        o[3] += m[3] * n[3];
+        o[2] += o[3] >>> 16;
+        o[3] &= 0xffff;
+        o[2] += m[2] * n[3];
+        o[1] += o[2] >>> 16;
+        o[2] &= 0xffff;
+        o[2] += m[3] * n[2];
+        o[1] += o[2] >>> 16;
+        o[2] &= 0xffff;
+        o[1] += m[1] * n[3];
+        o[0] += o[1] >>> 16;
+        o[1] &= 0xffff;
+        o[1] += m[2] * n[2];
+        o[0] += o[1] >>> 16;
+        o[1] &= 0xffff;
+        o[1] += m[3] * n[1];
+        o[0] += o[1] >>> 16;
+        o[1] &= 0xffff;
+        o[0] += (m[0] * n[3]) + (m[1] * n[2]) + (m[2] * n[1]) + (m[3] * n[0]);
+        o[0] &= 0xffff;
+        return [(o[0] << 16) | o[1], (o[2] << 16) | o[3]]
+      };
+      //
+      // Given a 64bit int (as an array of two 32bit ints) and an int
+      // representing a number of bit positions, returns the 64bit int (as an
+      // array of two 32bit ints) rotated left by that number of positions.
+      //
+      var x64Rotl = function (m, n) {
+        n %= 64;
+        if (n === 32) {
+          return [m[1], m[0]]
+        } else if (n < 32) {
+          return [(m[0] << n) | (m[1] >>> (32 - n)), (m[1] << n) | (m[0] >>> (32 - n))]
+        } else {
+          n -= 32;
+          return [(m[1] << n) | (m[0] >>> (32 - n)), (m[0] << n) | (m[1] >>> (32 - n))]
+        }
+      };
+      //
+      // Given a 64bit int (as an array of two 32bit ints) and an int
+      // representing a number of bit positions, returns the 64bit int (as an
+      // array of two 32bit ints) shifted left by that number of positions.
+      //
+      var x64LeftShift = function (m, n) {
+        n %= 64;
+        if (n === 0) {
+          return m
+        } else if (n < 32) {
+          return [(m[0] << n) | (m[1] >>> (32 - n)), m[1] << n]
+        } else {
+          return [m[1] << (n - 32), 0]
+        }
+      };
+      //
+      // Given two 64bit ints (as an array of two 32bit ints) returns the two
+      // xored together as a 64bit int (as an array of two 32bit ints).
+      //
+      var x64Xor = function (m, n) {
+        return [m[0] ^ n[0], m[1] ^ n[1]]
+      };
+      //
+      // Given a block, returns murmurHash3's final x64 mix of that block.
+      // (`[0, h[0] >>> 1]` is a 33 bit unsigned right shift. This is the
+      // only place where we need to right shift 64bit ints.)
+      //
+      var x64Fmix = function (h) {
+        h = x64Xor(h, [0, h[0] >>> 1]);
+        h = x64Multiply(h, [0xff51afd7, 0xed558ccd]);
+        h = x64Xor(h, [0, h[0] >>> 1]);
+        h = x64Multiply(h, [0xc4ceb9fe, 0x1a85ec53]);
+        h = x64Xor(h, [0, h[0] >>> 1]);
+        return h
+      };
+
+      //
+      // Given a string and an optional seed as an int, returns a 128 bit
+      // hash using the x64 flavor of MurmurHash3, as an unsigned hex.
+      //
+      var x64hash128 = function (key, seed) {
+        key = key || '';
+        seed = seed || 0;
+        var remainder = key.length % 16;
+        var bytes = key.length - remainder;
+        var h1 = [0, seed];
+        var h2 = [0, seed];
+        var k1 = [0, 0];
+        var k2 = [0, 0];
+        var c1 = [0x87c37b91, 0x114253d5];
+        var c2 = [0x4cf5ad43, 0x2745937f];
+        for (var i = 0; i < bytes; i = i + 16) {
+          k1 = [((key.charCodeAt(i + 4) & 0xff)) | ((key.charCodeAt(i + 5) & 0xff) << 8) | ((key.charCodeAt(i + 6) & 0xff) << 16) | ((key.charCodeAt(i + 7) & 0xff) << 24), ((key.charCodeAt(i) & 0xff)) | ((key.charCodeAt(i + 1) & 0xff) << 8) | ((key.charCodeAt(i + 2) & 0xff) << 16) | ((key.charCodeAt(i + 3) & 0xff) << 24)];
+          k2 = [((key.charCodeAt(i + 12) & 0xff)) | ((key.charCodeAt(i + 13) & 0xff) << 8) | ((key.charCodeAt(i + 14) & 0xff) << 16) | ((key.charCodeAt(i + 15) & 0xff) << 24), ((key.charCodeAt(i + 8) & 0xff)) | ((key.charCodeAt(i + 9) & 0xff) << 8) | ((key.charCodeAt(i + 10) & 0xff) << 16) | ((key.charCodeAt(i + 11) & 0xff) << 24)];
+          k1 = x64Multiply(k1, c1);
+          k1 = x64Rotl(k1, 31);
+          k1 = x64Multiply(k1, c2);
+          h1 = x64Xor(h1, k1);
+          h1 = x64Rotl(h1, 27);
+          h1 = x64Add(h1, h2);
+          h1 = x64Add(x64Multiply(h1, [0, 5]), [0, 0x52dce729]);
+          k2 = x64Multiply(k2, c2);
+          k2 = x64Rotl(k2, 33);
+          k2 = x64Multiply(k2, c1);
+          h2 = x64Xor(h2, k2);
+          h2 = x64Rotl(h2, 31);
+          h2 = x64Add(h2, h1);
+          h2 = x64Add(x64Multiply(h2, [0, 5]), [0, 0x38495ab5]);
+        }
+        k1 = [0, 0];
+        k2 = [0, 0];
+        switch (remainder) {
+          case 15:
+            k2 = x64Xor(k2, x64LeftShift([0, key.charCodeAt(i + 14)], 48));
+          // fallthrough
+          case 14:
+            k2 = x64Xor(k2, x64LeftShift([0, key.charCodeAt(i + 13)], 40));
+          // fallthrough
+          case 13:
+            k2 = x64Xor(k2, x64LeftShift([0, key.charCodeAt(i + 12)], 32));
+          // fallthrough
+          case 12:
+            k2 = x64Xor(k2, x64LeftShift([0, key.charCodeAt(i + 11)], 24));
+          // fallthrough
+          case 11:
+            k2 = x64Xor(k2, x64LeftShift([0, key.charCodeAt(i + 10)], 16));
+          // fallthrough
+          case 10:
+            k2 = x64Xor(k2, x64LeftShift([0, key.charCodeAt(i + 9)], 8));
+          // fallthrough
+          case 9:
+            k2 = x64Xor(k2, [0, key.charCodeAt(i + 8)]);
+            k2 = x64Multiply(k2, c2);
+            k2 = x64Rotl(k2, 33);
+            k2 = x64Multiply(k2, c1);
+            h2 = x64Xor(h2, k2);
+          // fallthrough
+          case 8:
+            k1 = x64Xor(k1, x64LeftShift([0, key.charCodeAt(i + 7)], 56));
+          // fallthrough
+          case 7:
+            k1 = x64Xor(k1, x64LeftShift([0, key.charCodeAt(i + 6)], 48));
+          // fallthrough
+          case 6:
+            k1 = x64Xor(k1, x64LeftShift([0, key.charCodeAt(i + 5)], 40));
+          // fallthrough
+          case 5:
+            k1 = x64Xor(k1, x64LeftShift([0, key.charCodeAt(i + 4)], 32));
+          // fallthrough
+          case 4:
+            k1 = x64Xor(k1, x64LeftShift([0, key.charCodeAt(i + 3)], 24));
+          // fallthrough
+          case 3:
+            k1 = x64Xor(k1, x64LeftShift([0, key.charCodeAt(i + 2)], 16));
+          // fallthrough
+          case 2:
+            k1 = x64Xor(k1, x64LeftShift([0, key.charCodeAt(i + 1)], 8));
+          // fallthrough
+          case 1:
+            k1 = x64Xor(k1, [0, key.charCodeAt(i)]);
+            k1 = x64Multiply(k1, c1);
+            k1 = x64Rotl(k1, 31);
+            k1 = x64Multiply(k1, c2);
+            h1 = x64Xor(h1, k1);
+          // fallthrough
+        }
+        h1 = x64Xor(h1, [0, key.length]);
+        h2 = x64Xor(h2, [0, key.length]);
+        h1 = x64Add(h1, h2);
+        h2 = x64Add(h2, h1);
+        h1 = x64Fmix(h1);
+        h2 = x64Fmix(h2);
+        h1 = x64Add(h1, h2);
+        h2 = x64Add(h2, h1);
+        return ('00000000' + (h1[0] >>> 0).toString(16)).slice(-8) + ('00000000' + (h1[1] >>> 0).toString(16)).slice(-8) + ('00000000' + (h2[0] >>> 0).toString(16)).slice(-8) + ('00000000' + (h2[1] >>> 0).toString(16)).slice(-8)
+      };
+
+      var defaultOptions = {
+        preprocessor: null,
+        audio: {
+          timeout: 1000,
+          // On iOS 11, audio context can only be used in response to user interaction.
+          // We require users to explicitly enable audio fingerprinting on iOS 11.
+          // See https://stackoverflow.com/questions/46363048/onaudioprocess-not-called-on-ios11#46534088
+          excludeIOS11: true
+        },
+        fonts: {
+          swfContainerId: 'fingerprintjs2',
+          swfPath: 'flash/compiled/FontList.swf',
+          userDefinedFonts: [],
+          extendedJsFonts: false
+        },
+        screen: {
+          // To ensure consistent fingerprints when users rotate their mobile devices
+          detectScreenOrientation: true
+        },
+        plugins: {
+          sortPluginsFor: [/palemoon/i],
+          excludeIE: false
+        },
+        extraComponents: [],
+        excludes: {
+          // Unreliable on Windows, see https://github.com/Valve/fingerprintjs2/issues/375
+          'enumerateDevices': true,
+          // devicePixelRatio depends on browser zoom, and it's impossible to detect browser zoom
+          'pixelRatio': true,
+          // DNT depends on incognito mode for some browsers (Chrome) and it's impossible to detect incognito mode
+          'doNotTrack': true,
+          // uses js fonts already
+          'fontsFlash': true
+        },
+        NOT_AVAILABLE: 'not available',
+        ERROR: 'error',
+        EXCLUDED: 'excluded'
+      };
+
+      var each = function (obj, iterator) {
+        if (Array.prototype.forEach && obj.forEach === Array.prototype.forEach) {
+          obj.forEach(iterator);
+        } else if (obj.length === +obj.length) {
+          for (var i = 0, l = obj.length; i < l; i++) {
+            iterator(obj[i], i, obj);
+          }
+        } else {
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              iterator(obj[key], key, obj);
+            }
+          }
+        }
+      };
+
+      var map = function (obj, iterator) {
+        var results = [];
+        // Not using strict equality so that this acts as a
+        // shortcut to checking for `null` and `undefined`.
+        if (obj == null) {
+          return results
+        }
+        if (Array.prototype.map && obj.map === Array.prototype.map) { return obj.map(iterator) }
+        each(obj, function (value, index, list) {
+          results.push(iterator(value, index, list));
+        });
+        return results
+      };
+
+      var extendSoft = function (target, source) {
+        if (source == null) { return target }
+        var value;
+        var key;
+        for (key in source) {
+          value = source[key];
+          if (value != null && !(Object.prototype.hasOwnProperty.call(target, key))) {
+            target[key] = value;
+          }
+        }
+        return target
+      };
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices
+      var enumerateDevicesKey = function (done, options) {
+        if (!isEnumerateDevicesSupported()) {
+          return done(options.NOT_AVAILABLE)
+        }
+        navigator.mediaDevices.enumerateDevices().then(function (devices) {
+          done(devices.map(function (device) {
+            return 'id=' + device.deviceId + ';gid=' + device.groupId + ';' + device.kind + ';' + device.label
+          }));
+        })
+          .catch(function (error) {
+            done(error);
+          });
+      };
+
+      var isEnumerateDevicesSupported = function () {
+        return (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices)
+      };
+      // Inspired by and based on https://github.com/cozylife/audio-fingerprint
+      var audioKey = function (done, options) {
+        var audioOptions = options.audio;
+        if (audioOptions.excludeIOS11 && navigator.userAgent.match(/OS 11.+Version\/11.+Safari/)) {
+          // See comment for excludeUserAgent and https://stackoverflow.com/questions/46363048/onaudioprocess-not-called-on-ios11#46534088
+          return done(options.EXCLUDED)
+        }
+
+        var AudioContext = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+
+        if (AudioContext == null) {
+          return done(options.NOT_AVAILABLE)
+        }
+
+        var context = new AudioContext(1, 44100, 44100);
+
+        var oscillator = context.createOscillator();
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(10000, context.currentTime);
+
+        var compressor = context.createDynamicsCompressor();
+        each([
+          ['threshold', -50],
+          ['knee', 40],
+          ['ratio', 12],
+          ['reduction', -20],
+          ['attack', 0],
+          ['release', 0.25]
+        ], function (item) {
+          if (compressor[item[0]] !== undefined && typeof compressor[item[0]].setValueAtTime === 'function') {
+            compressor[item[0]].setValueAtTime(item[1], context.currentTime);
+          }
+        });
+
+        oscillator.connect(compressor);
+        compressor.connect(context.destination);
+        oscillator.start(0);
+        context.startRendering();
+
+        var audioTimeoutId = setTimeout(function () {
+          console.warn('Audio fingerprint timed out. Please report bug at https://github.com/Valve/fingerprintjs2 with your user agent: "' + navigator.userAgent + '".');
+          context.oncomplete = function () { };
+          context = null;
+          return done('audioTimeout')
+        }, audioOptions.timeout);
+
+        context.oncomplete = function (event) {
+          var fingerprint;
+          try {
+            clearTimeout(audioTimeoutId);
+            fingerprint = event.renderedBuffer.getChannelData(0)
+              .slice(4500, 5000)
+              .reduce(function (acc, val) { return acc + Math.abs(val) }, 0)
+              .toString();
+            oscillator.disconnect();
+            compressor.disconnect();
+          } catch (error) {
+            done(error);
+            return
+          }
+          done(fingerprint);
+        };
+      };
+      var UserAgent = function (done) {
+        done(navigator.userAgent);
+      };
+      var webdriver = function (done, options) {
+        done(navigator.webdriver == null ? options.NOT_AVAILABLE : navigator.webdriver);
+      };
+      var languageKey = function (done, options) {
+        done(navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage || options.NOT_AVAILABLE);
+      };
+      var colorDepthKey = function (done, options) {
+        done(window.screen.colorDepth || options.NOT_AVAILABLE);
+      };
+      var deviceMemoryKey = function (done, options) {
+        done(navigator.deviceMemory || options.NOT_AVAILABLE);
+      };
+      var pixelRatioKey = function (done, options) {
+        done(window.devicePixelRatio || options.NOT_AVAILABLE);
+      };
+      var screenResolutionKey = function (done, options) {
+        done(getScreenResolution(options));
+      };
+      var getScreenResolution = function (options) {
+        var resolution = [window.screen.width, window.screen.height];
+        if (options.screen.detectScreenOrientation) {
+          resolution.sort().reverse();
+        }
+        return resolution
+      };
+      var availableScreenResolutionKey = function (done, options) {
+        done(getAvailableScreenResolution(options));
+      };
+      var getAvailableScreenResolution = function (options) {
+        if (window.screen.availWidth && window.screen.availHeight) {
+          var available = [window.screen.availHeight, window.screen.availWidth];
+          if (options.screen.detectScreenOrientation) {
+            available.sort().reverse();
+          }
+          return available
+        }
+        // headless browsers
+        return options.NOT_AVAILABLE
+      };
+      var timezoneOffset = function (done) {
+        done(new Date().getTimezoneOffset());
+      };
+      var timezone = function (done, options) {
+        if (window.Intl && window.Intl.DateTimeFormat) {
+          done(new window.Intl.DateTimeFormat().resolvedOptions().timeZone);
+          return
+        }
+        done(options.NOT_AVAILABLE);
+      };
+      var sessionStorageKey = function (done, options) {
+        done(hasSessionStorage(options));
+      };
+      var localStorageKey = function (done, options) {
+        done(hasLocalStorage(options));
+      };
+      var indexedDbKey = function (done, options) {
+        done(hasIndexedDB(options));
+      };
+      var addBehaviorKey = function (done) {
+        // body might not be defined at this point or removed programmatically
+        done(!!(document.body && document.body.addBehavior));
+      };
+      var openDatabaseKey = function (done) {
+        done(!!window.openDatabase);
+      };
+      var cpuClassKey = function (done, options) {
+        done(getNavigatorCpuClass(options));
+      };
+      var platformKey = function (done, options) {
+        done(getNavigatorPlatform(options));
+      };
+      var doNotTrackKey = function (done, options) {
+        done(getDoNotTrack(options));
+      };
+      var canvasKey = function (done, options) {
+        if (isCanvasSupported()) {
+          done(getCanvasFp(options));
+          return
+        }
+        done(options.NOT_AVAILABLE);
+      };
+      var webglKey = function (done, options) {
+        if (isWebGlSupported()) {
+          done(getWebglFp());
+          return
+        }
+        done(options.NOT_AVAILABLE);
+      };
+      var webglVendorAndRendererKey = function (done) {
+        if (isWebGlSupported()) {
+          done(getWebglVendorAndRenderer());
+          return
+        }
+        done();
+      };
+      var adBlockKey = function (done) {
+        done(getAdBlock());
+      };
+      var hasLiedLanguagesKey = function (done) {
+        done(getHasLiedLanguages());
+      };
+      var hasLiedResolutionKey = function (done) {
+        done(getHasLiedResolution());
+      };
+      var hasLiedOsKey = function (done) {
+        done(getHasLiedOs());
+      };
+      var hasLiedBrowserKey = function (done) {
+        done(getHasLiedBrowser());
+      };
+      // flash fonts (will increase fingerprinting time 20X to ~ 130-150ms)
+      var flashFontsKey = function (done, options) {
+        // we do flash if swfobject is loaded
+        if (!hasSwfObjectLoaded()) {
+          return done('swf object not loaded')
+        }
+        if (!hasMinFlashInstalled()) {
+          return done('flash not installed')
+        }
+        if (!options.fonts.swfPath) {
+          return done('missing options.fonts.swfPath')
+        }
+        loadSwfAndDetectFonts(function (fonts) {
+          done(fonts);
+        }, options);
+      };
+      // kudos to http://www.lalit.org/lab/javascript-css-font-detect/
+      var jsFontsKey = function (done, options) {
+        // a font will be compared against all the three default fonts.
+        // and if it doesn't match all 3 then that font is not available.
+        var baseFonts = ['monospace', 'sans-serif', 'serif'];
+
+        var fontList = [
+          'Andale Mono', 'Arial', 'Arial Black', 'Arial Hebrew', 'Arial MT', 'Arial Narrow', 'Arial Rounded MT Bold', 'Arial Unicode MS',
+          'Bitstream Vera Sans Mono', 'Book Antiqua', 'Bookman Old Style',
+          'Calibri', 'Cambria', 'Cambria Math', 'Century', 'Century Gothic', 'Century Schoolbook', 'Comic Sans', 'Comic Sans MS', 'Consolas', 'Courier', 'Courier New',
+          'Geneva', 'Georgia',
+          'Helvetica', 'Helvetica Neue',
+          'Impact',
+          'Lucida Bright', 'Lucida Calligraphy', 'Lucida Console', 'Lucida Fax', 'LUCIDA GRANDE', 'Lucida Handwriting', 'Lucida Sans', 'Lucida Sans Typewriter', 'Lucida Sans Unicode',
+          'Microsoft Sans Serif', 'Monaco', 'Monotype Corsiva', 'MS Gothic', 'MS Outlook', 'MS PGothic', 'MS Reference Sans Serif', 'MS Sans Serif', 'MS Serif', 'MYRIAD', 'MYRIAD PRO',
+          'Palatino', 'Palatino Linotype',
+          'Segoe Print', 'Segoe Script', 'Segoe UI', 'Segoe UI Light', 'Segoe UI Semibold', 'Segoe UI Symbol',
+          'Tahoma', 'Times', 'Times New Roman', 'Times New Roman PS', 'Trebuchet MS',
+          'Verdana', 'Wingdings', 'Wingdings 2', 'Wingdings 3'
+        ];
+
+        if (options.fonts.extendedJsFonts) {
+          var extendedFontList = [
+            'Abadi MT Condensed Light', 'Academy Engraved LET', 'ADOBE CASLON PRO', 'Adobe Garamond', 'ADOBE GARAMOND PRO', 'Agency FB', 'Aharoni', 'Albertus Extra Bold', 'Albertus Medium', 'Algerian', 'Amazone BT', 'American Typewriter',
+            'American Typewriter Condensed', 'AmerType Md BT', 'Andalus', 'Angsana New', 'AngsanaUPC', 'Antique Olive', 'Aparajita', 'Apple Chancery', 'Apple Color Emoji', 'Apple SD Gothic Neo', 'Arabic Typesetting', 'ARCHER',
+            'ARNO PRO', 'Arrus BT', 'Aurora Cn BT', 'AvantGarde Bk BT', 'AvantGarde Md BT', 'AVENIR', 'Ayuthaya', 'Bandy', 'Bangla Sangam MN', 'Bank Gothic', 'BankGothic Md BT', 'Baskerville',
+            'Baskerville Old Face', 'Batang', 'BatangChe', 'Bauer Bodoni', 'Bauhaus 93', 'Bazooka', 'Bell MT', 'Bembo', 'Benguiat Bk BT', 'Berlin Sans FB', 'Berlin Sans FB Demi', 'Bernard MT Condensed', 'BernhardFashion BT', 'BernhardMod BT', 'Big Caslon', 'BinnerD',
+            'Blackadder ITC', 'BlairMdITC TT', 'Bodoni 72', 'Bodoni 72 Oldstyle', 'Bodoni 72 Smallcaps', 'Bodoni MT', 'Bodoni MT Black', 'Bodoni MT Condensed', 'Bodoni MT Poster Compressed',
+            'Bookshelf Symbol 7', 'Boulder', 'Bradley Hand', 'Bradley Hand ITC', 'Bremen Bd BT', 'Britannic Bold', 'Broadway', 'Browallia New', 'BrowalliaUPC', 'Brush Script MT', 'Californian FB', 'Calisto MT', 'Calligrapher', 'Candara',
+            'CaslonOpnface BT', 'Castellar', 'Centaur', 'Cezanne', 'CG Omega', 'CG Times', 'Chalkboard', 'Chalkboard SE', 'Chalkduster', 'Charlesworth', 'Charter Bd BT', 'Charter BT', 'Chaucer',
+            'ChelthmITC Bk BT', 'Chiller', 'Clarendon', 'Clarendon Condensed', 'CloisterBlack BT', 'Cochin', 'Colonna MT', 'Constantia', 'Cooper Black', 'Copperplate', 'Copperplate Gothic', 'Copperplate Gothic Bold',
+            'Copperplate Gothic Light', 'CopperplGoth Bd BT', 'Corbel', 'Cordia New', 'CordiaUPC', 'Cornerstone', 'Coronet', 'Cuckoo', 'Curlz MT', 'DaunPenh', 'Dauphin', 'David', 'DB LCD Temp', 'DELICIOUS', 'Denmark',
+            'DFKai-SB', 'Didot', 'DilleniaUPC', 'DIN', 'DokChampa', 'Dotum', 'DotumChe', 'Ebrima', 'Edwardian Script ITC', 'Elephant', 'English 111 Vivace BT', 'Engravers MT', 'EngraversGothic BT', 'Eras Bold ITC', 'Eras Demi ITC', 'Eras Light ITC', 'Eras Medium ITC',
+            'EucrosiaUPC', 'Euphemia', 'Euphemia UCAS', 'EUROSTILE', 'Exotc350 Bd BT', 'FangSong', 'Felix Titling', 'Fixedsys', 'FONTIN', 'Footlight MT Light', 'Forte',
+            'FrankRuehl', 'Fransiscan', 'Freefrm721 Blk BT', 'FreesiaUPC', 'Freestyle Script', 'French Script MT', 'FrnkGothITC Bk BT', 'Fruitger', 'FRUTIGER',
+            'Futura', 'Futura Bk BT', 'Futura Lt BT', 'Futura Md BT', 'Futura ZBlk BT', 'FuturaBlack BT', 'Gabriola', 'Galliard BT', 'Gautami', 'Geeza Pro', 'Geometr231 BT', 'Geometr231 Hv BT', 'Geometr231 Lt BT', 'GeoSlab 703 Lt BT',
+            'GeoSlab 703 XBd BT', 'Gigi', 'Gill Sans', 'Gill Sans MT', 'Gill Sans MT Condensed', 'Gill Sans MT Ext Condensed Bold', 'Gill Sans Ultra Bold', 'Gill Sans Ultra Bold Condensed', 'Gisha', 'Gloucester MT Extra Condensed', 'GOTHAM', 'GOTHAM BOLD',
+            'Goudy Old Style', 'Goudy Stout', 'GoudyHandtooled BT', 'GoudyOLSt BT', 'Gujarati Sangam MN', 'Gulim', 'GulimChe', 'Gungsuh', 'GungsuhChe', 'Gurmukhi MN', 'Haettenschweiler', 'Harlow Solid Italic', 'Harrington', 'Heather', 'Heiti SC', 'Heiti TC', 'HELV',
+            'Herald', 'High Tower Text', 'Hiragino Kaku Gothic ProN', 'Hiragino Mincho ProN', 'Hoefler Text', 'Humanst 521 Cn BT', 'Humanst521 BT', 'Humanst521 Lt BT', 'Imprint MT Shadow', 'Incised901 Bd BT', 'Incised901 BT',
+            'Incised901 Lt BT', 'INCONSOLATA', 'Informal Roman', 'Informal011 BT', 'INTERSTATE', 'IrisUPC', 'Iskoola Pota', 'JasmineUPC', 'Jazz LET', 'Jenson', 'Jester', 'Jokerman', 'Juice ITC', 'Kabel Bk BT', 'Kabel Ult BT', 'Kailasa', 'KaiTi', 'Kalinga', 'Kannada Sangam MN',
+            'Kartika', 'Kaufmann Bd BT', 'Kaufmann BT', 'Khmer UI', 'KodchiangUPC', 'Kokila', 'Korinna BT', 'Kristen ITC', 'Krungthep', 'Kunstler Script', 'Lao UI', 'Latha', 'Leelawadee', 'Letter Gothic', 'Levenim MT', 'LilyUPC', 'Lithograph', 'Lithograph Light', 'Long Island',
+            'Lydian BT', 'Magneto', 'Maiandra GD', 'Malayalam Sangam MN', 'Malgun Gothic',
+            'Mangal', 'Marigold', 'Marion', 'Marker Felt', 'Market', 'Marlett', 'Matisse ITC', 'Matura MT Script Capitals', 'Meiryo', 'Meiryo UI', 'Microsoft Himalaya', 'Microsoft JhengHei', 'Microsoft New Tai Lue', 'Microsoft PhagsPa', 'Microsoft Tai Le',
+            'Microsoft Uighur', 'Microsoft YaHei', 'Microsoft Yi Baiti', 'MingLiU', 'MingLiU_HKSCS', 'MingLiU_HKSCS-ExtB', 'MingLiU-ExtB', 'Minion', 'Minion Pro', 'Miriam', 'Miriam Fixed', 'Mistral', 'Modern', 'Modern No. 20', 'Mona Lisa Solid ITC TT', 'Mongolian Baiti',
+            'MONO', 'MoolBoran', 'Mrs Eaves', 'MS LineDraw', 'MS Mincho', 'MS PMincho', 'MS Reference Specialty', 'MS UI Gothic', 'MT Extra', 'MUSEO', 'MV Boli',
+            'Nadeem', 'Narkisim', 'NEVIS', 'News Gothic', 'News GothicMT', 'NewsGoth BT', 'Niagara Engraved', 'Niagara Solid', 'Noteworthy', 'NSimSun', 'Nyala', 'OCR A Extended', 'Old Century', 'Old English Text MT', 'Onyx', 'Onyx BT', 'OPTIMA', 'Oriya Sangam MN',
+            'OSAKA', 'OzHandicraft BT', 'Palace Script MT', 'Papyrus', 'Parchment', 'Party LET', 'Pegasus', 'Perpetua', 'Perpetua Titling MT', 'PetitaBold', 'Pickwick', 'Plantagenet Cherokee', 'Playbill', 'PMingLiU', 'PMingLiU-ExtB',
+            'Poor Richard', 'Poster', 'PosterBodoni BT', 'PRINCETOWN LET', 'Pristina', 'PTBarnum BT', 'Pythagoras', 'Raavi', 'Rage Italic', 'Ravie', 'Ribbon131 Bd BT', 'Rockwell', 'Rockwell Condensed', 'Rockwell Extra Bold', 'Rod', 'Roman', 'Sakkal Majalla',
+            'Santa Fe LET', 'Savoye LET', 'Sceptre', 'Script', 'Script MT Bold', 'SCRIPTINA', 'Serifa', 'Serifa BT', 'Serifa Th BT', 'ShelleyVolante BT', 'Sherwood',
+            'Shonar Bangla', 'Showcard Gothic', 'Shruti', 'Signboard', 'SILKSCREEN', 'SimHei', 'Simplified Arabic', 'Simplified Arabic Fixed', 'SimSun', 'SimSun-ExtB', 'Sinhala Sangam MN', 'Sketch Rockwell', 'Skia', 'Small Fonts', 'Snap ITC', 'Snell Roundhand', 'Socket',
+            'Souvenir Lt BT', 'Staccato222 BT', 'Steamer', 'Stencil', 'Storybook', 'Styllo', 'Subway', 'Swis721 BlkEx BT', 'Swiss911 XCm BT', 'Sylfaen', 'Synchro LET', 'System', 'Tamil Sangam MN', 'Technical', 'Teletype', 'Telugu Sangam MN', 'Tempus Sans ITC',
+            'Terminal', 'Thonburi', 'Traditional Arabic', 'Trajan', 'TRAJAN PRO', 'Tristan', 'Tubular', 'Tunga', 'Tw Cen MT', 'Tw Cen MT Condensed', 'Tw Cen MT Condensed Extra Bold',
+            'TypoUpright BT', 'Unicorn', 'Univers', 'Univers CE 55 Medium', 'Univers Condensed', 'Utsaah', 'Vagabond', 'Vani', 'Vijaya', 'Viner Hand ITC', 'VisualUI', 'Vivaldi', 'Vladimir Script', 'Vrinda', 'Westminster', 'WHITNEY', 'Wide Latin',
+            'ZapfEllipt BT', 'ZapfHumnst BT', 'ZapfHumnst Dm BT', 'Zapfino', 'Zurich BlkEx BT', 'Zurich Ex BT', 'ZWAdobeF'];
+          fontList = fontList.concat(extendedFontList);
+        }
+
+        fontList = fontList.concat(options.fonts.userDefinedFonts);
+
+        // remove duplicate fonts
+        fontList = fontList.filter(function (font, position) {
+          return fontList.indexOf(font) === position
+        });
+
+        // we use m or w because these two characters take up the maximum width.
+        // And we use a LLi so that the same matching fonts can get separated
+        var testString = 'mmmmmmmmmmlli';
+
+        // we test using 72px font size, we may use any size. I guess larger the better.
+        var testSize = '72px';
+
+        var h = document.getElementsByTagName('body')[0];
+
+        // div to load spans for the base fonts
+        var baseFontsDiv = document.createElement('div');
+
+        // div to load spans for the fonts to detect
+        var fontsDiv = document.createElement('div');
+
+        var defaultWidth = {};
+        var defaultHeight = {};
+
+        // creates a span where the fonts will be loaded
+        var createSpan = function () {
+          var s = document.createElement('span');
+          /*
+           * We need this css as in some weird browser this
+           * span elements shows up for a microSec which creates a
+           * bad user experience
+           */
+          s.style.position = 'absolute';
+          s.style.left = '-9999px';
+          s.style.fontSize = testSize;
+
+          // css font reset to reset external styles
+          s.style.fontStyle = 'normal';
+          s.style.fontWeight = 'normal';
+          s.style.letterSpacing = 'normal';
+          s.style.lineBreak = 'auto';
+          s.style.lineHeight = 'normal';
+          s.style.textTransform = 'none';
+          s.style.textAlign = 'left';
+          s.style.textDecoration = 'none';
+          s.style.textShadow = 'none';
+          s.style.whiteSpace = 'normal';
+          s.style.wordBreak = 'normal';
+          s.style.wordSpacing = 'normal';
+
+          s.innerHTML = testString;
+          return s
+        };
+
+        // creates a span and load the font to detect and a base font for fallback
+        var createSpanWithFonts = function (fontToDetect, baseFont) {
+          var s = createSpan();
+          s.style.fontFamily = "'" + fontToDetect + "'," + baseFont;
+          return s
+        };
+
+        // creates spans for the base fonts and adds them to baseFontsDiv
+        var initializeBaseFontsSpans = function () {
+          var spans = [];
+          for (var index = 0, length = baseFonts.length; index < length; index++) {
+            var s = createSpan();
+            s.style.fontFamily = baseFonts[index];
+            baseFontsDiv.appendChild(s);
+            spans.push(s);
+          }
+          return spans
+        };
+
+        // creates spans for the fonts to detect and adds them to fontsDiv
+        var initializeFontsSpans = function () {
+          var spans = {};
+          for (var i = 0, l = fontList.length; i < l; i++) {
+            var fontSpans = [];
+            for (var j = 0, numDefaultFonts = baseFonts.length; j < numDefaultFonts; j++) {
+              var s = createSpanWithFonts(fontList[i], baseFonts[j]);
+              fontsDiv.appendChild(s);
+              fontSpans.push(s);
+            }
+            spans[fontList[i]] = fontSpans; // Stores {fontName : [spans for that font]}
+          }
+          return spans
+        };
+
+        // checks if a font is available
+        var isFontAvailable = function (fontSpans) {
+          var detected = false;
+          for (var i = 0; i < baseFonts.length; i++) {
+            detected = (fontSpans[i].offsetWidth !== defaultWidth[baseFonts[i]] || fontSpans[i].offsetHeight !== defaultHeight[baseFonts[i]]);
+            if (detected) {
+              return detected
+            }
+          }
+          return detected
+        };
+
+        // create spans for base fonts
+        var baseFontsSpans = initializeBaseFontsSpans();
+
+        // add the spans to the DOM
+        h.appendChild(baseFontsDiv);
+
+        // get the default width for the three base fonts
+        for (var index = 0, length = baseFonts.length; index < length; index++) {
+          defaultWidth[baseFonts[index]] = baseFontsSpans[index].offsetWidth; // width for the default font
+          defaultHeight[baseFonts[index]] = baseFontsSpans[index].offsetHeight; // height for the default font
+        }
+
+        // create spans for fonts to detect
+        var fontsSpans = initializeFontsSpans();
+
+        // add all the spans to the DOM
+        h.appendChild(fontsDiv);
+
+        // check available fonts
+        var available = [];
+        for (var i = 0, l = fontList.length; i < l; i++) {
+          if (isFontAvailable(fontsSpans[fontList[i]])) {
+            available.push(fontList[i]);
+          }
+        }
+
+        // remove spans from DOM
+        h.removeChild(fontsDiv);
+        h.removeChild(baseFontsDiv);
+        done(available);
+      };
+      var pluginsComponent = function (done, options) {
+        if (isIE()) {
+          if (!options.plugins.excludeIE) {
+            done(getIEPlugins(options));
+          } else {
+            done(options.EXCLUDED);
+          }
+        } else {
+          done(getRegularPlugins(options));
+        }
+      };
+      var getRegularPlugins = function (options) {
+        if (navigator.plugins == null) {
+          return options.NOT_AVAILABLE
+        }
+
+        var plugins = [];
+        // plugins isn't defined in Node envs.
+        for (var i = 0, l = navigator.plugins.length; i < l; i++) {
+          if (navigator.plugins[i]) { plugins.push(navigator.plugins[i]); }
+        }
+
+        // sorting plugins only for those user agents, that we know randomize the plugins
+        // every time we try to enumerate them
+        if (pluginsShouldBeSorted(options)) {
+          plugins = plugins.sort(function (a, b) {
+            if (a.name > b.name) { return 1 }
+            if (a.name < b.name) { return -1 }
+            return 0
+          });
+        }
+        return map(plugins, function (p) {
+          var mimeTypes = map(p, function (mt) {
+            return [mt.type, mt.suffixes]
+          });
+          return [p.name, p.description, mimeTypes]
+        })
+      };
+      var getIEPlugins = function (options) {
+        var result = [];
+        if ((Object.getOwnPropertyDescriptor && Object.getOwnPropertyDescriptor(window, 'ActiveXObject')) || ('ActiveXObject' in window)) {
+          var names = [
+            'AcroPDF.PDF', // Adobe PDF reader 7+
+            'Adodb.Stream',
+            'AgControl.AgControl', // Silverlight
+            'DevalVRXCtrl.DevalVRXCtrl.1',
+            'MacromediaFlashPaper.MacromediaFlashPaper',
+            'Msxml2.DOMDocument',
+            'Msxml2.XMLHTTP',
+            'PDF.PdfCtrl', // Adobe PDF reader 6 and earlier, brrr
+            'QuickTime.QuickTime', // QuickTime
+            'QuickTimeCheckObject.QuickTimeCheck.1',
+            'RealPlayer',
+            'RealPlayer.RealPlayer(tm) ActiveX Control (32-bit)',
+            'RealVideo.RealVideo(tm) ActiveX Control (32-bit)',
+            'Scripting.Dictionary',
+            'SWCtl.SWCtl', // ShockWave player
+            'Shell.UIHelper',
+            'ShockwaveFlash.ShockwaveFlash', // flash plugin
+            'Skype.Detection',
+            'TDCCtl.TDCCtl',
+            'WMPlayer.OCX', // Windows media player
+            'rmocx.RealPlayer G2 Control',
+            'rmocx.RealPlayer G2 Control.1'
+          ];
+          // starting to detect plugins in IE
+          result = map(names, function (name) {
+            try {
+              // eslint-disable-next-line no-new
+              new window.ActiveXObject(name);
+              return name
+            } catch (e) {
+              return options.ERROR
+            }
+          });
+        } else {
+          result.push(options.NOT_AVAILABLE);
+        }
+        if (navigator.plugins) {
+          result = result.concat(getRegularPlugins(options));
+        }
+        return result
+      };
+      var pluginsShouldBeSorted = function (options) {
+        var should = false;
+        for (var i = 0, l = options.plugins.sortPluginsFor.length; i < l; i++) {
+          var re = options.plugins.sortPluginsFor[i];
+          if (navigator.userAgent.match(re)) {
+            should = true;
+            break
+          }
+        }
+        return should
+      };
+      var touchSupportKey = function (done) {
+        done(getTouchSupport());
+      };
+      var hardwareConcurrencyKey = function (done, options) {
+        done(getHardwareConcurrency(options));
+      };
+      var hasSessionStorage = function (options) {
+        try {
+          return !!window.sessionStorage
+        } catch (e) {
+          return options.ERROR // SecurityError when referencing it means it exists
+        }
+      };
+
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=781447
+      var hasLocalStorage = function (options) {
+        try {
+          return !!window.localStorage
+        } catch (e) {
+          return options.ERROR // SecurityError when referencing it means it exists
+        }
+      };
+      var hasIndexedDB = function (options) {
+        try {
+          return !!window.indexedDB
+        } catch (e) {
+          return options.ERROR // SecurityError when referencing it means it exists
+        }
+      };
+      var getHardwareConcurrency = function (options) {
+        if (navigator.hardwareConcurrency) {
+          return navigator.hardwareConcurrency
+        }
+        return options.NOT_AVAILABLE
+      };
+      var getNavigatorCpuClass = function (options) {
+        return navigator.cpuClass || options.NOT_AVAILABLE
+      };
+      var getNavigatorPlatform = function (options) {
+        if (navigator.platform) {
+          return navigator.platform
+        } else {
+          return options.NOT_AVAILABLE
+        }
+      };
+      var getDoNotTrack = function (options) {
+        if (navigator.doNotTrack) {
+          return navigator.doNotTrack
+        } else if (navigator.msDoNotTrack) {
+          return navigator.msDoNotTrack
+        } else if (window.doNotTrack) {
+          return window.doNotTrack
+        } else {
+          return options.NOT_AVAILABLE
+        }
+      };
+      // This is a crude and primitive touch screen detection.
+      // It's not possible to currently reliably detect the  availability of a touch screen
+      // with a JS, without actually subscribing to a touch event.
+      // http://www.stucox.com/blog/you-cant-detect-a-touchscreen/
+      // https://github.com/Modernizr/Modernizr/issues/548
+      // method returns an array of 3 values:
+      // maxTouchPoints, the success or failure of creating a TouchEvent,
+      // and the availability of the 'ontouchstart' property
+
+      var getTouchSupport = function () {
+        var maxTouchPoints = 0;
+        var touchEvent;
+        if (typeof navigator.maxTouchPoints !== 'undefined') {
+          maxTouchPoints = navigator.maxTouchPoints;
+        } else if (typeof navigator.msMaxTouchPoints !== 'undefined') {
+          maxTouchPoints = navigator.msMaxTouchPoints;
+        }
+        try {
+          document.createEvent('TouchEvent');
+          touchEvent = true;
+        } catch (_) {
+          touchEvent = false;
+        }
+        var touchStart = 'ontouchstart' in window;
+        return [maxTouchPoints, touchEvent, touchStart]
+      };
+      // https://www.browserleaks.com/canvas#how-does-it-work
+
+      var getCanvasFp = function (options) {
+        var result = [];
+        // Very simple now, need to make it more complex (geo shapes etc)
+        var canvas = document.createElement('canvas');
+        canvas.width = 2000;
+        canvas.height = 200;
+        canvas.style.display = 'inline';
+        var ctx = canvas.getContext('2d');
+        // detect browser support of canvas winding
+        // http://blogs.adobe.com/webplatform/2013/01/30/winding-rules-in-canvas/
+        // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/canvas/winding.js
+        ctx.rect(0, 0, 10, 10);
+        ctx.rect(2, 2, 6, 6);
+        result.push('canvas winding:' + ((ctx.isPointInPath(5, 5, 'evenodd') === false) ? 'yes' : 'no'));
+
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillStyle = '#f60';
+        ctx.fillRect(125, 1, 62, 20);
+        ctx.fillStyle = '#069';
+        // https://github.com/Valve/fingerprintjs2/issues/66
+        if (options.dontUseFakeFontInCanvas) {
+          ctx.font = '11pt Arial';
+        } else {
+          ctx.font = '11pt no-real-font-123';
+        }
+        ctx.fillText('Cwm fjordbank glyphs vext quiz, \ud83d\ude03', 2, 15);
+        ctx.fillStyle = 'rgba(102, 204, 0, 0.2)';
+        ctx.font = '18pt Arial';
+        ctx.fillText('Cwm fjordbank glyphs vext quiz, \ud83d\ude03', 4, 45);
+
+        // canvas blending
+        // http://blogs.adobe.com/webplatform/2013/01/28/blending-features-in-canvas/
+        // http://jsfiddle.net/NDYV8/16/
+        ctx.globalCompositeOperation = 'multiply';
+        ctx.fillStyle = 'rgb(255,0,255)';
+        ctx.beginPath();
+        ctx.arc(50, 50, 50, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = 'rgb(0,255,255)';
+        ctx.beginPath();
+        ctx.arc(100, 50, 50, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = 'rgb(255,255,0)';
+        ctx.beginPath();
+        ctx.arc(75, 100, 50, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = 'rgb(255,0,255)';
+        // canvas winding
+        // http://blogs.adobe.com/webplatform/2013/01/30/winding-rules-in-canvas/
+        // http://jsfiddle.net/NDYV8/19/
+        ctx.arc(75, 75, 75, 0, Math.PI * 2, true);
+        ctx.arc(75, 75, 25, 0, Math.PI * 2, true);
+        ctx.fill('evenodd');
+
+        if (canvas.toDataURL) { result.push('canvas fp:' + canvas.toDataURL()); }
+        return result
+      };
+      var getWebglFp = function () {
+        var gl;
+        var fa2s = function (fa) {
+          gl.clearColor(0.0, 0.0, 0.0, 1.0);
+          gl.enable(gl.DEPTH_TEST);
+          gl.depthFunc(gl.LEQUAL);
+          gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+          return '[' + fa[0] + ', ' + fa[1] + ']'
+        };
+        var maxAnisotropy = function (gl) {
+          var ext = gl.getExtension('EXT_texture_filter_anisotropic') || gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic') || gl.getExtension('MOZ_EXT_texture_filter_anisotropic');
+          if (ext) {
+            var anisotropy = gl.getParameter(ext.MAX_TEXTURE_MAX_ANISOTROPY_EXT);
+            if (anisotropy === 0) {
+              anisotropy = 2;
+            }
+            return anisotropy
+          } else {
+            return null
+          }
+        };
+
+        gl = getWebglCanvas();
+        if (!gl) { return null }
+        // WebGL fingerprinting is a combination of techniques, found in MaxMind antifraud script & Augur fingerprinting.
+        // First it draws a gradient object with shaders and convers the image to the Base64 string.
+        // Then it enumerates all WebGL extensions & capabilities and appends them to the Base64 string, resulting in a huge WebGL string, potentially very unique on each device
+        // Since iOS supports webgl starting from version 8.1 and 8.1 runs on several graphics chips, the results may be different across ios devices, but we need to verify it.
+        var result = [];
+        var vShaderTemplate = 'attribute vec2 attrVertex;varying vec2 varyinTexCoordinate;uniform vec2 uniformOffset;void main(){varyinTexCoordinate=attrVertex+uniformOffset;gl_Position=vec4(attrVertex,0,1);}';
+        var fShaderTemplate = 'precision mediump float;varying vec2 varyinTexCoordinate;void main() {gl_FragColor=vec4(varyinTexCoordinate,0,1);}';
+        var vertexPosBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
+        var vertices = new Float32Array([-0.2, -0.9, 0, 0.4, -0.26, 0, 0, 0.732134444, 0]);
+        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+        vertexPosBuffer.itemSize = 3;
+        vertexPosBuffer.numItems = 3;
+        var program = gl.createProgram();
+        var vshader = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vshader, vShaderTemplate);
+        gl.compileShader(vshader);
+        var fshader = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fshader, fShaderTemplate);
+        gl.compileShader(fshader);
+        gl.attachShader(program, vshader);
+        gl.attachShader(program, fshader);
+        gl.linkProgram(program);
+        gl.useProgram(program);
+        program.vertexPosAttrib = gl.getAttribLocation(program, 'attrVertex');
+        program.offsetUniform = gl.getUniformLocation(program, 'uniformOffset');
+        gl.enableVertexAttribArray(program.vertexPosArray);
+        gl.vertexAttribPointer(program.vertexPosAttrib, vertexPosBuffer.itemSize, gl.FLOAT, !1, 0, 0);
+        gl.uniform2f(program.offsetUniform, 1, 1);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, vertexPosBuffer.numItems);
+        try {
+          result.push(gl.canvas.toDataURL());
+        } catch (e) {
+          /* .toDataURL may be absent or broken (blocked by extension) */
+        }
+        result.push('extensions:' + (gl.getSupportedExtensions() || []).join(';'));
+        result.push('webgl aliased line width range:' + fa2s(gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE)));
+        result.push('webgl aliased point size range:' + fa2s(gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE)));
+        result.push('webgl alpha bits:' + gl.getParameter(gl.ALPHA_BITS));
+        result.push('webgl antialiasing:' + (gl.getContextAttributes().antialias ? 'yes' : 'no'));
+        result.push('webgl blue bits:' + gl.getParameter(gl.BLUE_BITS));
+        result.push('webgl depth bits:' + gl.getParameter(gl.DEPTH_BITS));
+        result.push('webgl green bits:' + gl.getParameter(gl.GREEN_BITS));
+        result.push('webgl max anisotropy:' + maxAnisotropy(gl));
+        result.push('webgl max combined texture image units:' + gl.getParameter(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS));
+        result.push('webgl max cube map texture size:' + gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE));
+        result.push('webgl max fragment uniform vectors:' + gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS));
+        result.push('webgl max render buffer size:' + gl.getParameter(gl.MAX_RENDERBUFFER_SIZE));
+        result.push('webgl max texture image units:' + gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS));
+        result.push('webgl max texture size:' + gl.getParameter(gl.MAX_TEXTURE_SIZE));
+        result.push('webgl max varying vectors:' + gl.getParameter(gl.MAX_VARYING_VECTORS));
+        result.push('webgl max vertex attribs:' + gl.getParameter(gl.MAX_VERTEX_ATTRIBS));
+        result.push('webgl max vertex texture image units:' + gl.getParameter(gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS));
+        result.push('webgl max vertex uniform vectors:' + gl.getParameter(gl.MAX_VERTEX_UNIFORM_VECTORS));
+        result.push('webgl max viewport dims:' + fa2s(gl.getParameter(gl.MAX_VIEWPORT_DIMS)));
+        result.push('webgl red bits:' + gl.getParameter(gl.RED_BITS));
+        result.push('webgl renderer:' + gl.getParameter(gl.RENDERER));
+        result.push('webgl shading language version:' + gl.getParameter(gl.SHADING_LANGUAGE_VERSION));
+        result.push('webgl stencil bits:' + gl.getParameter(gl.STENCIL_BITS));
+        result.push('webgl vendor:' + gl.getParameter(gl.VENDOR));
+        result.push('webgl version:' + gl.getParameter(gl.VERSION));
+
+        try {
+          // Add the unmasked vendor and unmasked renderer if the debug_renderer_info extension is available
+          var extensionDebugRendererInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          if (extensionDebugRendererInfo) {
+            result.push('webgl unmasked vendor:' + gl.getParameter(extensionDebugRendererInfo.UNMASKED_VENDOR_WEBGL));
+            result.push('webgl unmasked renderer:' + gl.getParameter(extensionDebugRendererInfo.UNMASKED_RENDERER_WEBGL));
+          }
+        } catch (e) { /* squelch */ }
+
+        if (!gl.getShaderPrecisionFormat) {
+          return result
+        }
+
+        each(['FLOAT', 'INT'], function (numType) {
+          each(['VERTEX', 'FRAGMENT'], function (shader) {
+            each(['HIGH', 'MEDIUM', 'LOW'], function (numSize) {
+              each(['precision', 'rangeMin', 'rangeMax'], function (key) {
+                var format = gl.getShaderPrecisionFormat(gl[shader + '_SHADER'], gl[numSize + '_' + numType])[key];
+                if (key !== 'precision') {
+                  key = 'precision ' + key;
+                }
+                var line = ['webgl ', shader.toLowerCase(), ' shader ', numSize.toLowerCase(), ' ', numType.toLowerCase(), ' ', key, ':', format].join('');
+                result.push(line);
+              });
+            });
+          });
+        });
+        return result
+      };
+      var getWebglVendorAndRenderer = function () {
+        /* This a subset of the WebGL fingerprint with a lot of entropy, while being reasonably browser-independent */
+        try {
+          var glContext = getWebglCanvas();
+          var extensionDebugRendererInfo = glContext.getExtension('WEBGL_debug_renderer_info');
+          return glContext.getParameter(extensionDebugRendererInfo.UNMASKED_VENDOR_WEBGL) + '~' + glContext.getParameter(extensionDebugRendererInfo.UNMASKED_RENDERER_WEBGL)
+        } catch (e) {
+          return null
+        }
+      };
+      var getAdBlock = function () {
+        var ads = document.createElement('div');
+        ads.innerHTML = '&nbsp;';
+        ads.className = 'adsbox';
+        var result = false;
+        try {
+          // body may not exist, that's why we need try/catch
+          document.body.appendChild(ads);
+          result = document.getElementsByClassName('adsbox')[0].offsetHeight === 0;
+          document.body.removeChild(ads);
+        } catch (e) {
+          result = false;
+        }
+        return result
+      };
+      var getHasLiedLanguages = function () {
+        // We check if navigator.language is equal to the first language of navigator.languages
+        // navigator.languages is undefined on IE11 (and potentially older IEs)
+        if (typeof navigator.languages !== 'undefined') {
+          try {
+            var firstLanguages = navigator.languages[0].substr(0, 2);
+            if (firstLanguages !== navigator.language.substr(0, 2)) {
+              return true
+            }
+          } catch (err) {
+            return true
+          }
+        }
+        return false
+      };
+      var getHasLiedResolution = function () {
+        return window.screen.width < window.screen.availWidth || window.screen.height < window.screen.availHeight
+      };
+      var getHasLiedOs = function () {
+        var userAgent = navigator.userAgent.toLowerCase();
+        var oscpu = navigator.oscpu;
+        var platform = navigator.platform.toLowerCase();
+        var os;
+        // We extract the OS from the user agent (respect the order of the if else if statement)
+        if (userAgent.indexOf('windows phone') >= 0) {
+          os = 'Windows Phone';
+        } else if (userAgent.indexOf('win') >= 0) {
+          os = 'Windows';
+        } else if (userAgent.indexOf('android') >= 0) {
+          os = 'Android';
+        } else if (userAgent.indexOf('linux') >= 0 || userAgent.indexOf('cros') >= 0) {
+          os = 'Linux';
+        } else if (userAgent.indexOf('iphone') >= 0 || userAgent.indexOf('ipad') >= 0) {
+          os = 'iOS';
+        } else if (userAgent.indexOf('mac') >= 0) {
+          os = 'Mac';
+        } else {
+          os = 'Other';
+        }
+        // We detect if the person uses a mobile device
+        var mobileDevice = (('ontouchstart' in window) ||
+          (navigator.maxTouchPoints > 0) ||
+          (navigator.msMaxTouchPoints > 0));
+
+        if (mobileDevice && os !== 'Windows Phone' && os !== 'Android' && os !== 'iOS' && os !== 'Other') {
+          return true
+        }
+
+        // We compare oscpu with the OS extracted from the UA
+        if (typeof oscpu !== 'undefined') {
+          oscpu = oscpu.toLowerCase();
+          if (oscpu.indexOf('win') >= 0 && os !== 'Windows' && os !== 'Windows Phone') {
+            return true
+          } else if (oscpu.indexOf('linux') >= 0 && os !== 'Linux' && os !== 'Android') {
+            return true
+          } else if (oscpu.indexOf('mac') >= 0 && os !== 'Mac' && os !== 'iOS') {
+            return true
+          } else if ((oscpu.indexOf('win') === -1 && oscpu.indexOf('linux') === -1 && oscpu.indexOf('mac') === -1) !== (os === 'Other')) {
+            return true
+          }
+        }
+
+        // We compare platform with the OS extracted from the UA
+        if (platform.indexOf('win') >= 0 && os !== 'Windows' && os !== 'Windows Phone') {
+          return true
+        } else if ((platform.indexOf('linux') >= 0 || platform.indexOf('android') >= 0 || platform.indexOf('pike') >= 0) && os !== 'Linux' && os !== 'Android') {
+          return true
+        } else if ((platform.indexOf('mac') >= 0 || platform.indexOf('ipad') >= 0 || platform.indexOf('ipod') >= 0 || platform.indexOf('iphone') >= 0) && os !== 'Mac' && os !== 'iOS') {
+          return true
+        } else {
+          var platformIsOther = platform.indexOf('win') < 0 &&
+            platform.indexOf('linux') < 0 &&
+            platform.indexOf('mac') < 0 &&
+            platform.indexOf('iphone') < 0 &&
+            platform.indexOf('ipad') < 0;
+          if (platformIsOther !== (os === 'Other')) {
+            return true
+          }
+        }
+
+        return typeof navigator.plugins === 'undefined' && os !== 'Windows' && os !== 'Windows Phone'
+      };
+      var getHasLiedBrowser = function () {
+        var userAgent = navigator.userAgent.toLowerCase();
+        var productSub = navigator.productSub;
+
+        // we extract the browser from the user agent (respect the order of the tests)
+        var browser;
+        if (userAgent.indexOf('firefox') >= 0) {
+          browser = 'Firefox';
+        } else if (userAgent.indexOf('opera') >= 0 || userAgent.indexOf('opr') >= 0) {
+          browser = 'Opera';
+        } else if (userAgent.indexOf('chrome') >= 0) {
+          browser = 'Chrome';
+        } else if (userAgent.indexOf('safari') >= 0) {
+          browser = 'Safari';
+        } else if (userAgent.indexOf('trident') >= 0) {
+          browser = 'Internet Explorer';
+        } else {
+          browser = 'Other';
+        }
+
+        if ((browser === 'Chrome' || browser === 'Safari' || browser === 'Opera') && productSub !== '20030107') {
+          return true
+        }
+
+        // eslint-disable-next-line no-eval
+        var tempRes = eval.toString().length;
+        if (tempRes === 37 && browser !== 'Safari' && browser !== 'Firefox' && browser !== 'Other') {
+          return true
+        } else if (tempRes === 39 && browser !== 'Internet Explorer' && browser !== 'Other') {
+          return true
+        } else if (tempRes === 33 && browser !== 'Chrome' && browser !== 'Opera' && browser !== 'Other') {
+          return true
+        }
+
+        // We create an error to see how it is handled
+        var errFirefox;
+        try {
+          // eslint-disable-next-line no-throw-literal
+          throw 'a'
+        } catch (err) {
+          try {
+            err.toSource();
+            errFirefox = true;
+          } catch (errOfErr) {
+            errFirefox = false;
+          }
+        }
+        return errFirefox && browser !== 'Firefox' && browser !== 'Other'
+      };
+      var isCanvasSupported = function () {
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'))
+      };
+      var isWebGlSupported = function () {
+        // code taken from Modernizr
+        if (!isCanvasSupported()) {
+          return false
+        }
+
+        var glContext = getWebglCanvas();
+        return !!window.WebGLRenderingContext && !!glContext
+      };
+      var isIE = function () {
+        if (navigator.appName === 'Microsoft Internet Explorer') {
+          return true
+        } else if (navigator.appName === 'Netscape' && /Trident/.test(navigator.userAgent)) { // IE 11
+          return true
+        }
+        return false
+      };
+      var hasSwfObjectLoaded = function () {
+        return typeof window.swfobject !== 'undefined'
+      };
+      var hasMinFlashInstalled = function () {
+        return window.swfobject.hasFlashPlayerVersion('9.0.0')
+      };
+      var addFlashDivNode = function (options) {
+        var node = document.createElement('div');
+        node.setAttribute('id', options.fonts.swfContainerId);
+        document.body.appendChild(node);
+      };
+      var loadSwfAndDetectFonts = function (done, options) {
+        var hiddenCallback = '___fp_swf_loaded';
+        window[hiddenCallback] = function (fonts) {
+          done(fonts);
+        };
+        var id = options.fonts.swfContainerId;
+        addFlashDivNode();
+        var flashvars = { onReady: hiddenCallback };
+        var flashparams = { allowScriptAccess: 'always', menu: 'false' };
+        window.swfobject.embedSWF(options.fonts.swfPath, id, '1', '1', '9.0.0', false, flashvars, flashparams, {});
+      };
+      var getWebglCanvas = function () {
+        var canvas = document.createElement('canvas');
+        var gl = null;
+        try {
+          gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        } catch (e) { /* squelch */ }
+        if (!gl) { gl = null; }
+        return gl
+      };
+
+      var components = [
+        { key: 'userAgent', getData: UserAgent },
+        { key: 'webdriver', getData: webdriver },
+        { key: 'language', getData: languageKey },
+        { key: 'colorDepth', getData: colorDepthKey },
+        { key: 'deviceMemory', getData: deviceMemoryKey },
+        { key: 'pixelRatio', getData: pixelRatioKey },
+        { key: 'hardwareConcurrency', getData: hardwareConcurrencyKey },
+        { key: 'screenResolution', getData: screenResolutionKey },
+        { key: 'availableScreenResolution', getData: availableScreenResolutionKey },
+        { key: 'timezoneOffset', getData: timezoneOffset },
+        { key: 'timezone', getData: timezone },
+        { key: 'sessionStorage', getData: sessionStorageKey },
+        { key: 'localStorage', getData: localStorageKey },
+        { key: 'indexedDb', getData: indexedDbKey },
+        { key: 'addBehavior', getData: addBehaviorKey },
+        { key: 'openDatabase', getData: openDatabaseKey },
+        { key: 'cpuClass', getData: cpuClassKey },
+        { key: 'platform', getData: platformKey },
+        { key: 'doNotTrack', getData: doNotTrackKey },
+        { key: 'plugins', getData: pluginsComponent },
+        { key: 'canvas', getData: canvasKey },
+        { key: 'webgl', getData: webglKey },
+        { key: 'webglVendorAndRenderer', getData: webglVendorAndRendererKey },
+        { key: 'adBlock', getData: adBlockKey },
+        { key: 'hasLiedLanguages', getData: hasLiedLanguagesKey },
+        { key: 'hasLiedResolution', getData: hasLiedResolutionKey },
+        { key: 'hasLiedOs', getData: hasLiedOsKey },
+        { key: 'hasLiedBrowser', getData: hasLiedBrowserKey },
+        { key: 'touchSupport', getData: touchSupportKey },
+        { key: 'fonts', getData: jsFontsKey, pauseBefore: true },
+        { key: 'fontsFlash', getData: flashFontsKey, pauseBefore: true },
+        { key: 'audio', getData: audioKey },
+        { key: 'enumerateDevices', getData: enumerateDevicesKey }
+      ];
+
+      var Fingerprint2 = function (options) {
+        throw new Error("'new Fingerprint()' is deprecated, see https://github.com/Valve/fingerprintjs2#upgrade-guide-from-182-to-200")
+      };
+
+      Fingerprint2.get = function (options, callback) {
+        if (!callback) {
+          callback = options;
+          options = {};
+        } else if (!options) {
+          options = {};
+        }
+        extendSoft(options, defaultOptions);
+        options.components = options.extraComponents.concat(components);
+
+        var keys = {
+          data: [],
+          addPreprocessedComponent: function (key, value) {
+            if (typeof options.preprocessor === 'function') {
+              value = options.preprocessor(key, value);
+            }
+            keys.data.push({ key: key, value: value });
+          }
+        };
+
+        var i = -1;
+        var chainComponents = function (alreadyWaited) {
+          i += 1;
+          if (i >= options.components.length) { // on finish
+            callback(keys.data);
+            return
+          }
+          var component = options.components[i];
+
+          if (options.excludes[component.key]) {
+            chainComponents(false); // skip
+            return
+          }
+
+          if (!alreadyWaited && component.pauseBefore) {
+            i -= 1;
+            setTimeout(function () {
+              chainComponents(true);
+            }, 1);
+            return
+          }
+
+          try {
+            component.getData(function (value) {
+              keys.addPreprocessedComponent(component.key, value);
+              chainComponents(false);
+            }, options);
+          } catch (error) {
+            // main body error
+            keys.addPreprocessedComponent(component.key, String(error));
+            chainComponents(false);
+          }
+        };
+
+        chainComponents(false);
+      };
+
+      Fingerprint2.getPromise = function (options) {
+        return new Promise(function (resolve, reject) {
+          Fingerprint2.get(options, resolve);
+        })
+      };
+
+      Fingerprint2.getV18 = function (options, callback) {
+        if (callback == null) {
+          callback = options;
+          options = {};
+        }
+        return Fingerprint2.get(options, function (components) {
+          var newComponents = [];
+          for (var i = 0; i < components.length; i++) {
+            var component = components[i];
+            if (component.value === (options.NOT_AVAILABLE || 'not available')) {
+              newComponents.push({ key: component.key, value: 'unknown' });
+            } else if (component.key === 'plugins') {
+              newComponents.push({
+                key: 'plugins',
+                value: map(component.value, function (p) {
+                  var mimeTypes = map(p[2], function (mt) {
+                    if (mt.join) { return mt.join('~') }
+                    return mt
+                  }).join(',');
+                  return [p[0], p[1], mimeTypes].join('::')
+                })
+              });
+            } else if (['canvas', 'webgl'].indexOf(component.key) !== -1) {
+              newComponents.push({ key: component.key, value: component.value.join('~') });
+            } else if (['sessionStorage', 'localStorage', 'indexedDb', 'addBehavior', 'openDatabase'].indexOf(component.key) !== -1) {
+              if (component.value) {
+                newComponents.push({ key: component.key, value: 1 });
+              } else {
+                // skip
+                continue
+              }
+            } else {
+              if (component.value) {
+                newComponents.push(component.value.join ? { key: component.key, value: component.value.join(';') } : component);
+              } else {
+                newComponents.push({ key: component.key, value: component.value });
+              }
+            }
+          }
+          var murmur = x64hash128(map(newComponents, function (component) { return component.value }).join('~~~'), 31);
+          callback(murmur, newComponents);
+        })
+      };
+
+      Fingerprint2.x64hash128 = x64hash128;
+      Fingerprint2.VERSION = '2.1.0';
+      return Fingerprint2
+    });
+    });
+
+    const fp = writable(false);
+
+    if (window.requestIdleCallback) {
+        requestIdleCallback(function () {
+            fingerprint2.get(function (components) {
+                var values = components.map(function (component) { return component.value });
+                var murmur = fingerprint2.x64hash128(values.join(''), 31);
+                fp.set(murmur);
+            });
+        });
+    } else {
+        setTimeout(function () {
+            fingerprint2.get(function (components) {
+                var values = components.map(function (component) { return component.value });
+                var murmur = fingerprint2.x64hash128(values.join(''), 31);
+                fp.set(murmur);
+            });
+        }, 500);
+    }
+
+    /**
+     * Parses an URI
+     *
+     * @author Steven Levithan <stevenlevithan.com> (MIT license)
+     * @api private
+     */
+
+    var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+
+    var parts = [
+        'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
+    ];
+
+    var parseuri = function parseuri(str) {
+        var src = str,
+            b = str.indexOf('['),
+            e = str.indexOf(']');
+
+        if (b != -1 && e != -1) {
+            str = str.substring(0, b) + str.substring(b, e).replace(/:/g, ';') + str.substring(e, str.length);
+        }
+
+        var m = re.exec(str || ''),
+            uri = {},
+            i = 14;
+
+        while (i--) {
+            uri[parts[i]] = m[i] || '';
+        }
+
+        if (b != -1 && e != -1) {
+            uri.source = src;
+            uri.host = uri.host.substring(1, uri.host.length - 1).replace(/;/g, ':');
+            uri.authority = uri.authority.replace('[', '').replace(']', '').replace(/;/g, ':');
+            uri.ipv6uri = true;
+        }
+
+        return uri;
+    };
+
+    /**
+     * Helpers.
+     */
+
+    var s = 1000;
+    var m = s * 60;
+    var h = m * 60;
+    var d = h * 24;
+    var w = d * 7;
+    var y = d * 365.25;
+
+    /**
+     * Parse or format the given `val`.
+     *
+     * Options:
+     *
+     *  - `long` verbose formatting [false]
+     *
+     * @param {String|Number} val
+     * @param {Object} [options]
+     * @throws {Error} throw an error if val is not a non-empty string or a number
+     * @return {String|Number}
+     * @api public
+     */
+
+    var ms = function(val, options) {
+      options = options || {};
+      var type = typeof val;
+      if (type === 'string' && val.length > 0) {
+        return parse(val);
+      } else if (type === 'number' && isFinite(val)) {
+        return options.long ? fmtLong(val) : fmtShort(val);
+      }
+      throw new Error(
+        'val is not a non-empty string or a valid number. val=' +
+          JSON.stringify(val)
+      );
+    };
+
+    /**
+     * Parse the given `str` and return milliseconds.
+     *
+     * @param {String} str
+     * @return {Number}
+     * @api private
+     */
+
+    function parse(str) {
+      str = String(str);
+      if (str.length > 100) {
+        return;
+      }
+      var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+        str
+      );
+      if (!match) {
+        return;
+      }
+      var n = parseFloat(match[1]);
+      var type = (match[2] || 'ms').toLowerCase();
+      switch (type) {
+        case 'years':
+        case 'year':
+        case 'yrs':
+        case 'yr':
+        case 'y':
+          return n * y;
+        case 'weeks':
+        case 'week':
+        case 'w':
+          return n * w;
+        case 'days':
+        case 'day':
+        case 'd':
+          return n * d;
+        case 'hours':
+        case 'hour':
+        case 'hrs':
+        case 'hr':
+        case 'h':
+          return n * h;
+        case 'minutes':
+        case 'minute':
+        case 'mins':
+        case 'min':
+        case 'm':
+          return n * m;
+        case 'seconds':
+        case 'second':
+        case 'secs':
+        case 'sec':
+        case 's':
+          return n * s;
+        case 'milliseconds':
+        case 'millisecond':
+        case 'msecs':
+        case 'msec':
+        case 'ms':
+          return n;
+        default:
+          return undefined;
+      }
+    }
+
+    /**
+     * Short format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtShort(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return Math.round(ms / d) + 'd';
+      }
+      if (msAbs >= h) {
+        return Math.round(ms / h) + 'h';
+      }
+      if (msAbs >= m) {
+        return Math.round(ms / m) + 'm';
+      }
+      if (msAbs >= s) {
+        return Math.round(ms / s) + 's';
+      }
+      return ms + 'ms';
+    }
+
+    /**
+     * Long format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtLong(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d) {
+        return plural(ms, msAbs, d, 'day');
+      }
+      if (msAbs >= h) {
+        return plural(ms, msAbs, h, 'hour');
+      }
+      if (msAbs >= m) {
+        return plural(ms, msAbs, m, 'minute');
+      }
+      if (msAbs >= s) {
+        return plural(ms, msAbs, s, 'second');
+      }
+      return ms + ' ms';
+    }
+
+    /**
+     * Pluralization helper.
+     */
+
+    function plural(ms, msAbs, n, name) {
+      var isPlural = msAbs >= n * 1.5;
+      return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
+    }
+
+    /**
+     * This is the common logic for both the Node.js and web browser
+     * implementations of `debug()`.
+     */
+
+    function setup(env) {
+    	createDebug.debug = createDebug;
+    	createDebug.default = createDebug;
+    	createDebug.coerce = coerce;
+    	createDebug.disable = disable;
+    	createDebug.enable = enable;
+    	createDebug.enabled = enabled;
+    	createDebug.humanize = ms;
+
+    	Object.keys(env).forEach(key => {
+    		createDebug[key] = env[key];
+    	});
+
+    	/**
+    	* Active `debug` instances.
+    	*/
+    	createDebug.instances = [];
+
+    	/**
+    	* The currently active debug mode names, and names to skip.
+    	*/
+
+    	createDebug.names = [];
+    	createDebug.skips = [];
+
+    	/**
+    	* Map of special "%n" handling functions, for the debug "format" argument.
+    	*
+    	* Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
+    	*/
+    	createDebug.formatters = {};
+
+    	/**
+    	* Selects a color for a debug namespace
+    	* @param {String} namespace The namespace string for the for the debug instance to be colored
+    	* @return {Number|String} An ANSI color code for the given namespace
+    	* @api private
+    	*/
+    	function selectColor(namespace) {
+    		let hash = 0;
+
+    		for (let i = 0; i < namespace.length; i++) {
+    			hash = ((hash << 5) - hash) + namespace.charCodeAt(i);
+    			hash |= 0; // Convert to 32bit integer
+    		}
+
+    		return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
+    	}
+    	createDebug.selectColor = selectColor;
+
+    	/**
+    	* Create a debugger with the given `namespace`.
+    	*
+    	* @param {String} namespace
+    	* @return {Function}
+    	* @api public
+    	*/
+    	function createDebug(namespace) {
+    		let prevTime;
+
+    		function debug(...args) {
+    			// Disabled?
+    			if (!debug.enabled) {
+    				return;
+    			}
+
+    			const self = debug;
+
+    			// Set `diff` timestamp
+    			const curr = Number(new Date());
+    			const ms = curr - (prevTime || curr);
+    			self.diff = ms;
+    			self.prev = prevTime;
+    			self.curr = curr;
+    			prevTime = curr;
+
+    			args[0] = createDebug.coerce(args[0]);
+
+    			if (typeof args[0] !== 'string') {
+    				// Anything else let's inspect with %O
+    				args.unshift('%O');
+    			}
+
+    			// Apply any `formatters` transformations
+    			let index = 0;
+    			args[0] = args[0].replace(/%([a-zA-Z%])/g, (match, format) => {
+    				// If we encounter an escaped % then don't increase the array index
+    				if (match === '%%') {
+    					return match;
+    				}
+    				index++;
+    				const formatter = createDebug.formatters[format];
+    				if (typeof formatter === 'function') {
+    					const val = args[index];
+    					match = formatter.call(self, val);
+
+    					// Now we need to remove `args[index]` since it's inlined in the `format`
+    					args.splice(index, 1);
+    					index--;
+    				}
+    				return match;
+    			});
+
+    			// Apply env-specific formatting (colors, etc.)
+    			createDebug.formatArgs.call(self, args);
+
+    			const logFn = self.log || createDebug.log;
+    			logFn.apply(self, args);
+    		}
+
+    		debug.namespace = namespace;
+    		debug.enabled = createDebug.enabled(namespace);
+    		debug.useColors = createDebug.useColors();
+    		debug.color = selectColor(namespace);
+    		debug.destroy = destroy;
+    		debug.extend = extend;
+    		// Debug.formatArgs = formatArgs;
+    		// debug.rawLog = rawLog;
+
+    		// env-specific initialization logic for debug instances
+    		if (typeof createDebug.init === 'function') {
+    			createDebug.init(debug);
+    		}
+
+    		createDebug.instances.push(debug);
+
+    		return debug;
+    	}
+
+    	function destroy() {
+    		const index = createDebug.instances.indexOf(this);
+    		if (index !== -1) {
+    			createDebug.instances.splice(index, 1);
+    			return true;
+    		}
+    		return false;
+    	}
+
+    	function extend(namespace, delimiter) {
+    		const newDebug = createDebug(this.namespace + (typeof delimiter === 'undefined' ? ':' : delimiter) + namespace);
+    		newDebug.log = this.log;
+    		return newDebug;
+    	}
+
+    	/**
+    	* Enables a debug mode by namespaces. This can include modes
+    	* separated by a colon and wildcards.
+    	*
+    	* @param {String} namespaces
+    	* @api public
+    	*/
+    	function enable(namespaces) {
+    		createDebug.save(namespaces);
+
+    		createDebug.names = [];
+    		createDebug.skips = [];
+
+    		let i;
+    		const split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
+    		const len = split.length;
+
+    		for (i = 0; i < len; i++) {
+    			if (!split[i]) {
+    				// ignore empty strings
+    				continue;
+    			}
+
+    			namespaces = split[i].replace(/\*/g, '.*?');
+
+    			if (namespaces[0] === '-') {
+    				createDebug.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    			} else {
+    				createDebug.names.push(new RegExp('^' + namespaces + '$'));
+    			}
+    		}
+
+    		for (i = 0; i < createDebug.instances.length; i++) {
+    			const instance = createDebug.instances[i];
+    			instance.enabled = createDebug.enabled(instance.namespace);
+    		}
+    	}
+
+    	/**
+    	* Disable debug output.
+    	*
+    	* @return {String} namespaces
+    	* @api public
+    	*/
+    	function disable() {
+    		const namespaces = [
+    			...createDebug.names.map(toNamespace),
+    			...createDebug.skips.map(toNamespace).map(namespace => '-' + namespace)
+    		].join(',');
+    		createDebug.enable('');
+    		return namespaces;
+    	}
+
+    	/**
+    	* Returns true if the given mode name is enabled, false otherwise.
+    	*
+    	* @param {String} name
+    	* @return {Boolean}
+    	* @api public
+    	*/
+    	function enabled(name) {
+    		if (name[name.length - 1] === '*') {
+    			return true;
+    		}
+
+    		let i;
+    		let len;
+
+    		for (i = 0, len = createDebug.skips.length; i < len; i++) {
+    			if (createDebug.skips[i].test(name)) {
+    				return false;
+    			}
+    		}
+
+    		for (i = 0, len = createDebug.names.length; i < len; i++) {
+    			if (createDebug.names[i].test(name)) {
+    				return true;
+    			}
+    		}
+
+    		return false;
+    	}
+
+    	/**
+    	* Convert regexp to namespace
+    	*
+    	* @param {RegExp} regxep
+    	* @return {String} namespace
+    	* @api private
+    	*/
+    	function toNamespace(regexp) {
+    		return regexp.toString()
+    			.substring(2, regexp.toString().length - 2)
+    			.replace(/\.\*\?$/, '*');
+    	}
+
+    	/**
+    	* Coerce `val`.
+    	*
+    	* @param {Mixed} val
+    	* @return {Mixed}
+    	* @api private
+    	*/
+    	function coerce(val) {
+    		if (val instanceof Error) {
+    			return val.stack || val.message;
+    		}
+    		return val;
+    	}
+
+    	createDebug.enable(createDebug.load());
+
+    	return createDebug;
+    }
+
+    var common = setup;
+
+    var browser = createCommonjsModule(function (module, exports) {
+    /* eslint-env browser */
+
+    /**
+     * This is the web browser implementation of `debug()`.
+     */
+
+    exports.log = log;
+    exports.formatArgs = formatArgs;
+    exports.save = save;
+    exports.load = load;
+    exports.useColors = useColors;
+    exports.storage = localstorage();
+
+    /**
+     * Colors.
+     */
+
+    exports.colors = [
+    	'#0000CC',
+    	'#0000FF',
+    	'#0033CC',
+    	'#0033FF',
+    	'#0066CC',
+    	'#0066FF',
+    	'#0099CC',
+    	'#0099FF',
+    	'#00CC00',
+    	'#00CC33',
+    	'#00CC66',
+    	'#00CC99',
+    	'#00CCCC',
+    	'#00CCFF',
+    	'#3300CC',
+    	'#3300FF',
+    	'#3333CC',
+    	'#3333FF',
+    	'#3366CC',
+    	'#3366FF',
+    	'#3399CC',
+    	'#3399FF',
+    	'#33CC00',
+    	'#33CC33',
+    	'#33CC66',
+    	'#33CC99',
+    	'#33CCCC',
+    	'#33CCFF',
+    	'#6600CC',
+    	'#6600FF',
+    	'#6633CC',
+    	'#6633FF',
+    	'#66CC00',
+    	'#66CC33',
+    	'#9900CC',
+    	'#9900FF',
+    	'#9933CC',
+    	'#9933FF',
+    	'#99CC00',
+    	'#99CC33',
+    	'#CC0000',
+    	'#CC0033',
+    	'#CC0066',
+    	'#CC0099',
+    	'#CC00CC',
+    	'#CC00FF',
+    	'#CC3300',
+    	'#CC3333',
+    	'#CC3366',
+    	'#CC3399',
+    	'#CC33CC',
+    	'#CC33FF',
+    	'#CC6600',
+    	'#CC6633',
+    	'#CC9900',
+    	'#CC9933',
+    	'#CCCC00',
+    	'#CCCC33',
+    	'#FF0000',
+    	'#FF0033',
+    	'#FF0066',
+    	'#FF0099',
+    	'#FF00CC',
+    	'#FF00FF',
+    	'#FF3300',
+    	'#FF3333',
+    	'#FF3366',
+    	'#FF3399',
+    	'#FF33CC',
+    	'#FF33FF',
+    	'#FF6600',
+    	'#FF6633',
+    	'#FF9900',
+    	'#FF9933',
+    	'#FFCC00',
+    	'#FFCC33'
+    ];
+
+    /**
+     * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+     * and the Firebug extension (any Firefox version) are known
+     * to support "%c" CSS customizations.
+     *
+     * TODO: add a `localStorage` variable to explicitly enable/disable colors
+     */
+
+    // eslint-disable-next-line complexity
+    function useColors() {
+    	// NB: In an Electron preload script, document will be defined but not fully
+    	// initialized. Since we know we're in Chrome, we'll just detect this case
+    	// explicitly
+    	if (typeof window !== 'undefined' && window.process && (window.process.type === 'renderer' || window.process.__nwjs)) {
+    		return true;
+    	}
+
+    	// Internet Explorer and Edge do not support colors.
+    	if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+    		return false;
+    	}
+
+    	// Is webkit? http://stackoverflow.com/a/16459606/376773
+    	// document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+    	return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
+    		// Is firebug? http://stackoverflow.com/a/398120/376773
+    		(typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
+    		// Is firefox >= v31?
+    		// https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    		(typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+    		// Double check webkit in userAgent just in case we are in a worker
+    		(typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
+    }
+
+    /**
+     * Colorize log arguments if enabled.
+     *
+     * @api public
+     */
+
+    function formatArgs(args) {
+    	args[0] = (this.useColors ? '%c' : '') +
+    		this.namespace +
+    		(this.useColors ? ' %c' : ' ') +
+    		args[0] +
+    		(this.useColors ? '%c ' : ' ') +
+    		'+' + module.exports.humanize(this.diff);
+
+    	if (!this.useColors) {
+    		return;
+    	}
+
+    	const c = 'color: ' + this.color;
+    	args.splice(1, 0, c, 'color: inherit');
+
+    	// The final "%c" is somewhat tricky, because there could be other
+    	// arguments passed either before or after the %c, so we need to
+    	// figure out the correct index to insert the CSS into
+    	let index = 0;
+    	let lastC = 0;
+    	args[0].replace(/%[a-zA-Z%]/g, match => {
+    		if (match === '%%') {
+    			return;
+    		}
+    		index++;
+    		if (match === '%c') {
+    			// We only are interested in the *last* %c
+    			// (the user may have provided their own)
+    			lastC = index;
+    		}
+    	});
+
+    	args.splice(lastC, 0, c);
+    }
+
+    /**
+     * Invokes `console.log()` when available.
+     * No-op when `console.log` is not a "function".
+     *
+     * @api public
+     */
+    function log(...args) {
+    	// This hackery is required for IE8/9, where
+    	// the `console.log` function doesn't have 'apply'
+    	return typeof console === 'object' &&
+    		console.log &&
+    		console.log(...args);
+    }
+
+    /**
+     * Save `namespaces`.
+     *
+     * @param {String} namespaces
+     * @api private
+     */
+    function save(namespaces) {
+    	try {
+    		if (namespaces) {
+    			exports.storage.setItem('debug', namespaces);
+    		} else {
+    			exports.storage.removeItem('debug');
+    		}
+    	} catch (error) {
+    		// Swallow
+    		// XXX (@Qix-) should we be logging these?
+    	}
+    }
+
+    /**
+     * Load `namespaces`.
+     *
+     * @return {String} returns the previously persisted debug modes
+     * @api private
+     */
+    function load() {
+    	let r;
+    	try {
+    		r = exports.storage.getItem('debug');
+    	} catch (error) {
+    		// Swallow
+    		// XXX (@Qix-) should we be logging these?
+    	}
+
+    	// If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+    	if (!r && typeof process !== 'undefined' && 'env' in process) {
+    		r = process.env.DEBUG;
+    	}
+
+    	return r;
+    }
+
+    /**
+     * Localstorage attempts to return the localstorage.
+     *
+     * This is necessary because safari throws
+     * when a user disables cookies/localstorage
+     * and you attempt to access it.
+     *
+     * @return {LocalStorage}
+     * @api private
+     */
+
+    function localstorage() {
+    	try {
+    		// TVMLKit (Apple TV JS Runtime) does not have a window object, just localStorage in the global context
+    		// The Browser also has localStorage in the global context.
+    		return localStorage;
+    	} catch (error) {
+    		// Swallow
+    		// XXX (@Qix-) should we be logging these?
+    	}
+    }
+
+    module.exports = common(exports);
+
+    const {formatters} = module.exports;
+
+    /**
+     * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+     */
+
+    formatters.j = function (v) {
+    	try {
+    		return JSON.stringify(v);
+    	} catch (error) {
+    		return '[UnexpectedJSONParseError]: ' + error.message;
+    	}
+    };
+    });
+    var browser_1 = browser.log;
+    var browser_2 = browser.formatArgs;
+    var browser_3 = browser.save;
+    var browser_4 = browser.load;
+    var browser_5 = browser.useColors;
+    var browser_6 = browser.storage;
+    var browser_7 = browser.colors;
+
+    /**
+     * Module dependencies.
+     */
+
+
+    var debug = browser('socket.io-client:url');
+
+    /**
+     * Module exports.
+     */
+
+    var url_1 = url;
+
+    /**
+     * URL parser.
+     *
+     * @param {String} url
+     * @param {Object} An object meant to mimic window.location.
+     *                 Defaults to window.location.
+     * @api public
+     */
+
+    function url (uri, loc) {
+      var obj = uri;
+
+      // default to window.location
+      loc = loc || (typeof location !== 'undefined' && location);
+      if (null == uri) uri = loc.protocol + '//' + loc.host;
+
+      // relative path support
+      if ('string' === typeof uri) {
+        if ('/' === uri.charAt(0)) {
+          if ('/' === uri.charAt(1)) {
+            uri = loc.protocol + uri;
+          } else {
+            uri = loc.host + uri;
+          }
+        }
+
+        if (!/^(https?|wss?):\/\//.test(uri)) {
+          debug('protocol-less url %s', uri);
+          if ('undefined' !== typeof loc) {
+            uri = loc.protocol + '//' + uri;
+          } else {
+            uri = 'https://' + uri;
+          }
+        }
+
+        // parse
+        debug('parse %s', uri);
+        obj = parseuri(uri);
+      }
+
+      // make sure we treat `localhost:80` and `localhost` equally
+      if (!obj.port) {
+        if (/^(http|ws)$/.test(obj.protocol)) {
+          obj.port = '80';
+        } else if (/^(http|ws)s$/.test(obj.protocol)) {
+          obj.port = '443';
+        }
+      }
+
+      obj.path = obj.path || '/';
+
+      var ipv6 = obj.host.indexOf(':') !== -1;
+      var host = ipv6 ? '[' + obj.host + ']' : obj.host;
+
+      // define unique id
+      obj.id = obj.protocol + '://' + host + ':' + obj.port;
+      // define href
+      obj.href = obj.protocol + '://' + host + (loc && loc.port === obj.port ? '' : (':' + obj.port));
+
+      return obj;
+    }
+
+    /**
+     * Helpers.
+     */
+
+    var s$1 = 1000;
+    var m$1 = s$1 * 60;
+    var h$1 = m$1 * 60;
+    var d$1 = h$1 * 24;
+    var y$1 = d$1 * 365.25;
+
+    /**
+     * Parse or format the given `val`.
+     *
+     * Options:
+     *
+     *  - `long` verbose formatting [false]
+     *
+     * @param {String|Number} val
+     * @param {Object} [options]
+     * @throws {Error} throw an error if val is not a non-empty string or a number
+     * @return {String|Number}
+     * @api public
+     */
+
+    var ms$1 = function(val, options) {
+      options = options || {};
+      var type = typeof val;
+      if (type === 'string' && val.length > 0) {
+        return parse$1(val);
+      } else if (type === 'number' && isNaN(val) === false) {
+        return options.long ? fmtLong$1(val) : fmtShort$1(val);
+      }
+      throw new Error(
+        'val is not a non-empty string or a valid number. val=' +
+          JSON.stringify(val)
+      );
+    };
+
+    /**
+     * Parse the given `str` and return milliseconds.
+     *
+     * @param {String} str
+     * @return {Number}
+     * @api private
+     */
+
+    function parse$1(str) {
+      str = String(str);
+      if (str.length > 100) {
+        return;
+      }
+      var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
+        str
+      );
+      if (!match) {
+        return;
+      }
+      var n = parseFloat(match[1]);
+      var type = (match[2] || 'ms').toLowerCase();
+      switch (type) {
+        case 'years':
+        case 'year':
+        case 'yrs':
+        case 'yr':
+        case 'y':
+          return n * y$1;
+        case 'days':
+        case 'day':
+        case 'd':
+          return n * d$1;
+        case 'hours':
+        case 'hour':
+        case 'hrs':
+        case 'hr':
+        case 'h':
+          return n * h$1;
+        case 'minutes':
+        case 'minute':
+        case 'mins':
+        case 'min':
+        case 'm':
+          return n * m$1;
+        case 'seconds':
+        case 'second':
+        case 'secs':
+        case 'sec':
+        case 's':
+          return n * s$1;
+        case 'milliseconds':
+        case 'millisecond':
+        case 'msecs':
+        case 'msec':
+        case 'ms':
+          return n;
+        default:
+          return undefined;
+      }
+    }
+
+    /**
+     * Short format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtShort$1(ms) {
+      if (ms >= d$1) {
+        return Math.round(ms / d$1) + 'd';
+      }
+      if (ms >= h$1) {
+        return Math.round(ms / h$1) + 'h';
+      }
+      if (ms >= m$1) {
+        return Math.round(ms / m$1) + 'm';
+      }
+      if (ms >= s$1) {
+        return Math.round(ms / s$1) + 's';
+      }
+      return ms + 'ms';
+    }
+
+    /**
+     * Long format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtLong$1(ms) {
+      return plural$1(ms, d$1, 'day') ||
+        plural$1(ms, h$1, 'hour') ||
+        plural$1(ms, m$1, 'minute') ||
+        plural$1(ms, s$1, 'second') ||
+        ms + ' ms';
+    }
+
+    /**
+     * Pluralization helper.
+     */
+
+    function plural$1(ms, n, name) {
+      if (ms < n) {
+        return;
+      }
+      if (ms < n * 1.5) {
+        return Math.floor(ms / n) + ' ' + name;
+      }
+      return Math.ceil(ms / n) + ' ' + name + 's';
+    }
+
+    var debug$1 = createCommonjsModule(function (module, exports) {
+    /**
+     * This is the common logic for both the Node.js and web browser
+     * implementations of `debug()`.
+     *
+     * Expose `debug()` as the module.
+     */
+
+    exports = module.exports = createDebug.debug = createDebug['default'] = createDebug;
+    exports.coerce = coerce;
+    exports.disable = disable;
+    exports.enable = enable;
+    exports.enabled = enabled;
+    exports.humanize = ms$1;
+
+    /**
+     * Active `debug` instances.
+     */
+    exports.instances = [];
+
+    /**
+     * The currently active debug mode names, and names to skip.
+     */
+
+    exports.names = [];
+    exports.skips = [];
+
+    /**
+     * Map of special "%n" handling functions, for the debug "format" argument.
+     *
+     * Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
+     */
+
+    exports.formatters = {};
+
+    /**
+     * Select a color.
+     * @param {String} namespace
+     * @return {Number}
+     * @api private
+     */
+
+    function selectColor(namespace) {
+      var hash = 0, i;
+
+      for (i in namespace) {
+        hash  = ((hash << 5) - hash) + namespace.charCodeAt(i);
+        hash |= 0; // Convert to 32bit integer
+      }
+
+      return exports.colors[Math.abs(hash) % exports.colors.length];
+    }
+
+    /**
+     * Create a debugger with the given `namespace`.
+     *
+     * @param {String} namespace
+     * @return {Function}
+     * @api public
+     */
+
+    function createDebug(namespace) {
+
+      var prevTime;
+
+      function debug() {
+        // disabled?
+        if (!debug.enabled) return;
+
+        var self = debug;
+
+        // set `diff` timestamp
+        var curr = +new Date();
+        var ms = curr - (prevTime || curr);
+        self.diff = ms;
+        self.prev = prevTime;
+        self.curr = curr;
+        prevTime = curr;
+
+        // turn the `arguments` into a proper Array
+        var args = new Array(arguments.length);
+        for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i];
+        }
+
+        args[0] = exports.coerce(args[0]);
+
+        if ('string' !== typeof args[0]) {
+          // anything else let's inspect with %O
+          args.unshift('%O');
+        }
+
+        // apply any `formatters` transformations
+        var index = 0;
+        args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match, format) {
+          // if we encounter an escaped % then don't increase the array index
+          if (match === '%%') return match;
+          index++;
+          var formatter = exports.formatters[format];
+          if ('function' === typeof formatter) {
+            var val = args[index];
+            match = formatter.call(self, val);
+
+            // now we need to remove `args[index]` since it's inlined in the `format`
+            args.splice(index, 1);
+            index--;
+          }
+          return match;
+        });
+
+        // apply env-specific formatting (colors, etc.)
+        exports.formatArgs.call(self, args);
+
+        var logFn = debug.log || exports.log || console.log.bind(console);
+        logFn.apply(self, args);
+      }
+
+      debug.namespace = namespace;
+      debug.enabled = exports.enabled(namespace);
+      debug.useColors = exports.useColors();
+      debug.color = selectColor(namespace);
+      debug.destroy = destroy;
+
+      // env-specific initialization logic for debug instances
+      if ('function' === typeof exports.init) {
+        exports.init(debug);
+      }
+
+      exports.instances.push(debug);
+
+      return debug;
+    }
+
+    function destroy () {
+      var index = exports.instances.indexOf(this);
+      if (index !== -1) {
+        exports.instances.splice(index, 1);
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    /**
+     * Enables a debug mode by namespaces. This can include modes
+     * separated by a colon and wildcards.
+     *
+     * @param {String} namespaces
+     * @api public
+     */
+
+    function enable(namespaces) {
+      exports.save(namespaces);
+
+      exports.names = [];
+      exports.skips = [];
+
+      var i;
+      var split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
+      var len = split.length;
+
+      for (i = 0; i < len; i++) {
+        if (!split[i]) continue; // ignore empty strings
+        namespaces = split[i].replace(/\*/g, '.*?');
+        if (namespaces[0] === '-') {
+          exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+        } else {
+          exports.names.push(new RegExp('^' + namespaces + '$'));
+        }
+      }
+
+      for (i = 0; i < exports.instances.length; i++) {
+        var instance = exports.instances[i];
+        instance.enabled = exports.enabled(instance.namespace);
+      }
+    }
+
+    /**
+     * Disable debug output.
+     *
+     * @api public
+     */
+
+    function disable() {
+      exports.enable('');
+    }
+
+    /**
+     * Returns true if the given mode name is enabled, false otherwise.
+     *
+     * @param {String} name
+     * @return {Boolean}
+     * @api public
+     */
+
+    function enabled(name) {
+      if (name[name.length - 1] === '*') {
+        return true;
+      }
+      var i, len;
+      for (i = 0, len = exports.skips.length; i < len; i++) {
+        if (exports.skips[i].test(name)) {
+          return false;
+        }
+      }
+      for (i = 0, len = exports.names.length; i < len; i++) {
+        if (exports.names[i].test(name)) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    /**
+     * Coerce `val`.
+     *
+     * @param {Mixed} val
+     * @return {Mixed}
+     * @api private
+     */
+
+    function coerce(val) {
+      if (val instanceof Error) return val.stack || val.message;
+      return val;
+    }
+    });
+    var debug_1 = debug$1.coerce;
+    var debug_2 = debug$1.disable;
+    var debug_3 = debug$1.enable;
+    var debug_4 = debug$1.enabled;
+    var debug_5 = debug$1.humanize;
+    var debug_6 = debug$1.instances;
+    var debug_7 = debug$1.names;
+    var debug_8 = debug$1.skips;
+    var debug_9 = debug$1.formatters;
+
+    var browser$1 = createCommonjsModule(function (module, exports) {
+    /**
+     * This is the web browser implementation of `debug()`.
+     *
+     * Expose `debug()` as the module.
+     */
+
+    exports = module.exports = debug$1;
+    exports.log = log;
+    exports.formatArgs = formatArgs;
+    exports.save = save;
+    exports.load = load;
+    exports.useColors = useColors;
+    exports.storage = 'undefined' != typeof chrome
+                   && 'undefined' != typeof chrome.storage
+                      ? chrome.storage.local
+                      : localstorage();
+
+    /**
+     * Colors.
+     */
+
+    exports.colors = [
+      '#0000CC', '#0000FF', '#0033CC', '#0033FF', '#0066CC', '#0066FF', '#0099CC',
+      '#0099FF', '#00CC00', '#00CC33', '#00CC66', '#00CC99', '#00CCCC', '#00CCFF',
+      '#3300CC', '#3300FF', '#3333CC', '#3333FF', '#3366CC', '#3366FF', '#3399CC',
+      '#3399FF', '#33CC00', '#33CC33', '#33CC66', '#33CC99', '#33CCCC', '#33CCFF',
+      '#6600CC', '#6600FF', '#6633CC', '#6633FF', '#66CC00', '#66CC33', '#9900CC',
+      '#9900FF', '#9933CC', '#9933FF', '#99CC00', '#99CC33', '#CC0000', '#CC0033',
+      '#CC0066', '#CC0099', '#CC00CC', '#CC00FF', '#CC3300', '#CC3333', '#CC3366',
+      '#CC3399', '#CC33CC', '#CC33FF', '#CC6600', '#CC6633', '#CC9900', '#CC9933',
+      '#CCCC00', '#CCCC33', '#FF0000', '#FF0033', '#FF0066', '#FF0099', '#FF00CC',
+      '#FF00FF', '#FF3300', '#FF3333', '#FF3366', '#FF3399', '#FF33CC', '#FF33FF',
+      '#FF6600', '#FF6633', '#FF9900', '#FF9933', '#FFCC00', '#FFCC33'
+    ];
+
+    /**
+     * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+     * and the Firebug extension (any Firefox version) are known
+     * to support "%c" CSS customizations.
+     *
+     * TODO: add a `localStorage` variable to explicitly enable/disable colors
+     */
+
+    function useColors() {
+      // NB: In an Electron preload script, document will be defined but not fully
+      // initialized. Since we know we're in Chrome, we'll just detect this case
+      // explicitly
+      if (typeof window !== 'undefined' && window.process && window.process.type === 'renderer') {
+        return true;
+      }
+
+      // Internet Explorer and Edge do not support colors.
+      if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+        return false;
+      }
+
+      // is webkit? http://stackoverflow.com/a/16459606/376773
+      // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+      return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
+        // is firebug? http://stackoverflow.com/a/398120/376773
+        (typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
+        // is firefox >= v31?
+        // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+        (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+        // double check webkit in userAgent just in case we are in a worker
+        (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
+    }
+
+    /**
+     * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+     */
+
+    exports.formatters.j = function(v) {
+      try {
+        return JSON.stringify(v);
+      } catch (err) {
+        return '[UnexpectedJSONParseError]: ' + err.message;
+      }
+    };
+
+
+    /**
+     * Colorize log arguments if enabled.
+     *
+     * @api public
+     */
+
+    function formatArgs(args) {
+      var useColors = this.useColors;
+
+      args[0] = (useColors ? '%c' : '')
+        + this.namespace
+        + (useColors ? ' %c' : ' ')
+        + args[0]
+        + (useColors ? '%c ' : ' ')
+        + '+' + exports.humanize(this.diff);
+
+      if (!useColors) return;
+
+      var c = 'color: ' + this.color;
+      args.splice(1, 0, c, 'color: inherit');
+
+      // the final "%c" is somewhat tricky, because there could be other
+      // arguments passed either before or after the %c, so we need to
+      // figure out the correct index to insert the CSS into
+      var index = 0;
+      var lastC = 0;
+      args[0].replace(/%[a-zA-Z%]/g, function(match) {
+        if ('%%' === match) return;
+        index++;
+        if ('%c' === match) {
+          // we only are interested in the *last* %c
+          // (the user may have provided their own)
+          lastC = index;
+        }
+      });
+
+      args.splice(lastC, 0, c);
+    }
+
+    /**
+     * Invokes `console.log()` when available.
+     * No-op when `console.log` is not a "function".
+     *
+     * @api public
+     */
+
+    function log() {
+      // this hackery is required for IE8/9, where
+      // the `console.log` function doesn't have 'apply'
+      return 'object' === typeof console
+        && console.log
+        && Function.prototype.apply.call(console.log, console, arguments);
+    }
+
+    /**
+     * Save `namespaces`.
+     *
+     * @param {String} namespaces
+     * @api private
+     */
+
+    function save(namespaces) {
+      try {
+        if (null == namespaces) {
+          exports.storage.removeItem('debug');
+        } else {
+          exports.storage.debug = namespaces;
+        }
+      } catch(e) {}
+    }
+
+    /**
+     * Load `namespaces`.
+     *
+     * @return {String} returns the previously persisted debug modes
+     * @api private
+     */
+
+    function load() {
+      var r;
+      try {
+        r = exports.storage.debug;
+      } catch(e) {}
+
+      // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+      if (!r && typeof process !== 'undefined' && 'env' in process) {
+        r = process.env.DEBUG;
+      }
+
+      return r;
+    }
+
+    /**
+     * Enable namespaces listed in `localStorage.debug` initially.
+     */
+
+    exports.enable(load());
+
+    /**
+     * Localstorage attempts to return the localstorage.
+     *
+     * This is necessary because safari throws
+     * when a user disables cookies/localstorage
+     * and you attempt to access it.
+     *
+     * @return {LocalStorage}
+     * @api private
+     */
+
+    function localstorage() {
+      try {
+        return window.localStorage;
+      } catch (e) {}
+    }
+    });
+    var browser_1$1 = browser$1.log;
+    var browser_2$1 = browser$1.formatArgs;
+    var browser_3$1 = browser$1.save;
+    var browser_4$1 = browser$1.load;
+    var browser_5$1 = browser$1.useColors;
+    var browser_6$1 = browser$1.storage;
+    var browser_7$1 = browser$1.colors;
+
+    var componentEmitter = createCommonjsModule(function (module) {
+    /**
+     * Expose `Emitter`.
+     */
+
+    {
+      module.exports = Emitter;
+    }
+
+    /**
+     * Initialize a new `Emitter`.
+     *
+     * @api public
+     */
+
+    function Emitter(obj) {
+      if (obj) return mixin(obj);
+    }
+    /**
+     * Mixin the emitter properties.
+     *
+     * @param {Object} obj
+     * @return {Object}
+     * @api private
+     */
+
+    function mixin(obj) {
+      for (var key in Emitter.prototype) {
+        obj[key] = Emitter.prototype[key];
+      }
+      return obj;
+    }
+
+    /**
+     * Listen on the given `event` with `fn`.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.on =
+    Emitter.prototype.addEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+      (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+        .push(fn);
+      return this;
+    };
+
+    /**
+     * Adds an `event` listener that will be invoked a single
+     * time then automatically removed.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.once = function(event, fn){
+      function on() {
+        this.off(event, on);
+        fn.apply(this, arguments);
+      }
+
+      on.fn = fn;
+      this.on(event, on);
+      return this;
+    };
+
+    /**
+     * Remove the given callback for `event` or all
+     * registered callbacks.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.off =
+    Emitter.prototype.removeListener =
+    Emitter.prototype.removeAllListeners =
+    Emitter.prototype.removeEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+
+      // all
+      if (0 == arguments.length) {
+        this._callbacks = {};
+        return this;
+      }
+
+      // specific event
+      var callbacks = this._callbacks['$' + event];
+      if (!callbacks) return this;
+
+      // remove all handlers
+      if (1 == arguments.length) {
+        delete this._callbacks['$' + event];
+        return this;
+      }
+
+      // remove specific handler
+      var cb;
+      for (var i = 0; i < callbacks.length; i++) {
+        cb = callbacks[i];
+        if (cb === fn || cb.fn === fn) {
+          callbacks.splice(i, 1);
+          break;
+        }
+      }
+      return this;
+    };
+
+    /**
+     * Emit `event` with the given args.
+     *
+     * @param {String} event
+     * @param {Mixed} ...
+     * @return {Emitter}
+     */
+
+    Emitter.prototype.emit = function(event){
+      this._callbacks = this._callbacks || {};
+      var args = [].slice.call(arguments, 1)
+        , callbacks = this._callbacks['$' + event];
+
+      if (callbacks) {
+        callbacks = callbacks.slice(0);
+        for (var i = 0, len = callbacks.length; i < len; ++i) {
+          callbacks[i].apply(this, args);
+        }
+      }
+
+      return this;
+    };
+
+    /**
+     * Return array of callbacks for `event`.
+     *
+     * @param {String} event
+     * @return {Array}
+     * @api public
+     */
+
+    Emitter.prototype.listeners = function(event){
+      this._callbacks = this._callbacks || {};
+      return this._callbacks['$' + event] || [];
+    };
+
+    /**
+     * Check if this emitter has `event` handlers.
+     *
+     * @param {String} event
+     * @return {Boolean}
+     * @api public
+     */
+
+    Emitter.prototype.hasListeners = function(event){
+      return !! this.listeners(event).length;
+    };
+    });
+
+    var toString = {}.toString;
+
+    var isarray = Array.isArray || function (arr) {
+      return toString.call(arr) == '[object Array]';
+    };
+
+    var isBuffer = isBuf;
+
+    var withNativeBuffer = typeof Buffer === 'function' && typeof Buffer.isBuffer === 'function';
+    var withNativeArrayBuffer = typeof ArrayBuffer === 'function';
+
+    var isView = function (obj) {
+      return typeof ArrayBuffer.isView === 'function' ? ArrayBuffer.isView(obj) : (obj.buffer instanceof ArrayBuffer);
+    };
+
+    /**
+     * Returns true if obj is a buffer or an arraybuffer.
+     *
+     * @api private
+     */
+
+    function isBuf(obj) {
+      return (withNativeBuffer && Buffer.isBuffer(obj)) ||
+              (withNativeArrayBuffer && (obj instanceof ArrayBuffer || isView(obj)));
+    }
+
+    /*global Blob,File*/
+
+    /**
+     * Module requirements
+     */
+
+
+
+    var toString$1 = Object.prototype.toString;
+    var withNativeBlob = typeof Blob === 'function' || (typeof Blob !== 'undefined' && toString$1.call(Blob) === '[object BlobConstructor]');
+    var withNativeFile = typeof File === 'function' || (typeof File !== 'undefined' && toString$1.call(File) === '[object FileConstructor]');
+
+    /**
+     * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
+     * Anything with blobs or files should be fed through removeBlobs before coming
+     * here.
+     *
+     * @param {Object} packet - socket.io event packet
+     * @return {Object} with deconstructed packet and list of buffers
+     * @api public
+     */
+
+    var deconstructPacket = function(packet) {
+      var buffers = [];
+      var packetData = packet.data;
+      var pack = packet;
+      pack.data = _deconstructPacket(packetData, buffers);
+      pack.attachments = buffers.length; // number of binary 'attachments'
+      return {packet: pack, buffers: buffers};
+    };
+
+    function _deconstructPacket(data, buffers) {
+      if (!data) return data;
+
+      if (isBuffer(data)) {
+        var placeholder = { _placeholder: true, num: buffers.length };
+        buffers.push(data);
+        return placeholder;
+      } else if (isarray(data)) {
+        var newData = new Array(data.length);
+        for (var i = 0; i < data.length; i++) {
+          newData[i] = _deconstructPacket(data[i], buffers);
+        }
+        return newData;
+      } else if (typeof data === 'object' && !(data instanceof Date)) {
+        var newData = {};
+        for (var key in data) {
+          newData[key] = _deconstructPacket(data[key], buffers);
+        }
+        return newData;
+      }
+      return data;
+    }
+
+    /**
+     * Reconstructs a binary packet from its placeholder packet and buffers
+     *
+     * @param {Object} packet - event packet with placeholders
+     * @param {Array} buffers - binary buffers to put in placeholder positions
+     * @return {Object} reconstructed packet
+     * @api public
+     */
+
+    var reconstructPacket = function(packet, buffers) {
+      packet.data = _reconstructPacket(packet.data, buffers);
+      packet.attachments = undefined; // no longer useful
+      return packet;
+    };
+
+    function _reconstructPacket(data, buffers) {
+      if (!data) return data;
+
+      if (data && data._placeholder) {
+        return buffers[data.num]; // appropriate buffer (should be natural order anyway)
+      } else if (isarray(data)) {
+        for (var i = 0; i < data.length; i++) {
+          data[i] = _reconstructPacket(data[i], buffers);
+        }
+      } else if (typeof data === 'object') {
+        for (var key in data) {
+          data[key] = _reconstructPacket(data[key], buffers);
+        }
+      }
+
+      return data;
+    }
+
+    /**
+     * Asynchronously removes Blobs or Files from data via
+     * FileReader's readAsArrayBuffer method. Used before encoding
+     * data as msgpack. Calls callback with the blobless data.
+     *
+     * @param {Object} data
+     * @param {Function} callback
+     * @api private
+     */
+
+    var removeBlobs = function(data, callback) {
+      function _removeBlobs(obj, curKey, containingObject) {
+        if (!obj) return obj;
+
+        // convert any blob
+        if ((withNativeBlob && obj instanceof Blob) ||
+            (withNativeFile && obj instanceof File)) {
+          pendingBlobs++;
+
+          // async filereader
+          var fileReader = new FileReader();
+          fileReader.onload = function() { // this.result == arraybuffer
+            if (containingObject) {
+              containingObject[curKey] = this.result;
+            }
+            else {
+              bloblessData = this.result;
+            }
+
+            // if nothing pending its callback time
+            if(! --pendingBlobs) {
+              callback(bloblessData);
+            }
+          };
+
+          fileReader.readAsArrayBuffer(obj); // blob -> arraybuffer
+        } else if (isarray(obj)) { // handle array
+          for (var i = 0; i < obj.length; i++) {
+            _removeBlobs(obj[i], i, obj);
+          }
+        } else if (typeof obj === 'object' && !isBuffer(obj)) { // and object
+          for (var key in obj) {
+            _removeBlobs(obj[key], key, obj);
+          }
+        }
+      }
+
+      var pendingBlobs = 0;
+      var bloblessData = data;
+      _removeBlobs(bloblessData);
+      if (!pendingBlobs) {
+        callback(bloblessData);
+      }
+    };
+
+    var binary = {
+    	deconstructPacket: deconstructPacket,
+    	reconstructPacket: reconstructPacket,
+    	removeBlobs: removeBlobs
+    };
+
+    var socket_ioParser = createCommonjsModule(function (module, exports) {
+    /**
+     * Module dependencies.
+     */
+
+    var debug = browser$1('socket.io-parser');
+
+
+
+
+
+    /**
+     * Protocol version.
+     *
+     * @api public
+     */
+
+    exports.protocol = 4;
+
+    /**
+     * Packet types.
+     *
+     * @api public
+     */
+
+    exports.types = [
+      'CONNECT',
+      'DISCONNECT',
+      'EVENT',
+      'ACK',
+      'ERROR',
+      'BINARY_EVENT',
+      'BINARY_ACK'
+    ];
+
+    /**
+     * Packet type `connect`.
+     *
+     * @api public
+     */
+
+    exports.CONNECT = 0;
+
+    /**
+     * Packet type `disconnect`.
+     *
+     * @api public
+     */
+
+    exports.DISCONNECT = 1;
+
+    /**
+     * Packet type `event`.
+     *
+     * @api public
+     */
+
+    exports.EVENT = 2;
+
+    /**
+     * Packet type `ack`.
+     *
+     * @api public
+     */
+
+    exports.ACK = 3;
+
+    /**
+     * Packet type `error`.
+     *
+     * @api public
+     */
+
+    exports.ERROR = 4;
+
+    /**
+     * Packet type 'binary event'
+     *
+     * @api public
+     */
+
+    exports.BINARY_EVENT = 5;
+
+    /**
+     * Packet type `binary ack`. For acks with binary arguments.
+     *
+     * @api public
+     */
+
+    exports.BINARY_ACK = 6;
+
+    /**
+     * Encoder constructor.
+     *
+     * @api public
+     */
+
+    exports.Encoder = Encoder;
+
+    /**
+     * Decoder constructor.
+     *
+     * @api public
+     */
+
+    exports.Decoder = Decoder;
+
+    /**
+     * A socket.io Encoder instance
+     *
+     * @api public
+     */
+
+    function Encoder() {}
+
+    var ERROR_PACKET = exports.ERROR + '"encode error"';
+
+    /**
+     * Encode a packet as a single string if non-binary, or as a
+     * buffer sequence, depending on packet type.
+     *
+     * @param {Object} obj - packet object
+     * @param {Function} callback - function to handle encodings (likely engine.write)
+     * @return Calls callback with Array of encodings
+     * @api public
+     */
+
+    Encoder.prototype.encode = function(obj, callback){
+      debug('encoding packet %j', obj);
+
+      if (exports.BINARY_EVENT === obj.type || exports.BINARY_ACK === obj.type) {
+        encodeAsBinary(obj, callback);
+      } else {
+        var encoding = encodeAsString(obj);
+        callback([encoding]);
+      }
+    };
+
+    /**
+     * Encode packet as string.
+     *
+     * @param {Object} packet
+     * @return {String} encoded
+     * @api private
+     */
+
+    function encodeAsString(obj) {
+
+      // first is type
+      var str = '' + obj.type;
+
+      // attachments if we have them
+      if (exports.BINARY_EVENT === obj.type || exports.BINARY_ACK === obj.type) {
+        str += obj.attachments + '-';
+      }
+
+      // if we have a namespace other than `/`
+      // we append it followed by a comma `,`
+      if (obj.nsp && '/' !== obj.nsp) {
+        str += obj.nsp + ',';
+      }
+
+      // immediately followed by the id
+      if (null != obj.id) {
+        str += obj.id;
+      }
+
+      // json data
+      if (null != obj.data) {
+        var payload = tryStringify(obj.data);
+        if (payload !== false) {
+          str += payload;
+        } else {
+          return ERROR_PACKET;
+        }
+      }
+
+      debug('encoded %j as %s', obj, str);
+      return str;
+    }
+
+    function tryStringify(str) {
+      try {
+        return JSON.stringify(str);
+      } catch(e){
+        return false;
+      }
+    }
+
+    /**
+     * Encode packet as 'buffer sequence' by removing blobs, and
+     * deconstructing packet into object with placeholders and
+     * a list of buffers.
+     *
+     * @param {Object} packet
+     * @return {Buffer} encoded
+     * @api private
+     */
+
+    function encodeAsBinary(obj, callback) {
+
+      function writeEncoding(bloblessData) {
+        var deconstruction = binary.deconstructPacket(bloblessData);
+        var pack = encodeAsString(deconstruction.packet);
+        var buffers = deconstruction.buffers;
+
+        buffers.unshift(pack); // add packet info to beginning of data list
+        callback(buffers); // write all the buffers
+      }
+
+      binary.removeBlobs(obj, writeEncoding);
+    }
+
+    /**
+     * A socket.io Decoder instance
+     *
+     * @return {Object} decoder
+     * @api public
+     */
+
+    function Decoder() {
+      this.reconstructor = null;
+    }
+
+    /**
+     * Mix in `Emitter` with Decoder.
+     */
+
+    componentEmitter(Decoder.prototype);
+
+    /**
+     * Decodes an encoded packet string into packet JSON.
+     *
+     * @param {String} obj - encoded packet
+     * @return {Object} packet
+     * @api public
+     */
+
+    Decoder.prototype.add = function(obj) {
+      var packet;
+      if (typeof obj === 'string') {
+        packet = decodeString(obj);
+        if (exports.BINARY_EVENT === packet.type || exports.BINARY_ACK === packet.type) { // binary packet's json
+          this.reconstructor = new BinaryReconstructor(packet);
+
+          // no attachments, labeled binary but no binary data to follow
+          if (this.reconstructor.reconPack.attachments === 0) {
+            this.emit('decoded', packet);
+          }
+        } else { // non-binary full packet
+          this.emit('decoded', packet);
+        }
+      } else if (isBuffer(obj) || obj.base64) { // raw binary data
+        if (!this.reconstructor) {
+          throw new Error('got binary data when not reconstructing a packet');
+        } else {
+          packet = this.reconstructor.takeBinaryData(obj);
+          if (packet) { // received final buffer
+            this.reconstructor = null;
+            this.emit('decoded', packet);
+          }
+        }
+      } else {
+        throw new Error('Unknown type: ' + obj);
+      }
+    };
+
+    /**
+     * Decode a packet String (JSON data)
+     *
+     * @param {String} str
+     * @return {Object} packet
+     * @api private
+     */
+
+    function decodeString(str) {
+      var i = 0;
+      // look up type
+      var p = {
+        type: Number(str.charAt(0))
+      };
+
+      if (null == exports.types[p.type]) {
+        return error('unknown packet type ' + p.type);
+      }
+
+      // look up attachments if type binary
+      if (exports.BINARY_EVENT === p.type || exports.BINARY_ACK === p.type) {
+        var buf = '';
+        while (str.charAt(++i) !== '-') {
+          buf += str.charAt(i);
+          if (i == str.length) break;
+        }
+        if (buf != Number(buf) || str.charAt(i) !== '-') {
+          throw new Error('Illegal attachments');
+        }
+        p.attachments = Number(buf);
+      }
+
+      // look up namespace (if any)
+      if ('/' === str.charAt(i + 1)) {
+        p.nsp = '';
+        while (++i) {
+          var c = str.charAt(i);
+          if (',' === c) break;
+          p.nsp += c;
+          if (i === str.length) break;
+        }
+      } else {
+        p.nsp = '/';
+      }
+
+      // look up id
+      var next = str.charAt(i + 1);
+      if ('' !== next && Number(next) == next) {
+        p.id = '';
+        while (++i) {
+          var c = str.charAt(i);
+          if (null == c || Number(c) != c) {
+            --i;
+            break;
+          }
+          p.id += str.charAt(i);
+          if (i === str.length) break;
+        }
+        p.id = Number(p.id);
+      }
+
+      // look up json data
+      if (str.charAt(++i)) {
+        var payload = tryParse(str.substr(i));
+        var isPayloadValid = payload !== false && (p.type === exports.ERROR || isarray(payload));
+        if (isPayloadValid) {
+          p.data = payload;
+        } else {
+          return error('invalid payload');
+        }
+      }
+
+      debug('decoded %s as %j', str, p);
+      return p;
+    }
+
+    function tryParse(str) {
+      try {
+        return JSON.parse(str);
+      } catch(e){
+        return false;
+      }
+    }
+
+    /**
+     * Deallocates a parser's resources
+     *
+     * @api public
+     */
+
+    Decoder.prototype.destroy = function() {
+      if (this.reconstructor) {
+        this.reconstructor.finishedReconstruction();
+      }
+    };
+
+    /**
+     * A manager of a binary event's 'buffer sequence'. Should
+     * be constructed whenever a packet of type BINARY_EVENT is
+     * decoded.
+     *
+     * @param {Object} packet
+     * @return {BinaryReconstructor} initialized reconstructor
+     * @api private
+     */
+
+    function BinaryReconstructor(packet) {
+      this.reconPack = packet;
+      this.buffers = [];
+    }
+
+    /**
+     * Method to be called when binary data received from connection
+     * after a BINARY_EVENT packet.
+     *
+     * @param {Buffer | ArrayBuffer} binData - the raw binary data received
+     * @return {null | Object} returns null if more binary data is expected or
+     *   a reconstructed packet object if all buffers have been received.
+     * @api private
+     */
+
+    BinaryReconstructor.prototype.takeBinaryData = function(binData) {
+      this.buffers.push(binData);
+      if (this.buffers.length === this.reconPack.attachments) { // done with buffer list
+        var packet = binary.reconstructPacket(this.reconPack, this.buffers);
+        this.finishedReconstruction();
+        return packet;
+      }
+      return null;
+    };
+
+    /**
+     * Cleans up binary packet reconstruction variables.
+     *
+     * @api private
+     */
+
+    BinaryReconstructor.prototype.finishedReconstruction = function() {
+      this.reconPack = null;
+      this.buffers = [];
+    };
+
+    function error(msg) {
+      return {
+        type: exports.ERROR,
+        data: 'parser error: ' + msg
+      };
+    }
+    });
+    var socket_ioParser_1 = socket_ioParser.protocol;
+    var socket_ioParser_2 = socket_ioParser.types;
+    var socket_ioParser_3 = socket_ioParser.CONNECT;
+    var socket_ioParser_4 = socket_ioParser.DISCONNECT;
+    var socket_ioParser_5 = socket_ioParser.EVENT;
+    var socket_ioParser_6 = socket_ioParser.ACK;
+    var socket_ioParser_7 = socket_ioParser.ERROR;
+    var socket_ioParser_8 = socket_ioParser.BINARY_EVENT;
+    var socket_ioParser_9 = socket_ioParser.BINARY_ACK;
+    var socket_ioParser_10 = socket_ioParser.Encoder;
+    var socket_ioParser_11 = socket_ioParser.Decoder;
+
+    var hasCors = createCommonjsModule(function (module) {
+    /**
+     * Module exports.
+     *
+     * Logic borrowed from Modernizr:
+     *
+     *   - https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cors.js
+     */
+
+    try {
+      module.exports = typeof XMLHttpRequest !== 'undefined' &&
+        'withCredentials' in new XMLHttpRequest();
+    } catch (err) {
+      // if XMLHttp support is disabled in IE then it will throw
+      // when trying to create
+      module.exports = false;
+    }
+    });
+
+    // browser shim for xmlhttprequest module
+
+
+
+    var xmlhttprequest = function (opts) {
+      var xdomain = opts.xdomain;
+
+      // scheme must be same when usign XDomainRequest
+      // http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx
+      var xscheme = opts.xscheme;
+
+      // XDomainRequest has a flow of not sending cookie, therefore it should be disabled as a default.
+      // https://github.com/Automattic/engine.io-client/pull/217
+      var enablesXDR = opts.enablesXDR;
+
+      // XMLHttpRequest can be disabled on IE
+      try {
+        if ('undefined' !== typeof XMLHttpRequest && (!xdomain || hasCors)) {
+          return new XMLHttpRequest();
+        }
+      } catch (e) { }
+
+      // Use XDomainRequest for IE8 if enablesXDR is true
+      // because loading bar keeps flashing when using jsonp-polling
+      // https://github.com/yujiosaka/socke.io-ie8-loading-example
+      try {
+        if ('undefined' !== typeof XDomainRequest && !xscheme && enablesXDR) {
+          return new XDomainRequest();
+        }
+      } catch (e) { }
+
+      if (!xdomain) {
+        try {
+          return new self[['Active'].concat('Object').join('X')]('Microsoft.XMLHTTP');
+        } catch (e) { }
+      }
+    };
+
+    /**
+     * Gets the keys for an object.
+     *
+     * @return {Array} keys
+     * @api private
+     */
+
+    var keys = Object.keys || function keys (obj){
+      var arr = [];
+      var has = Object.prototype.hasOwnProperty;
+
+      for (var i in obj) {
+        if (has.call(obj, i)) {
+          arr.push(i);
+        }
+      }
+      return arr;
+    };
+
+    var toString$2 = {}.toString;
+
+    var isarray$1 = Array.isArray || function (arr) {
+      return toString$2.call(arr) == '[object Array]';
+    };
+
+    /* global Blob File */
+
+    /*
+     * Module requirements.
+     */
+
+
+
+    var toString$3 = Object.prototype.toString;
+    var withNativeBlob$1 = typeof Blob === 'function' ||
+                            typeof Blob !== 'undefined' && toString$3.call(Blob) === '[object BlobConstructor]';
+    var withNativeFile$1 = typeof File === 'function' ||
+                            typeof File !== 'undefined' && toString$3.call(File) === '[object FileConstructor]';
+
+    /**
+     * Module exports.
+     */
+
+    var hasBinary2 = hasBinary;
+
+    /**
+     * Checks for binary data.
+     *
+     * Supports Buffer, ArrayBuffer, Blob and File.
+     *
+     * @param {Object} anything
+     * @api public
+     */
+
+    function hasBinary (obj) {
+      if (!obj || typeof obj !== 'object') {
+        return false;
+      }
+
+      if (isarray$1(obj)) {
+        for (var i = 0, l = obj.length; i < l; i++) {
+          if (hasBinary(obj[i])) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      if ((typeof Buffer === 'function' && Buffer.isBuffer && Buffer.isBuffer(obj)) ||
+        (typeof ArrayBuffer === 'function' && obj instanceof ArrayBuffer) ||
+        (withNativeBlob$1 && obj instanceof Blob) ||
+        (withNativeFile$1 && obj instanceof File)
+      ) {
+        return true;
+      }
+
+      // see: https://github.com/Automattic/has-binary/pull/4
+      if (obj.toJSON && typeof obj.toJSON === 'function' && arguments.length === 1) {
+        return hasBinary(obj.toJSON(), true);
+      }
+
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key) && hasBinary(obj[key])) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    /**
+     * An abstraction for slicing an arraybuffer even when
+     * ArrayBuffer.prototype.slice is not supported
+     *
+     * @api public
+     */
+
+    var arraybuffer_slice = function(arraybuffer, start, end) {
+      var bytes = arraybuffer.byteLength;
+      start = start || 0;
+      end = end || bytes;
+
+      if (arraybuffer.slice) { return arraybuffer.slice(start, end); }
+
+      if (start < 0) { start += bytes; }
+      if (end < 0) { end += bytes; }
+      if (end > bytes) { end = bytes; }
+
+      if (start >= bytes || start >= end || bytes === 0) {
+        return new ArrayBuffer(0);
+      }
+
+      var abv = new Uint8Array(arraybuffer);
+      var result = new Uint8Array(end - start);
+      for (var i = start, ii = 0; i < end; i++, ii++) {
+        result[ii] = abv[i];
+      }
+      return result.buffer;
+    };
+
+    var after_1 = after;
+
+    function after(count, callback, err_cb) {
+        var bail = false;
+        err_cb = err_cb || noop$1;
+        proxy.count = count;
+
+        return (count === 0) ? callback() : proxy
+
+        function proxy(err, result) {
+            if (proxy.count <= 0) {
+                throw new Error('after called too many times')
+            }
+            --proxy.count;
+
+            // after first error, rest are passed to err_cb
+            if (err) {
+                bail = true;
+                callback(err);
+                // future error callbacks will go to error handler
+                callback = err_cb;
+            } else if (proxy.count === 0 && !bail) {
+                callback(null, result);
+            }
+        }
+    }
+
+    function noop$1() {}
+
+    /*! https://mths.be/utf8js v2.1.2 by @mathias */
+
+    var stringFromCharCode = String.fromCharCode;
+
+    // Taken from https://mths.be/punycode
+    function ucs2decode(string) {
+    	var output = [];
+    	var counter = 0;
+    	var length = string.length;
+    	var value;
+    	var extra;
+    	while (counter < length) {
+    		value = string.charCodeAt(counter++);
+    		if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
+    			// high surrogate, and there is a next character
+    			extra = string.charCodeAt(counter++);
+    			if ((extra & 0xFC00) == 0xDC00) { // low surrogate
+    				output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
+    			} else {
+    				// unmatched surrogate; only append this code unit, in case the next
+    				// code unit is the high surrogate of a surrogate pair
+    				output.push(value);
+    				counter--;
+    			}
+    		} else {
+    			output.push(value);
+    		}
+    	}
+    	return output;
+    }
+
+    // Taken from https://mths.be/punycode
+    function ucs2encode(array) {
+    	var length = array.length;
+    	var index = -1;
+    	var value;
+    	var output = '';
+    	while (++index < length) {
+    		value = array[index];
+    		if (value > 0xFFFF) {
+    			value -= 0x10000;
+    			output += stringFromCharCode(value >>> 10 & 0x3FF | 0xD800);
+    			value = 0xDC00 | value & 0x3FF;
+    		}
+    		output += stringFromCharCode(value);
+    	}
+    	return output;
+    }
+
+    function checkScalarValue(codePoint, strict) {
+    	if (codePoint >= 0xD800 && codePoint <= 0xDFFF) {
+    		if (strict) {
+    			throw Error(
+    				'Lone surrogate U+' + codePoint.toString(16).toUpperCase() +
+    				' is not a scalar value'
+    			);
+    		}
+    		return false;
+    	}
+    	return true;
+    }
+    /*--------------------------------------------------------------------------*/
+
+    function createByte(codePoint, shift) {
+    	return stringFromCharCode(((codePoint >> shift) & 0x3F) | 0x80);
+    }
+
+    function encodeCodePoint(codePoint, strict) {
+    	if ((codePoint & 0xFFFFFF80) == 0) { // 1-byte sequence
+    		return stringFromCharCode(codePoint);
+    	}
+    	var symbol = '';
+    	if ((codePoint & 0xFFFFF800) == 0) { // 2-byte sequence
+    		symbol = stringFromCharCode(((codePoint >> 6) & 0x1F) | 0xC0);
+    	}
+    	else if ((codePoint & 0xFFFF0000) == 0) { // 3-byte sequence
+    		if (!checkScalarValue(codePoint, strict)) {
+    			codePoint = 0xFFFD;
+    		}
+    		symbol = stringFromCharCode(((codePoint >> 12) & 0x0F) | 0xE0);
+    		symbol += createByte(codePoint, 6);
+    	}
+    	else if ((codePoint & 0xFFE00000) == 0) { // 4-byte sequence
+    		symbol = stringFromCharCode(((codePoint >> 18) & 0x07) | 0xF0);
+    		symbol += createByte(codePoint, 12);
+    		symbol += createByte(codePoint, 6);
+    	}
+    	symbol += stringFromCharCode((codePoint & 0x3F) | 0x80);
+    	return symbol;
+    }
+
+    function utf8encode(string, opts) {
+    	opts = opts || {};
+    	var strict = false !== opts.strict;
+
+    	var codePoints = ucs2decode(string);
+    	var length = codePoints.length;
+    	var index = -1;
+    	var codePoint;
+    	var byteString = '';
+    	while (++index < length) {
+    		codePoint = codePoints[index];
+    		byteString += encodeCodePoint(codePoint, strict);
+    	}
+    	return byteString;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    function readContinuationByte() {
+    	if (byteIndex >= byteCount) {
+    		throw Error('Invalid byte index');
+    	}
+
+    	var continuationByte = byteArray[byteIndex] & 0xFF;
+    	byteIndex++;
+
+    	if ((continuationByte & 0xC0) == 0x80) {
+    		return continuationByte & 0x3F;
+    	}
+
+    	// If we end up here, it’s not a continuation byte
+    	throw Error('Invalid continuation byte');
+    }
+
+    function decodeSymbol(strict) {
+    	var byte1;
+    	var byte2;
+    	var byte3;
+    	var byte4;
+    	var codePoint;
+
+    	if (byteIndex > byteCount) {
+    		throw Error('Invalid byte index');
+    	}
+
+    	if (byteIndex == byteCount) {
+    		return false;
+    	}
+
+    	// Read first byte
+    	byte1 = byteArray[byteIndex] & 0xFF;
+    	byteIndex++;
+
+    	// 1-byte sequence (no continuation bytes)
+    	if ((byte1 & 0x80) == 0) {
+    		return byte1;
+    	}
+
+    	// 2-byte sequence
+    	if ((byte1 & 0xE0) == 0xC0) {
+    		byte2 = readContinuationByte();
+    		codePoint = ((byte1 & 0x1F) << 6) | byte2;
+    		if (codePoint >= 0x80) {
+    			return codePoint;
+    		} else {
+    			throw Error('Invalid continuation byte');
+    		}
+    	}
+
+    	// 3-byte sequence (may include unpaired surrogates)
+    	if ((byte1 & 0xF0) == 0xE0) {
+    		byte2 = readContinuationByte();
+    		byte3 = readContinuationByte();
+    		codePoint = ((byte1 & 0x0F) << 12) | (byte2 << 6) | byte3;
+    		if (codePoint >= 0x0800) {
+    			return checkScalarValue(codePoint, strict) ? codePoint : 0xFFFD;
+    		} else {
+    			throw Error('Invalid continuation byte');
+    		}
+    	}
+
+    	// 4-byte sequence
+    	if ((byte1 & 0xF8) == 0xF0) {
+    		byte2 = readContinuationByte();
+    		byte3 = readContinuationByte();
+    		byte4 = readContinuationByte();
+    		codePoint = ((byte1 & 0x07) << 0x12) | (byte2 << 0x0C) |
+    			(byte3 << 0x06) | byte4;
+    		if (codePoint >= 0x010000 && codePoint <= 0x10FFFF) {
+    			return codePoint;
+    		}
+    	}
+
+    	throw Error('Invalid UTF-8 detected');
+    }
+
+    var byteArray;
+    var byteCount;
+    var byteIndex;
+    function utf8decode(byteString, opts) {
+    	opts = opts || {};
+    	var strict = false !== opts.strict;
+
+    	byteArray = ucs2decode(byteString);
+    	byteCount = byteArray.length;
+    	byteIndex = 0;
+    	var codePoints = [];
+    	var tmp;
+    	while ((tmp = decodeSymbol(strict)) !== false) {
+    		codePoints.push(tmp);
+    	}
+    	return ucs2encode(codePoints);
+    }
+
+    var utf8 = {
+    	version: '2.1.2',
+    	encode: utf8encode,
+    	decode: utf8decode
+    };
+
+    var base64Arraybuffer = createCommonjsModule(function (module, exports) {
+    /*
+     * base64-arraybuffer
+     * https://github.com/niklasvh/base64-arraybuffer
+     *
+     * Copyright (c) 2012 Niklas von Hertzen
+     * Licensed under the MIT license.
+     */
+    (function(){
+
+      var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+      // Use a lookup table to find the index.
+      var lookup = new Uint8Array(256);
+      for (var i = 0; i < chars.length; i++) {
+        lookup[chars.charCodeAt(i)] = i;
+      }
+
+      exports.encode = function(arraybuffer) {
+        var bytes = new Uint8Array(arraybuffer),
+        i, len = bytes.length, base64 = "";
+
+        for (i = 0; i < len; i+=3) {
+          base64 += chars[bytes[i] >> 2];
+          base64 += chars[((bytes[i] & 3) << 4) | (bytes[i + 1] >> 4)];
+          base64 += chars[((bytes[i + 1] & 15) << 2) | (bytes[i + 2] >> 6)];
+          base64 += chars[bytes[i + 2] & 63];
+        }
+
+        if ((len % 3) === 2) {
+          base64 = base64.substring(0, base64.length - 1) + "=";
+        } else if (len % 3 === 1) {
+          base64 = base64.substring(0, base64.length - 2) + "==";
+        }
+
+        return base64;
+      };
+
+      exports.decode =  function(base64) {
+        var bufferLength = base64.length * 0.75,
+        len = base64.length, i, p = 0,
+        encoded1, encoded2, encoded3, encoded4;
+
+        if (base64[base64.length - 1] === "=") {
+          bufferLength--;
+          if (base64[base64.length - 2] === "=") {
+            bufferLength--;
+          }
+        }
+
+        var arraybuffer = new ArrayBuffer(bufferLength),
+        bytes = new Uint8Array(arraybuffer);
+
+        for (i = 0; i < len; i+=4) {
+          encoded1 = lookup[base64.charCodeAt(i)];
+          encoded2 = lookup[base64.charCodeAt(i+1)];
+          encoded3 = lookup[base64.charCodeAt(i+2)];
+          encoded4 = lookup[base64.charCodeAt(i+3)];
+
+          bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
+          bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
+          bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
+        }
+
+        return arraybuffer;
+      };
+    })();
+    });
+    var base64Arraybuffer_1 = base64Arraybuffer.encode;
+    var base64Arraybuffer_2 = base64Arraybuffer.decode;
+
+    /**
+     * Create a blob builder even when vendor prefixes exist
+     */
+
+    var BlobBuilder = typeof BlobBuilder !== 'undefined' ? BlobBuilder :
+      typeof WebKitBlobBuilder !== 'undefined' ? WebKitBlobBuilder :
+      typeof MSBlobBuilder !== 'undefined' ? MSBlobBuilder :
+      typeof MozBlobBuilder !== 'undefined' ? MozBlobBuilder : 
+      false;
+
+    /**
+     * Check if Blob constructor is supported
+     */
+
+    var blobSupported = (function() {
+      try {
+        var a = new Blob(['hi']);
+        return a.size === 2;
+      } catch(e) {
+        return false;
+      }
+    })();
+
+    /**
+     * Check if Blob constructor supports ArrayBufferViews
+     * Fails in Safari 6, so we need to map to ArrayBuffers there.
+     */
+
+    var blobSupportsArrayBufferView = blobSupported && (function() {
+      try {
+        var b = new Blob([new Uint8Array([1,2])]);
+        return b.size === 2;
+      } catch(e) {
+        return false;
+      }
+    })();
+
+    /**
+     * Check if BlobBuilder is supported
+     */
+
+    var blobBuilderSupported = BlobBuilder
+      && BlobBuilder.prototype.append
+      && BlobBuilder.prototype.getBlob;
+
+    /**
+     * Helper function that maps ArrayBufferViews to ArrayBuffers
+     * Used by BlobBuilder constructor and old browsers that didn't
+     * support it in the Blob constructor.
+     */
+
+    function mapArrayBufferViews(ary) {
+      return ary.map(function(chunk) {
+        if (chunk.buffer instanceof ArrayBuffer) {
+          var buf = chunk.buffer;
+
+          // if this is a subarray, make a copy so we only
+          // include the subarray region from the underlying buffer
+          if (chunk.byteLength !== buf.byteLength) {
+            var copy = new Uint8Array(chunk.byteLength);
+            copy.set(new Uint8Array(buf, chunk.byteOffset, chunk.byteLength));
+            buf = copy.buffer;
+          }
+
+          return buf;
+        }
+
+        return chunk;
+      });
+    }
+
+    function BlobBuilderConstructor(ary, options) {
+      options = options || {};
+
+      var bb = new BlobBuilder();
+      mapArrayBufferViews(ary).forEach(function(part) {
+        bb.append(part);
+      });
+
+      return (options.type) ? bb.getBlob(options.type) : bb.getBlob();
+    }
+    function BlobConstructor(ary, options) {
+      return new Blob(mapArrayBufferViews(ary), options || {});
+    }
+    if (typeof Blob !== 'undefined') {
+      BlobBuilderConstructor.prototype = Blob.prototype;
+      BlobConstructor.prototype = Blob.prototype;
+    }
+
+    var blob = (function() {
+      if (blobSupported) {
+        return blobSupportsArrayBufferView ? Blob : BlobConstructor;
+      } else if (blobBuilderSupported) {
+        return BlobBuilderConstructor;
+      } else {
+        return undefined;
+      }
+    })();
+
+    var browser$2 = createCommonjsModule(function (module, exports) {
+    /**
+     * Module dependencies.
+     */
+
+
+
+
+
+
+
+    var base64encoder;
+    if (typeof ArrayBuffer !== 'undefined') {
+      base64encoder = base64Arraybuffer;
+    }
+
+    /**
+     * Check if we are running an android browser. That requires us to use
+     * ArrayBuffer with polling transports...
+     *
+     * http://ghinda.net/jpeg-blob-ajax-android/
+     */
+
+    var isAndroid = typeof navigator !== 'undefined' && /Android/i.test(navigator.userAgent);
+
+    /**
+     * Check if we are running in PhantomJS.
+     * Uploading a Blob with PhantomJS does not work correctly, as reported here:
+     * https://github.com/ariya/phantomjs/issues/11395
+     * @type boolean
+     */
+    var isPhantomJS = typeof navigator !== 'undefined' && /PhantomJS/i.test(navigator.userAgent);
+
+    /**
+     * When true, avoids using Blobs to encode payloads.
+     * @type boolean
+     */
+    var dontSendBlobs = isAndroid || isPhantomJS;
+
+    /**
+     * Current protocol version.
+     */
+
+    exports.protocol = 3;
+
+    /**
+     * Packet types.
+     */
+
+    var packets = exports.packets = {
+        open:     0    // non-ws
+      , close:    1    // non-ws
+      , ping:     2
+      , pong:     3
+      , message:  4
+      , upgrade:  5
+      , noop:     6
+    };
+
+    var packetslist = keys(packets);
+
+    /**
+     * Premade error packet.
+     */
+
+    var err = { type: 'error', data: 'parser error' };
+
+    /**
+     * Create a blob api even for blob builder when vendor prefixes exist
+     */
+
+
+
+    /**
+     * Encodes a packet.
+     *
+     *     <packet type id> [ <data> ]
+     *
+     * Example:
+     *
+     *     5hello world
+     *     3
+     *     4
+     *
+     * Binary is encoded in an identical principle
+     *
+     * @api private
+     */
+
+    exports.encodePacket = function (packet, supportsBinary, utf8encode, callback) {
+      if (typeof supportsBinary === 'function') {
+        callback = supportsBinary;
+        supportsBinary = false;
+      }
+
+      if (typeof utf8encode === 'function') {
+        callback = utf8encode;
+        utf8encode = null;
+      }
+
+      var data = (packet.data === undefined)
+        ? undefined
+        : packet.data.buffer || packet.data;
+
+      if (typeof ArrayBuffer !== 'undefined' && data instanceof ArrayBuffer) {
+        return encodeArrayBuffer(packet, supportsBinary, callback);
+      } else if (typeof blob !== 'undefined' && data instanceof blob) {
+        return encodeBlob(packet, supportsBinary, callback);
+      }
+
+      // might be an object with { base64: true, data: dataAsBase64String }
+      if (data && data.base64) {
+        return encodeBase64Object(packet, callback);
+      }
+
+      // Sending data as a utf-8 string
+      var encoded = packets[packet.type];
+
+      // data fragment is optional
+      if (undefined !== packet.data) {
+        encoded += utf8encode ? utf8.encode(String(packet.data), { strict: false }) : String(packet.data);
+      }
+
+      return callback('' + encoded);
+
+    };
+
+    function encodeBase64Object(packet, callback) {
+      // packet data is an object { base64: true, data: dataAsBase64String }
+      var message = 'b' + exports.packets[packet.type] + packet.data.data;
+      return callback(message);
+    }
+
+    /**
+     * Encode packet helpers for binary types
+     */
+
+    function encodeArrayBuffer(packet, supportsBinary, callback) {
+      if (!supportsBinary) {
+        return exports.encodeBase64Packet(packet, callback);
+      }
+
+      var data = packet.data;
+      var contentArray = new Uint8Array(data);
+      var resultBuffer = new Uint8Array(1 + data.byteLength);
+
+      resultBuffer[0] = packets[packet.type];
+      for (var i = 0; i < contentArray.length; i++) {
+        resultBuffer[i+1] = contentArray[i];
+      }
+
+      return callback(resultBuffer.buffer);
+    }
+
+    function encodeBlobAsArrayBuffer(packet, supportsBinary, callback) {
+      if (!supportsBinary) {
+        return exports.encodeBase64Packet(packet, callback);
+      }
+
+      var fr = new FileReader();
+      fr.onload = function() {
+        exports.encodePacket({ type: packet.type, data: fr.result }, supportsBinary, true, callback);
+      };
+      return fr.readAsArrayBuffer(packet.data);
+    }
+
+    function encodeBlob(packet, supportsBinary, callback) {
+      if (!supportsBinary) {
+        return exports.encodeBase64Packet(packet, callback);
+      }
+
+      if (dontSendBlobs) {
+        return encodeBlobAsArrayBuffer(packet, supportsBinary, callback);
+      }
+
+      var length = new Uint8Array(1);
+      length[0] = packets[packet.type];
+      var blob$1 = new blob([length.buffer, packet.data]);
+
+      return callback(blob$1);
+    }
+
+    /**
+     * Encodes a packet with binary data in a base64 string
+     *
+     * @param {Object} packet, has `type` and `data`
+     * @return {String} base64 encoded message
+     */
+
+    exports.encodeBase64Packet = function(packet, callback) {
+      var message = 'b' + exports.packets[packet.type];
+      if (typeof blob !== 'undefined' && packet.data instanceof blob) {
+        var fr = new FileReader();
+        fr.onload = function() {
+          var b64 = fr.result.split(',')[1];
+          callback(message + b64);
+        };
+        return fr.readAsDataURL(packet.data);
+      }
+
+      var b64data;
+      try {
+        b64data = String.fromCharCode.apply(null, new Uint8Array(packet.data));
+      } catch (e) {
+        // iPhone Safari doesn't let you apply with typed arrays
+        var typed = new Uint8Array(packet.data);
+        var basic = new Array(typed.length);
+        for (var i = 0; i < typed.length; i++) {
+          basic[i] = typed[i];
+        }
+        b64data = String.fromCharCode.apply(null, basic);
+      }
+      message += btoa(b64data);
+      return callback(message);
+    };
+
+    /**
+     * Decodes a packet. Changes format to Blob if requested.
+     *
+     * @return {Object} with `type` and `data` (if any)
+     * @api private
+     */
+
+    exports.decodePacket = function (data, binaryType, utf8decode) {
+      if (data === undefined) {
+        return err;
+      }
+      // String data
+      if (typeof data === 'string') {
+        if (data.charAt(0) === 'b') {
+          return exports.decodeBase64Packet(data.substr(1), binaryType);
+        }
+
+        if (utf8decode) {
+          data = tryDecode(data);
+          if (data === false) {
+            return err;
+          }
+        }
+        var type = data.charAt(0);
+
+        if (Number(type) != type || !packetslist[type]) {
+          return err;
+        }
+
+        if (data.length > 1) {
+          return { type: packetslist[type], data: data.substring(1) };
+        } else {
+          return { type: packetslist[type] };
+        }
+      }
+
+      var asArray = new Uint8Array(data);
+      var type = asArray[0];
+      var rest = arraybuffer_slice(data, 1);
+      if (blob && binaryType === 'blob') {
+        rest = new blob([rest]);
+      }
+      return { type: packetslist[type], data: rest };
+    };
+
+    function tryDecode(data) {
+      try {
+        data = utf8.decode(data, { strict: false });
+      } catch (e) {
+        return false;
+      }
+      return data;
+    }
+
+    /**
+     * Decodes a packet encoded in a base64 string
+     *
+     * @param {String} base64 encoded message
+     * @return {Object} with `type` and `data` (if any)
+     */
+
+    exports.decodeBase64Packet = function(msg, binaryType) {
+      var type = packetslist[msg.charAt(0)];
+      if (!base64encoder) {
+        return { type: type, data: { base64: true, data: msg.substr(1) } };
+      }
+
+      var data = base64encoder.decode(msg.substr(1));
+
+      if (binaryType === 'blob' && blob) {
+        data = new blob([data]);
+      }
+
+      return { type: type, data: data };
+    };
+
+    /**
+     * Encodes multiple messages (payload).
+     *
+     *     <length>:data
+     *
+     * Example:
+     *
+     *     11:hello world2:hi
+     *
+     * If any contents are binary, they will be encoded as base64 strings. Base64
+     * encoded strings are marked with a b before the length specifier
+     *
+     * @param {Array} packets
+     * @api private
+     */
+
+    exports.encodePayload = function (packets, supportsBinary, callback) {
+      if (typeof supportsBinary === 'function') {
+        callback = supportsBinary;
+        supportsBinary = null;
+      }
+
+      var isBinary = hasBinary2(packets);
+
+      if (supportsBinary && isBinary) {
+        if (blob && !dontSendBlobs) {
+          return exports.encodePayloadAsBlob(packets, callback);
+        }
+
+        return exports.encodePayloadAsArrayBuffer(packets, callback);
+      }
+
+      if (!packets.length) {
+        return callback('0:');
+      }
+
+      function setLengthHeader(message) {
+        return message.length + ':' + message;
+      }
+
+      function encodeOne(packet, doneCallback) {
+        exports.encodePacket(packet, !isBinary ? false : supportsBinary, false, function(message) {
+          doneCallback(null, setLengthHeader(message));
+        });
+      }
+
+      map(packets, encodeOne, function(err, results) {
+        return callback(results.join(''));
+      });
+    };
+
+    /**
+     * Async array map using after
+     */
+
+    function map(ary, each, done) {
+      var result = new Array(ary.length);
+      var next = after_1(ary.length, done);
+
+      var eachWithIndex = function(i, el, cb) {
+        each(el, function(error, msg) {
+          result[i] = msg;
+          cb(error, result);
+        });
+      };
+
+      for (var i = 0; i < ary.length; i++) {
+        eachWithIndex(i, ary[i], next);
+      }
+    }
+
+    /*
+     * Decodes data when a payload is maybe expected. Possible binary contents are
+     * decoded from their base64 representation
+     *
+     * @param {String} data, callback method
+     * @api public
+     */
+
+    exports.decodePayload = function (data, binaryType, callback) {
+      if (typeof data !== 'string') {
+        return exports.decodePayloadAsBinary(data, binaryType, callback);
+      }
+
+      if (typeof binaryType === 'function') {
+        callback = binaryType;
+        binaryType = null;
+      }
+
+      var packet;
+      if (data === '') {
+        // parser error - ignoring payload
+        return callback(err, 0, 1);
+      }
+
+      var length = '', n, msg;
+
+      for (var i = 0, l = data.length; i < l; i++) {
+        var chr = data.charAt(i);
+
+        if (chr !== ':') {
+          length += chr;
+          continue;
+        }
+
+        if (length === '' || (length != (n = Number(length)))) {
+          // parser error - ignoring payload
+          return callback(err, 0, 1);
+        }
+
+        msg = data.substr(i + 1, n);
+
+        if (length != msg.length) {
+          // parser error - ignoring payload
+          return callback(err, 0, 1);
+        }
+
+        if (msg.length) {
+          packet = exports.decodePacket(msg, binaryType, false);
+
+          if (err.type === packet.type && err.data === packet.data) {
+            // parser error in individual packet - ignoring payload
+            return callback(err, 0, 1);
+          }
+
+          var ret = callback(packet, i + n, l);
+          if (false === ret) return;
+        }
+
+        // advance cursor
+        i += n;
+        length = '';
+      }
+
+      if (length !== '') {
+        // parser error - ignoring payload
+        return callback(err, 0, 1);
+      }
+
+    };
+
+    /**
+     * Encodes multiple messages (payload) as binary.
+     *
+     * <1 = binary, 0 = string><number from 0-9><number from 0-9>[...]<number
+     * 255><data>
+     *
+     * Example:
+     * 1 3 255 1 2 3, if the binary contents are interpreted as 8 bit integers
+     *
+     * @param {Array} packets
+     * @return {ArrayBuffer} encoded payload
+     * @api private
+     */
+
+    exports.encodePayloadAsArrayBuffer = function(packets, callback) {
+      if (!packets.length) {
+        return callback(new ArrayBuffer(0));
+      }
+
+      function encodeOne(packet, doneCallback) {
+        exports.encodePacket(packet, true, true, function(data) {
+          return doneCallback(null, data);
+        });
+      }
+
+      map(packets, encodeOne, function(err, encodedPackets) {
+        var totalLength = encodedPackets.reduce(function(acc, p) {
+          var len;
+          if (typeof p === 'string'){
+            len = p.length;
+          } else {
+            len = p.byteLength;
+          }
+          return acc + len.toString().length + len + 2; // string/binary identifier + separator = 2
+        }, 0);
+
+        var resultArray = new Uint8Array(totalLength);
+
+        var bufferIndex = 0;
+        encodedPackets.forEach(function(p) {
+          var isString = typeof p === 'string';
+          var ab = p;
+          if (isString) {
+            var view = new Uint8Array(p.length);
+            for (var i = 0; i < p.length; i++) {
+              view[i] = p.charCodeAt(i);
+            }
+            ab = view.buffer;
+          }
+
+          if (isString) { // not true binary
+            resultArray[bufferIndex++] = 0;
+          } else { // true binary
+            resultArray[bufferIndex++] = 1;
+          }
+
+          var lenStr = ab.byteLength.toString();
+          for (var i = 0; i < lenStr.length; i++) {
+            resultArray[bufferIndex++] = parseInt(lenStr[i]);
+          }
+          resultArray[bufferIndex++] = 255;
+
+          var view = new Uint8Array(ab);
+          for (var i = 0; i < view.length; i++) {
+            resultArray[bufferIndex++] = view[i];
+          }
+        });
+
+        return callback(resultArray.buffer);
+      });
+    };
+
+    /**
+     * Encode as Blob
+     */
+
+    exports.encodePayloadAsBlob = function(packets, callback) {
+      function encodeOne(packet, doneCallback) {
+        exports.encodePacket(packet, true, true, function(encoded) {
+          var binaryIdentifier = new Uint8Array(1);
+          binaryIdentifier[0] = 1;
+          if (typeof encoded === 'string') {
+            var view = new Uint8Array(encoded.length);
+            for (var i = 0; i < encoded.length; i++) {
+              view[i] = encoded.charCodeAt(i);
+            }
+            encoded = view.buffer;
+            binaryIdentifier[0] = 0;
+          }
+
+          var len = (encoded instanceof ArrayBuffer)
+            ? encoded.byteLength
+            : encoded.size;
+
+          var lenStr = len.toString();
+          var lengthAry = new Uint8Array(lenStr.length + 1);
+          for (var i = 0; i < lenStr.length; i++) {
+            lengthAry[i] = parseInt(lenStr[i]);
+          }
+          lengthAry[lenStr.length] = 255;
+
+          if (blob) {
+            var blob$1 = new blob([binaryIdentifier.buffer, lengthAry.buffer, encoded]);
+            doneCallback(null, blob$1);
+          }
+        });
+      }
+
+      map(packets, encodeOne, function(err, results) {
+        return callback(new blob(results));
+      });
+    };
+
+    /*
+     * Decodes data when a payload is maybe expected. Strings are decoded by
+     * interpreting each byte as a key code for entries marked to start with 0. See
+     * description of encodePayloadAsBinary
+     *
+     * @param {ArrayBuffer} data, callback method
+     * @api public
+     */
+
+    exports.decodePayloadAsBinary = function (data, binaryType, callback) {
+      if (typeof binaryType === 'function') {
+        callback = binaryType;
+        binaryType = null;
+      }
+
+      var bufferTail = data;
+      var buffers = [];
+
+      while (bufferTail.byteLength > 0) {
+        var tailArray = new Uint8Array(bufferTail);
+        var isString = tailArray[0] === 0;
+        var msgLength = '';
+
+        for (var i = 1; ; i++) {
+          if (tailArray[i] === 255) break;
+
+          // 310 = char length of Number.MAX_VALUE
+          if (msgLength.length > 310) {
+            return callback(err, 0, 1);
+          }
+
+          msgLength += tailArray[i];
+        }
+
+        bufferTail = arraybuffer_slice(bufferTail, 2 + msgLength.length);
+        msgLength = parseInt(msgLength);
+
+        var msg = arraybuffer_slice(bufferTail, 0, msgLength);
+        if (isString) {
+          try {
+            msg = String.fromCharCode.apply(null, new Uint8Array(msg));
+          } catch (e) {
+            // iPhone Safari doesn't let you apply to typed arrays
+            var typed = new Uint8Array(msg);
+            msg = '';
+            for (var i = 0; i < typed.length; i++) {
+              msg += String.fromCharCode(typed[i]);
+            }
+          }
+        }
+
+        buffers.push(msg);
+        bufferTail = arraybuffer_slice(bufferTail, msgLength);
+      }
+
+      var total = buffers.length;
+      buffers.forEach(function(buffer, i) {
+        callback(exports.decodePacket(buffer, binaryType, true), i, total);
+      });
+    };
+    });
+    var browser_1$2 = browser$2.protocol;
+    var browser_2$2 = browser$2.packets;
+    var browser_3$2 = browser$2.encodePacket;
+    var browser_4$2 = browser$2.encodeBase64Packet;
+    var browser_5$2 = browser$2.decodePacket;
+    var browser_6$2 = browser$2.decodeBase64Packet;
+    var browser_7$2 = browser$2.encodePayload;
+    var browser_8 = browser$2.decodePayload;
+    var browser_9 = browser$2.encodePayloadAsArrayBuffer;
+    var browser_10 = browser$2.encodePayloadAsBlob;
+    var browser_11 = browser$2.decodePayloadAsBinary;
+
+    var componentEmitter$1 = createCommonjsModule(function (module) {
+    /**
+     * Expose `Emitter`.
+     */
+
+    {
+      module.exports = Emitter;
+    }
+
+    /**
+     * Initialize a new `Emitter`.
+     *
+     * @api public
+     */
+
+    function Emitter(obj) {
+      if (obj) return mixin(obj);
+    }
+    /**
+     * Mixin the emitter properties.
+     *
+     * @param {Object} obj
+     * @return {Object}
+     * @api private
+     */
+
+    function mixin(obj) {
+      for (var key in Emitter.prototype) {
+        obj[key] = Emitter.prototype[key];
+      }
+      return obj;
+    }
+
+    /**
+     * Listen on the given `event` with `fn`.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.on =
+    Emitter.prototype.addEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+      (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+        .push(fn);
+      return this;
+    };
+
+    /**
+     * Adds an `event` listener that will be invoked a single
+     * time then automatically removed.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.once = function(event, fn){
+      function on() {
+        this.off(event, on);
+        fn.apply(this, arguments);
+      }
+
+      on.fn = fn;
+      this.on(event, on);
+      return this;
+    };
+
+    /**
+     * Remove the given callback for `event` or all
+     * registered callbacks.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.off =
+    Emitter.prototype.removeListener =
+    Emitter.prototype.removeAllListeners =
+    Emitter.prototype.removeEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+
+      // all
+      if (0 == arguments.length) {
+        this._callbacks = {};
+        return this;
+      }
+
+      // specific event
+      var callbacks = this._callbacks['$' + event];
+      if (!callbacks) return this;
+
+      // remove all handlers
+      if (1 == arguments.length) {
+        delete this._callbacks['$' + event];
+        return this;
+      }
+
+      // remove specific handler
+      var cb;
+      for (var i = 0; i < callbacks.length; i++) {
+        cb = callbacks[i];
+        if (cb === fn || cb.fn === fn) {
+          callbacks.splice(i, 1);
+          break;
+        }
+      }
+      return this;
+    };
+
+    /**
+     * Emit `event` with the given args.
+     *
+     * @param {String} event
+     * @param {Mixed} ...
+     * @return {Emitter}
+     */
+
+    Emitter.prototype.emit = function(event){
+      this._callbacks = this._callbacks || {};
+      var args = [].slice.call(arguments, 1)
+        , callbacks = this._callbacks['$' + event];
+
+      if (callbacks) {
+        callbacks = callbacks.slice(0);
+        for (var i = 0, len = callbacks.length; i < len; ++i) {
+          callbacks[i].apply(this, args);
+        }
+      }
+
+      return this;
+    };
+
+    /**
+     * Return array of callbacks for `event`.
+     *
+     * @param {String} event
+     * @return {Array}
+     * @api public
+     */
+
+    Emitter.prototype.listeners = function(event){
+      this._callbacks = this._callbacks || {};
+      return this._callbacks['$' + event] || [];
+    };
+
+    /**
+     * Check if this emitter has `event` handlers.
+     *
+     * @param {String} event
+     * @return {Boolean}
+     * @api public
+     */
+
+    Emitter.prototype.hasListeners = function(event){
+      return !! this.listeners(event).length;
+    };
+    });
+
+    /**
+     * Module dependencies.
+     */
+
+
+
+
+    /**
+     * Module exports.
+     */
+
+    var transport = Transport;
+
+    /**
+     * Transport abstract constructor.
+     *
+     * @param {Object} options.
+     * @api private
+     */
+
+    function Transport (opts) {
+      this.path = opts.path;
+      this.hostname = opts.hostname;
+      this.port = opts.port;
+      this.secure = opts.secure;
+      this.query = opts.query;
+      this.timestampParam = opts.timestampParam;
+      this.timestampRequests = opts.timestampRequests;
+      this.readyState = '';
+      this.agent = opts.agent || false;
+      this.socket = opts.socket;
+      this.enablesXDR = opts.enablesXDR;
+      this.withCredentials = opts.withCredentials;
+
+      // SSL options for Node.js client
+      this.pfx = opts.pfx;
+      this.key = opts.key;
+      this.passphrase = opts.passphrase;
+      this.cert = opts.cert;
+      this.ca = opts.ca;
+      this.ciphers = opts.ciphers;
+      this.rejectUnauthorized = opts.rejectUnauthorized;
+      this.forceNode = opts.forceNode;
+
+      // results of ReactNative environment detection
+      this.isReactNative = opts.isReactNative;
+
+      // other options for Node.js client
+      this.extraHeaders = opts.extraHeaders;
+      this.localAddress = opts.localAddress;
+    }
+
+    /**
+     * Mix in `Emitter`.
+     */
+
+    componentEmitter$1(Transport.prototype);
+
+    /**
+     * Emits an error.
+     *
+     * @param {String} str
+     * @return {Transport} for chaining
+     * @api public
+     */
+
+    Transport.prototype.onError = function (msg, desc) {
+      var err = new Error(msg);
+      err.type = 'TransportError';
+      err.description = desc;
+      this.emit('error', err);
+      return this;
+    };
+
+    /**
+     * Opens the transport.
+     *
+     * @api public
+     */
+
+    Transport.prototype.open = function () {
+      if ('closed' === this.readyState || '' === this.readyState) {
+        this.readyState = 'opening';
+        this.doOpen();
+      }
+
+      return this;
+    };
+
+    /**
+     * Closes the transport.
+     *
+     * @api private
+     */
+
+    Transport.prototype.close = function () {
+      if ('opening' === this.readyState || 'open' === this.readyState) {
+        this.doClose();
+        this.onClose();
+      }
+
+      return this;
+    };
+
+    /**
+     * Sends multiple packets.
+     *
+     * @param {Array} packets
+     * @api private
+     */
+
+    Transport.prototype.send = function (packets) {
+      if ('open' === this.readyState) {
+        this.write(packets);
+      } else {
+        throw new Error('Transport not open');
+      }
+    };
+
+    /**
+     * Called upon open
+     *
+     * @api private
+     */
+
+    Transport.prototype.onOpen = function () {
+      this.readyState = 'open';
+      this.writable = true;
+      this.emit('open');
+    };
+
+    /**
+     * Called with data.
+     *
+     * @param {String} data
+     * @api private
+     */
+
+    Transport.prototype.onData = function (data) {
+      var packet = browser$2.decodePacket(data, this.socket.binaryType);
+      this.onPacket(packet);
+    };
+
+    /**
+     * Called with a decoded packet.
+     */
+
+    Transport.prototype.onPacket = function (packet) {
+      this.emit('packet', packet);
+    };
+
+    /**
+     * Called upon close.
+     *
+     * @api private
+     */
+
+    Transport.prototype.onClose = function () {
+      this.readyState = 'closed';
+      this.emit('close');
+    };
+
+    /**
+     * Compiles a querystring
+     * Returns string representation of the object
+     *
+     * @param {Object}
+     * @api private
+     */
+
+    var encode = function (obj) {
+      var str = '';
+
+      for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+          if (str.length) str += '&';
+          str += encodeURIComponent(i) + '=' + encodeURIComponent(obj[i]);
+        }
+      }
+
+      return str;
+    };
+
+    /**
+     * Parses a simple querystring into an object
+     *
+     * @param {String} qs
+     * @api private
+     */
+
+    var decode = function(qs){
+      var qry = {};
+      var pairs = qs.split('&');
+      for (var i = 0, l = pairs.length; i < l; i++) {
+        var pair = pairs[i].split('=');
+        qry[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+      }
+      return qry;
+    };
+
+    var parseqs = {
+    	encode: encode,
+    	decode: decode
+    };
+
+    var componentInherit = function(a, b){
+      var fn = function(){};
+      fn.prototype = b.prototype;
+      a.prototype = new fn;
+      a.prototype.constructor = a;
+    };
+
+    var alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split('')
+      , length = 64
+      , map = {}
+      , seed = 0
+      , i = 0
+      , prev;
+
+    /**
+     * Return a string representing the specified number.
+     *
+     * @param {Number} num The number to convert.
+     * @returns {String} The string representation of the number.
+     * @api public
+     */
+    function encode$1(num) {
+      var encoded = '';
+
+      do {
+        encoded = alphabet[num % length] + encoded;
+        num = Math.floor(num / length);
+      } while (num > 0);
+
+      return encoded;
+    }
+
+    /**
+     * Return the integer value specified by the given string.
+     *
+     * @param {String} str The string to convert.
+     * @returns {Number} The integer value represented by the string.
+     * @api public
+     */
+    function decode$1(str) {
+      var decoded = 0;
+
+      for (i = 0; i < str.length; i++) {
+        decoded = decoded * length + map[str.charAt(i)];
+      }
+
+      return decoded;
+    }
+
+    /**
+     * Yeast: A tiny growing id generator.
+     *
+     * @returns {String} A unique id.
+     * @api public
+     */
+    function yeast() {
+      var now = encode$1(+new Date());
+
+      if (now !== prev) return seed = 0, prev = now;
+      return now +'.'+ encode$1(seed++);
+    }
+
+    //
+    // Map each character to its index.
+    //
+    for (; i < length; i++) map[alphabet[i]] = i;
+
+    //
+    // Expose the `yeast`, `encode` and `decode` functions.
+    //
+    yeast.encode = encode$1;
+    yeast.decode = decode$1;
+    var yeast_1 = yeast;
+
+    /**
+     * Helpers.
+     */
+
+    var s$2 = 1000;
+    var m$2 = s$2 * 60;
+    var h$2 = m$2 * 60;
+    var d$2 = h$2 * 24;
+    var w$1 = d$2 * 7;
+    var y$2 = d$2 * 365.25;
+
+    /**
+     * Parse or format the given `val`.
+     *
+     * Options:
+     *
+     *  - `long` verbose formatting [false]
+     *
+     * @param {String|Number} val
+     * @param {Object} [options]
+     * @throws {Error} throw an error if val is not a non-empty string or a number
+     * @return {String|Number}
+     * @api public
+     */
+
+    var ms$2 = function(val, options) {
+      options = options || {};
+      var type = typeof val;
+      if (type === 'string' && val.length > 0) {
+        return parse$2(val);
+      } else if (type === 'number' && isFinite(val)) {
+        return options.long ? fmtLong$2(val) : fmtShort$2(val);
+      }
+      throw new Error(
+        'val is not a non-empty string or a valid number. val=' +
+          JSON.stringify(val)
+      );
+    };
+
+    /**
+     * Parse the given `str` and return milliseconds.
+     *
+     * @param {String} str
+     * @return {Number}
+     * @api private
+     */
+
+    function parse$2(str) {
+      str = String(str);
+      if (str.length > 100) {
+        return;
+      }
+      var match = /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
+        str
+      );
+      if (!match) {
+        return;
+      }
+      var n = parseFloat(match[1]);
+      var type = (match[2] || 'ms').toLowerCase();
+      switch (type) {
+        case 'years':
+        case 'year':
+        case 'yrs':
+        case 'yr':
+        case 'y':
+          return n * y$2;
+        case 'weeks':
+        case 'week':
+        case 'w':
+          return n * w$1;
+        case 'days':
+        case 'day':
+        case 'd':
+          return n * d$2;
+        case 'hours':
+        case 'hour':
+        case 'hrs':
+        case 'hr':
+        case 'h':
+          return n * h$2;
+        case 'minutes':
+        case 'minute':
+        case 'mins':
+        case 'min':
+        case 'm':
+          return n * m$2;
+        case 'seconds':
+        case 'second':
+        case 'secs':
+        case 'sec':
+        case 's':
+          return n * s$2;
+        case 'milliseconds':
+        case 'millisecond':
+        case 'msecs':
+        case 'msec':
+        case 'ms':
+          return n;
+        default:
+          return undefined;
+      }
+    }
+
+    /**
+     * Short format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtShort$2(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d$2) {
+        return Math.round(ms / d$2) + 'd';
+      }
+      if (msAbs >= h$2) {
+        return Math.round(ms / h$2) + 'h';
+      }
+      if (msAbs >= m$2) {
+        return Math.round(ms / m$2) + 'm';
+      }
+      if (msAbs >= s$2) {
+        return Math.round(ms / s$2) + 's';
+      }
+      return ms + 'ms';
+    }
+
+    /**
+     * Long format for `ms`.
+     *
+     * @param {Number} ms
+     * @return {String}
+     * @api private
+     */
+
+    function fmtLong$2(ms) {
+      var msAbs = Math.abs(ms);
+      if (msAbs >= d$2) {
+        return plural$2(ms, msAbs, d$2, 'day');
+      }
+      if (msAbs >= h$2) {
+        return plural$2(ms, msAbs, h$2, 'hour');
+      }
+      if (msAbs >= m$2) {
+        return plural$2(ms, msAbs, m$2, 'minute');
+      }
+      if (msAbs >= s$2) {
+        return plural$2(ms, msAbs, s$2, 'second');
+      }
+      return ms + ' ms';
+    }
+
+    /**
+     * Pluralization helper.
+     */
+
+    function plural$2(ms, msAbs, n, name) {
+      var isPlural = msAbs >= n * 1.5;
+      return Math.round(ms / n) + ' ' + name + (isPlural ? 's' : '');
+    }
+
+    /**
+     * This is the common logic for both the Node.js and web browser
+     * implementations of `debug()`.
+     */
+
+    function setup$1(env) {
+    	createDebug.debug = createDebug;
+    	createDebug.default = createDebug;
+    	createDebug.coerce = coerce;
+    	createDebug.disable = disable;
+    	createDebug.enable = enable;
+    	createDebug.enabled = enabled;
+    	createDebug.humanize = ms$2;
+
+    	Object.keys(env).forEach(key => {
+    		createDebug[key] = env[key];
+    	});
+
+    	/**
+    	* Active `debug` instances.
+    	*/
+    	createDebug.instances = [];
+
+    	/**
+    	* The currently active debug mode names, and names to skip.
+    	*/
+
+    	createDebug.names = [];
+    	createDebug.skips = [];
+
+    	/**
+    	* Map of special "%n" handling functions, for the debug "format" argument.
+    	*
+    	* Valid key names are a single, lower or upper-case letter, i.e. "n" and "N".
+    	*/
+    	createDebug.formatters = {};
+
+    	/**
+    	* Selects a color for a debug namespace
+    	* @param {String} namespace The namespace string for the for the debug instance to be colored
+    	* @return {Number|String} An ANSI color code for the given namespace
+    	* @api private
+    	*/
+    	function selectColor(namespace) {
+    		let hash = 0;
+
+    		for (let i = 0; i < namespace.length; i++) {
+    			hash = ((hash << 5) - hash) + namespace.charCodeAt(i);
+    			hash |= 0; // Convert to 32bit integer
+    		}
+
+    		return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
+    	}
+    	createDebug.selectColor = selectColor;
+
+    	/**
+    	* Create a debugger with the given `namespace`.
+    	*
+    	* @param {String} namespace
+    	* @return {Function}
+    	* @api public
+    	*/
+    	function createDebug(namespace) {
+    		let prevTime;
+
+    		function debug(...args) {
+    			// Disabled?
+    			if (!debug.enabled) {
+    				return;
+    			}
+
+    			const self = debug;
+
+    			// Set `diff` timestamp
+    			const curr = Number(new Date());
+    			const ms = curr - (prevTime || curr);
+    			self.diff = ms;
+    			self.prev = prevTime;
+    			self.curr = curr;
+    			prevTime = curr;
+
+    			args[0] = createDebug.coerce(args[0]);
+
+    			if (typeof args[0] !== 'string') {
+    				// Anything else let's inspect with %O
+    				args.unshift('%O');
+    			}
+
+    			// Apply any `formatters` transformations
+    			let index = 0;
+    			args[0] = args[0].replace(/%([a-zA-Z%])/g, (match, format) => {
+    				// If we encounter an escaped % then don't increase the array index
+    				if (match === '%%') {
+    					return match;
+    				}
+    				index++;
+    				const formatter = createDebug.formatters[format];
+    				if (typeof formatter === 'function') {
+    					const val = args[index];
+    					match = formatter.call(self, val);
+
+    					// Now we need to remove `args[index]` since it's inlined in the `format`
+    					args.splice(index, 1);
+    					index--;
+    				}
+    				return match;
+    			});
+
+    			// Apply env-specific formatting (colors, etc.)
+    			createDebug.formatArgs.call(self, args);
+
+    			const logFn = self.log || createDebug.log;
+    			logFn.apply(self, args);
+    		}
+
+    		debug.namespace = namespace;
+    		debug.enabled = createDebug.enabled(namespace);
+    		debug.useColors = createDebug.useColors();
+    		debug.color = selectColor(namespace);
+    		debug.destroy = destroy;
+    		debug.extend = extend;
+    		// Debug.formatArgs = formatArgs;
+    		// debug.rawLog = rawLog;
+
+    		// env-specific initialization logic for debug instances
+    		if (typeof createDebug.init === 'function') {
+    			createDebug.init(debug);
+    		}
+
+    		createDebug.instances.push(debug);
+
+    		return debug;
+    	}
+
+    	function destroy() {
+    		const index = createDebug.instances.indexOf(this);
+    		if (index !== -1) {
+    			createDebug.instances.splice(index, 1);
+    			return true;
+    		}
+    		return false;
+    	}
+
+    	function extend(namespace, delimiter) {
+    		const newDebug = createDebug(this.namespace + (typeof delimiter === 'undefined' ? ':' : delimiter) + namespace);
+    		newDebug.log = this.log;
+    		return newDebug;
+    	}
+
+    	/**
+    	* Enables a debug mode by namespaces. This can include modes
+    	* separated by a colon and wildcards.
+    	*
+    	* @param {String} namespaces
+    	* @api public
+    	*/
+    	function enable(namespaces) {
+    		createDebug.save(namespaces);
+
+    		createDebug.names = [];
+    		createDebug.skips = [];
+
+    		let i;
+    		const split = (typeof namespaces === 'string' ? namespaces : '').split(/[\s,]+/);
+    		const len = split.length;
+
+    		for (i = 0; i < len; i++) {
+    			if (!split[i]) {
+    				// ignore empty strings
+    				continue;
+    			}
+
+    			namespaces = split[i].replace(/\*/g, '.*?');
+
+    			if (namespaces[0] === '-') {
+    				createDebug.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+    			} else {
+    				createDebug.names.push(new RegExp('^' + namespaces + '$'));
+    			}
+    		}
+
+    		for (i = 0; i < createDebug.instances.length; i++) {
+    			const instance = createDebug.instances[i];
+    			instance.enabled = createDebug.enabled(instance.namespace);
+    		}
+    	}
+
+    	/**
+    	* Disable debug output.
+    	*
+    	* @return {String} namespaces
+    	* @api public
+    	*/
+    	function disable() {
+    		const namespaces = [
+    			...createDebug.names.map(toNamespace),
+    			...createDebug.skips.map(toNamespace).map(namespace => '-' + namespace)
+    		].join(',');
+    		createDebug.enable('');
+    		return namespaces;
+    	}
+
+    	/**
+    	* Returns true if the given mode name is enabled, false otherwise.
+    	*
+    	* @param {String} name
+    	* @return {Boolean}
+    	* @api public
+    	*/
+    	function enabled(name) {
+    		if (name[name.length - 1] === '*') {
+    			return true;
+    		}
+
+    		let i;
+    		let len;
+
+    		for (i = 0, len = createDebug.skips.length; i < len; i++) {
+    			if (createDebug.skips[i].test(name)) {
+    				return false;
+    			}
+    		}
+
+    		for (i = 0, len = createDebug.names.length; i < len; i++) {
+    			if (createDebug.names[i].test(name)) {
+    				return true;
+    			}
+    		}
+
+    		return false;
+    	}
+
+    	/**
+    	* Convert regexp to namespace
+    	*
+    	* @param {RegExp} regxep
+    	* @return {String} namespace
+    	* @api private
+    	*/
+    	function toNamespace(regexp) {
+    		return regexp.toString()
+    			.substring(2, regexp.toString().length - 2)
+    			.replace(/\.\*\?$/, '*');
+    	}
+
+    	/**
+    	* Coerce `val`.
+    	*
+    	* @param {Mixed} val
+    	* @return {Mixed}
+    	* @api private
+    	*/
+    	function coerce(val) {
+    		if (val instanceof Error) {
+    			return val.stack || val.message;
+    		}
+    		return val;
+    	}
+
+    	createDebug.enable(createDebug.load());
+
+    	return createDebug;
+    }
+
+    var common$1 = setup$1;
+
+    var browser$3 = createCommonjsModule(function (module, exports) {
+    /* eslint-env browser */
+
+    /**
+     * This is the web browser implementation of `debug()`.
+     */
+
+    exports.log = log;
+    exports.formatArgs = formatArgs;
+    exports.save = save;
+    exports.load = load;
+    exports.useColors = useColors;
+    exports.storage = localstorage();
+
+    /**
+     * Colors.
+     */
+
+    exports.colors = [
+    	'#0000CC',
+    	'#0000FF',
+    	'#0033CC',
+    	'#0033FF',
+    	'#0066CC',
+    	'#0066FF',
+    	'#0099CC',
+    	'#0099FF',
+    	'#00CC00',
+    	'#00CC33',
+    	'#00CC66',
+    	'#00CC99',
+    	'#00CCCC',
+    	'#00CCFF',
+    	'#3300CC',
+    	'#3300FF',
+    	'#3333CC',
+    	'#3333FF',
+    	'#3366CC',
+    	'#3366FF',
+    	'#3399CC',
+    	'#3399FF',
+    	'#33CC00',
+    	'#33CC33',
+    	'#33CC66',
+    	'#33CC99',
+    	'#33CCCC',
+    	'#33CCFF',
+    	'#6600CC',
+    	'#6600FF',
+    	'#6633CC',
+    	'#6633FF',
+    	'#66CC00',
+    	'#66CC33',
+    	'#9900CC',
+    	'#9900FF',
+    	'#9933CC',
+    	'#9933FF',
+    	'#99CC00',
+    	'#99CC33',
+    	'#CC0000',
+    	'#CC0033',
+    	'#CC0066',
+    	'#CC0099',
+    	'#CC00CC',
+    	'#CC00FF',
+    	'#CC3300',
+    	'#CC3333',
+    	'#CC3366',
+    	'#CC3399',
+    	'#CC33CC',
+    	'#CC33FF',
+    	'#CC6600',
+    	'#CC6633',
+    	'#CC9900',
+    	'#CC9933',
+    	'#CCCC00',
+    	'#CCCC33',
+    	'#FF0000',
+    	'#FF0033',
+    	'#FF0066',
+    	'#FF0099',
+    	'#FF00CC',
+    	'#FF00FF',
+    	'#FF3300',
+    	'#FF3333',
+    	'#FF3366',
+    	'#FF3399',
+    	'#FF33CC',
+    	'#FF33FF',
+    	'#FF6600',
+    	'#FF6633',
+    	'#FF9900',
+    	'#FF9933',
+    	'#FFCC00',
+    	'#FFCC33'
+    ];
+
+    /**
+     * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+     * and the Firebug extension (any Firefox version) are known
+     * to support "%c" CSS customizations.
+     *
+     * TODO: add a `localStorage` variable to explicitly enable/disable colors
+     */
+
+    // eslint-disable-next-line complexity
+    function useColors() {
+    	// NB: In an Electron preload script, document will be defined but not fully
+    	// initialized. Since we know we're in Chrome, we'll just detect this case
+    	// explicitly
+    	if (typeof window !== 'undefined' && window.process && (window.process.type === 'renderer' || window.process.__nwjs)) {
+    		return true;
+    	}
+
+    	// Internet Explorer and Edge do not support colors.
+    	if (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+    		return false;
+    	}
+
+    	// Is webkit? http://stackoverflow.com/a/16459606/376773
+    	// document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+    	return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
+    		// Is firebug? http://stackoverflow.com/a/398120/376773
+    		(typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
+    		// Is firefox >= v31?
+    		// https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+    		(typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+    		// Double check webkit in userAgent just in case we are in a worker
+    		(typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
+    }
+
+    /**
+     * Colorize log arguments if enabled.
+     *
+     * @api public
+     */
+
+    function formatArgs(args) {
+    	args[0] = (this.useColors ? '%c' : '') +
+    		this.namespace +
+    		(this.useColors ? ' %c' : ' ') +
+    		args[0] +
+    		(this.useColors ? '%c ' : ' ') +
+    		'+' + module.exports.humanize(this.diff);
+
+    	if (!this.useColors) {
+    		return;
+    	}
+
+    	const c = 'color: ' + this.color;
+    	args.splice(1, 0, c, 'color: inherit');
+
+    	// The final "%c" is somewhat tricky, because there could be other
+    	// arguments passed either before or after the %c, so we need to
+    	// figure out the correct index to insert the CSS into
+    	let index = 0;
+    	let lastC = 0;
+    	args[0].replace(/%[a-zA-Z%]/g, match => {
+    		if (match === '%%') {
+    			return;
+    		}
+    		index++;
+    		if (match === '%c') {
+    			// We only are interested in the *last* %c
+    			// (the user may have provided their own)
+    			lastC = index;
+    		}
+    	});
+
+    	args.splice(lastC, 0, c);
+    }
+
+    /**
+     * Invokes `console.log()` when available.
+     * No-op when `console.log` is not a "function".
+     *
+     * @api public
+     */
+    function log(...args) {
+    	// This hackery is required for IE8/9, where
+    	// the `console.log` function doesn't have 'apply'
+    	return typeof console === 'object' &&
+    		console.log &&
+    		console.log(...args);
+    }
+
+    /**
+     * Save `namespaces`.
+     *
+     * @param {String} namespaces
+     * @api private
+     */
+    function save(namespaces) {
+    	try {
+    		if (namespaces) {
+    			exports.storage.setItem('debug', namespaces);
+    		} else {
+    			exports.storage.removeItem('debug');
+    		}
+    	} catch (error) {
+    		// Swallow
+    		// XXX (@Qix-) should we be logging these?
+    	}
+    }
+
+    /**
+     * Load `namespaces`.
+     *
+     * @return {String} returns the previously persisted debug modes
+     * @api private
+     */
+    function load() {
+    	let r;
+    	try {
+    		r = exports.storage.getItem('debug');
+    	} catch (error) {
+    		// Swallow
+    		// XXX (@Qix-) should we be logging these?
+    	}
+
+    	// If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+    	if (!r && typeof process !== 'undefined' && 'env' in process) {
+    		r = process.env.DEBUG;
+    	}
+
+    	return r;
+    }
+
+    /**
+     * Localstorage attempts to return the localstorage.
+     *
+     * This is necessary because safari throws
+     * when a user disables cookies/localstorage
+     * and you attempt to access it.
+     *
+     * @return {LocalStorage}
+     * @api private
+     */
+
+    function localstorage() {
+    	try {
+    		// TVMLKit (Apple TV JS Runtime) does not have a window object, just localStorage in the global context
+    		// The Browser also has localStorage in the global context.
+    		return localStorage;
+    	} catch (error) {
+    		// Swallow
+    		// XXX (@Qix-) should we be logging these?
+    	}
+    }
+
+    module.exports = common$1(exports);
+
+    const {formatters} = module.exports;
+
+    /**
+     * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+     */
+
+    formatters.j = function (v) {
+    	try {
+    		return JSON.stringify(v);
+    	} catch (error) {
+    		return '[UnexpectedJSONParseError]: ' + error.message;
+    	}
+    };
+    });
+    var browser_1$3 = browser$3.log;
+    var browser_2$3 = browser$3.formatArgs;
+    var browser_3$3 = browser$3.save;
+    var browser_4$3 = browser$3.load;
+    var browser_5$3 = browser$3.useColors;
+    var browser_6$3 = browser$3.storage;
+    var browser_7$3 = browser$3.colors;
+
+    /**
+     * Module dependencies.
+     */
+
+
+
+
+
+
+    var debug$2 = browser$3('engine.io-client:polling');
+
+    /**
+     * Module exports.
+     */
+
+    var polling = Polling;
+
+    /**
+     * Is XHR2 supported?
+     */
+
+    var hasXHR2 = (function () {
+      var XMLHttpRequest = xmlhttprequest;
+      var xhr = new XMLHttpRequest({ xdomain: false });
+      return null != xhr.responseType;
+    })();
+
+    /**
+     * Polling interface.
+     *
+     * @param {Object} opts
+     * @api private
+     */
+
+    function Polling (opts) {
+      var forceBase64 = (opts && opts.forceBase64);
+      if (!hasXHR2 || forceBase64) {
+        this.supportsBinary = false;
+      }
+      transport.call(this, opts);
+    }
+
+    /**
+     * Inherits from Transport.
+     */
+
+    componentInherit(Polling, transport);
+
+    /**
+     * Transport name.
+     */
+
+    Polling.prototype.name = 'polling';
+
+    /**
+     * Opens the socket (triggers polling). We write a PING message to determine
+     * when the transport is open.
+     *
+     * @api private
+     */
+
+    Polling.prototype.doOpen = function () {
+      this.poll();
+    };
+
+    /**
+     * Pauses polling.
+     *
+     * @param {Function} callback upon buffers are flushed and transport is paused
+     * @api private
+     */
+
+    Polling.prototype.pause = function (onPause) {
+      var self = this;
+
+      this.readyState = 'pausing';
+
+      function pause () {
+        debug$2('paused');
+        self.readyState = 'paused';
+        onPause();
+      }
+
+      if (this.polling || !this.writable) {
+        var total = 0;
+
+        if (this.polling) {
+          debug$2('we are currently polling - waiting to pause');
+          total++;
+          this.once('pollComplete', function () {
+            debug$2('pre-pause polling complete');
+            --total || pause();
+          });
+        }
+
+        if (!this.writable) {
+          debug$2('we are currently writing - waiting to pause');
+          total++;
+          this.once('drain', function () {
+            debug$2('pre-pause writing complete');
+            --total || pause();
+          });
+        }
+      } else {
+        pause();
+      }
+    };
+
+    /**
+     * Starts polling cycle.
+     *
+     * @api public
+     */
+
+    Polling.prototype.poll = function () {
+      debug$2('polling');
+      this.polling = true;
+      this.doPoll();
+      this.emit('poll');
+    };
+
+    /**
+     * Overloads onData to detect payloads.
+     *
+     * @api private
+     */
+
+    Polling.prototype.onData = function (data) {
+      var self = this;
+      debug$2('polling got data %s', data);
+      var callback = function (packet, index, total) {
+        // if its the first message we consider the transport open
+        if ('opening' === self.readyState) {
+          self.onOpen();
+        }
+
+        // if its a close packet, we close the ongoing requests
+        if ('close' === packet.type) {
+          self.onClose();
+          return false;
+        }
+
+        // otherwise bypass onData and handle the message
+        self.onPacket(packet);
+      };
+
+      // decode payload
+      browser$2.decodePayload(data, this.socket.binaryType, callback);
+
+      // if an event did not trigger closing
+      if ('closed' !== this.readyState) {
+        // if we got data we're not polling
+        this.polling = false;
+        this.emit('pollComplete');
+
+        if ('open' === this.readyState) {
+          this.poll();
+        } else {
+          debug$2('ignoring poll - transport state "%s"', this.readyState);
+        }
+      }
+    };
+
+    /**
+     * For polling, send a close packet.
+     *
+     * @api private
+     */
+
+    Polling.prototype.doClose = function () {
+      var self = this;
+
+      function close () {
+        debug$2('writing close packet');
+        self.write([{ type: 'close' }]);
+      }
+
+      if ('open' === this.readyState) {
+        debug$2('transport open - closing');
+        close();
+      } else {
+        // in case we're trying to close while
+        // handshaking is in progress (GH-164)
+        debug$2('transport not open - deferring close');
+        this.once('open', close);
+      }
+    };
+
+    /**
+     * Writes a packets payload.
+     *
+     * @param {Array} data packets
+     * @param {Function} drain callback
+     * @api private
+     */
+
+    Polling.prototype.write = function (packets) {
+      var self = this;
+      this.writable = false;
+      var callbackfn = function () {
+        self.writable = true;
+        self.emit('drain');
+      };
+
+      browser$2.encodePayload(packets, this.supportsBinary, function (data) {
+        self.doWrite(data, callbackfn);
+      });
+    };
+
+    /**
+     * Generates uri for connection.
+     *
+     * @api private
+     */
+
+    Polling.prototype.uri = function () {
+      var query = this.query || {};
+      var schema = this.secure ? 'https' : 'http';
+      var port = '';
+
+      // cache busting is forced
+      if (false !== this.timestampRequests) {
+        query[this.timestampParam] = yeast_1();
+      }
+
+      if (!this.supportsBinary && !query.sid) {
+        query.b64 = 1;
+      }
+
+      query = parseqs.encode(query);
+
+      // avoid port if default for schema
+      if (this.port && (('https' === schema && Number(this.port) !== 443) ||
+         ('http' === schema && Number(this.port) !== 80))) {
+        port = ':' + this.port;
+      }
+
+      // prepend ? to query
+      if (query.length) {
+        query = '?' + query;
+      }
+
+      var ipv6 = this.hostname.indexOf(':') !== -1;
+      return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
+    };
+
+    /* global attachEvent */
+
+    /**
+     * Module requirements.
+     */
+
+
+
+
+
+    var debug$3 = browser$3('engine.io-client:polling-xhr');
+
+    /**
+     * Module exports.
+     */
+
+    var pollingXhr = XHR;
+    var Request_1 = Request;
+
+    /**
+     * Empty function
+     */
+
+    function empty$1 () {}
+
+    /**
+     * XHR Polling constructor.
+     *
+     * @param {Object} opts
+     * @api public
+     */
+
+    function XHR (opts) {
+      polling.call(this, opts);
+      this.requestTimeout = opts.requestTimeout;
+      this.extraHeaders = opts.extraHeaders;
+
+      if (typeof location !== 'undefined') {
+        var isSSL = 'https:' === location.protocol;
+        var port = location.port;
+
+        // some user agents have empty `location.port`
+        if (!port) {
+          port = isSSL ? 443 : 80;
+        }
+
+        this.xd = (typeof location !== 'undefined' && opts.hostname !== location.hostname) ||
+          port !== opts.port;
+        this.xs = opts.secure !== isSSL;
+      }
+    }
+
+    /**
+     * Inherits from Polling.
+     */
+
+    componentInherit(XHR, polling);
+
+    /**
+     * XHR supports binary
+     */
+
+    XHR.prototype.supportsBinary = true;
+
+    /**
+     * Creates a request.
+     *
+     * @param {String} method
+     * @api private
+     */
+
+    XHR.prototype.request = function (opts) {
+      opts = opts || {};
+      opts.uri = this.uri();
+      opts.xd = this.xd;
+      opts.xs = this.xs;
+      opts.agent = this.agent || false;
+      opts.supportsBinary = this.supportsBinary;
+      opts.enablesXDR = this.enablesXDR;
+      opts.withCredentials = this.withCredentials;
+
+      // SSL options for Node.js client
+      opts.pfx = this.pfx;
+      opts.key = this.key;
+      opts.passphrase = this.passphrase;
+      opts.cert = this.cert;
+      opts.ca = this.ca;
+      opts.ciphers = this.ciphers;
+      opts.rejectUnauthorized = this.rejectUnauthorized;
+      opts.requestTimeout = this.requestTimeout;
+
+      // other options for Node.js client
+      opts.extraHeaders = this.extraHeaders;
+
+      return new Request(opts);
+    };
+
+    /**
+     * Sends data.
+     *
+     * @param {String} data to send.
+     * @param {Function} called upon flush.
+     * @api private
+     */
+
+    XHR.prototype.doWrite = function (data, fn) {
+      var isBinary = typeof data !== 'string' && data !== undefined;
+      var req = this.request({ method: 'POST', data: data, isBinary: isBinary });
+      var self = this;
+      req.on('success', fn);
+      req.on('error', function (err) {
+        self.onError('xhr post error', err);
+      });
+      this.sendXhr = req;
+    };
+
+    /**
+     * Starts a poll cycle.
+     *
+     * @api private
+     */
+
+    XHR.prototype.doPoll = function () {
+      debug$3('xhr poll');
+      var req = this.request();
+      var self = this;
+      req.on('data', function (data) {
+        self.onData(data);
+      });
+      req.on('error', function (err) {
+        self.onError('xhr poll error', err);
+      });
+      this.pollXhr = req;
+    };
+
+    /**
+     * Request constructor
+     *
+     * @param {Object} options
+     * @api public
+     */
+
+    function Request (opts) {
+      this.method = opts.method || 'GET';
+      this.uri = opts.uri;
+      this.xd = !!opts.xd;
+      this.xs = !!opts.xs;
+      this.async = false !== opts.async;
+      this.data = undefined !== opts.data ? opts.data : null;
+      this.agent = opts.agent;
+      this.isBinary = opts.isBinary;
+      this.supportsBinary = opts.supportsBinary;
+      this.enablesXDR = opts.enablesXDR;
+      this.withCredentials = opts.withCredentials;
+      this.requestTimeout = opts.requestTimeout;
+
+      // SSL options for Node.js client
+      this.pfx = opts.pfx;
+      this.key = opts.key;
+      this.passphrase = opts.passphrase;
+      this.cert = opts.cert;
+      this.ca = opts.ca;
+      this.ciphers = opts.ciphers;
+      this.rejectUnauthorized = opts.rejectUnauthorized;
+
+      // other options for Node.js client
+      this.extraHeaders = opts.extraHeaders;
+
+      this.create();
+    }
+
+    /**
+     * Mix in `Emitter`.
+     */
+
+    componentEmitter$1(Request.prototype);
+
+    /**
+     * Creates the XHR object and sends the request.
+     *
+     * @api private
+     */
+
+    Request.prototype.create = function () {
+      var opts = { agent: this.agent, xdomain: this.xd, xscheme: this.xs, enablesXDR: this.enablesXDR };
+
+      // SSL options for Node.js client
+      opts.pfx = this.pfx;
+      opts.key = this.key;
+      opts.passphrase = this.passphrase;
+      opts.cert = this.cert;
+      opts.ca = this.ca;
+      opts.ciphers = this.ciphers;
+      opts.rejectUnauthorized = this.rejectUnauthorized;
+
+      var xhr = this.xhr = new xmlhttprequest(opts);
+      var self = this;
+
+      try {
+        debug$3('xhr open %s: %s', this.method, this.uri);
+        xhr.open(this.method, this.uri, this.async);
+        try {
+          if (this.extraHeaders) {
+            xhr.setDisableHeaderCheck && xhr.setDisableHeaderCheck(true);
+            for (var i in this.extraHeaders) {
+              if (this.extraHeaders.hasOwnProperty(i)) {
+                xhr.setRequestHeader(i, this.extraHeaders[i]);
+              }
+            }
+          }
+        } catch (e) {}
+
+        if ('POST' === this.method) {
+          try {
+            if (this.isBinary) {
+              xhr.setRequestHeader('Content-type', 'application/octet-stream');
+            } else {
+              xhr.setRequestHeader('Content-type', 'text/plain;charset=UTF-8');
+            }
+          } catch (e) {}
+        }
+
+        try {
+          xhr.setRequestHeader('Accept', '*/*');
+        } catch (e) {}
+
+        // ie6 check
+        if ('withCredentials' in xhr) {
+          xhr.withCredentials = this.withCredentials;
+        }
+
+        if (this.requestTimeout) {
+          xhr.timeout = this.requestTimeout;
+        }
+
+        if (this.hasXDR()) {
+          xhr.onload = function () {
+            self.onLoad();
+          };
+          xhr.onerror = function () {
+            self.onError(xhr.responseText);
+          };
+        } else {
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 2) {
+              try {
+                var contentType = xhr.getResponseHeader('Content-Type');
+                if (self.supportsBinary && contentType === 'application/octet-stream' || contentType === 'application/octet-stream; charset=UTF-8') {
+                  xhr.responseType = 'arraybuffer';
+                }
+              } catch (e) {}
+            }
+            if (4 !== xhr.readyState) return;
+            if (200 === xhr.status || 1223 === xhr.status) {
+              self.onLoad();
+            } else {
+              // make sure the `error` event handler that's user-set
+              // does not throw in the same tick and gets caught here
+              setTimeout(function () {
+                self.onError(typeof xhr.status === 'number' ? xhr.status : 0);
+              }, 0);
+            }
+          };
+        }
+
+        debug$3('xhr data %s', this.data);
+        xhr.send(this.data);
+      } catch (e) {
+        // Need to defer since .create() is called directly fhrom the constructor
+        // and thus the 'error' event can only be only bound *after* this exception
+        // occurs.  Therefore, also, we cannot throw here at all.
+        setTimeout(function () {
+          self.onError(e);
+        }, 0);
+        return;
+      }
+
+      if (typeof document !== 'undefined') {
+        this.index = Request.requestsCount++;
+        Request.requests[this.index] = this;
+      }
+    };
+
+    /**
+     * Called upon successful response.
+     *
+     * @api private
+     */
+
+    Request.prototype.onSuccess = function () {
+      this.emit('success');
+      this.cleanup();
+    };
+
+    /**
+     * Called if we have data.
+     *
+     * @api private
+     */
+
+    Request.prototype.onData = function (data) {
+      this.emit('data', data);
+      this.onSuccess();
+    };
+
+    /**
+     * Called upon error.
+     *
+     * @api private
+     */
+
+    Request.prototype.onError = function (err) {
+      this.emit('error', err);
+      this.cleanup(true);
+    };
+
+    /**
+     * Cleans up house.
+     *
+     * @api private
+     */
+
+    Request.prototype.cleanup = function (fromError) {
+      if ('undefined' === typeof this.xhr || null === this.xhr) {
+        return;
+      }
+      // xmlhttprequest
+      if (this.hasXDR()) {
+        this.xhr.onload = this.xhr.onerror = empty$1;
+      } else {
+        this.xhr.onreadystatechange = empty$1;
+      }
+
+      if (fromError) {
+        try {
+          this.xhr.abort();
+        } catch (e) {}
+      }
+
+      if (typeof document !== 'undefined') {
+        delete Request.requests[this.index];
+      }
+
+      this.xhr = null;
+    };
+
+    /**
+     * Called upon load.
+     *
+     * @api private
+     */
+
+    Request.prototype.onLoad = function () {
+      var data;
+      try {
+        var contentType;
+        try {
+          contentType = this.xhr.getResponseHeader('Content-Type');
+        } catch (e) {}
+        if (contentType === 'application/octet-stream' || contentType === 'application/octet-stream; charset=UTF-8') {
+          data = this.xhr.response || this.xhr.responseText;
+        } else {
+          data = this.xhr.responseText;
+        }
+      } catch (e) {
+        this.onError(e);
+      }
+      if (null != data) {
+        this.onData(data);
+      }
+    };
+
+    /**
+     * Check if it has XDomainRequest.
+     *
+     * @api private
+     */
+
+    Request.prototype.hasXDR = function () {
+      return typeof XDomainRequest !== 'undefined' && !this.xs && this.enablesXDR;
+    };
+
+    /**
+     * Aborts the request.
+     *
+     * @api public
+     */
+
+    Request.prototype.abort = function () {
+      this.cleanup();
+    };
+
+    /**
+     * Aborts pending requests when unloading the window. This is needed to prevent
+     * memory leaks (e.g. when using IE) and to ensure that no spurious error is
+     * emitted.
+     */
+
+    Request.requestsCount = 0;
+    Request.requests = {};
+
+    if (typeof document !== 'undefined') {
+      if (typeof attachEvent === 'function') {
+        attachEvent('onunload', unloadHandler);
+      } else if (typeof addEventListener === 'function') {
+        var terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload';
+        addEventListener(terminationEvent, unloadHandler, false);
+      }
+    }
+
+    function unloadHandler () {
+      for (var i in Request.requests) {
+        if (Request.requests.hasOwnProperty(i)) {
+          Request.requests[i].abort();
+        }
+      }
+    }
+    pollingXhr.Request = Request_1;
+
+    /**
+     * Module requirements.
+     */
+
+
+
+
+    /**
+     * Module exports.
+     */
+
+    var pollingJsonp = JSONPPolling;
+
+    /**
+     * Cached regular expressions.
+     */
+
+    var rNewline = /\n/g;
+    var rEscapedNewline = /\\n/g;
+
+    /**
+     * Global JSONP callbacks.
+     */
+
+    var callbacks;
+
+    /**
+     * Noop.
+     */
+
+    function empty$2 () { }
+
+    /**
+     * Until https://github.com/tc39/proposal-global is shipped.
+     */
+    function glob () {
+      return typeof self !== 'undefined' ? self
+          : typeof window !== 'undefined' ? window
+          : typeof commonjsGlobal !== 'undefined' ? commonjsGlobal : {};
+    }
+
+    /**
+     * JSONP Polling constructor.
+     *
+     * @param {Object} opts.
+     * @api public
+     */
+
+    function JSONPPolling (opts) {
+      polling.call(this, opts);
+
+      this.query = this.query || {};
+
+      // define global callbacks array if not present
+      // we do this here (lazily) to avoid unneeded global pollution
+      if (!callbacks) {
+        // we need to consider multiple engines in the same page
+        var global = glob();
+        callbacks = global.___eio = (global.___eio || []);
+      }
+
+      // callback identifier
+      this.index = callbacks.length;
+
+      // add callback to jsonp global
+      var self = this;
+      callbacks.push(function (msg) {
+        self.onData(msg);
+      });
+
+      // append to query string
+      this.query.j = this.index;
+
+      // prevent spurious errors from being emitted when the window is unloaded
+      if (typeof addEventListener === 'function') {
+        addEventListener('beforeunload', function () {
+          if (self.script) self.script.onerror = empty$2;
+        }, false);
+      }
+    }
+
+    /**
+     * Inherits from Polling.
+     */
+
+    componentInherit(JSONPPolling, polling);
+
+    /*
+     * JSONP only supports binary as base64 encoded strings
+     */
+
+    JSONPPolling.prototype.supportsBinary = false;
+
+    /**
+     * Closes the socket.
+     *
+     * @api private
+     */
+
+    JSONPPolling.prototype.doClose = function () {
+      if (this.script) {
+        this.script.parentNode.removeChild(this.script);
+        this.script = null;
+      }
+
+      if (this.form) {
+        this.form.parentNode.removeChild(this.form);
+        this.form = null;
+        this.iframe = null;
+      }
+
+      polling.prototype.doClose.call(this);
+    };
+
+    /**
+     * Starts a poll cycle.
+     *
+     * @api private
+     */
+
+    JSONPPolling.prototype.doPoll = function () {
+      var self = this;
+      var script = document.createElement('script');
+
+      if (this.script) {
+        this.script.parentNode.removeChild(this.script);
+        this.script = null;
+      }
+
+      script.async = true;
+      script.src = this.uri();
+      script.onerror = function (e) {
+        self.onError('jsonp poll error', e);
+      };
+
+      var insertAt = document.getElementsByTagName('script')[0];
+      if (insertAt) {
+        insertAt.parentNode.insertBefore(script, insertAt);
+      } else {
+        (document.head || document.body).appendChild(script);
+      }
+      this.script = script;
+
+      var isUAgecko = 'undefined' !== typeof navigator && /gecko/i.test(navigator.userAgent);
+
+      if (isUAgecko) {
+        setTimeout(function () {
+          var iframe = document.createElement('iframe');
+          document.body.appendChild(iframe);
+          document.body.removeChild(iframe);
+        }, 100);
+      }
+    };
+
+    /**
+     * Writes with a hidden iframe.
+     *
+     * @param {String} data to send
+     * @param {Function} called upon flush.
+     * @api private
+     */
+
+    JSONPPolling.prototype.doWrite = function (data, fn) {
+      var self = this;
+
+      if (!this.form) {
+        var form = document.createElement('form');
+        var area = document.createElement('textarea');
+        var id = this.iframeId = 'eio_iframe_' + this.index;
+        var iframe;
+
+        form.className = 'socketio';
+        form.style.position = 'absolute';
+        form.style.top = '-1000px';
+        form.style.left = '-1000px';
+        form.target = id;
+        form.method = 'POST';
+        form.setAttribute('accept-charset', 'utf-8');
+        area.name = 'd';
+        form.appendChild(area);
+        document.body.appendChild(form);
+
+        this.form = form;
+        this.area = area;
+      }
+
+      this.form.action = this.uri();
+
+      function complete () {
+        initIframe();
+        fn();
+      }
+
+      function initIframe () {
+        if (self.iframe) {
+          try {
+            self.form.removeChild(self.iframe);
+          } catch (e) {
+            self.onError('jsonp polling iframe removal error', e);
+          }
+        }
+
+        try {
+          // ie6 dynamic iframes with target="" support (thanks Chris Lambacher)
+          var html = '<iframe src="javascript:0" name="' + self.iframeId + '">';
+          iframe = document.createElement(html);
+        } catch (e) {
+          iframe = document.createElement('iframe');
+          iframe.name = self.iframeId;
+          iframe.src = 'javascript:0';
+        }
+
+        iframe.id = self.iframeId;
+
+        self.form.appendChild(iframe);
+        self.iframe = iframe;
+      }
+
+      initIframe();
+
+      // escape \n to prevent it from being converted into \r\n by some UAs
+      // double escaping is required for escaped new lines because unescaping of new lines can be done safely on server-side
+      data = data.replace(rEscapedNewline, '\\\n');
+      this.area.value = data.replace(rNewline, '\\n');
+
+      try {
+        this.form.submit();
+      } catch (e) {}
+
+      if (this.iframe.attachEvent) {
+        this.iframe.onreadystatechange = function () {
+          if (self.iframe.readyState === 'complete') {
+            complete();
+          }
+        };
+      } else {
+        this.iframe.onload = complete;
+      }
+    };
+
+    var _nodeResolve_empty = {};
+
+    var _nodeResolve_empty$1 = /*#__PURE__*/Object.freeze({
+        __proto__: null,
+        'default': _nodeResolve_empty
+    });
+
+    var require$$1 = getCjsExportFromNamespace(_nodeResolve_empty$1);
+
+    /**
+     * Module dependencies.
+     */
+
+
+
+
+
+
+    var debug$4 = browser$3('engine.io-client:websocket');
+
+    var BrowserWebSocket, NodeWebSocket;
+
+    if (typeof WebSocket !== 'undefined') {
+      BrowserWebSocket = WebSocket;
+    } else if (typeof self !== 'undefined') {
+      BrowserWebSocket = self.WebSocket || self.MozWebSocket;
+    }
+
+    if (typeof window === 'undefined') {
+      try {
+        NodeWebSocket = require$$1;
+      } catch (e) { }
+    }
+
+    /**
+     * Get either the `WebSocket` or `MozWebSocket` globals
+     * in the browser or try to resolve WebSocket-compatible
+     * interface exposed by `ws` for Node-like environment.
+     */
+
+    var WebSocketImpl = BrowserWebSocket || NodeWebSocket;
+
+    /**
+     * Module exports.
+     */
+
+    var websocket = WS;
+
+    /**
+     * WebSocket transport constructor.
+     *
+     * @api {Object} connection options
+     * @api public
+     */
+
+    function WS (opts) {
+      var forceBase64 = (opts && opts.forceBase64);
+      if (forceBase64) {
+        this.supportsBinary = false;
+      }
+      this.perMessageDeflate = opts.perMessageDeflate;
+      this.usingBrowserWebSocket = BrowserWebSocket && !opts.forceNode;
+      this.protocols = opts.protocols;
+      if (!this.usingBrowserWebSocket) {
+        WebSocketImpl = NodeWebSocket;
+      }
+      transport.call(this, opts);
+    }
+
+    /**
+     * Inherits from Transport.
+     */
+
+    componentInherit(WS, transport);
+
+    /**
+     * Transport name.
+     *
+     * @api public
+     */
+
+    WS.prototype.name = 'websocket';
+
+    /*
+     * WebSockets support binary
+     */
+
+    WS.prototype.supportsBinary = true;
+
+    /**
+     * Opens socket.
+     *
+     * @api private
+     */
+
+    WS.prototype.doOpen = function () {
+      if (!this.check()) {
+        // let probe timeout
+        return;
+      }
+
+      var uri = this.uri();
+      var protocols = this.protocols;
+      var opts = {
+        agent: this.agent,
+        perMessageDeflate: this.perMessageDeflate
+      };
+
+      // SSL options for Node.js client
+      opts.pfx = this.pfx;
+      opts.key = this.key;
+      opts.passphrase = this.passphrase;
+      opts.cert = this.cert;
+      opts.ca = this.ca;
+      opts.ciphers = this.ciphers;
+      opts.rejectUnauthorized = this.rejectUnauthorized;
+      if (this.extraHeaders) {
+        opts.headers = this.extraHeaders;
+      }
+      if (this.localAddress) {
+        opts.localAddress = this.localAddress;
+      }
+
+      try {
+        this.ws =
+          this.usingBrowserWebSocket && !this.isReactNative
+            ? protocols
+              ? new WebSocketImpl(uri, protocols)
+              : new WebSocketImpl(uri)
+            : new WebSocketImpl(uri, protocols, opts);
+      } catch (err) {
+        return this.emit('error', err);
+      }
+
+      if (this.ws.binaryType === undefined) {
+        this.supportsBinary = false;
+      }
+
+      if (this.ws.supports && this.ws.supports.binary) {
+        this.supportsBinary = true;
+        this.ws.binaryType = 'nodebuffer';
+      } else {
+        this.ws.binaryType = 'arraybuffer';
+      }
+
+      this.addEventListeners();
+    };
+
+    /**
+     * Adds event listeners to the socket
+     *
+     * @api private
+     */
+
+    WS.prototype.addEventListeners = function () {
+      var self = this;
+
+      this.ws.onopen = function () {
+        self.onOpen();
+      };
+      this.ws.onclose = function () {
+        self.onClose();
+      };
+      this.ws.onmessage = function (ev) {
+        self.onData(ev.data);
+      };
+      this.ws.onerror = function (e) {
+        self.onError('websocket error', e);
+      };
+    };
+
+    /**
+     * Writes data to socket.
+     *
+     * @param {Array} array of packets.
+     * @api private
+     */
+
+    WS.prototype.write = function (packets) {
+      var self = this;
+      this.writable = false;
+
+      // encodePacket efficient as it uses WS framing
+      // no need for encodePayload
+      var total = packets.length;
+      for (var i = 0, l = total; i < l; i++) {
+        (function (packet) {
+          browser$2.encodePacket(packet, self.supportsBinary, function (data) {
+            if (!self.usingBrowserWebSocket) {
+              // always create a new object (GH-437)
+              var opts = {};
+              if (packet.options) {
+                opts.compress = packet.options.compress;
+              }
+
+              if (self.perMessageDeflate) {
+                var len = 'string' === typeof data ? Buffer.byteLength(data) : data.length;
+                if (len < self.perMessageDeflate.threshold) {
+                  opts.compress = false;
+                }
+              }
+            }
+
+            // Sometimes the websocket has already been closed but the browser didn't
+            // have a chance of informing us about it yet, in that case send will
+            // throw an error
+            try {
+              if (self.usingBrowserWebSocket) {
+                // TypeError is thrown when passing the second argument on Safari
+                self.ws.send(data);
+              } else {
+                self.ws.send(data, opts);
+              }
+            } catch (e) {
+              debug$4('websocket closed before onclose event');
+            }
+
+            --total || done();
+          });
+        })(packets[i]);
+      }
+
+      function done () {
+        self.emit('flush');
+
+        // fake drain
+        // defer to next tick to allow Socket to clear writeBuffer
+        setTimeout(function () {
+          self.writable = true;
+          self.emit('drain');
+        }, 0);
+      }
+    };
+
+    /**
+     * Called upon close
+     *
+     * @api private
+     */
+
+    WS.prototype.onClose = function () {
+      transport.prototype.onClose.call(this);
+    };
+
+    /**
+     * Closes socket.
+     *
+     * @api private
+     */
+
+    WS.prototype.doClose = function () {
+      if (typeof this.ws !== 'undefined') {
+        this.ws.close();
+      }
+    };
+
+    /**
+     * Generates uri for connection.
+     *
+     * @api private
+     */
+
+    WS.prototype.uri = function () {
+      var query = this.query || {};
+      var schema = this.secure ? 'wss' : 'ws';
+      var port = '';
+
+      // avoid port if default for schema
+      if (this.port && (('wss' === schema && Number(this.port) !== 443) ||
+        ('ws' === schema && Number(this.port) !== 80))) {
+        port = ':' + this.port;
+      }
+
+      // append timestamp to URI
+      if (this.timestampRequests) {
+        query[this.timestampParam] = yeast_1();
+      }
+
+      // communicate binary support capabilities
+      if (!this.supportsBinary) {
+        query.b64 = 1;
+      }
+
+      query = parseqs.encode(query);
+
+      // prepend ? to query
+      if (query.length) {
+        query = '?' + query;
+      }
+
+      var ipv6 = this.hostname.indexOf(':') !== -1;
+      return schema + '://' + (ipv6 ? '[' + this.hostname + ']' : this.hostname) + port + this.path + query;
+    };
+
+    /**
+     * Feature detection for WebSocket.
+     *
+     * @return {Boolean} whether this transport is available.
+     * @api public
+     */
+
+    WS.prototype.check = function () {
+      return !!WebSocketImpl && !('__initialize' in WebSocketImpl && this.name === WS.prototype.name);
+    };
+
+    /**
+     * Module dependencies
+     */
+
+
+
+
+
+
+    /**
+     * Export transports.
+     */
+
+    var polling_1 = polling$1;
+    var websocket_1 = websocket;
+
+    /**
+     * Polling transport polymorphic constructor.
+     * Decides on xhr vs jsonp based on feature detection.
+     *
+     * @api private
+     */
+
+    function polling$1 (opts) {
+      var xhr;
+      var xd = false;
+      var xs = false;
+      var jsonp = false !== opts.jsonp;
+
+      if (typeof location !== 'undefined') {
+        var isSSL = 'https:' === location.protocol;
+        var port = location.port;
+
+        // some user agents have empty `location.port`
+        if (!port) {
+          port = isSSL ? 443 : 80;
+        }
+
+        xd = opts.hostname !== location.hostname || port !== opts.port;
+        xs = opts.secure !== isSSL;
+      }
+
+      opts.xdomain = xd;
+      opts.xscheme = xs;
+      xhr = new xmlhttprequest(opts);
+
+      if ('open' in xhr && !opts.forceJSONP) {
+        return new pollingXhr(opts);
+      } else {
+        if (!jsonp) throw new Error('JSONP disabled');
+        return new pollingJsonp(opts);
+      }
+    }
+
+    var transports = {
+    	polling: polling_1,
+    	websocket: websocket_1
+    };
+
+    var indexOf = [].indexOf;
+
+    var indexof = function(arr, obj){
+      if (indexOf) return arr.indexOf(obj);
+      for (var i = 0; i < arr.length; ++i) {
+        if (arr[i] === obj) return i;
+      }
+      return -1;
+    };
+
+    /**
+     * Module dependencies.
+     */
+
+
+
+    var debug$5 = browser$3('engine.io-client:socket');
+
+
+
+
+
+    /**
+     * Module exports.
+     */
+
+    var socket = Socket;
+
+    /**
+     * Socket constructor.
+     *
+     * @param {String|Object} uri or options
+     * @param {Object} options
+     * @api public
+     */
+
+    function Socket (uri, opts) {
+      if (!(this instanceof Socket)) return new Socket(uri, opts);
+
+      opts = opts || {};
+
+      if (uri && 'object' === typeof uri) {
+        opts = uri;
+        uri = null;
+      }
+
+      if (uri) {
+        uri = parseuri(uri);
+        opts.hostname = uri.host;
+        opts.secure = uri.protocol === 'https' || uri.protocol === 'wss';
+        opts.port = uri.port;
+        if (uri.query) opts.query = uri.query;
+      } else if (opts.host) {
+        opts.hostname = parseuri(opts.host).host;
+      }
+
+      this.secure = null != opts.secure ? opts.secure
+        : (typeof location !== 'undefined' && 'https:' === location.protocol);
+
+      if (opts.hostname && !opts.port) {
+        // if no port is specified manually, use the protocol default
+        opts.port = this.secure ? '443' : '80';
+      }
+
+      this.agent = opts.agent || false;
+      this.hostname = opts.hostname ||
+        (typeof location !== 'undefined' ? location.hostname : 'localhost');
+      this.port = opts.port || (typeof location !== 'undefined' && location.port
+          ? location.port
+          : (this.secure ? 443 : 80));
+      this.query = opts.query || {};
+      if ('string' === typeof this.query) this.query = parseqs.decode(this.query);
+      this.upgrade = false !== opts.upgrade;
+      this.path = (opts.path || '/engine.io').replace(/\/$/, '') + '/';
+      this.forceJSONP = !!opts.forceJSONP;
+      this.jsonp = false !== opts.jsonp;
+      this.forceBase64 = !!opts.forceBase64;
+      this.enablesXDR = !!opts.enablesXDR;
+      this.withCredentials = false !== opts.withCredentials;
+      this.timestampParam = opts.timestampParam || 't';
+      this.timestampRequests = opts.timestampRequests;
+      this.transports = opts.transports || ['polling', 'websocket'];
+      this.transportOptions = opts.transportOptions || {};
+      this.readyState = '';
+      this.writeBuffer = [];
+      this.prevBufferLen = 0;
+      this.policyPort = opts.policyPort || 843;
+      this.rememberUpgrade = opts.rememberUpgrade || false;
+      this.binaryType = null;
+      this.onlyBinaryUpgrades = opts.onlyBinaryUpgrades;
+      this.perMessageDeflate = false !== opts.perMessageDeflate ? (opts.perMessageDeflate || {}) : false;
+
+      if (true === this.perMessageDeflate) this.perMessageDeflate = {};
+      if (this.perMessageDeflate && null == this.perMessageDeflate.threshold) {
+        this.perMessageDeflate.threshold = 1024;
+      }
+
+      // SSL options for Node.js client
+      this.pfx = opts.pfx || null;
+      this.key = opts.key || null;
+      this.passphrase = opts.passphrase || null;
+      this.cert = opts.cert || null;
+      this.ca = opts.ca || null;
+      this.ciphers = opts.ciphers || null;
+      this.rejectUnauthorized = opts.rejectUnauthorized === undefined ? true : opts.rejectUnauthorized;
+      this.forceNode = !!opts.forceNode;
+
+      // detect ReactNative environment
+      this.isReactNative = (typeof navigator !== 'undefined' && typeof navigator.product === 'string' && navigator.product.toLowerCase() === 'reactnative');
+
+      // other options for Node.js or ReactNative client
+      if (typeof self === 'undefined' || this.isReactNative) {
+        if (opts.extraHeaders && Object.keys(opts.extraHeaders).length > 0) {
+          this.extraHeaders = opts.extraHeaders;
+        }
+
+        if (opts.localAddress) {
+          this.localAddress = opts.localAddress;
+        }
+      }
+
+      // set on handshake
+      this.id = null;
+      this.upgrades = null;
+      this.pingInterval = null;
+      this.pingTimeout = null;
+
+      // set on heartbeat
+      this.pingIntervalTimer = null;
+      this.pingTimeoutTimer = null;
+
+      this.open();
+    }
+
+    Socket.priorWebsocketSuccess = false;
+
+    /**
+     * Mix in `Emitter`.
+     */
+
+    componentEmitter$1(Socket.prototype);
+
+    /**
+     * Protocol version.
+     *
+     * @api public
+     */
+
+    Socket.protocol = browser$2.protocol; // this is an int
+
+    /**
+     * Expose deps for legacy compatibility
+     * and standalone browser access.
+     */
+
+    Socket.Socket = Socket;
+    Socket.Transport = transport;
+    Socket.transports = transports;
+    Socket.parser = browser$2;
+
+    /**
+     * Creates transport of the given type.
+     *
+     * @param {String} transport name
+     * @return {Transport}
+     * @api private
+     */
+
+    Socket.prototype.createTransport = function (name) {
+      debug$5('creating transport "%s"', name);
+      var query = clone(this.query);
+
+      // append engine.io protocol identifier
+      query.EIO = browser$2.protocol;
+
+      // transport name
+      query.transport = name;
+
+      // per-transport options
+      var options = this.transportOptions[name] || {};
+
+      // session id if we already have one
+      if (this.id) query.sid = this.id;
+
+      var transport = new transports[name]({
+        query: query,
+        socket: this,
+        agent: options.agent || this.agent,
+        hostname: options.hostname || this.hostname,
+        port: options.port || this.port,
+        secure: options.secure || this.secure,
+        path: options.path || this.path,
+        forceJSONP: options.forceJSONP || this.forceJSONP,
+        jsonp: options.jsonp || this.jsonp,
+        forceBase64: options.forceBase64 || this.forceBase64,
+        enablesXDR: options.enablesXDR || this.enablesXDR,
+        withCredentials: options.withCredentials || this.withCredentials,
+        timestampRequests: options.timestampRequests || this.timestampRequests,
+        timestampParam: options.timestampParam || this.timestampParam,
+        policyPort: options.policyPort || this.policyPort,
+        pfx: options.pfx || this.pfx,
+        key: options.key || this.key,
+        passphrase: options.passphrase || this.passphrase,
+        cert: options.cert || this.cert,
+        ca: options.ca || this.ca,
+        ciphers: options.ciphers || this.ciphers,
+        rejectUnauthorized: options.rejectUnauthorized || this.rejectUnauthorized,
+        perMessageDeflate: options.perMessageDeflate || this.perMessageDeflate,
+        extraHeaders: options.extraHeaders || this.extraHeaders,
+        forceNode: options.forceNode || this.forceNode,
+        localAddress: options.localAddress || this.localAddress,
+        requestTimeout: options.requestTimeout || this.requestTimeout,
+        protocols: options.protocols || void (0),
+        isReactNative: this.isReactNative
+      });
+
+      return transport;
+    };
+
+    function clone (obj) {
+      var o = {};
+      for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+          o[i] = obj[i];
+        }
+      }
+      return o;
+    }
+
+    /**
+     * Initializes transport to use and starts probe.
+     *
+     * @api private
+     */
+    Socket.prototype.open = function () {
+      var transport;
+      if (this.rememberUpgrade && Socket.priorWebsocketSuccess && this.transports.indexOf('websocket') !== -1) {
+        transport = 'websocket';
+      } else if (0 === this.transports.length) {
+        // Emit error on next tick so it can be listened to
+        var self = this;
+        setTimeout(function () {
+          self.emit('error', 'No transports available');
+        }, 0);
+        return;
+      } else {
+        transport = this.transports[0];
+      }
+      this.readyState = 'opening';
+
+      // Retry with the next transport if the transport is disabled (jsonp: false)
+      try {
+        transport = this.createTransport(transport);
+      } catch (e) {
+        this.transports.shift();
+        this.open();
+        return;
+      }
+
+      transport.open();
+      this.setTransport(transport);
+    };
+
+    /**
+     * Sets the current transport. Disables the existing one (if any).
+     *
+     * @api private
+     */
+
+    Socket.prototype.setTransport = function (transport) {
+      debug$5('setting transport %s', transport.name);
+      var self = this;
+
+      if (this.transport) {
+        debug$5('clearing existing transport %s', this.transport.name);
+        this.transport.removeAllListeners();
+      }
+
+      // set up transport
+      this.transport = transport;
+
+      // set up transport listeners
+      transport
+      .on('drain', function () {
+        self.onDrain();
+      })
+      .on('packet', function (packet) {
+        self.onPacket(packet);
+      })
+      .on('error', function (e) {
+        self.onError(e);
+      })
+      .on('close', function () {
+        self.onClose('transport close');
+      });
+    };
+
+    /**
+     * Probes a transport.
+     *
+     * @param {String} transport name
+     * @api private
+     */
+
+    Socket.prototype.probe = function (name) {
+      debug$5('probing transport "%s"', name);
+      var transport = this.createTransport(name, { probe: 1 });
+      var failed = false;
+      var self = this;
+
+      Socket.priorWebsocketSuccess = false;
+
+      function onTransportOpen () {
+        if (self.onlyBinaryUpgrades) {
+          var upgradeLosesBinary = !this.supportsBinary && self.transport.supportsBinary;
+          failed = failed || upgradeLosesBinary;
+        }
+        if (failed) return;
+
+        debug$5('probe transport "%s" opened', name);
+        transport.send([{ type: 'ping', data: 'probe' }]);
+        transport.once('packet', function (msg) {
+          if (failed) return;
+          if ('pong' === msg.type && 'probe' === msg.data) {
+            debug$5('probe transport "%s" pong', name);
+            self.upgrading = true;
+            self.emit('upgrading', transport);
+            if (!transport) return;
+            Socket.priorWebsocketSuccess = 'websocket' === transport.name;
+
+            debug$5('pausing current transport "%s"', self.transport.name);
+            self.transport.pause(function () {
+              if (failed) return;
+              if ('closed' === self.readyState) return;
+              debug$5('changing transport and sending upgrade packet');
+
+              cleanup();
+
+              self.setTransport(transport);
+              transport.send([{ type: 'upgrade' }]);
+              self.emit('upgrade', transport);
+              transport = null;
+              self.upgrading = false;
+              self.flush();
+            });
+          } else {
+            debug$5('probe transport "%s" failed', name);
+            var err = new Error('probe error');
+            err.transport = transport.name;
+            self.emit('upgradeError', err);
+          }
+        });
+      }
+
+      function freezeTransport () {
+        if (failed) return;
+
+        // Any callback called by transport should be ignored since now
+        failed = true;
+
+        cleanup();
+
+        transport.close();
+        transport = null;
+      }
+
+      // Handle any error that happens while probing
+      function onerror (err) {
+        var error = new Error('probe error: ' + err);
+        error.transport = transport.name;
+
+        freezeTransport();
+
+        debug$5('probe transport "%s" failed because of error: %s', name, err);
+
+        self.emit('upgradeError', error);
+      }
+
+      function onTransportClose () {
+        onerror('transport closed');
+      }
+
+      // When the socket is closed while we're probing
+      function onclose () {
+        onerror('socket closed');
+      }
+
+      // When the socket is upgraded while we're probing
+      function onupgrade (to) {
+        if (transport && to.name !== transport.name) {
+          debug$5('"%s" works - aborting "%s"', to.name, transport.name);
+          freezeTransport();
+        }
+      }
+
+      // Remove all listeners on the transport and on self
+      function cleanup () {
+        transport.removeListener('open', onTransportOpen);
+        transport.removeListener('error', onerror);
+        transport.removeListener('close', onTransportClose);
+        self.removeListener('close', onclose);
+        self.removeListener('upgrading', onupgrade);
+      }
+
+      transport.once('open', onTransportOpen);
+      transport.once('error', onerror);
+      transport.once('close', onTransportClose);
+
+      this.once('close', onclose);
+      this.once('upgrading', onupgrade);
+
+      transport.open();
+    };
+
+    /**
+     * Called when connection is deemed open.
+     *
+     * @api public
+     */
+
+    Socket.prototype.onOpen = function () {
+      debug$5('socket open');
+      this.readyState = 'open';
+      Socket.priorWebsocketSuccess = 'websocket' === this.transport.name;
+      this.emit('open');
+      this.flush();
+
+      // we check for `readyState` in case an `open`
+      // listener already closed the socket
+      if ('open' === this.readyState && this.upgrade && this.transport.pause) {
+        debug$5('starting upgrade probes');
+        for (var i = 0, l = this.upgrades.length; i < l; i++) {
+          this.probe(this.upgrades[i]);
+        }
+      }
+    };
+
+    /**
+     * Handles a packet.
+     *
+     * @api private
+     */
+
+    Socket.prototype.onPacket = function (packet) {
+      if ('opening' === this.readyState || 'open' === this.readyState ||
+          'closing' === this.readyState) {
+        debug$5('socket receive: type "%s", data "%s"', packet.type, packet.data);
+
+        this.emit('packet', packet);
+
+        // Socket is live - any packet counts
+        this.emit('heartbeat');
+
+        switch (packet.type) {
+          case 'open':
+            this.onHandshake(JSON.parse(packet.data));
+            break;
+
+          case 'pong':
+            this.setPing();
+            this.emit('pong');
+            break;
+
+          case 'error':
+            var err = new Error('server error');
+            err.code = packet.data;
+            this.onError(err);
+            break;
+
+          case 'message':
+            this.emit('data', packet.data);
+            this.emit('message', packet.data);
+            break;
+        }
+      } else {
+        debug$5('packet received with socket readyState "%s"', this.readyState);
+      }
+    };
+
+    /**
+     * Called upon handshake completion.
+     *
+     * @param {Object} handshake obj
+     * @api private
+     */
+
+    Socket.prototype.onHandshake = function (data) {
+      this.emit('handshake', data);
+      this.id = data.sid;
+      this.transport.query.sid = data.sid;
+      this.upgrades = this.filterUpgrades(data.upgrades);
+      this.pingInterval = data.pingInterval;
+      this.pingTimeout = data.pingTimeout;
+      this.onOpen();
+      // In case open handler closes socket
+      if ('closed' === this.readyState) return;
+      this.setPing();
+
+      // Prolong liveness of socket on heartbeat
+      this.removeListener('heartbeat', this.onHeartbeat);
+      this.on('heartbeat', this.onHeartbeat);
+    };
+
+    /**
+     * Resets ping timeout.
+     *
+     * @api private
+     */
+
+    Socket.prototype.onHeartbeat = function (timeout) {
+      clearTimeout(this.pingTimeoutTimer);
+      var self = this;
+      self.pingTimeoutTimer = setTimeout(function () {
+        if ('closed' === self.readyState) return;
+        self.onClose('ping timeout');
+      }, timeout || (self.pingInterval + self.pingTimeout));
+    };
+
+    /**
+     * Pings server every `this.pingInterval` and expects response
+     * within `this.pingTimeout` or closes connection.
+     *
+     * @api private
+     */
+
+    Socket.prototype.setPing = function () {
+      var self = this;
+      clearTimeout(self.pingIntervalTimer);
+      self.pingIntervalTimer = setTimeout(function () {
+        debug$5('writing ping packet - expecting pong within %sms', self.pingTimeout);
+        self.ping();
+        self.onHeartbeat(self.pingTimeout);
+      }, self.pingInterval);
+    };
+
+    /**
+    * Sends a ping packet.
+    *
+    * @api private
+    */
+
+    Socket.prototype.ping = function () {
+      var self = this;
+      this.sendPacket('ping', function () {
+        self.emit('ping');
+      });
+    };
+
+    /**
+     * Called on `drain` event
+     *
+     * @api private
+     */
+
+    Socket.prototype.onDrain = function () {
+      this.writeBuffer.splice(0, this.prevBufferLen);
+
+      // setting prevBufferLen = 0 is very important
+      // for example, when upgrading, upgrade packet is sent over,
+      // and a nonzero prevBufferLen could cause problems on `drain`
+      this.prevBufferLen = 0;
+
+      if (0 === this.writeBuffer.length) {
+        this.emit('drain');
+      } else {
+        this.flush();
+      }
+    };
+
+    /**
+     * Flush write buffers.
+     *
+     * @api private
+     */
+
+    Socket.prototype.flush = function () {
+      if ('closed' !== this.readyState && this.transport.writable &&
+        !this.upgrading && this.writeBuffer.length) {
+        debug$5('flushing %d packets in socket', this.writeBuffer.length);
+        this.transport.send(this.writeBuffer);
+        // keep track of current length of writeBuffer
+        // splice writeBuffer and callbackBuffer on `drain`
+        this.prevBufferLen = this.writeBuffer.length;
+        this.emit('flush');
+      }
+    };
+
+    /**
+     * Sends a message.
+     *
+     * @param {String} message.
+     * @param {Function} callback function.
+     * @param {Object} options.
+     * @return {Socket} for chaining.
+     * @api public
+     */
+
+    Socket.prototype.write =
+    Socket.prototype.send = function (msg, options, fn) {
+      this.sendPacket('message', msg, options, fn);
+      return this;
+    };
+
+    /**
+     * Sends a packet.
+     *
+     * @param {String} packet type.
+     * @param {String} data.
+     * @param {Object} options.
+     * @param {Function} callback function.
+     * @api private
+     */
+
+    Socket.prototype.sendPacket = function (type, data, options, fn) {
+      if ('function' === typeof data) {
+        fn = data;
+        data = undefined;
+      }
+
+      if ('function' === typeof options) {
+        fn = options;
+        options = null;
+      }
+
+      if ('closing' === this.readyState || 'closed' === this.readyState) {
+        return;
+      }
+
+      options = options || {};
+      options.compress = false !== options.compress;
+
+      var packet = {
+        type: type,
+        data: data,
+        options: options
+      };
+      this.emit('packetCreate', packet);
+      this.writeBuffer.push(packet);
+      if (fn) this.once('flush', fn);
+      this.flush();
+    };
+
+    /**
+     * Closes the connection.
+     *
+     * @api private
+     */
+
+    Socket.prototype.close = function () {
+      if ('opening' === this.readyState || 'open' === this.readyState) {
+        this.readyState = 'closing';
+
+        var self = this;
+
+        if (this.writeBuffer.length) {
+          this.once('drain', function () {
+            if (this.upgrading) {
+              waitForUpgrade();
+            } else {
+              close();
+            }
+          });
+        } else if (this.upgrading) {
+          waitForUpgrade();
+        } else {
+          close();
+        }
+      }
+
+      function close () {
+        self.onClose('forced close');
+        debug$5('socket closing - telling transport to close');
+        self.transport.close();
+      }
+
+      function cleanupAndClose () {
+        self.removeListener('upgrade', cleanupAndClose);
+        self.removeListener('upgradeError', cleanupAndClose);
+        close();
+      }
+
+      function waitForUpgrade () {
+        // wait for upgrade to finish since we can't send packets while pausing a transport
+        self.once('upgrade', cleanupAndClose);
+        self.once('upgradeError', cleanupAndClose);
+      }
+
+      return this;
+    };
+
+    /**
+     * Called upon transport error
+     *
+     * @api private
+     */
+
+    Socket.prototype.onError = function (err) {
+      debug$5('socket error %j', err);
+      Socket.priorWebsocketSuccess = false;
+      this.emit('error', err);
+      this.onClose('transport error', err);
+    };
+
+    /**
+     * Called upon transport close.
+     *
+     * @api private
+     */
+
+    Socket.prototype.onClose = function (reason, desc) {
+      if ('opening' === this.readyState || 'open' === this.readyState || 'closing' === this.readyState) {
+        debug$5('socket close with reason: "%s"', reason);
+        var self = this;
+
+        // clear timers
+        clearTimeout(this.pingIntervalTimer);
+        clearTimeout(this.pingTimeoutTimer);
+
+        // stop event from firing again for transport
+        this.transport.removeAllListeners('close');
+
+        // ensure transport won't stay open
+        this.transport.close();
+
+        // ignore further transport communication
+        this.transport.removeAllListeners();
+
+        // set ready state
+        this.readyState = 'closed';
+
+        // clear session id
+        this.id = null;
+
+        // emit close event
+        this.emit('close', reason, desc);
+
+        // clean buffers after, so users can still
+        // grab the buffers on `close` event
+        self.writeBuffer = [];
+        self.prevBufferLen = 0;
+      }
+    };
+
+    /**
+     * Filters upgrades, returning only those matching client transports.
+     *
+     * @param {Array} server upgrades
+     * @api private
+     *
+     */
+
+    Socket.prototype.filterUpgrades = function (upgrades) {
+      var filteredUpgrades = [];
+      for (var i = 0, j = upgrades.length; i < j; i++) {
+        if (~indexof(this.transports, upgrades[i])) filteredUpgrades.push(upgrades[i]);
+      }
+      return filteredUpgrades;
+    };
+
+    var lib = socket;
+
+    /**
+     * Exports parser
+     *
+     * @api public
+     *
+     */
+    var parser = browser$2;
+    lib.parser = parser;
+
+    var componentEmitter$2 = createCommonjsModule(function (module) {
+    /**
+     * Expose `Emitter`.
+     */
+
+    {
+      module.exports = Emitter;
+    }
+
+    /**
+     * Initialize a new `Emitter`.
+     *
+     * @api public
+     */
+
+    function Emitter(obj) {
+      if (obj) return mixin(obj);
+    }
+    /**
+     * Mixin the emitter properties.
+     *
+     * @param {Object} obj
+     * @return {Object}
+     * @api private
+     */
+
+    function mixin(obj) {
+      for (var key in Emitter.prototype) {
+        obj[key] = Emitter.prototype[key];
+      }
+      return obj;
+    }
+
+    /**
+     * Listen on the given `event` with `fn`.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.on =
+    Emitter.prototype.addEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+      (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+        .push(fn);
+      return this;
+    };
+
+    /**
+     * Adds an `event` listener that will be invoked a single
+     * time then automatically removed.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.once = function(event, fn){
+      function on() {
+        this.off(event, on);
+        fn.apply(this, arguments);
+      }
+
+      on.fn = fn;
+      this.on(event, on);
+      return this;
+    };
+
+    /**
+     * Remove the given callback for `event` or all
+     * registered callbacks.
+     *
+     * @param {String} event
+     * @param {Function} fn
+     * @return {Emitter}
+     * @api public
+     */
+
+    Emitter.prototype.off =
+    Emitter.prototype.removeListener =
+    Emitter.prototype.removeAllListeners =
+    Emitter.prototype.removeEventListener = function(event, fn){
+      this._callbacks = this._callbacks || {};
+
+      // all
+      if (0 == arguments.length) {
+        this._callbacks = {};
+        return this;
+      }
+
+      // specific event
+      var callbacks = this._callbacks['$' + event];
+      if (!callbacks) return this;
+
+      // remove all handlers
+      if (1 == arguments.length) {
+        delete this._callbacks['$' + event];
+        return this;
+      }
+
+      // remove specific handler
+      var cb;
+      for (var i = 0; i < callbacks.length; i++) {
+        cb = callbacks[i];
+        if (cb === fn || cb.fn === fn) {
+          callbacks.splice(i, 1);
+          break;
+        }
+      }
+      return this;
+    };
+
+    /**
+     * Emit `event` with the given args.
+     *
+     * @param {String} event
+     * @param {Mixed} ...
+     * @return {Emitter}
+     */
+
+    Emitter.prototype.emit = function(event){
+      this._callbacks = this._callbacks || {};
+      var args = [].slice.call(arguments, 1)
+        , callbacks = this._callbacks['$' + event];
+
+      if (callbacks) {
+        callbacks = callbacks.slice(0);
+        for (var i = 0, len = callbacks.length; i < len; ++i) {
+          callbacks[i].apply(this, args);
+        }
+      }
+
+      return this;
+    };
+
+    /**
+     * Return array of callbacks for `event`.
+     *
+     * @param {String} event
+     * @return {Array}
+     * @api public
+     */
+
+    Emitter.prototype.listeners = function(event){
+      this._callbacks = this._callbacks || {};
+      return this._callbacks['$' + event] || [];
+    };
+
+    /**
+     * Check if this emitter has `event` handlers.
+     *
+     * @param {String} event
+     * @return {Boolean}
+     * @api public
+     */
+
+    Emitter.prototype.hasListeners = function(event){
+      return !! this.listeners(event).length;
+    };
+    });
+
+    var toArray_1 = toArray;
+
+    function toArray(list, index) {
+        var array = [];
+
+        index = index || 0;
+
+        for (var i = index || 0; i < list.length; i++) {
+            array[i - index] = list[i];
+        }
+
+        return array
+    }
+
+    /**
+     * Module exports.
+     */
+
+    var on_1 = on;
+
+    /**
+     * Helper for subscriptions.
+     *
+     * @param {Object|EventEmitter} obj with `Emitter` mixin or `EventEmitter`
+     * @param {String} event name
+     * @param {Function} callback
+     * @api public
+     */
+
+    function on (obj, ev, fn) {
+      obj.on(ev, fn);
+      return {
+        destroy: function () {
+          obj.removeListener(ev, fn);
+        }
+      };
+    }
+
+    /**
+     * Slice reference.
+     */
+
+    var slice = [].slice;
+
+    /**
+     * Bind `obj` to `fn`.
+     *
+     * @param {Object} obj
+     * @param {Function|String} fn or string
+     * @return {Function}
+     * @api public
+     */
+
+    var componentBind = function(obj, fn){
+      if ('string' == typeof fn) fn = obj[fn];
+      if ('function' != typeof fn) throw new Error('bind() requires a function');
+      var args = slice.call(arguments, 2);
+      return function(){
+        return fn.apply(obj, args.concat(slice.call(arguments)));
+      }
+    };
+
+    var socket$1 = createCommonjsModule(function (module, exports) {
+    /**
+     * Module dependencies.
+     */
+
+
+
+
+
+
+    var debug = browser('socket.io-client:socket');
+
+
+
+    /**
+     * Module exports.
+     */
+
+    module.exports = exports = Socket;
+
+    /**
+     * Internal events (blacklisted).
+     * These events can't be emitted by the user.
+     *
+     * @api private
+     */
+
+    var events = {
+      connect: 1,
+      connect_error: 1,
+      connect_timeout: 1,
+      connecting: 1,
+      disconnect: 1,
+      error: 1,
+      reconnect: 1,
+      reconnect_attempt: 1,
+      reconnect_failed: 1,
+      reconnect_error: 1,
+      reconnecting: 1,
+      ping: 1,
+      pong: 1
+    };
+
+    /**
+     * Shortcut to `Emitter#emit`.
+     */
+
+    var emit = componentEmitter$2.prototype.emit;
+
+    /**
+     * `Socket` constructor.
+     *
+     * @api public
+     */
+
+    function Socket (io, nsp, opts) {
+      this.io = io;
+      this.nsp = nsp;
+      this.json = this; // compat
+      this.ids = 0;
+      this.acks = {};
+      this.receiveBuffer = [];
+      this.sendBuffer = [];
+      this.connected = false;
+      this.disconnected = true;
+      this.flags = {};
+      if (opts && opts.query) {
+        this.query = opts.query;
+      }
+      if (this.io.autoConnect) this.open();
+    }
+
+    /**
+     * Mix in `Emitter`.
+     */
+
+    componentEmitter$2(Socket.prototype);
+
+    /**
+     * Subscribe to open, close and packet events
+     *
+     * @api private
+     */
+
+    Socket.prototype.subEvents = function () {
+      if (this.subs) return;
+
+      var io = this.io;
+      this.subs = [
+        on_1(io, 'open', componentBind(this, 'onopen')),
+        on_1(io, 'packet', componentBind(this, 'onpacket')),
+        on_1(io, 'close', componentBind(this, 'onclose'))
+      ];
+    };
+
+    /**
+     * "Opens" the socket.
+     *
+     * @api public
+     */
+
+    Socket.prototype.open =
+    Socket.prototype.connect = function () {
+      if (this.connected) return this;
+
+      this.subEvents();
+      this.io.open(); // ensure open
+      if ('open' === this.io.readyState) this.onopen();
+      this.emit('connecting');
+      return this;
+    };
+
+    /**
+     * Sends a `message` event.
+     *
+     * @return {Socket} self
+     * @api public
+     */
+
+    Socket.prototype.send = function () {
+      var args = toArray_1(arguments);
+      args.unshift('message');
+      this.emit.apply(this, args);
+      return this;
+    };
+
+    /**
+     * Override `emit`.
+     * If the event is in `events`, it's emitted normally.
+     *
+     * @param {String} event name
+     * @return {Socket} self
+     * @api public
+     */
+
+    Socket.prototype.emit = function (ev) {
+      if (events.hasOwnProperty(ev)) {
+        emit.apply(this, arguments);
+        return this;
+      }
+
+      var args = toArray_1(arguments);
+      var packet = {
+        type: (this.flags.binary !== undefined ? this.flags.binary : hasBinary2(args)) ? socket_ioParser.BINARY_EVENT : socket_ioParser.EVENT,
+        data: args
+      };
+
+      packet.options = {};
+      packet.options.compress = !this.flags || false !== this.flags.compress;
+
+      // event ack callback
+      if ('function' === typeof args[args.length - 1]) {
+        debug('emitting packet with ack id %d', this.ids);
+        this.acks[this.ids] = args.pop();
+        packet.id = this.ids++;
+      }
+
+      if (this.connected) {
+        this.packet(packet);
+      } else {
+        this.sendBuffer.push(packet);
+      }
+
+      this.flags = {};
+
+      return this;
+    };
+
+    /**
+     * Sends a packet.
+     *
+     * @param {Object} packet
+     * @api private
+     */
+
+    Socket.prototype.packet = function (packet) {
+      packet.nsp = this.nsp;
+      this.io.packet(packet);
+    };
+
+    /**
+     * Called upon engine `open`.
+     *
+     * @api private
+     */
+
+    Socket.prototype.onopen = function () {
+      debug('transport is open - connecting');
+
+      // write connect packet if necessary
+      if ('/' !== this.nsp) {
+        if (this.query) {
+          var query = typeof this.query === 'object' ? parseqs.encode(this.query) : this.query;
+          debug('sending connect packet with query %s', query);
+          this.packet({type: socket_ioParser.CONNECT, query: query});
+        } else {
+          this.packet({type: socket_ioParser.CONNECT});
+        }
+      }
+    };
+
+    /**
+     * Called upon engine `close`.
+     *
+     * @param {String} reason
+     * @api private
+     */
+
+    Socket.prototype.onclose = function (reason) {
+      debug('close (%s)', reason);
+      this.connected = false;
+      this.disconnected = true;
+      delete this.id;
+      this.emit('disconnect', reason);
+    };
+
+    /**
+     * Called with socket packet.
+     *
+     * @param {Object} packet
+     * @api private
+     */
+
+    Socket.prototype.onpacket = function (packet) {
+      var sameNamespace = packet.nsp === this.nsp;
+      var rootNamespaceError = packet.type === socket_ioParser.ERROR && packet.nsp === '/';
+
+      if (!sameNamespace && !rootNamespaceError) return;
+
+      switch (packet.type) {
+        case socket_ioParser.CONNECT:
+          this.onconnect();
+          break;
+
+        case socket_ioParser.EVENT:
+          this.onevent(packet);
+          break;
+
+        case socket_ioParser.BINARY_EVENT:
+          this.onevent(packet);
+          break;
+
+        case socket_ioParser.ACK:
+          this.onack(packet);
+          break;
+
+        case socket_ioParser.BINARY_ACK:
+          this.onack(packet);
+          break;
+
+        case socket_ioParser.DISCONNECT:
+          this.ondisconnect();
+          break;
+
+        case socket_ioParser.ERROR:
+          this.emit('error', packet.data);
+          break;
+      }
+    };
+
+    /**
+     * Called upon a server event.
+     *
+     * @param {Object} packet
+     * @api private
+     */
+
+    Socket.prototype.onevent = function (packet) {
+      var args = packet.data || [];
+      debug('emitting event %j', args);
+
+      if (null != packet.id) {
+        debug('attaching ack callback to event');
+        args.push(this.ack(packet.id));
+      }
+
+      if (this.connected) {
+        emit.apply(this, args);
+      } else {
+        this.receiveBuffer.push(args);
+      }
+    };
+
+    /**
+     * Produces an ack callback to emit with an event.
+     *
+     * @api private
+     */
+
+    Socket.prototype.ack = function (id) {
+      var self = this;
+      var sent = false;
+      return function () {
+        // prevent double callbacks
+        if (sent) return;
+        sent = true;
+        var args = toArray_1(arguments);
+        debug('sending ack %j', args);
+
+        self.packet({
+          type: hasBinary2(args) ? socket_ioParser.BINARY_ACK : socket_ioParser.ACK,
+          id: id,
+          data: args
+        });
+      };
+    };
+
+    /**
+     * Called upon a server acknowlegement.
+     *
+     * @param {Object} packet
+     * @api private
+     */
+
+    Socket.prototype.onack = function (packet) {
+      var ack = this.acks[packet.id];
+      if ('function' === typeof ack) {
+        debug('calling ack %s with %j', packet.id, packet.data);
+        ack.apply(this, packet.data);
+        delete this.acks[packet.id];
+      } else {
+        debug('bad ack %s', packet.id);
+      }
+    };
+
+    /**
+     * Called upon server connect.
+     *
+     * @api private
+     */
+
+    Socket.prototype.onconnect = function () {
+      this.connected = true;
+      this.disconnected = false;
+      this.emit('connect');
+      this.emitBuffered();
+    };
+
+    /**
+     * Emit buffered events (received and emitted).
+     *
+     * @api private
+     */
+
+    Socket.prototype.emitBuffered = function () {
+      var i;
+      for (i = 0; i < this.receiveBuffer.length; i++) {
+        emit.apply(this, this.receiveBuffer[i]);
+      }
+      this.receiveBuffer = [];
+
+      for (i = 0; i < this.sendBuffer.length; i++) {
+        this.packet(this.sendBuffer[i]);
+      }
+      this.sendBuffer = [];
+    };
+
+    /**
+     * Called upon server disconnect.
+     *
+     * @api private
+     */
+
+    Socket.prototype.ondisconnect = function () {
+      debug('server disconnect (%s)', this.nsp);
+      this.destroy();
+      this.onclose('io server disconnect');
+    };
+
+    /**
+     * Called upon forced client/server side disconnections,
+     * this method ensures the manager stops tracking us and
+     * that reconnections don't get triggered for this.
+     *
+     * @api private.
+     */
+
+    Socket.prototype.destroy = function () {
+      if (this.subs) {
+        // clean subscriptions to avoid reconnections
+        for (var i = 0; i < this.subs.length; i++) {
+          this.subs[i].destroy();
+        }
+        this.subs = null;
+      }
+
+      this.io.destroy(this);
+    };
+
+    /**
+     * Disconnects the socket manually.
+     *
+     * @return {Socket} self
+     * @api public
+     */
+
+    Socket.prototype.close =
+    Socket.prototype.disconnect = function () {
+      if (this.connected) {
+        debug('performing disconnect (%s)', this.nsp);
+        this.packet({ type: socket_ioParser.DISCONNECT });
+      }
+
+      // remove socket from pool
+      this.destroy();
+
+      if (this.connected) {
+        // fire events
+        this.onclose('io client disconnect');
+      }
+      return this;
+    };
+
+    /**
+     * Sets the compress flag.
+     *
+     * @param {Boolean} if `true`, compresses the sending data
+     * @return {Socket} self
+     * @api public
+     */
+
+    Socket.prototype.compress = function (compress) {
+      this.flags.compress = compress;
+      return this;
+    };
+
+    /**
+     * Sets the binary flag
+     *
+     * @param {Boolean} whether the emitted data contains binary
+     * @return {Socket} self
+     * @api public
+     */
+
+    Socket.prototype.binary = function (binary) {
+      this.flags.binary = binary;
+      return this;
+    };
+    });
+
+    /**
+     * Expose `Backoff`.
+     */
+
+    var backo2 = Backoff;
+
+    /**
+     * Initialize backoff timer with `opts`.
+     *
+     * - `min` initial timeout in milliseconds [100]
+     * - `max` max timeout [10000]
+     * - `jitter` [0]
+     * - `factor` [2]
+     *
+     * @param {Object} opts
+     * @api public
+     */
+
+    function Backoff(opts) {
+      opts = opts || {};
+      this.ms = opts.min || 100;
+      this.max = opts.max || 10000;
+      this.factor = opts.factor || 2;
+      this.jitter = opts.jitter > 0 && opts.jitter <= 1 ? opts.jitter : 0;
+      this.attempts = 0;
+    }
+
+    /**
+     * Return the backoff duration.
+     *
+     * @return {Number}
+     * @api public
+     */
+
+    Backoff.prototype.duration = function(){
+      var ms = this.ms * Math.pow(this.factor, this.attempts++);
+      if (this.jitter) {
+        var rand =  Math.random();
+        var deviation = Math.floor(rand * this.jitter * ms);
+        ms = (Math.floor(rand * 10) & 1) == 0  ? ms - deviation : ms + deviation;
+      }
+      return Math.min(ms, this.max) | 0;
+    };
+
+    /**
+     * Reset the number of attempts.
+     *
+     * @api public
+     */
+
+    Backoff.prototype.reset = function(){
+      this.attempts = 0;
+    };
+
+    /**
+     * Set the minimum duration
+     *
+     * @api public
+     */
+
+    Backoff.prototype.setMin = function(min){
+      this.ms = min;
+    };
+
+    /**
+     * Set the maximum duration
+     *
+     * @api public
+     */
+
+    Backoff.prototype.setMax = function(max){
+      this.max = max;
+    };
+
+    /**
+     * Set the jitter
+     *
+     * @api public
+     */
+
+    Backoff.prototype.setJitter = function(jitter){
+      this.jitter = jitter;
+    };
+
+    /**
+     * Module dependencies.
+     */
+
+
+
+
+
+
+
+    var debug$6 = browser('socket.io-client:manager');
+
+
+
+    /**
+     * IE6+ hasOwnProperty
+     */
+
+    var has = Object.prototype.hasOwnProperty;
+
+    /**
+     * Module exports
+     */
+
+    var manager = Manager;
+
+    /**
+     * `Manager` constructor.
+     *
+     * @param {String} engine instance or engine uri/opts
+     * @param {Object} options
+     * @api public
+     */
+
+    function Manager (uri, opts) {
+      if (!(this instanceof Manager)) return new Manager(uri, opts);
+      if (uri && ('object' === typeof uri)) {
+        opts = uri;
+        uri = undefined;
+      }
+      opts = opts || {};
+
+      opts.path = opts.path || '/socket.io';
+      this.nsps = {};
+      this.subs = [];
+      this.opts = opts;
+      this.reconnection(opts.reconnection !== false);
+      this.reconnectionAttempts(opts.reconnectionAttempts || Infinity);
+      this.reconnectionDelay(opts.reconnectionDelay || 1000);
+      this.reconnectionDelayMax(opts.reconnectionDelayMax || 5000);
+      this.randomizationFactor(opts.randomizationFactor || 0.5);
+      this.backoff = new backo2({
+        min: this.reconnectionDelay(),
+        max: this.reconnectionDelayMax(),
+        jitter: this.randomizationFactor()
+      });
+      this.timeout(null == opts.timeout ? 20000 : opts.timeout);
+      this.readyState = 'closed';
+      this.uri = uri;
+      this.connecting = [];
+      this.lastPing = null;
+      this.encoding = false;
+      this.packetBuffer = [];
+      var _parser = opts.parser || socket_ioParser;
+      this.encoder = new _parser.Encoder();
+      this.decoder = new _parser.Decoder();
+      this.autoConnect = opts.autoConnect !== false;
+      if (this.autoConnect) this.open();
+    }
+
+    /**
+     * Propagate given event to sockets and emit on `this`
+     *
+     * @api private
+     */
+
+    Manager.prototype.emitAll = function () {
+      this.emit.apply(this, arguments);
+      for (var nsp in this.nsps) {
+        if (has.call(this.nsps, nsp)) {
+          this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
+        }
+      }
+    };
+
+    /**
+     * Update `socket.id` of all sockets
+     *
+     * @api private
+     */
+
+    Manager.prototype.updateSocketIds = function () {
+      for (var nsp in this.nsps) {
+        if (has.call(this.nsps, nsp)) {
+          this.nsps[nsp].id = this.generateId(nsp);
+        }
+      }
+    };
+
+    /**
+     * generate `socket.id` for the given `nsp`
+     *
+     * @param {String} nsp
+     * @return {String}
+     * @api private
+     */
+
+    Manager.prototype.generateId = function (nsp) {
+      return (nsp === '/' ? '' : (nsp + '#')) + this.engine.id;
+    };
+
+    /**
+     * Mix in `Emitter`.
+     */
+
+    componentEmitter$2(Manager.prototype);
+
+    /**
+     * Sets the `reconnection` config.
+     *
+     * @param {Boolean} true/false if it should automatically reconnect
+     * @return {Manager} self or value
+     * @api public
+     */
+
+    Manager.prototype.reconnection = function (v) {
+      if (!arguments.length) return this._reconnection;
+      this._reconnection = !!v;
+      return this;
+    };
+
+    /**
+     * Sets the reconnection attempts config.
+     *
+     * @param {Number} max reconnection attempts before giving up
+     * @return {Manager} self or value
+     * @api public
+     */
+
+    Manager.prototype.reconnectionAttempts = function (v) {
+      if (!arguments.length) return this._reconnectionAttempts;
+      this._reconnectionAttempts = v;
+      return this;
+    };
+
+    /**
+     * Sets the delay between reconnections.
+     *
+     * @param {Number} delay
+     * @return {Manager} self or value
+     * @api public
+     */
+
+    Manager.prototype.reconnectionDelay = function (v) {
+      if (!arguments.length) return this._reconnectionDelay;
+      this._reconnectionDelay = v;
+      this.backoff && this.backoff.setMin(v);
+      return this;
+    };
+
+    Manager.prototype.randomizationFactor = function (v) {
+      if (!arguments.length) return this._randomizationFactor;
+      this._randomizationFactor = v;
+      this.backoff && this.backoff.setJitter(v);
+      return this;
+    };
+
+    /**
+     * Sets the maximum delay between reconnections.
+     *
+     * @param {Number} delay
+     * @return {Manager} self or value
+     * @api public
+     */
+
+    Manager.prototype.reconnectionDelayMax = function (v) {
+      if (!arguments.length) return this._reconnectionDelayMax;
+      this._reconnectionDelayMax = v;
+      this.backoff && this.backoff.setMax(v);
+      return this;
+    };
+
+    /**
+     * Sets the connection timeout. `false` to disable
+     *
+     * @return {Manager} self or value
+     * @api public
+     */
+
+    Manager.prototype.timeout = function (v) {
+      if (!arguments.length) return this._timeout;
+      this._timeout = v;
+      return this;
+    };
+
+    /**
+     * Starts trying to reconnect if reconnection is enabled and we have not
+     * started reconnecting yet
+     *
+     * @api private
+     */
+
+    Manager.prototype.maybeReconnectOnOpen = function () {
+      // Only try to reconnect if it's the first time we're connecting
+      if (!this.reconnecting && this._reconnection && this.backoff.attempts === 0) {
+        // keeps reconnection from firing twice for the same reconnection loop
+        this.reconnect();
+      }
+    };
+
+    /**
+     * Sets the current transport `socket`.
+     *
+     * @param {Function} optional, callback
+     * @return {Manager} self
+     * @api public
+     */
+
+    Manager.prototype.open =
+    Manager.prototype.connect = function (fn, opts) {
+      debug$6('readyState %s', this.readyState);
+      if (~this.readyState.indexOf('open')) return this;
+
+      debug$6('opening %s', this.uri);
+      this.engine = lib(this.uri, this.opts);
+      var socket = this.engine;
+      var self = this;
+      this.readyState = 'opening';
+      this.skipReconnect = false;
+
+      // emit `open`
+      var openSub = on_1(socket, 'open', function () {
+        self.onopen();
+        fn && fn();
+      });
+
+      // emit `connect_error`
+      var errorSub = on_1(socket, 'error', function (data) {
+        debug$6('connect_error');
+        self.cleanup();
+        self.readyState = 'closed';
+        self.emitAll('connect_error', data);
+        if (fn) {
+          var err = new Error('Connection error');
+          err.data = data;
+          fn(err);
+        } else {
+          // Only do this if there is no fn to handle the error
+          self.maybeReconnectOnOpen();
+        }
+      });
+
+      // emit `connect_timeout`
+      if (false !== this._timeout) {
+        var timeout = this._timeout;
+        debug$6('connect attempt will timeout after %d', timeout);
+
+        // set timer
+        var timer = setTimeout(function () {
+          debug$6('connect attempt timed out after %d', timeout);
+          openSub.destroy();
+          socket.close();
+          socket.emit('error', 'timeout');
+          self.emitAll('connect_timeout', timeout);
+        }, timeout);
+
+        this.subs.push({
+          destroy: function () {
+            clearTimeout(timer);
+          }
+        });
+      }
+
+      this.subs.push(openSub);
+      this.subs.push(errorSub);
+
+      return this;
+    };
+
+    /**
+     * Called upon transport open.
+     *
+     * @api private
+     */
+
+    Manager.prototype.onopen = function () {
+      debug$6('open');
+
+      // clear old subs
+      this.cleanup();
+
+      // mark as open
+      this.readyState = 'open';
+      this.emit('open');
+
+      // add new subs
+      var socket = this.engine;
+      this.subs.push(on_1(socket, 'data', componentBind(this, 'ondata')));
+      this.subs.push(on_1(socket, 'ping', componentBind(this, 'onping')));
+      this.subs.push(on_1(socket, 'pong', componentBind(this, 'onpong')));
+      this.subs.push(on_1(socket, 'error', componentBind(this, 'onerror')));
+      this.subs.push(on_1(socket, 'close', componentBind(this, 'onclose')));
+      this.subs.push(on_1(this.decoder, 'decoded', componentBind(this, 'ondecoded')));
+    };
+
+    /**
+     * Called upon a ping.
+     *
+     * @api private
+     */
+
+    Manager.prototype.onping = function () {
+      this.lastPing = new Date();
+      this.emitAll('ping');
+    };
+
+    /**
+     * Called upon a packet.
+     *
+     * @api private
+     */
+
+    Manager.prototype.onpong = function () {
+      this.emitAll('pong', new Date() - this.lastPing);
+    };
+
+    /**
+     * Called with data.
+     *
+     * @api private
+     */
+
+    Manager.prototype.ondata = function (data) {
+      this.decoder.add(data);
+    };
+
+    /**
+     * Called when parser fully decodes a packet.
+     *
+     * @api private
+     */
+
+    Manager.prototype.ondecoded = function (packet) {
+      this.emit('packet', packet);
+    };
+
+    /**
+     * Called upon socket error.
+     *
+     * @api private
+     */
+
+    Manager.prototype.onerror = function (err) {
+      debug$6('error', err);
+      this.emitAll('error', err);
+    };
+
+    /**
+     * Creates a new socket for the given `nsp`.
+     *
+     * @return {Socket}
+     * @api public
+     */
+
+    Manager.prototype.socket = function (nsp, opts) {
+      var socket = this.nsps[nsp];
+      if (!socket) {
+        socket = new socket$1(this, nsp, opts);
+        this.nsps[nsp] = socket;
+        var self = this;
+        socket.on('connecting', onConnecting);
+        socket.on('connect', function () {
+          socket.id = self.generateId(nsp);
+        });
+
+        if (this.autoConnect) {
+          // manually call here since connecting event is fired before listening
+          onConnecting();
+        }
+      }
+
+      function onConnecting () {
+        if (!~indexof(self.connecting, socket)) {
+          self.connecting.push(socket);
+        }
+      }
+
+      return socket;
+    };
+
+    /**
+     * Called upon a socket close.
+     *
+     * @param {Socket} socket
+     */
+
+    Manager.prototype.destroy = function (socket) {
+      var index = indexof(this.connecting, socket);
+      if (~index) this.connecting.splice(index, 1);
+      if (this.connecting.length) return;
+
+      this.close();
+    };
+
+    /**
+     * Writes a packet.
+     *
+     * @param {Object} packet
+     * @api private
+     */
+
+    Manager.prototype.packet = function (packet) {
+      debug$6('writing packet %j', packet);
+      var self = this;
+      if (packet.query && packet.type === 0) packet.nsp += '?' + packet.query;
+
+      if (!self.encoding) {
+        // encode, then write to engine with result
+        self.encoding = true;
+        this.encoder.encode(packet, function (encodedPackets) {
+          for (var i = 0; i < encodedPackets.length; i++) {
+            self.engine.write(encodedPackets[i], packet.options);
+          }
+          self.encoding = false;
+          self.processPacketQueue();
+        });
+      } else { // add packet to the queue
+        self.packetBuffer.push(packet);
+      }
+    };
+
+    /**
+     * If packet buffer is non-empty, begins encoding the
+     * next packet in line.
+     *
+     * @api private
+     */
+
+    Manager.prototype.processPacketQueue = function () {
+      if (this.packetBuffer.length > 0 && !this.encoding) {
+        var pack = this.packetBuffer.shift();
+        this.packet(pack);
+      }
+    };
+
+    /**
+     * Clean up transport subscriptions and packet buffer.
+     *
+     * @api private
+     */
+
+    Manager.prototype.cleanup = function () {
+      debug$6('cleanup');
+
+      var subsLength = this.subs.length;
+      for (var i = 0; i < subsLength; i++) {
+        var sub = this.subs.shift();
+        sub.destroy();
+      }
+
+      this.packetBuffer = [];
+      this.encoding = false;
+      this.lastPing = null;
+
+      this.decoder.destroy();
+    };
+
+    /**
+     * Close the current socket.
+     *
+     * @api private
+     */
+
+    Manager.prototype.close =
+    Manager.prototype.disconnect = function () {
+      debug$6('disconnect');
+      this.skipReconnect = true;
+      this.reconnecting = false;
+      if ('opening' === this.readyState) {
+        // `onclose` will not fire because
+        // an open event never happened
+        this.cleanup();
+      }
+      this.backoff.reset();
+      this.readyState = 'closed';
+      if (this.engine) this.engine.close();
+    };
+
+    /**
+     * Called upon engine close.
+     *
+     * @api private
+     */
+
+    Manager.prototype.onclose = function (reason) {
+      debug$6('onclose');
+
+      this.cleanup();
+      this.backoff.reset();
+      this.readyState = 'closed';
+      this.emit('close', reason);
+
+      if (this._reconnection && !this.skipReconnect) {
+        this.reconnect();
+      }
+    };
+
+    /**
+     * Attempt a reconnection.
+     *
+     * @api private
+     */
+
+    Manager.prototype.reconnect = function () {
+      if (this.reconnecting || this.skipReconnect) return this;
+
+      var self = this;
+
+      if (this.backoff.attempts >= this._reconnectionAttempts) {
+        debug$6('reconnect failed');
+        this.backoff.reset();
+        this.emitAll('reconnect_failed');
+        this.reconnecting = false;
+      } else {
+        var delay = this.backoff.duration();
+        debug$6('will wait %dms before reconnect attempt', delay);
+
+        this.reconnecting = true;
+        var timer = setTimeout(function () {
+          if (self.skipReconnect) return;
+
+          debug$6('attempting reconnect');
+          self.emitAll('reconnect_attempt', self.backoff.attempts);
+          self.emitAll('reconnecting', self.backoff.attempts);
+
+          // check again for the case socket closed in above events
+          if (self.skipReconnect) return;
+
+          self.open(function (err) {
+            if (err) {
+              debug$6('reconnect attempt error');
+              self.reconnecting = false;
+              self.reconnect();
+              self.emitAll('reconnect_error', err.data);
+            } else {
+              debug$6('reconnect success');
+              self.onreconnect();
+            }
+          });
+        }, delay);
+
+        this.subs.push({
+          destroy: function () {
+            clearTimeout(timer);
+          }
+        });
+      }
+    };
+
+    /**
+     * Called upon successful reconnect.
+     *
+     * @api private
+     */
+
+    Manager.prototype.onreconnect = function () {
+      var attempt = this.backoff.attempts;
+      this.reconnecting = false;
+      this.backoff.reset();
+      this.updateSocketIds();
+      this.emitAll('reconnect', attempt);
+    };
+
+    var lib$1 = createCommonjsModule(function (module, exports) {
+    /**
+     * Module dependencies.
+     */
+
+
+
+
+    var debug = browser('socket.io-client');
+
+    /**
+     * Module exports.
+     */
+
+    module.exports = exports = lookup;
+
+    /**
+     * Managers cache.
+     */
+
+    var cache = exports.managers = {};
+
+    /**
+     * Looks up an existing `Manager` for multiplexing.
+     * If the user summons:
+     *
+     *   `io('http://localhost/a');`
+     *   `io('http://localhost/b');`
+     *
+     * We reuse the existing instance based on same scheme/port/host,
+     * and we initialize sockets for each namespace.
+     *
+     * @api public
+     */
+
+    function lookup (uri, opts) {
+      if (typeof uri === 'object') {
+        opts = uri;
+        uri = undefined;
+      }
+
+      opts = opts || {};
+
+      var parsed = url_1(uri);
+      var source = parsed.source;
+      var id = parsed.id;
+      var path = parsed.path;
+      var sameNamespace = cache[id] && path in cache[id].nsps;
+      var newConnection = opts.forceNew || opts['force new connection'] ||
+                          false === opts.multiplex || sameNamespace;
+
+      var io;
+
+      if (newConnection) {
+        debug('ignoring socket cache for %s', source);
+        io = manager(source, opts);
+      } else {
+        if (!cache[id]) {
+          debug('new io instance for %s', source);
+          cache[id] = manager(source, opts);
+        }
+        io = cache[id];
+      }
+      if (parsed.query && !opts.query) {
+        opts.query = parsed.query;
+      }
+      return io.socket(parsed.path, opts);
+    }
+
+    /**
+     * Protocol version.
+     *
+     * @api public
+     */
+
+    exports.protocol = socket_ioParser.protocol;
+
+    /**
+     * `connect`.
+     *
+     * @param {String} uri
+     * @api public
+     */
+
+    exports.connect = lookup;
+
+    /**
+     * Expose constructors for standalone build.
+     *
+     * @api public
+     */
+
+    exports.Manager = manager;
+    exports.Socket = socket$1;
+    });
+    var lib_1 = lib$1.managers;
+    var lib_2 = lib$1.protocol;
+    var lib_3 = lib$1.connect;
+    var lib_4 = lib$1.Manager;
+    var lib_5 = lib$1.Socket;
+
+    const station = writable(null);
+
+    const user = writable(null);
+
+    // const socket = io('http://localhost:3000');
+    const socket$2 = lib$1('https://house-party-live.herokuapp.com');
+
+    socket$2.on("setStation", function (newStation) {
+        station.set(newStation);
+        if (!newStation.error) {
+            if (get_store_value(location$1) == '/') {
+                push(`/${newStation.id}`);
+            } else {
+                replace(`/${newStation.id}`);
+            }
+        }
+    });
+
+    socket$2.on("setUser", function (u) {
+        user.set(u);
+    });
+
+    function newStation() {
+        socket$2.emit("newStation", get_store_value(fp));
+    }
+
+    function joinStation(stationId) {
+        socket$2.emit("join", stationId, get_store_value(fp));
+    }
+
+    function rand(min, max) {
+        return min + Math.random() * (max - min);
+    }
+
+    function getRandomColor() {
+        var h = rand(1, 360);
+        var s = rand(60, 80);
+        var l = rand(60, 80);
+        return 'hsl(' + h + ',' + s + '%,' + l + '%)';
+    }
+
+    /* src\Home.svelte generated by Svelte v3.18.2 */
+    const file = "src\\Home.svelte";
+
+    // (113:2) {:else}
+    function create_else_block(ctx) {
+    	let div1;
+    	let div0;
+    	let t0;
+    	let div5;
+    	let div4;
+    	let div2;
+    	let span0;
+    	let t2;
+    	let div3;
+    	let span1;
+    	let t4;
+    	let input;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = space();
+    			div5 = element("div");
+    			div4 = element("div");
+    			div2 = element("div");
+    			span0 = element("span");
+    			span0.textContent = "Station";
+    			t2 = space();
+    			div3 = element("div");
+    			span1 = element("span");
+    			span1.textContent = "Join Station";
+    			t4 = space();
+    			input = element("input");
+    			attr_dev(div0, "class", "logo svelte-1gh0jw");
+    			add_location(div0, file, 114, 6, 2252);
+    			attr_dev(div1, "class", "top svelte-1gh0jw");
+    			add_location(div1, file, 113, 4, 2227);
+    			add_location(span0, file, 119, 10, 2400);
+    			attr_dev(div2, "class", "btn svelte-1gh0jw");
+    			add_location(div2, file, 118, 8, 2349);
+    			add_location(span1, file, 122, 10, 2498);
+    			attr_dev(input, "class", "svelte-1gh0jw");
+    			add_location(input, file, 123, 10, 2535);
+    			attr_dev(div3, "class", "btn svelte-1gh0jw");
+    			add_location(div3, file, 121, 8, 2446);
+    			attr_dev(div4, "class", "buttons svelte-1gh0jw");
+    			add_location(div4, file, 117, 6, 2318);
+    			attr_dev(div5, "class", "bottom svelte-1gh0jw");
+    			add_location(div5, file, 116, 4, 2290);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div5, anchor);
+    			append_dev(div5, div4);
+    			append_dev(div4, div2);
+    			append_dev(div2, span0);
+    			append_dev(div4, t2);
+    			append_dev(div4, div3);
+    			append_dev(div3, span1);
+    			append_dev(div3, t4);
+    			append_dev(div3, input);
+    			set_input_value(input, /*joinId*/ ctx[0]);
+
+    			dispose = [
+    				listen_dev(div2, "click", newStation$1, false, false, false),
+    				listen_dev(input, "input", /*input_input_handler*/ ctx[6]),
+    				listen_dev(input, "click", catchClick, false, false, false),
+    				listen_dev(input, "keydown", /*catchEnter*/ ctx[4], false, false, false),
+    				listen_dev(div3, "click", /*joinStation*/ ctx[3], false, false, false)
+    			];
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*joinId*/ 1 && input.value !== /*joinId*/ ctx[0]) {
+    				set_input_value(input, /*joinId*/ ctx[0]);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(div5);
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(113:2) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (111:2) {#if !$fp}
+    function create_if_block(ctx) {
+    	let h1;
+
+    	const block = {
+    		c: function create() {
+    			h1 = element("h1");
+    			h1.textContent = "Loading";
+    			attr_dev(h1, "class", "svelte-1gh0jw");
+    			add_location(h1, file, 111, 4, 2194);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h1, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(111:2) {#if !$fp}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$1(ctx) {
+    	let main;
+
+    	function select_block_type(ctx, dirty) {
+    		if (!/*$fp*/ ctx[2]) return create_if_block;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			main = element("main");
+    			if_block.c();
+    			set_style(main, "background", /*bgColor*/ ctx[1]);
+    			attr_dev(main, "class", "svelte-1gh0jw");
+    			add_location(main, file, 109, 0, 2138);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, main, anchor);
+    			if_block.m(main, null);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(main, null);
+    				}
+    			}
+
+    			if (dirty & /*bgColor*/ 2) {
+    				set_style(main, "background", /*bgColor*/ ctx[1]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(main);
+    			if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$1.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function newStation$1() {
+    	newStation();
+    }
+
+    function catchClick(e) {
+    	e.stopPropagation();
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let $fp;
+    	validate_store(fp, "fp");
+    	component_subscribe($$self, fp, $$value => $$invalidate(2, $fp = $$value));
+    	let joinId;
+    	let colorChange;
+    	let bgColor;
+
+    	onMount(() => {
+    		colorChange = setInterval(
+    			() => {
+    				$$invalidate(1, bgColor = getRandomColor());
+    			},
+    			1500
+    		);
+    	});
+
+    	onDestroy(() => {
+    		clearInterval(colorChange);
+    	});
+
+    	function joinStation() {
+    		push(`/${joinId.toUpperCase()}`);
+    	}
+
+    	function catchEnter(e) {
+    		if (e.code === "Enter") joinStation();
+    	}
+
+    	function input_input_handler() {
+    		joinId = this.value;
+    		$$invalidate(0, joinId);
+    	}
+
+    	$$self.$capture_state = () => {
+    		return {};
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ("joinId" in $$props) $$invalidate(0, joinId = $$props.joinId);
+    		if ("colorChange" in $$props) colorChange = $$props.colorChange;
+    		if ("bgColor" in $$props) $$invalidate(1, bgColor = $$props.bgColor);
+    		if ("$fp" in $$props) fp.set($fp = $$props.$fp);
+    	};
+
+    	return [
+    		joinId,
+    		bgColor,
+    		$fp,
+    		joinStation,
+    		catchEnter,
+    		colorChange,
+    		input_input_handler
+    	];
+    }
+
+    class Home extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Home",
+    			options,
+    			id: create_fragment$1.name
+    		});
+    	}
+    }
+
+    /* src\Player.svelte generated by Svelte v3.18.2 */
+    const file$1 = "src\\Player.svelte";
+
+    function create_fragment$2(ctx) {
+    	let div1;
+    	let div0;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			attr_dev(div0, "id", /*divId*/ ctx[0]);
+    			add_location(div0, file$1, 64, 2, 2057);
+    			attr_dev(div1, "class", "yt-component");
+    			add_location(div1, file$1, 63, 0, 2027);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$2.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    let YouTubeIframeAPIReady = false;
+
+    function isMyScriptLoaded(url = "") {
+    	var scripts = document.getElementsByTagName("script");
+
+    	for (var i = scripts.length; i--; ) {
+    		if (scripts[i].src == url) return true;
+    	}
+
+    	return false;
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let player;
+    	const dispatch = createEventDispatcher();
+    	let divId = "player_" + parseInt(Math.random() * 100000).toString();
+    	let { videoId = "9xD-KJSjIxw" } = $$props;
+    	let { height = "390" } = $$props;
+    	let { width = "640" } = $$props;
+
+    	onMount(() => {
+    		let ytTagUrl = "https://www.youtube.com/iframe_api";
+
+    		if (!isMyScriptLoaded(ytTagUrl)) {
+    			// 2. This code loads the IFrame Player API code asynchronously.
+    			var tag = document.createElement("script");
+
+    			tag.src = ytTagUrl;
+    			var firstScriptTag = document.getElementsByTagName("script")[0];
+    			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    		}
+
+    		window.onYouTubeIframeAPIReady = function () {
+    			//console.log('hello')
+    			window.dispatchEvent(new Event("YouTubeIframeAPIReady"));
+    		};
+
+    		window.addEventListener("YouTubeIframeAPIReady", function () {
+    			if (YouTubeIframeAPIReady == false) {
+    				// first load of an YT Video on this project
+    				YouTubeIframeAPIReady = true; // now the Player can be created
+
+    				createPlayer();
+    			}
+    		});
+
+    		function createPlayer() {
+    			player = new YT.Player(divId,
+    			{
+    					height,
+    					width,
+    					videoId,
+    					enablejsapi: true,
+    					events: {
+    						//'onReady': onPlayerReady,
+    						onStateChange: onPlayerStateChange
+    					}
+    				});
+    		}
+
+    		if (YouTubeIframeAPIReady) {
+    			createPlayer(); // if the YT Script is ready, we can create our player
+    		}
+    	});
+
+    	function onPlayerStateChange({ data }) {
+    		dispatch("StateChange", data);
+    	}
+
+    	function playVideo() {
+    		player.playVideo();
+    	}
+
+    	const writable_props = ["videoId", "height", "width"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Player> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$set = $$props => {
+    		if ("videoId" in $$props) $$invalidate(1, videoId = $$props.videoId);
+    		if ("height" in $$props) $$invalidate(2, height = $$props.height);
+    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return {
+    			YouTubeIframeAPIReady,
+    			player,
+    			divId,
+    			videoId,
+    			height,
+    			width
+    		};
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ("player" in $$props) player = $$props.player;
+    		if ("divId" in $$props) $$invalidate(0, divId = $$props.divId);
+    		if ("videoId" in $$props) $$invalidate(1, videoId = $$props.videoId);
+    		if ("height" in $$props) $$invalidate(2, height = $$props.height);
+    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
+    	};
+
+    	return [divId, videoId, height, width, playVideo];
+    }
+
+    class Player extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
+    			videoId: 1,
+    			height: 2,
+    			width: 3,
+    			playVideo: 4
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Player",
+    			options,
+    			id: create_fragment$2.name
+    		});
+    	}
+
+    	get videoId() {
+    		throw new Error("<Player>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set videoId(value) {
+    		throw new Error("<Player>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get height() {
+    		throw new Error("<Player>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set height(value) {
+    		throw new Error("<Player>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get width() {
+    		throw new Error("<Player>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set width(value) {
+    		throw new Error("<Player>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get playVideo() {
+    		return this.$$.ctx[4];
+    	}
+
+    	set playVideo(value) {
+    		throw new Error("<Player>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\Station.svelte generated by Svelte v3.18.2 */
+    const file$2 = "src\\Station.svelte";
+
+    // (76:0) {:else}
+    function create_else_block$1(ctx) {
+    	let h10;
+    	let t0;
+    	let t1_value = /*$station*/ ctx[2].id + "";
+    	let t1;
+    	let t2;
+    	let h11;
+    	let t3_value = /*status*/ ctx[1].msg + "";
+    	let t3;
+    	let t4;
+    	let t5;
+    	let div;
+    	let current;
+    	let dispose;
+    	let player_1_props = {};
+    	const player_1 = new Player({ props: player_1_props, $$inline: true });
+    	/*player_1_binding*/ ctx[11](player_1);
+
+    	const block = {
+    		c: function create() {
+    			h10 = element("h1");
+    			t0 = text("Listening to: ");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			h11 = element("h1");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			create_component(player_1.$$.fragment);
+    			t5 = space();
+    			div = element("div");
+    			div.textContent = ">";
+    			add_location(h10, file$2, 76, 2, 1717);
+    			add_location(h11, file$2, 77, 2, 1757);
+    			attr_dev(div, "class", "playBtn");
+    			add_location(div, file$2, 79, 2, 1815);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h10, anchor);
+    			append_dev(h10, t0);
+    			append_dev(h10, t1);
+    			insert_dev(target, t2, anchor);
+    			insert_dev(target, h11, anchor);
+    			append_dev(h11, t3);
+    			insert_dev(target, t4, anchor);
+    			mount_component(player_1, target, anchor);
+    			insert_dev(target, t5, anchor);
+    			insert_dev(target, div, anchor);
+    			current = true;
+
+    			dispose = listen_dev(
+    				div,
+    				"click",
+    				function () {
+    					if (is_function(/*player*/ ctx[0].playVideo)) /*player*/ ctx[0].playVideo.apply(this, arguments);
+    				},
+    				false,
+    				false,
+    				false
+    			);
+    		},
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
+    			if ((!current || dirty & /*$station*/ 4) && t1_value !== (t1_value = /*$station*/ ctx[2].id + "")) set_data_dev(t1, t1_value);
+    			if ((!current || dirty & /*status*/ 2) && t3_value !== (t3_value = /*status*/ ctx[1].msg + "")) set_data_dev(t3, t3_value);
+    			const player_1_changes = {};
+    			player_1.$set(player_1_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(player_1.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(player_1.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h10);
+    			if (detaching) detach_dev(t2);
+    			if (detaching) detach_dev(h11);
+    			if (detaching) detach_dev(t4);
+    			/*player_1_binding*/ ctx[11](null);
+    			destroy_component(player_1, detaching);
+    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(div);
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(76:0) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (74:25) 
+    function create_if_block_1(ctx) {
+    	let h1;
+    	let t0;
+    	let t1_value = /*$station*/ ctx[2].error + "";
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			h1 = element("h1");
+    			t0 = text("Error: ");
+    			t1 = text(t1_value);
+    			add_location(h1, file$2, 74, 2, 1672);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h1, anchor);
+    			append_dev(h1, t0);
+    			append_dev(h1, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*$station*/ 4 && t1_value !== (t1_value = /*$station*/ ctx[2].error + "")) set_data_dev(t1, t1_value);
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(74:25) ",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (72:0) {#if !$station}
+    function create_if_block$1(ctx) {
+    	let h1;
+
+    	const block = {
+    		c: function create() {
+    			h1 = element("h1");
+    			h1.textContent = "Loading";
+    			add_location(h1, file$2, 72, 2, 1625);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h1, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(72:0) {#if !$station}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$3(ctx) {
+    	let current_block_type_index;
+    	let if_block;
+    	let if_block_anchor;
+    	let current;
+    	const if_block_creators = [create_if_block$1, create_if_block_1, create_else_block$1];
+    	const if_blocks = [];
+
+    	function select_block_type(ctx, dirty) {
+    		if (!/*$station*/ ctx[2]) return 0;
+    		if (/*$station*/ ctx[2].error) return 1;
+    		return 2;
+    	}
+
+    	current_block_type_index = select_block_type(ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+    	const block = {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			if_blocks[current_block_type_index].m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
+
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
+    				group_outros();
+
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+
+    				check_outros();
+    				if_block = if_blocks[current_block_type_index];
+
+    				if (!if_block) {
+    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block.c();
+    				}
+
+    				transition_in(if_block, 1);
+    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if_blocks[current_block_type_index].d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$3.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let $fp;
+    	let $location;
+    	let $station;
+    	validate_store(fp, "fp");
+    	component_subscribe($$self, fp, $$value => $$invalidate(4, $fp = $$value));
+    	validate_store(location$1, "location");
+    	component_subscribe($$self, location$1, $$value => $$invalidate(5, $location = $$value));
+    	validate_store(station, "station");
+    	component_subscribe($$self, station, $$value => $$invalidate(2, $station = $$value));
+    	let { params = {} } = $$props; //URL params
+    	let player;
+
+    	const STATUS = {
+    		SEARCHING: { msg: "Finding Station..." },
+    		CREATING_NEW: { msg: "Starting a new station..." },
+    		NOT_FOUND: { msg: "Station not found :(" },
+    		OK: { msg: "Tuned in" }
+    	};
+
+    	let status = STATUS.SEARCHING;
+
+    	function connect() {
+    		if (!$fp) return;
+    		let targetId = $location.replace("/", "");
+
+    		if (targetId) {
+    			if (!$station || $station.error || $station.id != targetId) {
+    				$$invalidate(1, status = STATUS.SEARCHING);
+    				joinStation(targetId);
+    			}
+    		}
+    	}
+
+    	onMount(() => {
+    		connect();
+    	});
+
+    	//if url changed
+    	const us_location = location$1.subscribe(loc => {
+    		connect();
+    	});
+
+    	//app was opened with station id url, we wait for fingerprint to load and then we join the station
+    	const us_fp = fp.subscribe(_fp => {
+    		connect();
+    	});
+
+    	const us_station = station.subscribe(_station => {
+    		if (!_station) return;
+    		let targetId = params.stationId;
+
+    		if (_station.error) {
+    			$$invalidate(1, status = STATUS.NOT_FOUND);
+    		} else if (_station && _station.id == targetId) {
+    			$$invalidate(1, status = STATUS.OK);
+    		}
+    	});
+
+    	onDestroy(() => {
+    		us_location();
+    		us_fp();
+    		us_station();
+    	});
+
+    	const writable_props = ["params"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Station> was created with unknown prop '${key}'`);
+    	});
+
+    	function player_1_binding($$value) {
+    		binding_callbacks[$$value ? "unshift" : "push"](() => {
+    			$$invalidate(0, player = $$value);
+    		});
+    	}
+
+    	$$self.$set = $$props => {
+    		if ("params" in $$props) $$invalidate(3, params = $$props.params);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return {
+    			params,
+    			player,
+    			status,
+    			$fp,
+    			$location,
+    			$station
+    		};
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ("params" in $$props) $$invalidate(3, params = $$props.params);
+    		if ("player" in $$props) $$invalidate(0, player = $$props.player);
+    		if ("status" in $$props) $$invalidate(1, status = $$props.status);
+    		if ("$fp" in $$props) fp.set($fp = $$props.$fp);
+    		if ("$location" in $$props) location$1.set($location = $$props.$location);
+    		if ("$station" in $$props) station.set($station = $$props.$station);
+    	};
+
+    	return [
+    		player,
+    		status,
+    		$station,
+    		params,
+    		$fp,
+    		$location,
+    		STATUS,
+    		connect,
+    		us_location,
+    		us_fp,
+    		us_station,
+    		player_1_binding
+    	];
+    }
+
+    class Station extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { params: 3 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Station",
+    			options,
+    			id: create_fragment$3.name
+    		});
+    	}
+
+    	get params() {
+    		throw new Error("<Station>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set params(value) {
+    		throw new Error("<Station>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    const routes = {
+        // Exact path
+        '/': Home,
+
+        // Using named parameters, with last being optional
+        '/:stationId': Station
+    };
+
+    /* src\App.svelte generated by Svelte v3.18.2 */
+
+    function create_fragment$4(ctx) {
+    	let t;
+    	let current;
+    	const router0 = new Router({ $$inline: true });
+    	const router1 = new Router({ props: { routes }, $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			create_component(router0.$$.fragment);
+    			t = space();
+    			create_component(router1.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(router0, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(router1, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(router0.$$.fragment, local);
+    			transition_in(router1.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(router0.$$.fragment, local);
+    			transition_out(router1.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(router0, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(router1, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$4.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    class App extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, null, create_fragment$4, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "App",
+    			options,
+    			id: create_fragment$4.name
+    		});
+    	}
+    }
+
+    const app = new App({
+    	target: document.body
+    });
+
+    return app;
+
+}());
 //# sourceMappingURL=bundle.js.map
