@@ -74,10 +74,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 80vw;
+    width: 310px;
   }
 
   .btn {
-    width: 310px;
+    width: 100%;
     height: 66px;
     background: #ffffff05;
     margin-bottom: 20px;
@@ -121,8 +123,9 @@
   .logo {
     background-image: url(/images/logo.png);
     width: 280px;
+    max-width: 60%;
     height: 280px;
-    background-size: 280px;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     margin-top: 100px;
