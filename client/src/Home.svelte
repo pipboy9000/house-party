@@ -9,11 +9,11 @@
   let colorChange;
   let bgColor = getRandomColor();
 
-  // onMount(() => {
-  //   colorChange = setInterval(() => {
-  //     bgColor = getRandomColor();
-  //   }, 1500);
-  // });
+  onMount(() => {
+    colorChange = setInterval(() => {
+      bgColor = getRandomColor();
+    }, 1500);
+  });
 
   onDestroy(() => {
     clearInterval(colorChange);
