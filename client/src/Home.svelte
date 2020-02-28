@@ -48,7 +48,7 @@
 
   .top {
     height: 50vh;
-    min-height: 280px;
+    min-height: 190px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +56,7 @@
 
   .bottom {
     height: 50vh;
-    min-height: 280px;
+    min-height: 190px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +82,7 @@
 
   .btn {
     width: 100%;
-    height: 66px;
+    height: 50px;
     background: #ffffff05;
     margin-bottom: 20px;
     display: flex;
@@ -96,7 +96,7 @@
     font-family: "Paytone One";
     text-align: left;
     padding: 5px;
-    border: 5px solid white;
+    border: 4px solid white;
     border-radius: 120px;
     cursor: pointer;
   }
@@ -126,7 +126,7 @@
     background-image: url(/images/logo.png);
     width: 280px;
     max-width: 60%;
-    height: 280px;
+    height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom center;
