@@ -7,13 +7,13 @@
 
   let joinId;
   let colorChange;
-  let bgColor;
+  let bgColor = getRandomColor();
 
-  onMount(() => {
-    colorChange = setInterval(() => {
-      bgColor = getRandomColor();
-    }, 1500);
-  });
+  // onMount(() => {
+  //   colorChange = setInterval(() => {
+  //     bgColor = getRandomColor();
+  //   }, 1500);
+  // });
 
   onDestroy(() => {
     clearInterval(colorChange);
@@ -77,56 +77,80 @@
   }
 
   .btn {
-    width: 360px;
-    height: 80px;
-    background: linear-gradient(0deg, #ededed, white);
+    width: 310px;
+    height: 66px;
+    background: #ffffff05;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 85px;
-    color: white;
+    color: #fff;
     font-size: 18px;
-    box-shadow: 0px 2px 1px #979797;
+    font-family: "Dosis";
+    font-family: "Catamaran";
+    font-family: "Luckiest Guy";
+    font-family: "Paytone One";
+    text-align: left;
+    padding: 5px;
+    border: 5px solid white;
+    border-radius: 120px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: #ffffff30;
   }
 
   input {
     text-transform: uppercase;
     margin: 0;
-    border-radius: 4px;
+    border-radius: 5px;
     border: 1px solid #e9e9e9;
+    padding: 3px;
+    text-align: center;
+    color: #585858;
+    font-size: 20px;
+    letter-spacing: 5px;
+    width: calc(4ch + 60px);
+  }
+
+  input:focus {
+    outline: none;
   }
 
   .logo {
     background-image: url(/images/logo.png);
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     background-size: 280px;
     background-repeat: no-repeat;
     background-position: center;
+    margin-top: 100px;
   }
 </style>
 
 <main style="background: {bgColor}">
-  {#if !$fp}
+  <div class="loading" hidden={$fp}>
     <h1>Loading</h1>
-  {:else}
+  </div>
+  <div class="home">
     <div class="top">
       <div class="logo" />
     </div>
     <div class="bottom">
       <div class="buttons">
         <div class="btn" on:click={newStation}>
-          <span>Station</span>
+          <span>New Station</span>
         </div>
         <div class="btn" on:click={joinStation}>
           <span>Join Station</span>
           <input
+            maxlength="4"
             bind:value={joinId}
             on:click={catchClick}
             on:keydown={catchEnter} />
         </div>
       </div>
     </div>
-  {/if}
+  </div>
 </main>
