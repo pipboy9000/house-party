@@ -1,5 +1,3 @@
-'use strict'
-
 var id = 120;
 
 function generateId() {
@@ -7,5 +5,6 @@ function generateId() {
     r = r.toString(36).toUpperCase();
     return r
 }
+
 module.exports = { generateId };
 
