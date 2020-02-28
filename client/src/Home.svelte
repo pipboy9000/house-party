@@ -48,6 +48,7 @@
 
   .top {
     height: 50vh;
+    min-height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,6 +56,7 @@
 
   .bottom {
     height: 50vh;
+    min-height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,16 +129,18 @@
     height: 280px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    margin-top: 100px;
+    background-position: bottom center;
+    margin-bottom: 20px;
   }
 </style>
 
 <main style="background: {bgColor}">
-  <div class="loading" hidden={$fp}>
-    <h1>Loading</h1>
-  </div>
-  <div class="home">
+  {#if !$fp}
+    <div class="loading">
+      <h1>Loading</h1>
+    </div>
+  {/if}
+  <div class="home" hidden={!$fp}>
     <div class="top">
       <div class="logo" />
     </div>
