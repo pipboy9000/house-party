@@ -10533,7 +10533,8 @@ var app = (function () {
 
     const user = writable(null);
 
-    const socket$2 = lib$1('http://localhost:3000');
+    // const socket = io('http://localhost:3000');
+    const socket$2 = lib$1('https://house-party-live.herokuapp.com');
 
     socket$2.on("setStation", function (newStation) {
         station.set(newStation);
