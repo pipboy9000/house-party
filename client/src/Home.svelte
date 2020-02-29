@@ -67,9 +67,10 @@
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
-    font-family: "Rubik", sans-serif;
-    font-family: "Modak", cursive;
-    font-family: "Abril Fatface", cursive;
+    font-family: "Dosis";
+    font-family: "Catamaran";
+    font-family: "Luckiest Guy";
+    font-family: "Paytone One";
   }
 
   .buttons {
@@ -125,7 +126,7 @@
   .logo {
     background-image: url(/images/logo.png);
     width: 280px;
-    max-width: 60%;
+    max-width: 65%;
     height: 100%;
     background-size: contain;
     background-repeat: no-repeat;

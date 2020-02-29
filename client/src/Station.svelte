@@ -3,12 +3,17 @@
   import { onMount, onDestroy } from "svelte";
   import { location } from "svelte-spa-router";
   import { fp } from "./stores/fingerprint.js";
+  import { getRandomColor } from "./utils.js";
   import * as socket from "./socket.js";
   import Player from "./Player.svelte";
 
   export let params = {}; //URL params
 
   let player;
+
+  let bgColor = getRandomColor();
+
+  let colorChange;
 
   const STATUS = {
     SEARCHING: {
@@ -40,6 +45,9 @@
 
   onMount(() => {
     connect();
+    colorChange = setInterval(() => {
+      bgColor = getRandomColor();
+    }, 1500);
   });
 
   //if url changed
@@ -66,16 +74,49 @@
     us_location();
     us_fp();
     us_station();
+    clearInterval(colorChange);
   });
 </script>
 
-{#if !$station}
-  <h1>Loading</h1>
-{:else if $station.error}
-  <h1>Error: {$station.error}</h1>
-{:else}
-  <h1>Listening to: {$station.id}</h1>
-  <h1>{status.msg}</h1>
-  <Player bind:this={player} />
-  <div class="playBtn" on:click={player.playVideo}>></div>
-{/if}
+<style>
+  .bg {
+    color: white;
+    width: 100%;
+    height: 100%;
+  }
+
+  h1 {
+    padding: 0;
+    margin: 0;
+    font-family: "Paytone One";
+  }
+
+  .top {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<div class="bg" style="background: {bgColor}">
+  {#if !$station}
+    <h1>Loading</h1>
+  {:else if $station.error}
+    <h1>Error: {$station.error}</h1>
+  {:else}
+    <div class="top">
+      <h1>Listening to: {$station.id}</h1>
+      <h1>{status.msg}</h1>
+      <div class="playBtn" on:click={player.playVideo}>></div>
+    </div>
+    <div class="player">
+      <Player bind:this={player} />
+    </div>
+  {/if}
+</div>
