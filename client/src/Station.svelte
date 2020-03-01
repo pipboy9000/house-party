@@ -45,9 +45,9 @@
 
   onMount(() => {
     connect();
-    colorChange = setInterval(() => {
-      bgColor = getRandomColor();
-    }, 1500);
+    // colorChange = setInterval(() => {
+    //   bgColor = getRandomColor();
+    // }, 1500);
   });
 
   //if url changed
@@ -102,6 +102,19 @@
     display: flex;
     justify-content: center;
   }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addBtn {
+    width: 20vw;
+    height: 20vw;
+    max-width: 100px;
+    max-height: 100px;
+  }
 </style>
 
 <div class="bg" style="background: {bgColor}">
@@ -113,10 +126,26 @@
     <div class="top">
       <h1>Listening to: {$station.id}</h1>
       <h1>{status.msg}</h1>
-      <div class="playBtn" on:click={player.playVideo}>></div>
+      <!-- <div class="playBtn" on:click={player.playVideo}>></div> -->
     </div>
     <div class="player">
       <Player bind:this={player} />
+    </div>
+    <div class="buttons">
+      <div class="addBtn">
+        <svg viewBox="0 0 100 100">
+          <g fill="transparent" stroke="white" stroke-width="4">
+            <circle cx="50" cy="50" r="45" />
+          </g>
+          <g transform="scale(0.6)" transform-origin="center center">
+            <path
+              fill="white"
+              d="m 10 10 h 80 v 10 h -80 z m 0 20 h 80 v 10 h -80 z m 0 20 h50 v
+              10 h -50 z m 70 0 h 10 v 10 h 10 v 10 h -10 v 10 h -10 v -10 h -10
+              v -10 h 10 z M 10 70 h 50 v 10 h-50 z" />
+          </g>
+        </svg>
+      </div>
     </div>
   {/if}
 </div>
