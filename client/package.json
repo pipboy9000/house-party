@@ -21,6 +21,7 @@
     "sirv-cli": "^0.4.4",
     "socket.io-client": "^2.3.0",
     "svelte-router-spa": "^5.3.3",
-    "svelte-spa-router": "^2.0.0"
+    "svelte-spa-router": "^2.0.0",
+    "throttle-debounce": "^2.1.0"
   }
 }

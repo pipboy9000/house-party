@@ -1,12 +1,15 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { onMount, onDestroy } from "svelte";
+  import { searchStr } from "./stores/search.js";
+
+  const str = "";
 
   const dispatch = createEventDispatcher();
 
-  let str = "";
-
   let input;
+
+  let throttle;
 
   function close() {
     dispatch("close");
@@ -20,8 +23,18 @@
     if (e.code === "Enter") joinStation();
   }
 
+  function search() {
+    if (throttle) {
+      clearTimeout(throttle);
+    }
+    throttle = setTimeout(() => {
+      console.log($searchStr);
+    }, 500);
+  }
+
   onMount(() => {
     input.focus();
+    input.select();
   });
 </script>
 
@@ -76,9 +89,10 @@
       <input
         placeholder="Search"
         bind:this={input}
-        bind:value={str}
+        bind:value={$searchStr}
         on:click={catchClick}
-        on:keydown={catchEnter} />
+        on:keydown={catchEnter}
+        on:input={search} />
     </div>
   </div>
 </div>
