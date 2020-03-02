@@ -14,9 +14,9 @@ socket.on("setStation", function (newStation) {
     station.set(newStation);
     if (!newStation.error) {
         if (get(location) == '/') {
-            push(`/${newStation.id}`);
+            push('/' + newStation.id);
         } else {
-            replace(`/${newStation.id}`);
+            replace('/' + newStation.id);
         }
     }
 });

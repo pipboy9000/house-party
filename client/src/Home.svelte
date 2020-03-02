@@ -8,6 +8,7 @@
   let joinId;
   let colorChange;
   let bgColor = getRandomColor();
+  let params;
 
   onMount(() => {
     colorChange = setInterval(() => {

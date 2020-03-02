@@ -1,13 +1,20 @@
 <script>
   import { station } from "./stores/station.js";
   import { onMount, onDestroy } from "svelte";
-  import { location } from "svelte-spa-router";
   import { fp } from "./stores/fingerprint.js";
   import { getRandomColor } from "./utils.js";
   import * as socket from "./socket.js";
+  import { push, pop, replace } from "svelte-spa-router";
+  import { location, querystring } from "svelte-spa-router";
   import Player from "./Player.svelte";
+  import Search from "./Search.svelte";
+  import qs from "qs";
 
   export let params = {}; //URL params
+
+  let showSearch = false;
+
+  $: showSearch = qs.parse($querystring).search;
 
   let player;
 
@@ -70,6 +77,17 @@
     }
   });
 
+  function openSearch() {
+    let urlParams = qs.parse($querystring);
+    if (urlParams.hasOwnProperty("search")) {
+      urlParams.search = true;
+      replace($location + "?" + qs.stringify(urlParams));
+    } else {
+      urlParams.search = true;
+      push($location + "?" + qs.stringify(urlParams));
+    }
+  }
+
   onDestroy(() => {
     us_location();
     us_fp();
@@ -83,6 +101,7 @@
     color: white;
     width: 100%;
     height: 100%;
+    position: absolute;
   }
 
   h1 {
@@ -101,12 +120,14 @@
   .player {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
   }
 
   .buttons {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
   }
 
   .addBtn {
@@ -114,6 +135,11 @@
     height: 20vw;
     max-width: 100px;
     max-height: 100px;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 </style>
 
@@ -132,20 +158,24 @@
       <Player bind:this={player} />
     </div>
     <div class="buttons">
-      <div class="addBtn">
+      <div class="addBtn" on:click={openSearch}>
         <svg viewBox="0 0 100 100">
-          <g fill="transparent" stroke="white" stroke-width="4">
-            <circle cx="50" cy="50" r="45" />
-          </g>
-          <g transform="scale(0.6)" transform-origin="center center">
-            <path
-              fill="white"
-              d="m 10 10 h 80 v 10 h -80 z m 0 20 h 80 v 10 h -80 z m 0 20 h50 v
-              10 h -50 z m 70 0 h 10 v 10 h 10 v 10 h -10 v 10 h -10 v -10 h -10
-              v -10 h 10 z M 10 70 h 50 v 10 h-50 z" />
-          </g>
+          <mask id="mask">
+            <rect x="0" y="0" width="100" height="100" fill="white" />
+            <g transform="scale(0.6)" transform-origin="center center">
+              <path
+                fill="black"
+                d="m 10 10 h 80 v 10 h -80 z m 0 20 h 80 v 10 h -80 z m 0 20 h50
+                v 10 h -50 z m 70 0 h 10 v 10 h 10 v 10 h -10 v 10 h -10 v -10 h
+                -10 v -10 h 10 z M 10 70 h 50 v 10 h-50 z" />
+            </g>
+          </mask>
+          <circle cx="50" cy="50" r="45" mask="url(#mask)" fill="white" />
         </svg>
       </div>
     </div>
   {/if}
 </div>
+{#if showSearch}
+  <Search on:close={pop} />
+{/if}
