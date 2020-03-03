@@ -29,13 +29,26 @@
   function sendSearchReq() {
     gapi.client.youtube.search
       .list({
-        part: "snippet",
+        part: "id",
         maxResults: 25,
         q: $searchStr
       })
       .then(res => {
-        console.log(res.result.items);
-        searchRes.set(res.result.items);
+        let ids = "";
+        res.result.items.forEach(video => {
+          ids += video.id.videoId + ",";
+        });
+        ids = ids.slice(0, -1);
+
+        gapi.client.youtube.videos
+          .list({
+            maxResults: 25,
+            part: "contentDetails,snippet",
+            id: ids
+          })
+          .then(details => {
+            searchRes.set(details.result.items);
+          });
       });
   }
 
@@ -74,6 +87,8 @@
     position: absolute;
     grid-column: 1 / 3;
     grid-row: 1 / 2;
+    border-bottom: 2px solid #18181882;
+    box-shadow: 0px 0px 5px #000000bf;
   }
 
   .search {
@@ -104,7 +119,7 @@
 
   .items {
     width: 100%;
-    max-width: 480px;
+    max-width: 540px;
     padding: 10px;
     box-sizing: border-box;
     grid-column: 1 / 3;
@@ -120,23 +135,47 @@
   }
 
   .item {
-    display: flex;
     align-items: end;
     width: 100%;
     background: white;
-    height: 60px;
+    height: 76px;
     margin-top: 10px;
     border-radius: 2px;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: 100px auto 76px;
+    box-sizing: border-box;
+    align-items: baseline;
+    /* font-family: "Oswald", sans-serif;
+    font-family: "Noto Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-family: "Varela Round", sans-serif; */
+    font-family: "Titillium Web", sans-serif;
   }
 
-  .item > img {
+  .item > .thumb {
     height: 100%;
-    min-width: 82px;
+    min-width: 100%;
+    background-position: center;
+  }
+
+  .item > .middle {
+    display: grid;
+    grid-template-rows: 50% auto;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    box-sizing: border-box;
   }
 
   .item > .title {
     font-size: 12px;
+    font-family: "Paytone one";
+    padding: 5px;
+    font-size: 16px;
+    color: #4a4a4a;
+    padding-left: 10px;
   }
 
   ::-webkit-scrollbar {
@@ -189,10 +228,13 @@
   <div class="items">
     {#each $searchRes as item, i}
       <div class="item">
-        <img
+        <div
+          class="thumb"
           alt={item.snippet.title}
-          src={item.snippet.thumbnails.default.url} />
-        <div class="title">{item.snippet.title}</div>
+          style="background-image: url({item.snippet.thumbnails.default.url})" />
+        <div class="middle">
+          <div class="title">{item.snippet.title}</div>
+        </div>
       </div>
     {/each}
   </div>
