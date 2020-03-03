@@ -16,6 +16,22 @@
 
 	<script src="https://kit.fontawesome.com/cc5753dce5.js" crossorigin="anonymous"></script>
 
+	<script src="https://apis.google.com/js/api.js"></script>
+
+	<script>
+		function start() {
+			// 2. Initialize the JavaScript client library.
+			gapi.client.setApiKey("AIzaSyBf8ANuUT7O4LvCUUy9TSwoIICKpssh574");
+			gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+				.then(function () {
+					console.log("GAPI client loaded for API");
+				});
+		}
+
+		// 1. Load the JavaScript client library.
+		gapi.load('client', start);
+	</script>
+
 	<script defer src='/build/bundle.js'></script>
 </head>
 

@@ -61,6 +61,16 @@
   }
 </script>
 
+<style>
+  .yt-component {
+    max-width: 100%;
+  }
+
+  .yt-component > iframe {
+    max-width: 100%;
+  }
+</style>
+
 <div class="yt-component">
   <div id={divId} />
 </div>

@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { onMount, onDestroy } from "svelte";
-  import { searchStr } from "./stores/search.js";
+  import { searchStr, searchRes } from "./stores/search.js";
 
   const str = "";
 
@@ -20,7 +20,23 @@
   }
 
   function catchEnter(e) {
-    if (e.code === "Enter") joinStation();
+    if (throttle) {
+      clearTimeout(throttle);
+    }
+    if (e.code === "Enter") sendSearchReq();
+  }
+
+  function sendSearchReq() {
+    gapi.client.youtube.search
+      .list({
+        part: "snippet",
+        maxResults: 25,
+        q: $searchStr
+      })
+      .then(res => {
+        console.log(res.result.items);
+        searchRes.set(res.result.items);
+      });
   }
 
   function search() {
@@ -28,7 +44,7 @@
       clearTimeout(throttle);
     }
     throttle = setTimeout(() => {
-      console.log($searchStr);
+      sendSearchReq();
     }, 500);
   }
 
@@ -40,20 +56,24 @@
 
 <style>
   .bg {
-    width: 100%;
-    height: 100%;
-    display: flex;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 56px auto;
     position: absolute;
     background: #00000059;
-    flex-direction: column;
   }
 
   .bar {
     width: 100%;
-    height: 56px;
+    height: 100%;
     background: #202020ff;
     display: flex;
     align-items: center;
+    justify-content: center;
+    position: absolute;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
   }
 
   .search {
@@ -81,6 +101,77 @@
   input:focus {
     outline: none;
   }
+
+  .items {
+    width: 100%;
+    max-width: 480px;
+    padding: 10px;
+    box-sizing: border-box;
+    grid-column: 1 / 3;
+    grid-row: 2 / 2;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .item:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .item {
+    display: flex;
+    align-items: end;
+    width: 100%;
+    background: white;
+    height: 60px;
+    margin-top: 10px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .item > img {
+    height: 100%;
+    min-width: 82px;
+  }
+
+  .item > .title {
+    font-size: 12px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #fff;
+    border: 37px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+  }
+  ::-webkit-scrollbar-track {
+    background: #ffffff3d;
+    border: 0px none #ffffff;
+    border-radius: 18px;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: #666666;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: #333333;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 </style>
 
 <div class="bg" on:click={close}>
@@ -94,5 +185,15 @@
         on:keydown={catchEnter}
         on:input={search} />
     </div>
+  </div>
+  <div class="items">
+    {#each $searchRes as item, i}
+      <div class="item">
+        <img
+          alt={item.snippet.title}
+          src={item.snippet.thumbnails.default.url} />
+        <div class="title">{item.snippet.title}</div>
+      </div>
+    {/each}
   </div>
 </div>
