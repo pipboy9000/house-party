@@ -73,7 +73,8 @@
     let vidObj = {
       videoId: video.id,
       title: video.snippet.title,
-      duration: video.contentDetails.duration
+      duration: video.contentDetails.duration,
+      thumbnail: video.snippet.thumbnails.default.url
     };
     addVideo(vidObj);
   }
@@ -191,6 +192,7 @@
     grid-column: 3 / 4;
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
 
   .right > i {

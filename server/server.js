@@ -9,8 +9,7 @@ var stations = {};
 var users = {}
 
 var settings = {
-    WAIT: 5000 //180 seconds wait before adding another song
-    // WAIT: 2000 //5 seconds wait before adding another song
+    WAIT: 5000 //wait time before adding song
 }
 
 var port = process.env.PORT || 3000;

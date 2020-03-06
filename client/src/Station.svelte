@@ -11,6 +11,7 @@
   import CooldownTimer from "./CooldownTimer.svelte";
   import Playlist from "./Playlist.svelte";
   import qs from "qs";
+  import { user } from "./stores/user.js";
 
   export let params = {}; //URL params
 
@@ -104,6 +105,9 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    padding-bottom: 120px;
+    display: flex;
+    flex-direction: column;
   }
 
   h1 {
@@ -171,9 +175,11 @@
       <h1>{status.msg}</h1>
       <!-- <div class="playBtn" on:click={player.playVideo}>></div> -->
     </div>
-    <div class="player">
-      <Player bind:this={player} />
-    </div>
+    {#if $user.isAdmin}
+      <div class="player">
+        <Player bind:this={player} />
+      </div>
+    {/if}
 
     <Playlist />
 
