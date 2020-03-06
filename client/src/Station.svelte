@@ -8,6 +8,8 @@
   import { location, querystring } from "svelte-spa-router";
   import Player from "./Player.svelte";
   import Search from "./Search.svelte";
+  import CooldownTimer from "./CooldownTimer.svelte";
+  import Playlist from "./Playlist.svelte";
   import qs from "qs";
 
   export let params = {}; //URL params
@@ -124,20 +126,35 @@
   }
 
   .buttons {
+    position: fixed;
+    width: 100%;
+    margin-bottom: 20px;
+    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
   }
 
   .addBtn {
+    position: relative;
     width: 20vw;
     height: 20vw;
     max-width: 100px;
     max-height: 100px;
   }
 
+  .coolDown {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: red;
+
+    border-radius: 70px;
+    background: conic-gradient(10% red, yellow, lime, aqua, blue);
+  }
+
   svg {
+    position: absolute;
     width: 100%;
     height: 100%;
   }
@@ -157,8 +174,12 @@
     <div class="player">
       <Player bind:this={player} />
     </div>
+
+    <Playlist />
+
     <div class="buttons">
       <div class="addBtn" on:click={openSearch}>
+        <CooldownTimer />
         <svg viewBox="0 0 100 100">
           <mask id="mask">
             <rect x="0" y="0" width="100" height="100" fill="white" />

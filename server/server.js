@@ -5,20 +5,15 @@ var io = require('socket.io')(http);
 var utils = require('./utils');
 
 var stations = {};
-var stationsList = []; //only the stations id
+
+var users = {}
 
 var settings = {
-    WAIT: 180000 //180 seconds wait before adding another song
+    WAIT: 5000 //180 seconds wait before adding another song
     // WAIT: 2000 //5 seconds wait before adding another song
 }
 
 var port = process.env.PORT || 3000;
-
-// app.use(function (req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "https://romantic-hopper-e1a4b8.netlify.com localhost 'self'"); // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 
 app.get('/stations', (req, res) => res.send(stations))
 
@@ -58,7 +53,6 @@ function newStation(creatorsFingerprint) {
     };
 
     stations[id] = station;
-    stationsList.push(id);
     return station;
 }
 
@@ -77,9 +71,10 @@ function joinStation(id, fingerprint) {
     }
 }
 
-function addToPlaylist(stationId, video, fingerprint) {
+function addVideo(stationId, video, fingerprint) {
 
-    console.log('addToPlaylist (stationId: ' + stationId + '  fp:' + fingerprint);
+    console.log('addVideo (stationId: ' + stationId + '  fp:' + fingerprint);
+
     if (!stations[stationId]) {
         console.log("can't add song, station doesn't exist");
         return;
@@ -132,8 +127,9 @@ io.on('connection', function (socket) {
         socket.leave(id);
     });
 
-    socket.on('addToPlaylist', function (stationId, videoId, fingerprint) {
-        addToPlaylist(stationId, videoId, fingerprint);
+    socket.on('addVideo', function (stationId, videoId, fingerprint) {
+        console.log("Add video");
+        addVideo(stationId, videoId, fingerprint);
     });
 });
 

@@ -1,3 +1,5 @@
+import moment from "moment";
+
 function rand(min, max) {
     return min + Math.random() * (max - min);
 }
@@ -10,4 +12,35 @@ export function getRandomColor() {
     var s = rand(60, 80);
     var l = rand(60, 80);
     return 'hsl(' + h + ',' + s + '%,' + l + '%)';
+}
+
+export function parseDuration(str) {
+    let duration = moment.duration(str);
+    let h = duration._data.hours;
+    let m = duration._data.minutes;
+    let s = duration._data.seconds;
+
+    let res = "";
+
+    if (h) {
+        if (h > 9) {
+            res += h + ":";
+        } else {
+            res += '0' + h + ":";
+        }
+    }
+
+    if (m > 9) {
+        res += m + ":";
+    } else {
+        res += '0' + m + ":";
+    }
+
+    if (s > 9) {
+        res += s;
+    } else {
+        res += '0' + s;
+    }
+
+    return res;
 }

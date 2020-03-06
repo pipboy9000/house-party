@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
-// const socket = io('http://localhost:3000');
-const socket = io('https://house-party-live.herokuapp.com');
+const socket = io('http://localhost:3000');
+// const socket = io('https://house-party-live.herokuapp.com');
 
 import { push, pop, replace } from "svelte-spa-router";
 import { location } from "svelte-spa-router";
@@ -31,4 +31,8 @@ export function newStation() {
 
 export function joinStation(stationId) {
     socket.emit("join", stationId, get(fp))
+}
+
+export function addVideo(video) {
+    socket.emit("addVideo", get(station).id, video, get(fp));
 }

@@ -2,6 +2,8 @@
   import { createEventDispatcher } from "svelte";
   import { onMount, onDestroy } from "svelte";
   import { searchStr, searchRes } from "./stores/search.js";
+  import { parseDuration } from "./utils.js";
+  import { addVideo } from "./socket.js";
 
   const str = "";
 
@@ -47,6 +49,12 @@
             id: ids
           })
           .then(details => {
+            //format duration
+            details.result.items.forEach(item => {
+              item.contentDetails.duration = parseDuration(
+                item.contentDetails.duration
+              );
+            });
             searchRes.set(details.result.items);
           });
       });
@@ -59,6 +67,15 @@
     throttle = setTimeout(() => {
       sendSearchReq();
     }, 500);
+  }
+
+  function add(video) {
+    let vidObj = {
+      videoId: video.id,
+      title: video.snippet.title,
+      duration: video.contentDetails.duration
+    };
+    addVideo(vidObj);
   }
 
   onMount(() => {
@@ -75,6 +92,7 @@
     grid-template-rows: 56px auto;
     position: absolute;
     background: #00000059;
+    z-index: 9999;
   }
 
   .bar {
@@ -127,7 +145,7 @@
     margin-left: auto;
     margin-right: auto;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .item:nth-child(1) {
@@ -135,17 +153,15 @@
   }
 
   .item {
-    align-items: end;
     width: 100%;
     background: white;
     height: 76px;
+    max-height: 76px;
     margin-top: 10px;
-    border-radius: 2px;
+    border-radius: 14px 84px 84px 14px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 100px auto 76px;
-    box-sizing: border-box;
-    align-items: baseline;
     /* font-family: "Oswald", sans-serif;
     font-family: "Noto Sans", sans-serif;
     font-family: "Poppins", sans-serif;
@@ -157,24 +173,61 @@
     height: 100%;
     min-width: 100%;
     background-position: center;
+    grid-column: 1 / 2;
   }
 
   .item > .middle {
-    display: grid;
-    grid-template-rows: 50% auto;
+    grid-template-rows: 65% auto;
     height: 100%;
+    max-height: 100%;
     width: 100%;
-    padding: 5px;
-    padding-left: 10px;
-    box-sizing: border-box;
+    display: grid;
   }
 
-  .item > .title {
-    font-size: 12px;
+  .item > .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 3 / 4;
+    width: 100%;
+    height: 100%;
+  }
+
+  .right > i {
+    width: 50px;
+    height: 50px;
+    background: #70c4ff;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50px;
+    color: white;
+  }
+
+  .title {
     font-family: "Paytone one";
-    padding: 5px;
     font-size: 16px;
     color: #4a4a4a;
+    line-height: 19px;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-top: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .title > span {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+
+  .details {
+    color: #878787;
+    font-size: 14px;
     padding-left: 10px;
   }
 
@@ -233,7 +286,13 @@
           alt={item.snippet.title}
           style="background-image: url({item.snippet.thumbnails.default.url})" />
         <div class="middle">
-          <div class="title">{item.snippet.title}</div>
+          <div class="title">
+            <span>{item.snippet.title}</span>
+          </div>
+          <div class="details">{item.contentDetails.duration}</div>
+        </div>
+        <div class="right" on:click={add(item)}>
+          <i class="fas fa-plus" />
         </div>
       </div>
     {/each}
