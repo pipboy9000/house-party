@@ -41,6 +41,7 @@ function newStation(creatorsFingerprint) {
     var id = getStationId()
     var station = {
         id,
+        settings,
         creatorsFingerprint,
         title: 'cool station sis',
         users: {
@@ -76,14 +77,14 @@ function addVideo(stationId, video, fingerprint) {
 
     if (!stations[stationId]) {
         console.log("can't add song, station doesn't exist");
-        return;
+        return false;
     }
 
     var station = stations[stationId];
 
     if (!station.users[fingerprint]) {
         console.log("can't add song, user is not in the station");
-        return;
+        return false;
     }
 
     var user = station.users[fingerprint];
@@ -91,9 +92,10 @@ function addVideo(stationId, video, fingerprint) {
     if (now - user.addedSongAt > settings.WAIT) {
         user.addedSongAt = now;
         station.playlist.push(video);
-        io.to(stationId).emit('setStation', station);
+        return station;
     } else {
-        console.log('you need to wait ' + ((settings.WAIT - (now - user.addedSongAt)) / 1000).toString() + ' seconds');
+        console.log('you need to wait ' + ((station.settings.WAIT - (now - user.addedSongAt)) / 1000).toString() + ' seconds');
+        return false;
     }
 }
 
@@ -119,6 +121,11 @@ io.on('connection', function (socket) {
         station = joinStation(id, fingerprint);
         socket.join(id);
         socket.emit('setStation', station);
+        if (station.creatorsFingerprint == fingerprint) {
+            socket.emit('setUser', {
+                isAdmin: true
+            })
+        }
     });
 
     socket.on('leave', function (id) {
@@ -128,7 +135,11 @@ io.on('connection', function (socket) {
 
     socket.on('addVideo', function (stationId, videoId, fingerprint) {
         console.log("Add video");
-        addVideo(stationId, videoId, fingerprint);
+        let station = addVideo(stationId, videoId, fingerprint);
+        if (station) {
+            io.to(stationId).emit('setStation', station);
+            socket.emit("videoAdded", station.settings.WAIT);
+        }
     });
 });
 

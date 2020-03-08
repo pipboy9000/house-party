@@ -123,13 +123,8 @@
     align-items: center;
   }
 
-  .player {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-
   .buttons {
+    z-index: 100;
     position: fixed;
     width: 100%;
     margin-bottom: 20px;
@@ -141,26 +136,22 @@
 
   .addBtn {
     position: relative;
-    width: 20vw;
-    height: 20vw;
+    width: 100px;
+    height: 100px;
     max-width: 100px;
     max-height: 100px;
-  }
-
-  .coolDown {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: red;
-
-    border-radius: 70px;
-    background: conic-gradient(10% red, yellow, lime, aqua, blue);
   }
 
   svg {
     position: absolute;
     width: 100%;
     height: 100%;
+  }
+
+  .player {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 </style>
 
@@ -197,7 +188,7 @@
                 -10 v -10 h 10 z M 10 70 h 50 v 10 h-50 z" />
             </g>
           </mask>
-          <circle cx="50" cy="50" r="45" mask="url(#mask)" fill="white" />
+          <circle cx="50" cy="50" r="40" mask="url(#mask)" fill="white" />
         </svg>
       </div>
     </div>

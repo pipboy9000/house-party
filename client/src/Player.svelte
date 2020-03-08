@@ -37,7 +37,7 @@
         videoId: videoId,
         enablejsapi: true,
         events: {
-          //'onReady': onPlayerReady,
+          onReady: onPlayerReady,
           onStateChange: onPlayerStateChange
         }
       });
@@ -46,6 +46,21 @@
       createPlayer(); // if the YT Script is ready, we can create our player
     }
   });
+
+  function onPlayerReady() {
+    var iframe = player.getIframe();
+    console.log(iframe);
+    debugger;
+    iframe.style.width = "100%";
+    iframe.style.maxWidth = "640px";
+    var w = window.getComputedStyle(iframe).width;
+    w = parseInt(w);
+    w = Math.max(w, 640);
+
+    var h = (w * 0.5625).toString() + "px";
+    iframe.style.height = h;
+  }
+
   function isMyScriptLoaded(url = "") {
     var scripts = document.getElementsByTagName("script");
     for (var i = scripts.length; i--; ) {
@@ -62,15 +77,7 @@
 </script>
 
 <style>
-  .yt-component {
-    max-width: 100%;
-  }
 
-  .yt-component > iframe {
-    max-width: 100%;
-  }
 </style>
 
-<div class="yt-component">
-  <div id={divId} />
-</div>
+<div id={divId} />

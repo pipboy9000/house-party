@@ -1,5 +1,10 @@
 <script>
+  import { user } from "./stores/user.js";
+  import { onMount } from "svelte";
 
+  export function setCooldown(duration) {}
+
+  onMount(() => {});
 </script>
 
 <style>
@@ -12,10 +17,11 @@
 
   .circle {
     fill: none;
-    stroke-width: 15;
+    stroke-width: 5;
     stroke-linecap: round;
     stroke: red;
     stroke-dasharray: 100 100;
+    stroke-dashoffset: 100;
   }
 </style>
 
