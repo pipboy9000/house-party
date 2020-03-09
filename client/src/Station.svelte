@@ -12,6 +12,7 @@
   import Playlist from "./Playlist.svelte";
   import qs from "qs";
   import { user } from "./stores/user.js";
+  import QRCode from "./QRCode.svelte";
 
   export let params = {}; //URL params
 
@@ -24,6 +25,8 @@
   let bgColor = getRandomColor();
 
   let colorChange;
+
+  let qrCanvas;
 
   const STATUS = {
     SEARCHING: {
@@ -55,9 +58,9 @@
 
   onMount(() => {
     connect();
-    // colorChange = setInterval(() => {
-    //   bgColor = getRandomColor();
-    // }, 1500);
+    colorChange = setInterval(() => {
+      bgColor = getRandomColor();
+    }, 1500);
   });
 
   //if url changed
@@ -91,6 +94,11 @@
     }
   }
 
+  function play(e) {
+    let videoId = e.detail;
+    player.playVideo(videoId);
+  }
+
   onDestroy(() => {
     us_location();
     us_fp();
@@ -101,9 +109,14 @@
 
 <style>
   .bg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .container {
     color: white;
     width: 100%;
-    height: 100%;
     position: absolute;
     padding-bottom: 120px;
     display: flex;
@@ -117,7 +130,7 @@
   }
 
   .top {
-    padding-top: 80px;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,26 +149,54 @@
 
   .addBtn {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     max-width: 100px;
     max-height: 100px;
+    background: white;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #606060;
+    box-shadow: 0px 5px 12px #00000059;
   }
 
-  svg {
-    position: absolute;
+  .addBtnIcons {
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  }
+
+  .addBtnIcons i {
+    position: absolute;
+  }
+
+  .addBtnIcons i:nth-child(2) {
+    font-size: 16px;
+    margin-left: 30px;
   }
 
   .player {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 70px;
+  }
+
+  .qrcode {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 </style>
 
-<div class="bg" style="background: {bgColor}">
+<div class="bg" style="background: {bgColor}" />
+<div class="container">
   {#if !$station}
     <h1>Loading</h1>
   {:else if $station.error}
@@ -167,29 +208,25 @@
       <!-- <div class="playBtn" on:click={player.playVideo}>></div> -->
     </div>
     {#if $user.isAdmin}
+      <div class="qrcode">
+        <QRCode codeValue={$location} squareSize="200" />
+      </div>
+      <div class="state">{$station.state}</div>
       <div class="player">
         <Player bind:this={player} />
       </div>
     {/if}
 
-    <Playlist />
+    <Playlist on:play={play} />
 
     <div class="buttons">
       <div class="addBtn" on:click={openSearch}>
         <CooldownTimer />
-        <svg viewBox="0 0 100 100">
-          <mask id="mask">
-            <rect x="0" y="0" width="100" height="100" fill="white" />
-            <g transform="scale(0.6)" transform-origin="center center">
-              <path
-                fill="black"
-                d="m 10 10 h 80 v 10 h -80 z m 0 20 h 80 v 10 h -80 z m 0 20 h50
-                v 10 h -50 z m 70 0 h 10 v 10 h 10 v 10 h -10 v 10 h -10 v -10 h
-                -10 v -10 h 10 z M 10 70 h 50 v 10 h-50 z" />
-            </g>
-          </mask>
-          <circle cx="50" cy="50" r="40" mask="url(#mask)" fill="white" />
-        </svg>
+        <div class="addBtnIcons">
+          <i class="fas fa-music" />
+          <!-- <i class="fas fa-plus" /> -->
+        </div>
+
       </div>
     </div>
   {/if}

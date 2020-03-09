@@ -1,9 +1,11 @@
 <script context="module">
+  import { station } from "./stores/station.js";
+  import { setPlayerState } from "./socket.js";
   let YouTubeIframeAPIReady = false;
 </script>
 
 <script>
-  let player;
+  export let player;
   import { createEventDispatcher, onMount } from "svelte";
   const dispatch = createEventDispatcher();
   let divId = "player_" + parseInt(Math.random() * 100000).toString();
@@ -48,16 +50,14 @@
   });
 
   function onPlayerReady() {
+    //resize youtube player to fit window
     var iframe = player.getIframe();
-    console.log(iframe);
-    debugger;
     iframe.style.width = "100%";
     iframe.style.maxWidth = "640px";
     var w = window.getComputedStyle(iframe).width;
     w = parseInt(w);
     w = Math.max(w, 640);
-
-    var h = (w * 0.5625).toString() + "px";
+    var h = (w * 0.5625).toString() + "px"; //0.5625 = 9 / 16
     iframe.style.height = h;
   }
 
@@ -68,11 +68,15 @@
     }
     return false;
   }
+
   function onPlayerStateChange({ data }) {
-    dispatch("StateChange", data);
+    debugger;
+    let videoId = player.getVideoUrl().split("/watch?v=")[1];
+    setPlayerState(data, videoId);
   }
-  export function playVideo() {
-    player.playVideo();
+
+  export function playVideo(video) {
+    player.loadVideoById(video.videoId);
   }
 </script>
 

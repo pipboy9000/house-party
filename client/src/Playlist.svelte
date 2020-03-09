@@ -1,5 +1,27 @@
 <script>
   import { station } from "./stores/station.js";
+  import { user } from "./stores/user.js";
+  import { fp } from "./stores/fingerprint.js";
+  import { like, dislike } from "./socket.js";
+
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+
+  function play(videoId) {
+    dispatch("play", videoId);
+  }
+
+  function likedByMe(video) {
+    return video.likes.hasOwnProperty($fp);
+  }
+  function dislikedByMe(video) {
+    return video.dislikes.hasOwnProperty($fp);
+  }
+
+  function getLikes(video) {
+    return Object.keys(video.likes).length - Object.keys(video.dislikes).length;
+  }
 </script>
 
 <style>
@@ -10,6 +32,7 @@
     align-items: center;
     padding: 10px;
     box-sizing: border-box;
+    margin-top: 30px;
   }
 
   .list {
@@ -28,6 +51,8 @@
     font-family: "Paytone One";
     border-radius: 3px;
     overflow: hidden;
+    box-shadow: 0px 2px 5px #00000038;
+    position: relative;
   }
 
   .item:nth-child(1) {
@@ -84,12 +109,25 @@
     padding: 10px;
     padding-top: 2px;
   }
+
+  .green {
+    fill: #5dd84a;
+  }
+
+  .red {
+    fill: #ee4848;
+  }
 </style>
 
 <div class="wrapper">
   <div class="list">
     {#each $station.playlist as item}
       <div class="item">
+        {#if $user.isAdmin}
+          <div
+            style="width:100%; height:100%; position:absolute; cursor: pointer"
+            on:click={play(item)} />
+        {/if}
         <div
           class="thumbnail"
           style="background-image: url({item.thumbnail})" />
@@ -100,17 +138,21 @@
         <div class="right">
           <div class="arrows">
             <svg
+              on:click={like(item.videoId)}
               class="upArrow"
+              class:green={likedByMe(item)}
               viewBox="-303.065673828125 -455.04998779296875 286.13134765625
               167.04998779296875">
-              <g transform="rotate(180 0 0)" fill="">
+              <g transform="rotate(180 0 0)">
                 <path
                   d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6
                   9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z" />
               </g>
             </svg>
             <svg
+              on:click={dislike(item.videoId)}
               class="downArrow"
+              class:red={dislikedByMe(item)}
               viewBox="16.934316635131836 288 286.13134765625 167.04998779296875">
               <g>
                 <path
@@ -118,10 +160,8 @@
                   9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z" />
               </g>
             </svg>
-            <!-- <i class="fas fa-sort-up" />
-            <i class="fas fa-sort-down" /> -->
           </div>
-          <div class="likes">+5</div>
+          <div class="likes">{getLikes(item)}</div>
         </div>
       </div>
     {/each}

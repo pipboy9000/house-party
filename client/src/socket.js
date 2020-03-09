@@ -26,7 +26,7 @@ socket.on("setUser", function (u) {
 })
 
 socket.on("videoAdded", function (waitTime) {
-    user.setCooldown(waitTime);
+    // user.setCooldown(waitTime);
 })
 
 export function newStation() {
@@ -39,4 +39,16 @@ export function joinStation(stationId) {
 
 export function addVideo(video) {
     socket.emit("addVideo", get(station).id, video, get(fp));
+}
+
+export function like(videoId) {
+    socket.emit("like", get(station).id, videoId, get(fp));
+}
+
+export function dislike(videoId) {
+    socket.emit("dislike", get(station).id, videoId, get(fp));
+}
+
+export function setPlayerState(state, videoId) {
+    socket.emit("setPlayerState", get(station).id, videoId, state, get(fp))
 }

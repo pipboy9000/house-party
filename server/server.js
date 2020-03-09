@@ -28,6 +28,24 @@ function getStationId() {
     return id;
 }
 
+function getStation(stationId, fingerprint) {
+    console.log('addVideo (stationId: ' + stationId + '  fp:' + fingerprint);
+
+    if (!stations[stationId]) {
+        console.log("station doesn't exist");
+        return false;
+    }
+
+    var station = stations[stationId];
+
+    if (!station.users[fingerprint]) {
+        console.log("user is not in the station");
+        return false;
+    }
+
+    return station;
+}
+
 function newStation(creatorsFingerprint) {
     if (!creatorsFingerprint ||
         creatorsFingerprint.length < 5 ||
@@ -42,6 +60,8 @@ function newStation(creatorsFingerprint) {
     var station = {
         id,
         settings,
+        state: "paused",
+        nowPlaying: null,
         creatorsFingerprint,
         title: 'cool station sis',
         users: {
@@ -71,32 +91,91 @@ function joinStation(id, fingerprint) {
     }
 }
 
+function like(stationId, videoId, fingerprint) {
+
+    console.log('like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
+
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
+
+    let vid = station.playlist.find(video => video.videoId === videoId);
+    vid.likes[fingerprint] = true;
+    delete vid.dislikes[fingerprint];
+
+    return station;
+}
+
+function dislike(stationId, videoId, fingerprint) {
+
+    console.log('like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
+
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
+
+    let vid = station.playlist.find(video => video.videoId === videoId);
+    vid.dislikes[fingerprint] = true;
+    delete vid.likes[fingerprint];
+
+    return station;
+}
+
 function addVideo(stationId, video, fingerprint) {
 
     console.log('addVideo (stationId: ' + stationId + '  fp:' + fingerprint);
 
-    if (!stations[stationId]) {
-        console.log("can't add song, station doesn't exist");
-        return false;
-    }
-
-    var station = stations[stationId];
-
-    if (!station.users[fingerprint]) {
-        console.log("can't add song, user is not in the station");
-        return false;
-    }
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
 
     var user = station.users[fingerprint];
     var now = Date.now();
     if (now - user.addedSongAt > settings.WAIT) {
         user.addedSongAt = now;
+        video.likes = { [fingerprint]: true }
+        video.dislikes = {};
         station.playlist.push(video);
         return station;
     } else {
         console.log('you need to wait ' + ((station.settings.WAIT - (now - user.addedSongAt)) / 1000).toString() + ' seconds');
         return false;
     }
+}
+
+function setPlayerState(stationId, videoId, state, fingerprint) {
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
+
+    let currentVideo = station.playlist.find(video => video.videoId === videoId);
+    if (!currentVideo) {
+        station.state = "Free stylin";
+        station.nowPlaying = null;
+    } else {
+        station.nowPlaying = currentVideo;
+    }
+
+    //-1 – unstarted
+    // 0 – ended
+    // 1 – playing
+    // 2 – paused
+    // 3 – buffering
+    // 5 – video cued
+
+    switch (state) {
+        case -1:
+        case 0:
+        case 2:
+            station.state = "paused";
+            break;
+        case 1:
+            station.state = "playing";
+            break;
+        case 3:
+            station.state = "buffering";
+            break;
+        default:
+            station.state = null
+    }
+
+    return station;
 }
 
 io.on('connection', function (socket) {
@@ -141,6 +220,28 @@ io.on('connection', function (socket) {
             socket.emit("videoAdded", station.settings.WAIT);
         }
     });
+
+    socket.on("like", function (stationId, videoId, fingerprint) {
+        let station = like(stationId, videoId, fingerprint);
+        if (station) {
+            io.to(stationId).emit('setStation', station);
+        }
+    })
+
+    socket.on("dislike", function (stationId, videoId, fingerprint) {
+        let station = dislike(stationId, videoId, fingerprint);
+        if (station) {
+            io.to(stationId).emit('setStation', station);
+        }
+    })
+
+    socket.on("setPlayerState", function (stationId, videoId, state, fingerprint) {
+        let station = setPlayerState(stationId, videoId, state, fingerprint);
+        if (station) {
+            io.to(stationId).emit('setStation', station);
+        }
+    })
+
 });
 
 http.listen(port, function () {

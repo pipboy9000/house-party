@@ -16,10 +16,11 @@
   .buttons {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     right: 0;
     margin: 20px;
     cursor: pointer;
+    z-index: 999;
   }
 
   i {
