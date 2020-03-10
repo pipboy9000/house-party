@@ -146,8 +146,7 @@ function setPlayerState(stationId, videoId, state, fingerprint) {
 
     let currentVideo = station.playlist.find(video => video.videoId === videoId);
     if (!currentVideo) {
-        station.state = "Free stylin";
-        station.nowPlaying = null;
+        station.nowPlaying = { title: "Free Stylin" };
     } else {
         station.nowPlaying = currentVideo;
     }

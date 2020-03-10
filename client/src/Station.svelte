@@ -8,6 +8,7 @@
   import { location, querystring } from "svelte-spa-router";
   import Player from "./Player.svelte";
   import Search from "./Search.svelte";
+  import NowPlaying from "./NowPlaying.svelte";
   import CooldownTimer from "./CooldownTimer.svelte";
   import Playlist from "./Playlist.svelte";
   import qs from "qs";
@@ -205,18 +206,17 @@
     <div class="top">
       <h1>Listening to: {$station.id}</h1>
       <h1>{status.msg}</h1>
-      <!-- <div class="playBtn" on:click={player.playVideo}>></div> -->
     </div>
     {#if $user.isAdmin}
       <div class="qrcode">
         <QRCode codeValue={$location} squareSize="200" />
       </div>
-      <div class="state">{$station.state}</div>
       <div class="player">
         <Player bind:this={player} />
       </div>
     {/if}
 
+    <NowPlaying />
     <Playlist on:play={play} />
 
     <div class="buttons">

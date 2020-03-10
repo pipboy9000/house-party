@@ -1,6 +1,7 @@
 <script context="module">
   import { station } from "./stores/station.js";
   import { setPlayerState } from "./socket.js";
+  import qs from "qs";
   let YouTubeIframeAPIReady = false;
 </script>
 
@@ -71,7 +72,9 @@
 
   function onPlayerStateChange({ data }) {
     debugger;
-    let videoId = player.getVideoUrl().split("/watch?v=")[1];
+    let qstr = player.getVideoUrl().split("/watch?")[1];
+    let videoId = qs.parse(qstr).v;
+    console.log(data, videoId);
     setPlayerState(data, videoId);
   }
 
