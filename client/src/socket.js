@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
-const socket = io('http://localhost:3000');
-// const socket = io('https://house-party-live.herokuapp.com');
+// const socket = io('http://localhost:3000');
+const socket = io('https://house-party-live.herokuapp.com');
 
 import { push, pop, replace } from "svelte-spa-router";
 import { location } from "svelte-spa-router";
@@ -60,3 +60,15 @@ export function clearDislike(videoId) {
 export function setPlayerState(state, videoId) {
     socket.emit("setPlayerState", get(station).id, videoId, state, get(fp))
 }
+
+export function videoError(videoId) {
+    socket.emit("videoError", get(station).id, videoId, get(fp))
+}
+
+function keepAlive() {
+    socket.emit("keepAlive")
+    let delay = Math.random() * 60000 + 30000
+    setTimeout(keepAlive, delay)
+}
+
+keepAlive();

@@ -1,6 +1,6 @@
 <script context="module">
   import { station } from "./stores/station.js";
-  import { setPlayerState } from "./socket.js";
+  import { setPlayerState, videoError } from "./socket.js";
   import qs from "qs";
   let YouTubeIframeAPIReady = false;
 </script>
@@ -41,7 +41,8 @@
         enablejsapi: true,
         events: {
           onReady: onPlayerReady,
-          onStateChange: onPlayerStateChange
+          onStateChange: onPlayerStateChange,
+          onError: onPlayerError
         }
       });
     }
@@ -49,6 +50,11 @@
       createPlayer(); // if the YT Script is ready, we can create our player
     }
   });
+
+  function onPlayerError(e) {
+    let videoId = getVideoId();
+    videoError(videoId);
+  }
 
   function onPlayerReady() {
     //resize youtube player to fit window
@@ -70,12 +76,32 @@
     return false;
   }
 
-  function onPlayerStateChange({ data }) {
-    debugger;
+  function getVideoId() {
     let qstr = player.getVideoUrl().split("/watch?")[1];
     let videoId = qs.parse(qstr).v;
-    console.log(data, videoId);
+    return videoId;
+  }
+
+  function onPlayerStateChange({ data }) {
+    let videoId = getVideoId();
     setPlayerState(data, videoId);
+
+    if (data == 0) {
+      //video ended
+      playNext();
+    }
+  }
+
+  function playNext() {
+    let currentVideoId = getVideoId();
+
+    let idx = $station.playlist.findIndex(video => {
+      return video.videoId == currentVideoId;
+    });
+
+    if (idx != -1 && idx < $station.playlist.length) {
+      playVideo($station.playlist[idx + 1]);
+    }
   }
 
   export function playVideo(video) {

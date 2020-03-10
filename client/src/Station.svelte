@@ -185,7 +185,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 70px;
+    margin-top: 30px;
   }
 
   .qrcode {
@@ -209,7 +209,9 @@
     </div>
     {#if $user.isAdmin}
       <div class="qrcode">
-        <QRCode codeValue={$location} squareSize="200" />
+        <QRCode
+          codeValue={'https://house-party.netlify.com/#' + $location}
+          squareSize="200" />
       </div>
       <div class="player">
         <Player bind:this={player} />

@@ -9,7 +9,7 @@ var stations = {};
 var users = {}
 
 var settings = {
-    WAIT: 5000 //wait time before adding song
+    WAIT: 3 * 60 * 1000 //wait time before adding song (3 minutes)
 }
 
 var port = process.env.PORT || 3000;
@@ -44,6 +44,28 @@ function getStation(stationId, fingerprint) {
     }
 
     return station;
+}
+
+function sort(playlist) {
+    let sorted = playlist.sort((va, vb) => {
+        let aSum = Object.keys(va.likes).length - Object.keys(va.dislikes).length
+        let bSum = Object.keys(vb.likes).length - Object.keys(vb.dislikes).length
+        return bSum - aSum;
+    });
+    return sorted;
+}
+
+function sortPlaylist(station) {
+    //if a song is playing then we only reorder the songs beneth the one currently playing
+    if (station.nowPlaying) {
+        let nowPlayingIdx = station.playlist.findIndex(v => v.videoId == station.nowPlaying.videoId);
+        let beforeNowPlaying = station.playlist.slice(0, nowPlayingIdx + 1);
+        let afterNowPlaying = station.playlist.slice(nowPlayingIdx + 1, station.playlist.length);
+        let sorted = sort(afterNowPlaying);
+        station.playlist = beforeNowPlaying.concat(sorted);
+    } else {
+        station.playlist = sort(station.playlist);
+    }
 }
 
 function newStation(creatorsFingerprint) {
@@ -104,6 +126,8 @@ function like(stationId, videoId, fingerprint) {
     if (vid.dislikes[fingerprint])
         delete vid.dislikes[fingerprint];
 
+    sortPlaylist(station);
+
     return station;
 }
 
@@ -120,6 +144,8 @@ function dislike(stationId, videoId, fingerprint) {
     if (vid.likes[fingerprint])
         delete vid.likes[fingerprint];
 
+    sortPlaylist(station);
+
     return station;
 }
 
@@ -133,6 +159,8 @@ function clearLike(stationId, videoId, fingerprint) {
     if (vid && vid.likes[fingerprint])
         delete vid.likes[fingerprint];
 
+    sortPlaylist(station);
+
     return station;
 }
 
@@ -145,6 +173,8 @@ function clearDislike(stationId, videoId, fingerprint) {
     let vid = station.playlist.find(video => video.videoId === videoId);
     if (vid && vid.dislikes[fingerprint])
         delete vid.dislikes[fingerprint];
+
+    sortPlaylist(station);
 
     return station;
 }
@@ -206,6 +236,21 @@ function setPlayerState(stationId, videoId, state, fingerprint) {
 
     return station;
 }
+
+function videoError(stationId, videoId, fingerprint) {
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
+
+    let vid = station.playlist.find(v => {
+        return v.videoId == videoId;
+    })
+
+    if (vid) {
+        vid.error = true;
+        return station;
+    }
+}
+
 
 io.on('connection', function (socket) {
     console.log('user connected, active connections: ' + io.engine.clientsCount);
@@ -285,6 +330,12 @@ io.on('connection', function (socket) {
         }
     })
 
+    socket.on("videoError", function (stationId, videoId, fingerprint) {
+        let station = videoError(stationId, videoId, fingerprint);
+        if (station) {
+            io.to(stationId).emit('setStation', station);
+        }
+    })
 });
 
 http.listen(port, function () {

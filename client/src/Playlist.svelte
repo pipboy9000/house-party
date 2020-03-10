@@ -103,7 +103,6 @@
     background: white;
     color: #70c4ff;
     border-radius: 50px;
-    border: 2px solid white;
   }
 
   .arrows {
@@ -133,12 +132,19 @@
   .red {
     fill: #ee4848;
   }
+
+  .nowPlaying {
+    background: #70b0f0;
+    color: white;
+  }
 </style>
 
 <div class="wrapper">
   <div class="list">
     {#each $station.playlist as item}
-      <div class="item">
+      <div
+        class="item"
+        class:nowPlaying={$station.nowPlaying && $station.nowPlaying.videoId == item.videoId}>
         {#if $user.isAdmin}
           <div
             style="width:100%; height:100%; position:absolute; cursor: pointer"

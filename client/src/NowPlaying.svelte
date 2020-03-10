@@ -13,7 +13,8 @@
   }
 
   .container {
-    max-width: 580px;
+    width: 480px;
+    max-width: 100%;
   }
 
   .title {
