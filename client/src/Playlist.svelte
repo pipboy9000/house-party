@@ -2,7 +2,7 @@
   import { station } from "./stores/station.js";
   import { user } from "./stores/user.js";
   import { fp } from "./stores/fingerprint.js";
-  import { like, dislike } from "./socket.js";
+  import { like, dislike, clearLike, clearDislike } from "./socket.js";
 
   import { createEventDispatcher } from "svelte";
 
@@ -22,6 +22,22 @@
   function getLikes(video) {
     return Object.keys(video.likes).length - Object.keys(video.dislikes).length;
   }
+
+  function upArrow(video) {
+    if (likedByMe(video)) {
+      clearLike(video.videoId);
+    } else {
+      like(video.videoId);
+    }
+  }
+
+  function downArrow(video) {
+    if (dislikedByMe(video)) {
+      clearDislike(video.videoId);
+    } else {
+      dislike(video.videoId);
+    }
+  }
 </script>
 
 <style>
@@ -32,7 +48,7 @@
     align-items: center;
     padding: 10px;
     box-sizing: border-box;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   .list {
@@ -138,7 +154,7 @@
         <div class="right">
           <div class="arrows">
             <svg
-              on:click={like(item.videoId)}
+              on:click={upArrow(item)}
               class="upArrow"
               class:green={likedByMe(item)}
               viewBox="-303.065673828125 -455.04998779296875 286.13134765625
@@ -150,7 +166,7 @@
               </g>
             </svg>
             <svg
-              on:click={dislike(item.videoId)}
+              on:click={downArrow(item)}
               class="downArrow"
               class:red={dislikedByMe(item)}
               viewBox="16.934316635131836 288 286.13134765625 167.04998779296875">

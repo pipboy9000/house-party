@@ -100,7 +100,9 @@ function like(stationId, videoId, fingerprint) {
 
     let vid = station.playlist.find(video => video.videoId === videoId);
     vid.likes[fingerprint] = true;
-    delete vid.dislikes[fingerprint];
+
+    if (vid.dislikes[fingerprint])
+        delete vid.dislikes[fingerprint];
 
     return station;
 }
@@ -114,7 +116,35 @@ function dislike(stationId, videoId, fingerprint) {
 
     let vid = station.playlist.find(video => video.videoId === videoId);
     vid.dislikes[fingerprint] = true;
-    delete vid.likes[fingerprint];
+
+    if (vid.likes[fingerprint])
+        delete vid.likes[fingerprint];
+
+    return station;
+}
+
+function clearLike(stationId, videoId, fingerprint) {
+    console.log('clear like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
+
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
+
+    let vid = station.playlist.find(video => video.videoId === videoId);
+    if (vid && vid.likes[fingerprint])
+        delete vid.likes[fingerprint];
+
+    return station;
+}
+
+function clearDislike(stationId, videoId, fingerprint) {
+    console.log('clear dislike video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
+
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
+
+    let vid = station.playlist.find(video => video.videoId === videoId);
+    if (vid && vid.dislikes[fingerprint])
+        delete vid.dislikes[fingerprint];
 
     return station;
 }
@@ -229,6 +259,20 @@ io.on('connection', function (socket) {
 
     socket.on("dislike", function (stationId, videoId, fingerprint) {
         let station = dislike(stationId, videoId, fingerprint);
+        if (station) {
+            io.to(stationId).emit('setStation', station);
+        }
+    })
+
+    socket.on("clearLike", function (stationId, videoId, fingerprint) {
+        let station = clearLike(stationId, videoId, fingerprint);
+        if (station) {
+            io.to(stationId).emit('setStation', station);
+        }
+    })
+
+    socket.on("clearDislike", function (stationId, videoId, fingerprint) {
+        let station = clearDislike(stationId, videoId, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
         }

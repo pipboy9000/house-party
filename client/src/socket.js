@@ -49,6 +49,14 @@ export function dislike(videoId) {
     socket.emit("dislike", get(station).id, videoId, get(fp));
 }
 
+export function clearLike(videoId) {
+    socket.emit("clearLike", get(station).id, videoId, get(fp));
+}
+
+export function clearDislike(videoId) {
+    socket.emit("clearDislike", get(station).id, videoId, get(fp));
+}
+
 export function setPlayerState(state, videoId) {
     socket.emit("setPlayerState", get(station).id, videoId, state, get(fp))
 }

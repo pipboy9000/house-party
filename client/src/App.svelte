@@ -23,5 +23,4 @@
   }
 </style>
 
-<Settings />
 <Router {routes} />
