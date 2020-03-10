@@ -77,8 +77,9 @@
 
   .middle {
     font-size: 14px;
-    padding-top: 5px;
-    padding-left: 10px;
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    padding: 5px;
   }
 
   .right {
@@ -137,6 +138,25 @@
     background: #70b0f0;
     color: white;
   }
+
+  .duration {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .error {
+    margin-left: 10px;
+    background: #ffffffe3;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 31px;
+    float: right;
+    color: #ff4b4b;
+    /* font-family: "Dosis";
+    font-family: "Luckiest Guy";
+    font-family: "Paytone One"; */
+    font-family: "Catamaran";
+  }
 </style>
 
 <div class="wrapper">
@@ -154,8 +174,17 @@
           class="thumbnail"
           style="background-image: url({item.thumbnail})" />
         <div class="middle">
-          <div class="title">{item.title}</div>
-          <div class="duration">{item.duration}</div>
+          <div>
+            <div class="title">{item.title}</div>
+            <div class="duration">{item.duration}</div>
+          </div>
+          <div>
+            {#if item.error}
+              <div class="error">
+                <i class="fas fa-exclamation-circle" />
+              </div>
+            {/if}
+          </div>
         </div>
         <div class="right">
           <div class="arrows">
