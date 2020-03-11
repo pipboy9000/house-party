@@ -10,7 +10,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   const dispatch = createEventDispatcher();
   let divId = "player_" + parseInt(Math.random() * 100000).toString();
-  export let videoId = "9xD-KJSjIxw";
+  export let videoId = "3GwjfUFyY6M";
   export let height = "390";
   export let width = "640";
   onMount(() => {
