@@ -9,6 +9,7 @@ var stations = {};
 var users = {}
 
 var settings = {
+    // WAIT: 5000
     WAIT: 3 * 60 * 1000 //wait time before adding song (3 minutes)
 }
 
@@ -91,6 +92,7 @@ function newStation(creatorsFingerprint) {
                 addedSongAt: 0
             }
         },
+        playlistUid: 0,
         playlist: []
     };
 
@@ -113,16 +115,17 @@ function joinStation(id, fingerprint) {
     }
 }
 
-function like(stationId, videoId, fingerprint) {
+function like(stationId, uid, fingerprint) {
 
-    console.log('like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
+    console.log('like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video uid:' + uid);
 
     let station = getStation(stationId, fingerprint);
     if (!station) return;
 
-    let vid = station.playlist.find(video => video.videoId === videoId);
-    vid.likes[fingerprint] = true;
+    let vid = station.playlist.find(v => v.uid === uid);
+    if (!vid) return;
 
+    vid.likes[fingerprint] = true;
     if (vid.dislikes[fingerprint])
         delete vid.dislikes[fingerprint];
 
@@ -131,15 +134,33 @@ function like(stationId, videoId, fingerprint) {
     return station;
 }
 
-function dislike(stationId, videoId, fingerprint) {
+function dislike(stationId, uid, fingerprint) {
 
-    console.log('like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
+    console.log('like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video uid:' + uid);
 
     let station = getStation(stationId, fingerprint);
     if (!station) return;
 
-    let vid = station.playlist.find(video => video.videoId === videoId);
+    let vid = station.playlist.find(v => v.uid === uid);
+    if (!vid) return;
+
     vid.dislikes[fingerprint] = true;
+    if (vid.likes[fingerprint])
+        delete vid.likes[fingerprint];
+
+    sortPlaylist(station);
+
+    return station;
+}
+
+function clearLike(stationId, uid, fingerprint) {
+    console.log('clear like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + uid);
+
+    let station = getStation(stationId, fingerprint);
+    if (!station) return;
+
+    let vid = station.playlist.find(v => v.uid === uid);
+    if (!vid) return;
 
     if (vid.likes[fingerprint])
         delete vid.likes[fingerprint];
@@ -149,29 +170,16 @@ function dislike(stationId, videoId, fingerprint) {
     return station;
 }
 
-function clearLike(stationId, videoId, fingerprint) {
-    console.log('clear like video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
+function clearDislike(stationId, uid, fingerprint) {
+    console.log('clear dislike video (stationId: ' + stationId + '  fp:' + fingerprint + '   video uid:' + uid);
 
     let station = getStation(stationId, fingerprint);
     if (!station) return;
 
-    let vid = station.playlist.find(video => video.videoId === videoId);
-    if (vid && vid.likes[fingerprint])
-        delete vid.likes[fingerprint];
+    let vid = station.playlist.find(v => v.uid === uid);
+    if (!vid) return;
 
-    sortPlaylist(station);
-
-    return station;
-}
-
-function clearDislike(stationId, videoId, fingerprint) {
-    console.log('clear dislike video (stationId: ' + stationId + '  fp:' + fingerprint + '   video:' + videoId);
-
-    let station = getStation(stationId, fingerprint);
-    if (!station) return;
-
-    let vid = station.playlist.find(video => video.videoId === videoId);
-    if (vid && vid.dislikes[fingerprint])
+    if (vid.dislikes[fingerprint])
         delete vid.dislikes[fingerprint];
 
     sortPlaylist(station);
@@ -192,7 +200,9 @@ function addVideo(stationId, video, fingerprint) {
         user.addedSongAt = now;
         video.likes = { [fingerprint]: true }
         video.dislikes = {};
+        video.uid = station.playlistUid++;
         station.playlist.push(video);
+        sortPlaylist(station);
         return station;
     } else {
         console.log('you need to wait ' + ((station.settings.WAIT - (now - user.addedSongAt)) / 1000).toString() + ' seconds');
@@ -200,11 +210,11 @@ function addVideo(stationId, video, fingerprint) {
     }
 }
 
-function setPlayerState(stationId, videoId, state, fingerprint) {
+function setPlayerState(stationId, video, state, fingerprint) {
     let station = getStation(stationId, fingerprint);
     if (!station) return;
 
-    let currentVideo = station.playlist.find(video => video.videoId === videoId);
+    let currentVideo = station.playlist.find(v => v.uid === video.uid);
     if (!currentVideo) {
         station.nowPlaying = { title: "Free Stylin" };
     } else {
@@ -295,8 +305,8 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on("like", function (stationId, videoId, fingerprint) {
-        let station = like(stationId, videoId, fingerprint);
+    socket.on("like", function (stationId, uid, fingerprint) {
+        let station = like(stationId, uid, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
         }

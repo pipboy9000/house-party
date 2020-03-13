@@ -32,7 +32,7 @@
     gapi.client.youtube.search
       .list({
         part: "id",
-        maxResults: 25,
+        maxResults: 10,
         q: $searchStr
       })
       .then(res => {
@@ -44,7 +44,7 @@
 
         gapi.client.youtube.videos
           .list({
-            maxResults: 25,
+            maxResults: 10,
             part: "contentDetails,snippet",
             id: ids
           })
@@ -91,7 +91,7 @@
     height: 100vh;
     display: grid;
     grid-template-rows: 56px auto;
-    position: absolute;
+    position: fixed;
     background: #00000059;
     z-index: 9999;
   }

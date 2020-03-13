@@ -96,8 +96,7 @@
   }
 
   function play(e) {
-    let videoId = e.detail;
-    player.playVideo(videoId);
+    player.playVideo(e.detail);
   }
 
   onDestroy(() => {

@@ -7,6 +7,7 @@
 
 <script>
   export let player;
+  let nowPlaying;
   import { createEventDispatcher, onMount } from "svelte";
   const dispatch = createEventDispatcher();
   let divId = "player_" + parseInt(Math.random() * 100000).toString();
@@ -61,6 +62,7 @@
     var iframe = player.getIframe();
     iframe.style.width = "100%";
     iframe.style.maxWidth = "640px";
+    iframe.style.borderRadius = "6px";
     var w = window.getComputedStyle(iframe).width;
     w = parseInt(w);
     w = Math.max(w, 640);
@@ -76,15 +78,8 @@
     return false;
   }
 
-  function getVideoId() {
-    let qstr = player.getVideoUrl().split("/watch?")[1];
-    let videoId = qs.parse(qstr).v;
-    return videoId;
-  }
-
   function onPlayerStateChange({ data }) {
-    let videoId = getVideoId();
-    setPlayerState(data, videoId);
+    setPlayerState(data, nowPlaying);
 
     if (data == 0) {
       //video ended
@@ -93,18 +88,17 @@
   }
 
   function playNext() {
-    let currentVideoId = getVideoId();
-
     let idx = $station.playlist.findIndex(video => {
-      return video.videoId == currentVideoId;
+      return video.uid == nowPlaying.uid;
     });
 
-    if (idx != -1 && idx < $station.playlist.length) {
+    if (idx != -1 && idx < $station.playlist.length - 1) {
       playVideo($station.playlist[idx + 1]);
     }
   }
 
   export function playVideo(video) {
+    nowPlaying = video;
     player.loadVideoById(video.videoId);
   }
 </script>

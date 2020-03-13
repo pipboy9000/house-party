@@ -3,13 +3,15 @@
   import { user } from "./stores/user.js";
   import { fp } from "./stores/fingerprint.js";
   import { like, dislike, clearLike, clearDislike } from "./socket.js";
+  import { flip } from "svelte/animate";
+  import { fade } from "svelte/transition";
 
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
 
-  function play(videoId) {
-    dispatch("play", videoId);
+  function play(video) {
+    dispatch("play", video);
   }
 
   function likedByMe(video) {
@@ -25,17 +27,17 @@
 
   function upArrow(video) {
     if (likedByMe(video)) {
-      clearLike(video.videoId);
+      clearLike(video.uid);
     } else {
-      like(video.videoId);
+      like(video.uid);
     }
   }
 
   function downArrow(video) {
     if (dislikedByMe(video)) {
-      clearDislike(video.videoId);
+      clearDislike(video.uid);
     } else {
-      dislike(video.videoId);
+      dislike(video.uid);
     }
   }
 </script>
@@ -53,7 +55,7 @@
 
   .list {
     width: 100%;
-    max-width: 500px;
+    max-width: 580px;
   }
 
   .item {
@@ -76,10 +78,16 @@
   }
 
   .middle {
-    font-size: 14px;
+    font-size: 15px;
     display: grid;
-    grid-template-columns: 1fr 40px;
-    padding: 5px;
+    grid-template-rows: 1fr 26px;
+  }
+
+  .title {
+    margin-top: 6px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
   }
 
   .right {
@@ -92,18 +100,6 @@
     flex-direction: column;
     font-size: 50px;
     position: relative;
-  }
-
-  .likes {
-    font-size: 14px;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    background: white;
-    color: #70c4ff;
-    border-radius: 50px;
   }
 
   .arrows {
@@ -127,29 +123,29 @@
   }
 
   .green {
-    fill: #5dd84a;
+    fill: #5dff43;
   }
 
   .red {
-    fill: #ee4848;
-  }
-
-  .nowPlaying {
-    background: #70b0f0;
-    color: white;
+    fill: #ff3838;
   }
 
   .duration {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 14px;
+    font-size: 14px;
+    line-height: 26px;
+    color: gray;
+    font-family: "Dosis";
+    font-family: "Luckiest Guy";
+    font-family: "Paytone One";
+    font-family: "Catamaran";
+    font-family: "Baloo 2", cursive;
   }
-
   .error {
-    margin-left: 10px;
-    background: #ffffffe3;
-    padding: 2px 9px;
+    margin-left: 5px;
     border-radius: 10px;
-    font-size: 31px;
+    font-size: 15px;
     float: right;
     color: #ff4b4b;
     /* font-family: "Dosis";
@@ -157,14 +153,39 @@
     font-family: "Paytone One"; */
     font-family: "Catamaran";
   }
+
+  .likes {
+    font-size: 14px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    background: white;
+    color: #70c4ff;
+    border-radius: 50px;
+
+    font-family: "Dosis";
+    font-family: "Luckiest Guy";
+    font-family: "Paytone One";
+    font-family: "Catamaran";
+    font-family: "Baloo 2", cursive;
+  }
+
+  .nowPlaying {
+    background: #2190ff;
+    color: white;
+  }
 </style>
 
 <div class="wrapper">
   <div class="list">
-    {#each $station.playlist as item}
+    {#each $station.playlist as item (item.uid)}
       <div
+        animate:flip
+        transition:fade
         class="item"
-        class:nowPlaying={$station.nowPlaying && $station.nowPlaying.videoId == item.videoId}>
+        class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
         {#if $user.isAdmin}
           <div
             style="width:100%; height:100%; position:absolute; cursor: pointer"
@@ -174,13 +195,17 @@
           class="thumbnail"
           style="background-image: url({item.thumbnail})" />
         <div class="middle">
+          <div class="title">{item.title}</div>
           <div>
-            <div class="title">{item.title}</div>
-            <div class="duration">{item.duration}</div>
-          </div>
-          <div>
+            <div
+              class="duration"
+              class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
+              {item.duration}
+            </div>
             {#if item.error}
-              <div class="error">
+              <div
+                class="error"
+                class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
                 <i class="fas fa-exclamation-circle" />
               </div>
             {/if}
@@ -212,7 +237,11 @@
               </g>
             </svg>
           </div>
-          <div class="likes">{getLikes(item)}</div>
+          <div
+            class="likes"
+            class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
+            {getLikes(item)}
+          </div>
         </div>
       </div>
     {/each}

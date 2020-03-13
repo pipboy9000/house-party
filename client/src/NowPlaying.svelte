@@ -5,6 +5,7 @@
 <style>
   .bg {
     width: 100%;
+    background: #202020c4;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,8 +14,10 @@
   }
 
   .container {
-    width: 480px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 480px;
+    padding: 8px;
+    box-sizing: border-box;
   }
 
   .title {
