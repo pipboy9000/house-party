@@ -53,7 +53,7 @@
   });
 
   function onPlayerError(e) {
-    let videoId = getVideoId();
+    let videoId = nowPlaying.videoId;
     videoError(videoId);
   }
 

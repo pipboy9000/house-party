@@ -36,6 +36,10 @@ export function newStation() {
     socket.emit("newStation", get(fp))
 }
 
+export function getStation() {
+    socket.emit("getStation", get(station).id, get(fp));
+}
+
 export function joinStation(stationId) {
     socket.emit("join", stationId, get(fp))
 }

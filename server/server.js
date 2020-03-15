@@ -30,7 +30,7 @@ function getStationId() {
 }
 
 function getStation(stationId, fingerprint) {
-    console.log('addVideo (stationId: ' + stationId + '  fp:' + fingerprint);
+    console.log(`get stattion ${stationId}`);
 
     if (!stations[stationId]) {
         console.log("station doesn't exist");
@@ -247,12 +247,12 @@ function setPlayerState(stationId, video, state, fingerprint) {
     return station;
 }
 
-function videoError(stationId, videoId, fingerprint) {
+function videoError(stationId, uid, fingerprint) {
     let station = getStation(stationId, fingerprint);
     if (!station) return;
 
     let vid = station.playlist.find(v => {
-        return v.videoId == videoId;
+        return v.uid == uid;
     })
 
     if (vid) {
@@ -296,9 +296,9 @@ io.on('connection', function (socket) {
         socket.leave(id);
     });
 
-    socket.on('addVideo', function (stationId, videoId, fingerprint) {
+    socket.on('addVideo', function (stationId, video, fingerprint) {
         console.log("Add video");
-        let station = addVideo(stationId, videoId, fingerprint);
+        let station = addVideo(stationId, video, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
             socket.emit("videoAdded", station.settings.WAIT);
@@ -312,40 +312,47 @@ io.on('connection', function (socket) {
         }
     })
 
-    socket.on("dislike", function (stationId, videoId, fingerprint) {
-        let station = dislike(stationId, videoId, fingerprint);
+    socket.on("dislike", function (stationId, uid, fingerprint) {
+        let station = dislike(stationId, uid, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
         }
     })
 
-    socket.on("clearLike", function (stationId, videoId, fingerprint) {
-        let station = clearLike(stationId, videoId, fingerprint);
+    socket.on("clearLike", function (stationId, uid, fingerprint) {
+        let station = clearLike(stationId, uid, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
         }
     })
 
-    socket.on("clearDislike", function (stationId, videoId, fingerprint) {
-        let station = clearDislike(stationId, videoId, fingerprint);
+    socket.on("clearDislike", function (stationId, uid, fingerprint) {
+        let station = clearDislike(stationId, uid, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
         }
     })
 
-    socket.on("setPlayerState", function (stationId, videoId, state, fingerprint) {
-        let station = setPlayerState(stationId, videoId, state, fingerprint);
+    socket.on("setPlayerState", function (stationId, video, state, fingerprint) {
+        let station = setPlayerState(stationId, video, state, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
         }
     })
 
-    socket.on("videoError", function (stationId, videoId, fingerprint) {
-        let station = videoError(stationId, videoId, fingerprint);
+    socket.on("videoError", function (stationId, uid, fingerprint) {
+        let station = videoError(stationId, uid, fingerprint);
         if (station) {
             io.to(stationId).emit('setStation', station);
         }
     })
+
+    socket.on("getStation", function (stationId, fingerprint) {
+        let station = getStation(stationId, fingerprint);
+        if (station) {
+            socket.emit("setStation", station);
+        }
+    });
 });
 
 http.listen(port, function () {

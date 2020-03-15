@@ -61,8 +61,23 @@
     connect();
     colorChange = setInterval(() => {
       bgColor = getRandomColor();
-    }, 1500);
+    }, 1750);
+
+    console.log("add event listener");
+    document.addEventListener("visibilitychange", joinStation, true);
+    window.addEventListener("focus", joinStation, true);
   });
+
+  onDestroy(() => {
+    document.removeEventListener("visibilitychange", joinStation, true);
+    window.removeEventListener("focus", joinStation, true);
+  });
+
+  function joinStation(e) {
+    if ($station && document.visibilityState == "visible") {
+      socket.joinStation($station.id);
+    }
+  }
 
   //if url changed
   const us_location = location.subscribe(loc => {
