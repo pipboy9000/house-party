@@ -53,8 +53,10 @@
   });
 
   function onPlayerError(e) {
+    debugger;
     let videoId = nowPlaying.videoId;
     videoError(videoId);
+    playNext();
   }
 
   function onPlayerReady() {
@@ -79,6 +81,7 @@
   }
 
   function onPlayerStateChange({ data }) {
+    debugger;
     setPlayerState(data, nowPlaying);
 
     if (data == 0) {

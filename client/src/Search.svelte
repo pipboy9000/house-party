@@ -32,7 +32,7 @@
     gapi.client.youtube.search
       .list({
         part: "id",
-        maxResults: 10,
+        maxResults: 5,
         q: $searchStr
       })
       .then(res => {
@@ -44,7 +44,7 @@
 
         gapi.client.youtube.videos
           .list({
-            maxResults: 10,
+            maxResults: 5,
             part: "contentDetails,snippet",
             id: ids
           })
@@ -66,7 +66,7 @@
     }
     throttle = setTimeout(() => {
       sendSearchReq();
-    }, 500);
+    }, 750);
   }
 
   function add(video) {

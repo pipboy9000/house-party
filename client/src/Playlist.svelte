@@ -168,8 +168,8 @@
     font-family: "Dosis";
     font-family: "Luckiest Guy";
     font-family: "Paytone One";
-    font-family: "Catamaran";
     font-family: "Baloo 2", cursive;
+    font-family: "Catamaran";
   }
 
   .nowPlaying {
@@ -179,71 +179,74 @@
 </style>
 
 <div class="wrapper">
-  <div class="list">
-    {#each $station.playlist as item (item.uid)}
-      <div
-        animate:flip
-        transition:fade
-        class="item"
-        class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
-        {#if $user.isAdmin}
-          <div
-            style="width:100%; height:100%; position:absolute; cursor: pointer"
-            on:click={play(item)} />
-        {/if}
+  {#if $station && $station.playlist}
+    <div class="list">
+      {#each $station.playlist as item (item.uid)}
         <div
-          class="thumbnail"
-          style="background-image: url({item.thumbnail})" />
-        <div class="middle">
-          <div class="title">{item.title}</div>
-          <div>
+          animate:flip
+          transition:fade
+          class="item"
+          class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
+          {#if $user.isAdmin}
             <div
-              class="duration"
-              class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
-              {item.duration}
-            </div>
-            {#if item.error}
-              <div
-                class="error"
-                class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
-                <i class="fas fa-exclamation-circle" />
-              </div>
-            {/if}
-          </div>
-        </div>
-        <div class="right">
-          <div class="arrows">
-            <svg
-              on:click={upArrow(item)}
-              class="upArrow"
-              class:green={likedByMe(item)}
-              viewBox="-303.065673828125 -455.04998779296875 286.13134765625
-              167.04998779296875">
-              <g transform="rotate(180 0 0)">
-                <path
-                  d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6
-                  9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z" />
-              </g>
-            </svg>
-            <svg
-              on:click={downArrow(item)}
-              class="downArrow"
-              class:red={dislikedByMe(item)}
-              viewBox="16.934316635131836 288 286.13134765625 167.04998779296875">
-              <g>
-                <path
-                  d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6
-                  9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z" />
-              </g>
-            </svg>
-          </div>
+              style="width:100%; height:100%; position:absolute; cursor: pointer"
+              on:click={play(item)} />
+          {/if}
           <div
-            class="likes"
-            class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
-            {getLikes(item)}
+            class="thumbnail"
+            style="background-image: url({item.thumbnail})" />
+          <div class="middle">
+            <div class="title">{item.title}</div>
+            <div>
+              <div
+                class="duration"
+                class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
+                {item.duration}
+              </div>
+              {#if item.error}
+                <div
+                  class="error"
+                  class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
+                  <i class="fas fa-exclamation-circle" />
+                </div>
+              {/if}
+            </div>
+          </div>
+          <div class="right">
+            <div class="arrows">
+              <svg
+                on:click={upArrow(item)}
+                class="upArrow"
+                class:green={likedByMe(item)}
+                viewBox="-303.065673828125 -455.04998779296875 286.13134765625
+                167.04998779296875">
+                <g transform="rotate(180 0 0)">
+                  <path
+                    d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6
+                    9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z" />
+                </g>
+              </svg>
+              <svg
+                on:click={downArrow(item)}
+                class="downArrow"
+                class:red={dislikedByMe(item)}
+                viewBox="16.934316635131836 288 286.13134765625
+                167.04998779296875">
+                <g>
+                  <path
+                    d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6
+                    9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z" />
+                </g>
+              </svg>
+            </div>
+            <div
+              class="likes"
+              class:nowPlaying={$station.nowPlaying && $station.nowPlaying.uid == item.uid}>
+              {getLikes(item)}
+            </div>
           </div>
         </div>
-      </div>
-    {/each}
-  </div>
+      {/each}
+    </div>
+  {/if}
 </div>

@@ -45,6 +45,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+    width: 100%;
   }
 
   .top {
@@ -61,17 +63,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-    font-family: "Dosis";
-    font-family: "Catamaran";
-    font-family: "Luckiest Guy";
-    font-family: "Paytone One";
   }
 
   .buttons {
@@ -135,13 +126,27 @@
     background-position: bottom center;
     margin-bottom: 20px;
   }
+
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-weight: 100;
+    position: fixed;
+    font-family: "Dosis";
+    font-family: "Catamaran";
+    font-family: "Luckiest Guy";
+    font-family: "Paytone One";
+  }
 </style>
 
 <main style="background: {bgColor}">
   {#if !$fp}
-    <div class="loading">
-      <h1>Loading</h1>
-    </div>
+    <div class="loading">Loading...</div>
   {/if}
   <div class="home" hidden={!$fp}>
     <div class="top">

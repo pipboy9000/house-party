@@ -10,6 +10,7 @@
   import Search from "./Search.svelte";
   import NowPlaying from "./NowPlaying.svelte";
   import CooldownTimer from "./CooldownTimer.svelte";
+  import { cooldown } from "./stores/cooldownTimer.js";
   import Playlist from "./Playlist.svelte";
   import qs from "qs";
   import { user } from "./stores/user.js";
@@ -50,10 +51,9 @@
     if (!$fp) return;
     let targetId = $location.replace("/", "");
     if (targetId) {
-      if (!$station || $station.error || $station.id != targetId) {
-        status = STATUS.SEARCHING;
-        socket.joinStation(targetId);
-      }
+      console.log("connect: " + targetId);
+      status = STATUS.SEARCHING;
+      socket.joinStation(targetId);
     }
   }
 
@@ -100,6 +100,7 @@
   });
 
   function openSearch() {
+    if ($cooldown.show) return;
     let urlParams = qs.parse($querystring);
     if (urlParams.hasOwnProperty("search")) {
       urlParams.search = true;
@@ -118,6 +119,8 @@
     us_location();
     us_fp();
     us_station();
+    socket.leave();
+    station.set(null);
     clearInterval(colorChange);
   });
 </script>
@@ -136,6 +139,9 @@
     padding-bottom: 120px;
     display: flex;
     flex-direction: column;
+    min-height: calc(100% - 120px);
+    /* justify-content: center; */
+    align-items: center;
   }
 
   h1 {
@@ -184,6 +190,7 @@
     align-items: center;
     justify-content: center;
     font-size: 32px;
+    transition: color 500ms;
   }
 
   .addBtnIcons i {
@@ -208,15 +215,26 @@
     justify-content: center;
     width: 100%;
   }
+
+  .loading {
+    display: fixed;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 
 <div class="bg" style="background: {bgColor}" />
 <div class="container">
   {#if !$station}
-    <h1>Loading</h1>
+    <div class="loading">Tunning in...</div>
   {:else if $station.error}
-    <h1>Error: {$station.error}</h1>
-  {:else}
+    <div class="error">
+      Error: {$station.error}
+      <i class="far fa-dizzy" />
+    </div>
+  {:else if $station}
     <div class="top">
       <h1>Listening to: {$station.id}</h1>
       <h1>{status.msg}</h1>
@@ -238,15 +256,17 @@
     <div class="buttons">
       <div class="addBtn" on:click={openSearch}>
         <CooldownTimer />
-        <div class="addBtnIcons">
+        <div
+          class="addBtnIcons"
+          style="color:{$cooldown.show ? '#bbb' : '#606060'}">
           <i class="fas fa-music" />
           <!-- <i class="fas fa-plus" /> -->
         </div>
 
       </div>
     </div>
+    {#if showSearch}
+      <Search on:close={pop} />
+    {/if}
   {/if}
 </div>
-{#if showSearch}
-  <Search on:close={pop} />
-{/if}

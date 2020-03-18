@@ -8,9 +8,10 @@ var stations = {};
 
 var users = {}
 
-var settings = {
+const settings = {
     // WAIT: 5000
-    WAIT: 3 * 60 * 1000 //wait time before adding song (3 minutes)
+    // WAIT: 3 * 60 * 1000 //wait time before adding song (3 minutes)
+    WAIT: 15 * 1000 //wait time before adding song (15 seconds)
 }
 
 var port = process.env.PORT || 3000;
@@ -100,6 +101,16 @@ function newStation(creatorsFingerprint) {
     return station;
 }
 
+function setUserInStation(fp, stationId) {
+    let currentStation = users[fp].inStation;
+    if (!currentStation || currentStation != stationId) {
+
+    }
+    if (users[fp].inStation) {
+        users[fp].inStation
+    }
+}
+
 function joinStation(id, fingerprint) {
     console.log('join station: ' + id + ' fp: ' + fingerprint);
     if (stations[id]) {
@@ -108,6 +119,7 @@ function joinStation(id, fingerprint) {
                 addedSongAt: 0
             }
         }
+
         return stations[id]
     } else {
         console.log('station not found')
@@ -261,18 +273,30 @@ function videoError(stationId, uid, fingerprint) {
     }
 }
 
+function setUserInStation(fp, stationId, socket) {
+    let user = users[fp];
+
+    if (user && users.inStation && user.inStation != stationId) {
+        socket.leave(user.inStation)
+    }
+    users[fp] = {
+        inStation: stationId
+    };
+    socket.join(stationId);
+}
+
 
 io.on('connection', function (socket) {
     console.log('user connected, active connections: ' + io.engine.clientsCount);
 
-    socket.on('disconnect', function () {
+    socket.on("disconnect", function () {
         console.log('user disconnected, active connections: ' + io.engine.clientsCount);
     });
 
-    socket.on('newStation', function (fingerprint) {
-        var station = newStation(fingerprint);
+    socket.on("newStation", function (fp) {
+        var station = newStation(fp);
         if (station) {
-            socket.join(station.id);
+            setUserInStation(fp, station.id, socket);
             socket.emit('setStation', station);
             socket.emit('setUser', {
                 isAdmin: true
@@ -280,23 +304,31 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('join', function (id, fingerprint) {
-        station = joinStation(id, fingerprint);
-        socket.join(id);
+    socket.on("join", function (stationId, fp) {
+        station = joinStation(stationId, fp);
+
+        if (station)
+            setUserInStation(fp, stationId, socket);
+
         socket.emit('setStation', station);
-        if (station.creatorsFingerprint == fingerprint) {
+
+        if (station.creatorsFingerprint == fp) {
             socket.emit('setUser', {
                 isAdmin: true
             })
         }
     });
 
-    socket.on('leave', function (id) {
-        console.log('leave station: ' + id);
-        socket.leave(id);
+    socket.on("leave", function (fp) {
+        console.log('leave station: ' + fp);
+        let user = users[fp];
+        if (user && user.inStation) {
+            socket.leave(user.inStation);
+            delete users[fp]
+        }
     });
 
-    socket.on('addVideo', function (stationId, video, fingerprint) {
+    socket.on("addVideo", function (stationId, video, fingerprint) {
         console.log("Add video");
         let station = addVideo(stationId, video, fingerprint);
         if (station) {

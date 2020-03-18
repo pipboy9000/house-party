@@ -4,6 +4,7 @@
 
 <style>
   .bg {
+    height: 168px;
     width: 100%;
     background: #202020c4;
     display: flex;

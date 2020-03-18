@@ -10,7 +10,10 @@ import { station } from './stores/station.js';
 import { user } from './stores/user.js';
 import { get } from 'svelte/store';
 
+import { setCooldown } from './stores/cooldownTimer.js';
+
 socket.on("setStation", function (newStation) {
+    console.log("setStation: " + newStation.id);
     station.set(newStation);
     if (!newStation.error) {
         let loc = get(location);
@@ -28,8 +31,8 @@ socket.on("setUser", function (u) {
     user.set(u)
 })
 
-socket.on("videoAdded", function (waitTime) {
-    // user.setCooldown(waitTime);
+socket.on("videoAdded", function (duration) {
+    setCooldown(duration);
 })
 
 export function newStation() {
@@ -76,6 +79,10 @@ function keepAlive() {
     socket.emit("keepAlive")
     let delay = Math.random() * 60000 + 30000
     setTimeout(keepAlive, delay)
+}
+
+export function leave() {
+    socket.emit("leave", get(fp));
 }
 
 keepAlive();
