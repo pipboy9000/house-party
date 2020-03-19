@@ -10,8 +10,8 @@ var users = {}
 
 const settings = {
     // WAIT: 5000
-    // WAIT: 3 * 60 * 1000 //wait time before adding song (3 minutes)
-    WAIT: 15 * 1000 //wait time before adding song (15 seconds)
+    WAIT: 3 * 60 * 1000 //wait time before adding song (3 minutes)
+    // WAIT: 15 * 1000 //wait time before adding song (15 seconds)
 }
 
 var port = process.env.PORT || 3000;
