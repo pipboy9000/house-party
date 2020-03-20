@@ -385,6 +385,10 @@ io.on('connection', function (socket) {
             socket.emit("setStation", station);
         }
     });
+
+    socket.on("keepAlive", function () {
+        console.log('keep alive');
+    })
 });
 
 http.listen(port, function () {
