@@ -4,7 +4,7 @@
   import { fp } from "./stores/fingerprint.js";
   import { getRandomColor } from "./utils.js";
   import * as socket from "./socket.js";
-  import { push, pop, replace } from "svelte-spa-router";
+  import { push, replace } from "svelte-spa-router";
   import { location, querystring } from "svelte-spa-router";
   import Player from "./Player.svelte";
   import Search from "./Search.svelte";
@@ -17,10 +17,6 @@
   import QRCode from "./QRCode.svelte";
 
   export let params = {}; //URL params
-
-  let showSearch = false;
-
-  $: showSearch = qs.parse($querystring).search;
 
   let player;
 
@@ -155,6 +151,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 60px;
   }
 
   .buttons {
@@ -265,8 +262,5 @@
 
       </div>
     </div>
-    {#if showSearch}
-      <Search on:close={pop} />
-    {/if}
   {/if}
 </div>

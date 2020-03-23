@@ -106,7 +106,7 @@
     border: 1px solid #e9e9e9;
     padding: 3px;
     text-align: center;
-    color: #585858;
+    color: var(--hp-gray);
     font-size: 20px;
     letter-spacing: 5px;
     width: calc(4ch + 60px);

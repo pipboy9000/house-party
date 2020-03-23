@@ -4,6 +4,8 @@
   import { searchStr, searchRes } from "./stores/search.js";
   import { parseDuration } from "./utils.js";
   import { addVideo } from "./socket.js";
+  import qs from "qs";
+  import { location, querystring, pop } from "svelte-spa-router";
 
   const str = "";
 
@@ -13,9 +15,13 @@
 
   let throttle;
 
-  function close() {
-    dispatch("close");
-  }
+  let showSearch = false;
+
+  $: showSearch = qs.parse($querystring).search;
+
+  // function close() {
+  //   dispatch("close");
+  // }
 
   function catchClick(e) {
     e.stopPropagation();
@@ -88,26 +94,12 @@
 <style>
   .bg {
     width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 56px auto;
+    height: calc(100vh - var(--nav-bar-height));
+    overflow-y: scroll;
     position: fixed;
     background: #00000059;
     z-index: 9999;
-  }
-
-  .bar {
-    width: 100%;
-    height: 100%;
-    background: #202020ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-    border-bottom: 2px solid #18181882;
-    box-shadow: 0px 0px 5px #000000bf;
+    top: var(--nav-bar-height);
   }
 
   .search {
@@ -239,7 +231,7 @@
   }
   ::-webkit-scrollbar-button {
     width: 10px;
-    height: 10px;
+    height: 5px;
   }
   ::-webkit-scrollbar-thumb {
     background: #fff;
@@ -268,35 +260,35 @@
   }
 </style>
 
-<div class="bg" on:click={close}>
-  <div class="bar">
-    <div class="search">
-      <input
-        placeholder="Search"
-        bind:this={input}
-        bind:value={$searchStr}
-        on:click={catchClick}
-        on:keydown={catchEnter}
-        on:input={search} />
+<div class="search">
+  <input
+    placeholder="Search"
+    bind:this={input}
+    bind:value={$searchStr}
+    on:click={catchClick}
+    on:keydown={catchEnter}
+    on:input={search} />
+</div>
+{#if showSearch}
+  <div class="bg" on:click={pop}>
+    <div class="items">
+      {#each $searchRes as item, i}
+        <div class="item">
+          <div
+            class="thumb"
+            alt={item.snippet.title}
+            style="background-image: url({item.snippet.thumbnails.default.url})" />
+          <div class="middle">
+            <div class="title">
+              <span>{item.snippet.title}</span>
+            </div>
+            <div class="details">{item.contentDetails.duration}</div>
+          </div>
+          <div class="right" on:click={add(item)}>
+            <i class="fas fa-plus" />
+          </div>
+        </div>
+      {/each}
     </div>
   </div>
-  <div class="items">
-    {#each $searchRes as item, i}
-      <div class="item">
-        <div
-          class="thumb"
-          alt={item.snippet.title}
-          style="background-image: url({item.snippet.thumbnails.default.url})" />
-        <div class="middle">
-          <div class="title">
-            <span>{item.snippet.title}</span>
-          </div>
-          <div class="details">{item.contentDetails.duration}</div>
-        </div>
-        <div class="right" on:click={add(item)}>
-          <i class="fas fa-plus" />
-        </div>
-      </div>
-    {/each}
-  </div>
-</div>
+{/if}

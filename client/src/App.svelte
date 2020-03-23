@@ -5,6 +5,7 @@
   import { onMount, onDestroy } from "svelte";
   import { push, pop, replace } from "svelte-spa-router";
   import { location } from "svelte-spa-router";
+  import NavBar from "./NavBar.svelte";
 
   onMount(() => {
     //in case app was open through a messy url, this code clears it up and also makes back button go back to home
@@ -21,6 +22,12 @@
     padding: 0;
     margin: 0;
   }
+
+  :global(:root) {
+    --hp-grey: #363636;
+    --nav-bar-height: 70px;
+  }
 </style>
 
+<NavBar />
 <Router {routes} />
