@@ -12,6 +12,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 5px solid #00000026;
+    background: linear-gradient(0, #404040, #414141);
+    box-sizing: border-box;
   }
 </style>
 

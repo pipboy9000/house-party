@@ -11,9 +11,9 @@
   let params;
 
   onMount(() => {
-    colorChange = setInterval(() => {
-      bgColor = getRandomColor();
-    }, 1500);
+    // colorChange = setInterval(() => {
+    //   bgColor = getRandomColor();
+    // }, 1500);
   });
 
   onDestroy(() => {

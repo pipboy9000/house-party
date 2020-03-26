@@ -7,6 +7,10 @@
   import qs from "qs";
   import { location, querystring, pop } from "svelte-spa-router";
 
+  import { station } from "./stores/station";
+
+  import { fade } from "svelte/transition";
+
   const str = "";
 
   const dispatch = createEventDispatcher();
@@ -113,7 +117,7 @@
   input {
     background: #141414;
     border: 1px solid #0a0a0a;
-    border-radius: 2px;
+    border-radius: 3px;
     padding: 3px;
     margin: 0;
     margin-left: 30px;
@@ -126,6 +130,15 @@
 
   input:focus {
     outline: none;
+  }
+
+  input:disabled {
+    background: #313131;
+    border: 1px solid #272727;
+  }
+
+  input::placeholder {
+    color: white;
   }
 
   .items {
@@ -262,6 +275,7 @@
 
 <div class="search">
   <input
+    disabled={!$station || $station.error}
     placeholder="Search"
     bind:this={input}
     bind:value={$searchStr}
@@ -270,7 +284,7 @@
     on:input={search} />
 </div>
 {#if showSearch}
-  <div class="bg" on:click={pop}>
+  <div class="bg" on:click={pop} transition:fade={{ duration: 100 }}>
     <div class="items">
       {#each $searchRes as item, i}
         <div class="item">

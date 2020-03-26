@@ -15545,7 +15545,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "Loading...";
     			attr_dev(div, "class", "loading svelte-1kxgzld");
-    			add_location(div, file, 148, 4, 2939);
+    			add_location(div, file, 148, 4, 2948);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -15584,7 +15584,7 @@ var app = (function () {
     	let input;
     	let div6_hidden_value;
     	let dispose;
-    	let if_block = !/*$fp*/ ctx[2] && create_if_block(ctx);
+    	let if_block = !/*$fp*/ ctx[1] && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -15607,28 +15607,28 @@ var app = (function () {
     			t5 = space();
     			input = element("input");
     			attr_dev(div0, "class", "logo svelte-1kxgzld");
-    			add_location(div0, file, 152, 6, 3052);
+    			add_location(div0, file, 152, 6, 3061);
     			attr_dev(div1, "class", "top svelte-1kxgzld");
-    			add_location(div1, file, 151, 4, 3027);
-    			add_location(span0, file, 157, 10, 3200);
+    			add_location(div1, file, 151, 4, 3036);
+    			add_location(span0, file, 157, 10, 3209);
     			attr_dev(div2, "class", "btn svelte-1kxgzld");
-    			add_location(div2, file, 156, 8, 3149);
-    			add_location(span1, file, 160, 10, 3302);
+    			add_location(div2, file, 156, 8, 3158);
+    			add_location(span1, file, 160, 10, 3311);
     			attr_dev(input, "maxlength", "4");
     			attr_dev(input, "class", "svelte-1kxgzld");
-    			add_location(input, file, 161, 10, 3339);
+    			add_location(input, file, 161, 10, 3348);
     			attr_dev(div3, "class", "btn svelte-1kxgzld");
-    			add_location(div3, file, 159, 8, 3250);
+    			add_location(div3, file, 159, 8, 3259);
     			attr_dev(div4, "class", "buttons svelte-1kxgzld");
-    			add_location(div4, file, 155, 6, 3118);
+    			add_location(div4, file, 155, 6, 3127);
     			attr_dev(div5, "class", "bottom svelte-1kxgzld");
-    			add_location(div5, file, 154, 4, 3090);
+    			add_location(div5, file, 154, 4, 3099);
     			attr_dev(div6, "class", "home");
-    			div6.hidden = div6_hidden_value = !/*$fp*/ ctx[2];
-    			add_location(div6, file, 150, 2, 2989);
-    			set_style(main, "background", /*bgColor*/ ctx[1]);
+    			div6.hidden = div6_hidden_value = !/*$fp*/ ctx[1];
+    			add_location(div6, file, 150, 2, 2998);
+    			set_style(main, "background", /*bgColor*/ ctx[2]);
     			attr_dev(main, "class", "svelte-1kxgzld");
-    			add_location(main, file, 146, 0, 2883);
+    			add_location(main, file, 146, 0, 2892);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15661,7 +15661,7 @@ var app = (function () {
     			];
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!/*$fp*/ ctx[2]) {
+    			if (!/*$fp*/ ctx[1]) {
     				if (!if_block) {
     					if_block = create_if_block(ctx);
     					if_block.c();
@@ -15676,12 +15676,8 @@ var app = (function () {
     				set_input_value(input, /*joinId*/ ctx[0]);
     			}
 
-    			if (dirty & /*$fp*/ 4 && div6_hidden_value !== (div6_hidden_value = !/*$fp*/ ctx[2])) {
+    			if (dirty & /*$fp*/ 2 && div6_hidden_value !== (div6_hidden_value = !/*$fp*/ ctx[1])) {
     				prop_dev(div6, "hidden", div6_hidden_value);
-    			}
-
-    			if (dirty & /*bgColor*/ 2) {
-    				set_style(main, "background", /*bgColor*/ ctx[1]);
     			}
     		},
     		i: noop,
@@ -15715,20 +15711,17 @@ var app = (function () {
     function instance$1($$self, $$props, $$invalidate) {
     	let $fp;
     	validate_store(fp, "fp");
-    	component_subscribe($$self, fp, $$value => $$invalidate(2, $fp = $$value));
+    	component_subscribe($$self, fp, $$value => $$invalidate(1, $fp = $$value));
     	let joinId;
     	let colorChange;
     	let bgColor = getRandomColor();
     	let params;
 
     	onMount(() => {
-    		colorChange = setInterval(
-    			() => {
-    				$$invalidate(1, bgColor = getRandomColor());
-    			},
-    			1500
-    		);
-    	});
+    		
+    	}); // colorChange = setInterval(() => {
+    	//   bgColor = getRandomColor();
+    	// }, 1500);
 
     	onDestroy(() => {
     		clearInterval(colorChange);
@@ -15754,15 +15747,15 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("joinId" in $$props) $$invalidate(0, joinId = $$props.joinId);
     		if ("colorChange" in $$props) colorChange = $$props.colorChange;
-    		if ("bgColor" in $$props) $$invalidate(1, bgColor = $$props.bgColor);
+    		if ("bgColor" in $$props) $$invalidate(2, bgColor = $$props.bgColor);
     		if ("params" in $$props) params = $$props.params;
     		if ("$fp" in $$props) fp.set($fp = $$props.$fp);
     	};
 
     	return [
     		joinId,
-    		bgColor,
     		$fp,
+    		bgColor,
     		joinStation,
     		catchEnter,
     		colorChange,
@@ -16836,6 +16829,21 @@ var app = (function () {
 
     const searchRes = writable([]);
 
+    function cubicOut(t) {
+        const f = t - 1.0;
+        return f * f * f + 1.0;
+    }
+
+    function fade(node, { delay = 0, duration = 400, easing = identity }) {
+        const o = +getComputedStyle(node).opacity;
+        return {
+            delay,
+            duration,
+            easing,
+            css: t => `opacity: ${t * o}`
+        };
+    }
+
     /* src\NowPlaying.svelte generated by Svelte v3.18.2 */
     const file$2 = "src\\NowPlaying.svelte";
 
@@ -17150,11 +17158,6 @@ var app = (function () {
     	}
     }
 
-    function cubicOut(t) {
-        const f = t - 1.0;
-        return f * f * f + 1.0;
-    }
-
     function flip(node, animation, params) {
         const style = getComputedStyle(node);
         const transform = style.transform === 'none' ? '' : style.transform;
@@ -17169,16 +17172,6 @@ var app = (function () {
             duration: is_function(duration) ? duration(d) : duration,
             easing,
             css: (_t, u) => `transform: ${transform} translate(${u * dx}px, ${u * dy}px);`
-        };
-    }
-
-    function fade(node, { delay = 0, duration = 400, easing = identity }) {
-        const o = +getComputedStyle(node).opacity;
-        return {
-            delay,
-            duration,
-            easing,
-            css: t => `opacity: ${t * o}`
         };
     }
 
@@ -18557,17 +18550,19 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[12] = list[i];
-    	child_ctx[14] = i;
+    	child_ctx[13] = list[i];
+    	child_ctx[15] = i;
     	return child_ctx;
     }
 
-    // (272:0) {#if showSearch}
+    // (286:0) {#if showSearch}
     function create_if_block$4(ctx) {
     	let div1;
     	let div0;
+    	let div1_transition;
+    	let current;
     	let dispose;
-    	let each_value = /*$searchRes*/ ctx[3];
+    	let each_value = /*$searchRes*/ ctx[4];
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value.length; i += 1) {
@@ -18583,10 +18578,10 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div0, "class", "items svelte-1bulfvz");
-    			add_location(div0, file$7, 273, 4, 5766);
-    			attr_dev(div1, "class", "bg svelte-1bulfvz");
-    			add_location(div1, file$7, 272, 2, 5729);
+    			attr_dev(div0, "class", "items svelte-1qp41vk");
+    			add_location(div0, file$7, 287, 4, 6077);
+    			attr_dev(div1, "class", "bg svelte-1qp41vk");
+    			add_location(div1, file$7, 286, 2, 6004);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -18596,11 +18591,12 @@ var app = (function () {
     				each_blocks[i].m(div0, null);
     			}
 
+    			current = true;
     			dispose = listen_dev(div1, "click", pop, false, false, false);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*add, $searchRes*/ 8) {
-    				each_value = /*$searchRes*/ ctx[3];
+    			if (dirty & /*add, $searchRes*/ 16) {
+    				each_value = /*$searchRes*/ ctx[4];
     				let i;
 
     				for (i = 0; i < each_value.length; i += 1) {
@@ -18622,9 +18618,25 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
     		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			add_render_callback(() => {
+    				if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 100 }, true);
+    				div1_transition.run(1);
+    			});
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			if (!div1_transition) div1_transition = create_bidirectional_transition(div1, fade, { duration: 100 }, false);
+    			div1_transition.run(0);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
     			destroy_each(each_blocks, detaching);
+    			if (detaching && div1_transition) div1_transition.end();
     			dispose();
     		}
     	};
@@ -18633,14 +18645,14 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(272:0) {#if showSearch}",
+    		source: "(286:0) {#if showSearch}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (275:6) {#each $searchRes as item, i}
+    // (289:6) {#each $searchRes as item, i}
     function create_each_block$1(ctx) {
     	let div5;
     	let div0;
@@ -18649,11 +18661,11 @@ var app = (function () {
     	let div3;
     	let div1;
     	let span;
-    	let t1_value = /*item*/ ctx[12].snippet.title + "";
+    	let t1_value = /*item*/ ctx[13].snippet.title + "";
     	let t1;
     	let t2;
     	let div2;
-    	let t3_value = /*item*/ ctx[12].contentDetails.duration + "";
+    	let t3_value = /*item*/ ctx[13].contentDetails.duration + "";
     	let t3;
     	let t4;
     	let div4;
@@ -18677,24 +18689,24 @@ var app = (function () {
     			div4 = element("div");
     			i_1 = element("i");
     			t5 = space();
-    			attr_dev(div0, "class", "thumb svelte-1bulfvz");
-    			attr_dev(div0, "alt", div0_alt_value = /*item*/ ctx[12].snippet.title);
-    			set_style(div0, "background-image", "url(" + /*item*/ ctx[12].snippet.thumbnails.default.url + ")");
-    			add_location(div0, file$7, 276, 10, 5862);
-    			attr_dev(span, "class", "svelte-1bulfvz");
-    			add_location(span, file$7, 282, 14, 6097);
-    			attr_dev(div1, "class", "title svelte-1bulfvz");
-    			add_location(div1, file$7, 281, 12, 6062);
-    			attr_dev(div2, "class", "details svelte-1bulfvz");
-    			add_location(div2, file$7, 284, 12, 6164);
-    			attr_dev(div3, "class", "middle svelte-1bulfvz");
-    			add_location(div3, file$7, 280, 10, 6028);
-    			attr_dev(i_1, "class", "fas fa-plus svelte-1bulfvz");
-    			add_location(i_1, file$7, 287, 12, 6305);
-    			attr_dev(div4, "class", "right svelte-1bulfvz");
-    			add_location(div4, file$7, 286, 10, 6251);
-    			attr_dev(div5, "class", "item svelte-1bulfvz");
-    			add_location(div5, file$7, 275, 8, 5832);
+    			attr_dev(div0, "class", "thumb svelte-1qp41vk");
+    			attr_dev(div0, "alt", div0_alt_value = /*item*/ ctx[13].snippet.title);
+    			set_style(div0, "background-image", "url(" + /*item*/ ctx[13].snippet.thumbnails.default.url + ")");
+    			add_location(div0, file$7, 290, 10, 6173);
+    			attr_dev(span, "class", "svelte-1qp41vk");
+    			add_location(span, file$7, 296, 14, 6408);
+    			attr_dev(div1, "class", "title svelte-1qp41vk");
+    			add_location(div1, file$7, 295, 12, 6373);
+    			attr_dev(div2, "class", "details svelte-1qp41vk");
+    			add_location(div2, file$7, 298, 12, 6475);
+    			attr_dev(div3, "class", "middle svelte-1qp41vk");
+    			add_location(div3, file$7, 294, 10, 6339);
+    			attr_dev(i_1, "class", "fas fa-plus svelte-1qp41vk");
+    			add_location(i_1, file$7, 301, 12, 6616);
+    			attr_dev(div4, "class", "right svelte-1qp41vk");
+    			add_location(div4, file$7, 300, 10, 6562);
+    			attr_dev(div5, "class", "item svelte-1qp41vk");
+    			add_location(div5, file$7, 289, 8, 6143);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div5, anchor);
@@ -18716,7 +18728,7 @@ var app = (function () {
     				div4,
     				"click",
     				function () {
-    					if (is_function(add(/*item*/ ctx[12]))) add(/*item*/ ctx[12]).apply(this, arguments);
+    					if (is_function(add(/*item*/ ctx[13]))) add(/*item*/ ctx[13]).apply(this, arguments);
     				},
     				false,
     				false,
@@ -18726,16 +18738,16 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty & /*$searchRes*/ 8 && div0_alt_value !== (div0_alt_value = /*item*/ ctx[12].snippet.title)) {
+    			if (dirty & /*$searchRes*/ 16 && div0_alt_value !== (div0_alt_value = /*item*/ ctx[13].snippet.title)) {
     				attr_dev(div0, "alt", div0_alt_value);
     			}
 
-    			if (dirty & /*$searchRes*/ 8) {
-    				set_style(div0, "background-image", "url(" + /*item*/ ctx[12].snippet.thumbnails.default.url + ")");
+    			if (dirty & /*$searchRes*/ 16) {
+    				set_style(div0, "background-image", "url(" + /*item*/ ctx[13].snippet.thumbnails.default.url + ")");
     			}
 
-    			if (dirty & /*$searchRes*/ 8 && t1_value !== (t1_value = /*item*/ ctx[12].snippet.title + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*$searchRes*/ 8 && t3_value !== (t3_value = /*item*/ ctx[12].contentDetails.duration + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*$searchRes*/ 16 && t1_value !== (t1_value = /*item*/ ctx[13].snippet.title + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*$searchRes*/ 16 && t3_value !== (t3_value = /*item*/ ctx[13].contentDetails.duration + "")) set_data_dev(t3, t3_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div5);
@@ -18747,7 +18759,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(275:6) {#each $searchRes as item, i}",
+    		source: "(289:6) {#each $searchRes as item, i}",
     		ctx
     	});
 
@@ -18757,8 +18769,10 @@ var app = (function () {
     function create_fragment$8(ctx) {
     	let div;
     	let input_1;
+    	let input_1_disabled_value;
     	let t;
     	let if_block_anchor;
+    	let current;
     	let dispose;
     	let if_block = /*showSearch*/ ctx[1] && create_if_block$4(ctx);
 
@@ -18769,11 +18783,12 @@ var app = (function () {
     			t = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
+    			input_1.disabled = input_1_disabled_value = !/*$station*/ ctx[3] || /*$station*/ ctx[3].error;
     			attr_dev(input_1, "placeholder", "Search");
-    			attr_dev(input_1, "class", "svelte-1bulfvz");
-    			add_location(input_1, file$7, 263, 2, 5533);
-    			attr_dev(div, "class", "search svelte-1bulfvz");
-    			add_location(div, file$7, 262, 0, 5509);
+    			attr_dev(input_1, "class", "svelte-1qp41vk");
+    			add_location(input_1, file$7, 276, 2, 5764);
+    			attr_dev(div, "class", "search svelte-1qp41vk");
+    			add_location(div, file$7, 275, 0, 5740);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -18781,20 +18796,25 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			append_dev(div, input_1);
-    			/*input_1_binding*/ ctx[10](input_1);
+    			/*input_1_binding*/ ctx[11](input_1);
     			set_input_value(input_1, /*$searchStr*/ ctx[2]);
     			insert_dev(target, t, anchor);
     			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
 
     			dispose = [
-    				listen_dev(input_1, "input", /*input_1_input_handler*/ ctx[11]),
+    				listen_dev(input_1, "input", /*input_1_input_handler*/ ctx[12]),
     				listen_dev(input_1, "click", catchClick$1, false, false, false),
-    				listen_dev(input_1, "keydown", /*catchEnter*/ ctx[4], false, false, false),
-    				listen_dev(input_1, "input", /*search*/ ctx[5], false, false, false)
+    				listen_dev(input_1, "keydown", /*catchEnter*/ ctx[5], false, false, false),
+    				listen_dev(input_1, "input", /*search*/ ctx[6], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
+    			if (!current || dirty & /*$station*/ 8 && input_1_disabled_value !== (input_1_disabled_value = !/*$station*/ ctx[3] || /*$station*/ ctx[3].error)) {
+    				prop_dev(input_1, "disabled", input_1_disabled_value);
+    			}
+
     			if (dirty & /*$searchStr*/ 4 && input_1.value !== /*$searchStr*/ ctx[2]) {
     				set_input_value(input_1, /*$searchStr*/ ctx[2]);
     			}
@@ -18802,21 +18822,35 @@ var app = (function () {
     			if (/*showSearch*/ ctx[1]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
+    					transition_in(if_block, 1);
     				} else {
     					if_block = create_if_block$4(ctx);
     					if_block.c();
+    					transition_in(if_block, 1);
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
     			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
     			}
     		},
-    		i: noop,
-    		o: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			/*input_1_binding*/ ctx[10](null);
+    			/*input_1_binding*/ ctx[11](null);
     			if (detaching) detach_dev(t);
     			if (if_block) if_block.d(detaching);
     			if (detaching) detach_dev(if_block_anchor);
@@ -18856,13 +18890,16 @@ var app = (function () {
     function instance$8($$self, $$props, $$invalidate) {
     	let $querystring;
     	let $searchStr;
+    	let $station;
     	let $searchRes;
     	validate_store(querystring, "querystring");
-    	component_subscribe($$self, querystring, $$value => $$invalidate(7, $querystring = $$value));
+    	component_subscribe($$self, querystring, $$value => $$invalidate(8, $querystring = $$value));
     	validate_store(searchStr, "searchStr");
     	component_subscribe($$self, searchStr, $$value => $$invalidate(2, $searchStr = $$value));
+    	validate_store(station, "station");
+    	component_subscribe($$self, station, $$value => $$invalidate(3, $station = $$value));
     	validate_store(searchRes, "searchRes");
-    	component_subscribe($$self, searchRes, $$value => $$invalidate(3, $searchRes = $$value));
+    	component_subscribe($$self, searchRes, $$value => $$invalidate(4, $searchRes = $$value));
     	const dispatch = createEventDispatcher();
     	let input;
     	let throttle;
@@ -18940,11 +18977,12 @@ var app = (function () {
     		if ("showSearch" in $$props) $$invalidate(1, showSearch = $$props.showSearch);
     		if ("$querystring" in $$props) querystring.set($querystring = $$props.$querystring);
     		if ("$searchStr" in $$props) searchStr.set($searchStr = $$props.$searchStr);
+    		if ("$station" in $$props) station.set($station = $$props.$station);
     		if ("$searchRes" in $$props) searchRes.set($searchRes = $$props.$searchRes);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*$querystring*/ 128) {
+    		if ($$self.$$.dirty & /*$querystring*/ 256) {
     			 $$invalidate(1, showSearch = lib$2.parse($querystring).search);
     		}
     	};
@@ -18953,6 +18991,7 @@ var app = (function () {
     		input,
     		showSearch,
     		$searchStr,
+    		$station,
     		$searchRes,
     		catchEnter,
     		search,
@@ -18991,8 +19030,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(search.$$.fragment);
-    			attr_dev(div, "class", "bg svelte-huiiyq");
-    			add_location(div, file$8, 17, 0, 304);
+    			attr_dev(div, "class", "bg svelte-18vvazr");
+    			add_location(div, file$8, 20, 0, 429);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
