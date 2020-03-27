@@ -18,9 +18,11 @@
 </script>
 
 <style>
-  :global(body, h1) {
+  :global(html, body, h1) {
     padding: 0;
     margin: 0;
+    max-height: 100vh;
+    overflow: hidden;
   }
 
   :global(:root) {

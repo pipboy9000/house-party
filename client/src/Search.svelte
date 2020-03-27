@@ -115,8 +115,8 @@
   }
 
   input {
-    background: #141414;
-    border: 1px solid #0a0a0a;
+    background: #313131;
+    border: 1px solid #1b1b1b;
     border-radius: 3px;
     padding: 3px;
     margin: 0;
@@ -135,10 +135,11 @@
   input:disabled {
     background: #313131;
     border: 1px solid #272727;
+    color: #404040;
   }
 
-  input::placeholder {
-    color: white;
+  input:disabled::placeholder {
+    color: #404040;
   }
 
   .items {

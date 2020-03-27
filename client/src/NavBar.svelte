@@ -1,5 +1,6 @@
 <script>
   import Search from "./search.svelte";
+  import User from "./User.svelte";
 </script>
 
 <style>
@@ -7,7 +8,7 @@
     width: 100%;
     height: var(--nav-bar-height);
     background: var(--hp-grey);
-    position: fixed;
+    position: relative;
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -20,4 +21,5 @@
 
 <div class="bg">
   <Search />
+  <User />
 </div>

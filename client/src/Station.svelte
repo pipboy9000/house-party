@@ -132,12 +132,12 @@
     color: white;
     width: 100%;
     position: absolute;
-    padding-bottom: 120px;
     display: flex;
     flex-direction: column;
-    min-height: calc(100% - 120px);
+    max-height: calc(100vh - var(--nav-bar-height));
     /* justify-content: center; */
     align-items: center;
+    overflow-y: auto;
   }
 
   h1 {
@@ -147,11 +147,10 @@
   }
 
   .top {
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 20px;
   }
 
   .buttons {

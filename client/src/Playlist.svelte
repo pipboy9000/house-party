@@ -51,6 +51,7 @@
     padding: 10px;
     box-sizing: border-box;
     margin-top: 10px;
+    padding-bottom: 120px;
   }
 
   .list {
