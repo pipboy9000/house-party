@@ -112,6 +112,7 @@
     display: flex;
     align-items: center;
     max-width: 300px;
+    margin-left: auto;
   }
 
   input {

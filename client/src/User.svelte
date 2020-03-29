@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
     font-size: 2em;
+    margin-left: auto;
   }
 </style>
 
